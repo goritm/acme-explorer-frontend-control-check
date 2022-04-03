@@ -4,5 +4,17 @@
   icon="menu-2-outline"
 ></nb-icon>
 <a routerLink="/">ACME Explorer</a>
-<button (click)="changeTheme()">change theme</button>
-<button [nbContextMenu]="items">Menu</button>
+<div class="buttons">
+  // TODO: check if replaceable with ternary operator
+  <nb-icon
+    *ngIf="this.currentTheme === 'default'"
+    (click)="changeTheme()"
+    icon="moon"
+  ></nb-icon>
+  <nb-icon
+    *ngIf="this.currentTheme === 'dark'"
+    (click)="changeTheme()"
+    icon="sun-outline"
+  ></nb-icon>
+  <button nbButton [nbContextMenu]="items">Menu</button>
+</div>

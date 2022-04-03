@@ -1,3 +1,15 @@
-:host nb-layout-header ::ng-deep nav {
-  justify-content: flex-end;
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  nb-icon {
+    cursor: pointer;
+  }
 }
