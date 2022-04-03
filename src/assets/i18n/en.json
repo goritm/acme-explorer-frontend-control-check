@@ -1,0 +1,6 @@
+{
+  "security": {
+    "login": "Login",
+    "logout": "Logout"
+  }
+}

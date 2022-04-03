@@ -5,6 +5,11 @@
 ></nb-icon>
 <a routerLink="/">ACME Explorer</a>
 <div class="buttons">
+  <nb-icon
+    icon="globe"
+    [nbContextMenu]="languageList"
+    nbContextMenuTag="language-list-menu"
+  ></nb-icon>
   <!-- TODO: check if replaceable with ternary operator -->
   <nb-icon
     *ngIf="this.currentTheme === 'default'"
@@ -16,5 +21,6 @@
     (click)="changeTheme()"
     icon="sun-outline"
   ></nb-icon>
+  <button nbButton>{{ 'security.login' | translate }}</button>
   <button nbButton [nbContextMenu]="items">Menu</button>
 </div>

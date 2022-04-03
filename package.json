@@ -23,6 +23,7 @@
     "@nebular/eva-icons": "9.0.1",
     "@nebular/theme": "^9.0.1",
     "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "eva-icons": "^1.1.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

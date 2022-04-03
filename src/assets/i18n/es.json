@@ -1,0 +1,6 @@
+{
+  "security": {
+    "login": "Entrar",
+    "logout": "Salir"
+  }
+}

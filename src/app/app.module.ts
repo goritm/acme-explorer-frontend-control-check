@@ -4,15 +4,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// nebular modules
 import {
   NbThemeModule,
   NbLayoutModule,
   NbContextMenuModule,
   NbIconModule,
   NbSidebarModule,
-  NbMenuModule
+  NbMenuModule,
+  NbButtonModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+
+// main components
 import { HomeComponent } from './components/home/home.component';
 
 // shared components
@@ -21,12 +26,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 
 // pipes
 import { LocalizedDataPipe } from './pipes/localized-data.pipe';
-
-// i18n
-import { registerLocaleData } from '@angular/common';
-import localeEs from '@angular/common/locales/es';
-
-registerLocaleData(localeEs, 'es');
+import { NgxTranslateModule } from './translate/translate.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +40,7 @@ registerLocaleData(localeEs, 'es');
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxTranslateModule,
     NbIconModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
@@ -50,7 +51,8 @@ registerLocaleData(localeEs, 'es');
     }),
     NbLayoutModule,
     NbEvaIconsModule,
-    NbContextMenuModule
+    NbContextMenuModule,
+    NbButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
