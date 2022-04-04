@@ -57,9 +57,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbThemeModule.forRoot({
-      name: window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'default'
+      name: localStorage.getItem('theme') ?? 'default'
     }),
     NbAuthModule.forRoot({
       strategies: [

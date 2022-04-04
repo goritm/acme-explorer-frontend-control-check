@@ -37,9 +37,10 @@ export class NavbarComponent implements OnInit {
     private readonly translateService: TranslateService,
     private nbMenuService: NbMenuService
   ) {
-    themeService
-      .onThemeChange()
-      .subscribe(({ name }) => (this.currentTheme = name));
+    this.themeService.onThemeChange().subscribe(({ name }) => {
+      this.currentTheme = name;
+      localStorage.setItem('theme', name);
+    });
 
     this.siteLanguage =
       localStorage.getItem('language') ??
