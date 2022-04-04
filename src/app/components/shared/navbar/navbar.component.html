@@ -21,6 +21,11 @@
     (click)="changeTheme()"
     icon="sun-outline"
   ></nb-icon>
-  <button nbButton>{{ 'security.login' | translate }}</button>
-  <button nbButton [nbContextMenu]="items">Menu</button>
+  <button nbButton [routerLink]="'login'">
+    {{ 'security.login' | translate }}
+  </button>
+  <button nbButton [routerLink]="'register'">
+    {{ 'security.register' | translate }}
+  </button>
+  <button nbButton [nbContextMenu]="items" *ngIf="isLoggedIn">Menu</button>
 </div>

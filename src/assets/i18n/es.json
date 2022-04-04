@@ -1,6 +1,7 @@
 {
   "security": {
     "login": "Entrar",
+    "register": "Registro",
     "logout": "Salir"
   }
 }

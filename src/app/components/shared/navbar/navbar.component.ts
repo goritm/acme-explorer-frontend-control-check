@@ -16,6 +16,8 @@ export class NavbarComponent implements OnInit {
   items = [{ title: 'Profile' }, { title: 'Logout' }];
   currentTheme!: string;
   siteLanguage!: string;
+  isLoggedIn = false;
+
   languageList = [
     {
       title: 'English',
