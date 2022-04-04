@@ -7,7 +7,10 @@ import {
 
 import { Apollo } from 'apollo-angular';
 import { ResponseLoginMutation } from 'src/utils/mutations/responses';
-import { LOG_IN_MUTATION } from 'src/utils/mutations/mutations';
+import {
+  LOG_IN_MUTATION,
+  SIGN_UP_MUTATION
+} from 'src/utils/mutations/mutations';
 
 /**
  * Common authentication service.
@@ -65,6 +68,27 @@ export class AuthService {
       variables: {
         email: email,
         password: password
+      }
+    });
+  }
+
+  signup(
+    email: string,
+    password: string,
+    name: string,
+    lastName: string,
+    telephoneNumber: string,
+    address: string
+  ) {
+    return this.apollo.mutate<ResponseLoginMutation>({
+      mutation: SIGN_UP_MUTATION,
+      variables: {
+        email: email,
+        password: password,
+        name: name,
+        lastName: lastName,
+        telephoneNumber: telephoneNumber,
+        address: address
       }
     });
   }

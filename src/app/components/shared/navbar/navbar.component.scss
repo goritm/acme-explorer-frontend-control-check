@@ -10,6 +10,16 @@
     gap: 1.5rem;
   }
 
+  .side-menu-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      height: 48px;
+    }
+  }
+
   nb-icon {
     cursor: pointer;
   }

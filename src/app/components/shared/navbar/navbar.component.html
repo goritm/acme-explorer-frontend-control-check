@@ -1,9 +1,13 @@
-<nb-icon
-  (click)="toggleSidebar()"
-  class="sidebar-toggle"
-  icon="menu-outline"
-></nb-icon>
-<a routerLink="/">ACME Explorer</a>
+<div class="side-menu-buttons">
+  <nb-icon
+    (click)="toggleSidebar()"
+    class="sidebar-toggle"
+    icon="menu-outline"
+  ></nb-icon>
+  <img src="assets/images/acme-explorer-logo.png" alt="" />
+
+  <a routerLink="/">ACME Explorer</a>
+</div>
 <div class="buttons">
   <nb-icon
     icon="globe"
@@ -29,5 +33,11 @@
       {{ 'security.register' | translate }}
     </button>
   </div>
+  <nb-user
+    name="gori"
+    title="el gorilongo"
+    [showTitle]="false"
+    *ngIf="isLoggedIn"
+  ></nb-user>
   <button nbButton [nbContextMenu]="items" *ngIf="isLoggedIn">Menu</button>
 </div>
