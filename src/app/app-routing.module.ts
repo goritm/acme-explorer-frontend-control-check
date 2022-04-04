@@ -12,11 +12,6 @@ const routes: Routes = [
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path: 'users',
-    loadChildren: () =>
-      import('./users/users.module').then((m) => m.UsersModule)
-  },
-  {
     path: 'login',
     component: NbLoginComponent
   },

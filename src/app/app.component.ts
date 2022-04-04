@@ -15,11 +15,6 @@ export class AppComponent {
       icon: 'home-outline',
       link: '/home',
       home: true
-    },
-    {
-      title: 'Users',
-      icon: 'people-outline',
-      link: '/users'
     }
   ];
 }
