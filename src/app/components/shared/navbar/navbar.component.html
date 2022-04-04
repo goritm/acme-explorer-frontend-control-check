@@ -21,11 +21,13 @@
     (click)="changeTheme()"
     icon="sun-outline"
   ></nb-icon>
-  <button nbButton [routerLink]="'login'">
-    {{ 'security.login' | translate }}
-  </button>
-  <button nbButton [routerLink]="'register'">
-    {{ 'security.register' | translate }}
-  </button>
+  <div *ngIf="!isLoggedIn">
+    <button nbButton [routerLink]="'login'">
+      {{ 'security.login' | translate }}
+    </button>
+    <button nbButton [routerLink]="'register'">
+      {{ 'security.register' | translate }}
+    </button>
+  </div>
   <button nbButton [nbContextMenu]="items" *ngIf="isLoggedIn">Menu</button>
 </div>

@@ -3,18 +3,18 @@ import { gql } from 'apollo-angular';
 export const SIGN_UP_MUTATION = gql`
   mutation signUp(
     $email: String!
+    $password: String!
     $name: String!
     $lastName: String!
-    $password: String!
     $telephoneNumber: String
     $address: String
   ) {
     signUpUser(
       input: {
         email: $email
+        password: $password
         name: $name
         lastName: $lastName
-        password: $password
         telephoneNumber: $telephoneNumber
         address: $address
       }
