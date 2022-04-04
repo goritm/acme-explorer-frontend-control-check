@@ -1,12 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
-import { InMemoryCache } from '@apollo/client/core';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
 
 import { AppRoutingModule } from './modules/routing/app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +16,7 @@ import {
   NbSidebarModule,
   NbMenuModule,
   NbButtonModule,
-  NbFormFieldModule
+  NbUserModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -46,49 +41,25 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
     LocalizedDataPipe
   ],
   imports: [
+    AuthenticationModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ApolloModule,
     NgxTranslateModule,
     NbIconModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbThemeModule.forRoot({
-      name: window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'default'
-    }),
-    NbAuthModule.forRoot({
-      strategies: [
-        NbPasswordAuthStrategy.setup({
-          name: 'email'
-        })
-      ],
-      forms: {}
+      name: localStorage.getItem('theme') ?? 'default'
     }),
     NbLayoutModule,
     NbEvaIconsModule,
     NbContextMenuModule,
     NbButtonModule,
-    NbFormFieldModule,
-    AuthenticationModule
+    NbUserModule
   ],
-  providers: [
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory: (httpLink: HttpLink) => {
-        return {
-          cache: new InMemoryCache(),
-          link: httpLink.create({
-            uri: 'https://api-gateway-bujosa.cloud.okteto.net/graphql'
-          })
-        };
-      },
-      deps: [HttpLink]
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

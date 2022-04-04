@@ -8,6 +8,8 @@ import {
 } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { Languages } from 'src/app/shared/enums/languages.enum';
+import { AuthService } from 'src/app/modules/authentication/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -31,26 +33,41 @@ export class NavbarComponent implements OnInit {
     }
   ];
 
+  // TODO: Remove this logic out of navbar
   constructor(
+    private readonly authService: AuthService,
     private readonly sidebarService: NbSidebarService,
     private readonly themeService: NbThemeService,
     private readonly translateService: TranslateService,
-    private nbMenuService: NbMenuService
+    private readonly menuService: NbMenuService,
+    private router: Router
   ) {
-    themeService
-      .onThemeChange()
-      .subscribe(({ name }) => (this.currentTheme = name));
+    // theme
+    this.themeService.onThemeChange().subscribe(({ name }) => {
+      this.currentTheme = name;
+      localStorage.setItem('theme', name);
+    });
 
+    // language
     this.siteLanguage =
       localStorage.getItem('language') ??
       this.translateService.getBrowserLang() ??
       'en';
     this.translateService.setDefaultLang(this.siteLanguage);
     this.changeLanguage(this.siteLanguage);
+
+    // logged in
+    this.authService.isAuthenticated.subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+
+      if (isLoggedIn) {
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   toggleSidebar(): boolean {
-    this.sidebarService.toggle();
+    this.sidebarService.toggle(true);
     return false;
   }
 
@@ -73,7 +90,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.nbMenuService
+    this.menuService
       .onItemClick()
       .pipe(filter(({ tag }) => tag === 'language-list-menu'))
       .subscribe(({ item }) => this.changeLanguage(item.data));

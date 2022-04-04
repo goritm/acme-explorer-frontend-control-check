@@ -1,5 +1,5 @@
-import { IBaseEntity } from 'src/app/shared/intefaces/base-entity.interface';
-import { IUser } from 'src/app/shared/intefaces/user.interface';
+import { IBaseEntity } from 'src/app/shared/interfaces/base-entity.interface';
+import { IUser } from 'src/app/shared/interfaces/user.interface';
 
 export interface ResponseLoginMutation {
   signInUser: {
