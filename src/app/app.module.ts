@@ -46,6 +46,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
     LocalizedDataPipe
   ],
   imports: [
+    AuthenticationModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -71,9 +72,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
     NbLayoutModule,
     NbEvaIconsModule,
     NbContextMenuModule,
-    NbButtonModule,
-    NbFormFieldModule,
-    AuthenticationModule
+    NbButtonModule
   ],
   providers: [
     {

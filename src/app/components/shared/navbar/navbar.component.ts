@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleSidebar(): boolean {
-    this.sidebarService.toggle();
+    this.sidebarService.toggle(true);
     return false;
   }
 
