@@ -4,8 +4,9 @@ import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache, ApolloLink } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
+import { environment } from 'src/environments/environment';
 
-const uri = 'https://api-gateway-bujosa.cloud.okteto.net/graphql';
+const uri = environment.apiUrl;
 
 export function createApollo(httpLink: HttpLink) {
   const basic = setContext(() => ({

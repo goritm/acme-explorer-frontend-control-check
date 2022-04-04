@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
 
 import {
+  NbMenuItem,
   NbMenuService,
   NbSidebarService,
   NbThemeService
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  items = [{ title: 'Profile' }, { title: 'Logout' }];
+  items: NbMenuItem[] = [{ title: 'Profile' }, { title: 'Logout' }];
   currentTheme!: string;
   siteLanguage!: string;
   isLoggedIn = false;
@@ -90,6 +91,12 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.menuService.onItemClick().subscribe(({ item }) => {
+      if (item.title === 'Logout') {
+        this.authService.logout();
+      }
+    });
+
     this.menuService
       .onItemClick()
       .pipe(filter(({ tag }) => tag === 'language-list-menu'))

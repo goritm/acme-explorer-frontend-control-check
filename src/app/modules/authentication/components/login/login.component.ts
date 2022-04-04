@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ResponseLoginMutation } from 'src/utils/mutations/responses';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -21,19 +22,15 @@ export class LoginComponent {
 
   constructor(protected authService: AuthService) {}
 
-  saveUserData(id: string, token: string) {
-    this.authService.saveUserData(id, token);
+  saveUserData(data: ResponseLoginMutation) {
+    this.authService.saveUserData(data);
   }
 
   login(): void {
     this.authService.login(this.user.email, this.user.password).subscribe(
       ({ data }) => {
-        console.log(data?.signInUser);
         if (!(data === undefined || data === null)) {
-          this.saveUserData(
-            data.signInUser.user.id,
-            data.signInUser.accessToken
-          );
+          this.saveUserData(data);
         }
       },
       (error) => {

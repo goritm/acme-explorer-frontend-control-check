@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {
   STORAGE_ACCESS_TOKEN,
+  STORAGE_USER,
   STORAGE_USER_ID
 } from 'src/utils/constants/user.constants';
 
@@ -35,16 +36,20 @@ export class AuthService {
     this._isAuthenticated.next(true);
   }
 
-  saveUserData(id: string, token: string) {
-    localStorage.setItem(STORAGE_USER_ID, id);
-    localStorage.setItem(STORAGE_ACCESS_TOKEN, token);
-    this.setUserId(id);
+  saveUserData(data: ResponseLoginMutation) {
+    const { accessToken, user } = data.signInUser;
+
+    localStorage.setItem(STORAGE_USER_ID, data.signInUser.user.id);
+    localStorage.setItem(STORAGE_ACCESS_TOKEN, accessToken);
+    localStorage.setItem(STORAGE_USER, JSON.stringify(user));
+    this.setUserId(user.id);
   }
 
   logout() {
     // Removing user data from local storage and the service
     localStorage.removeItem(STORAGE_USER_ID);
     localStorage.removeItem(STORAGE_ACCESS_TOKEN);
+    localStorage.removeItem(STORAGE_USER);
     this.userId = null;
 
     // Dispatching to all listeners that the user is not authenticated
