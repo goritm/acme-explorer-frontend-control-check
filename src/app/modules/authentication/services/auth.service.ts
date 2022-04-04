@@ -5,6 +5,10 @@ import {
   STORAGE_USER_ID
 } from 'src/utils/constants/user.constants';
 
+import { Apollo } from 'apollo-angular';
+import { ResponseLoginMutation } from 'src/utils/mutations/responses';
+import { LOG_IN_MUTATION } from 'src/utils/mutations/mutations';
+
 /**
  * Common authentication service.
  * Should be used to as an interlayer between UI Components and Auth Strategy.
@@ -12,8 +16,9 @@ import {
 @Injectable()
 export class AuthService {
   private userId: string | null = null;
-
   private _isAuthenticated = new BehaviorSubject(false);
+
+  constructor(private apollo: Apollo) {}
 
   // Providing a observable to listen the authentication state
   get isAuthenticated(): Observable<boolean> {
@@ -49,5 +54,15 @@ export class AuthService {
     if (id) {
       this.setUserId(id);
     }
+  }
+
+  login(email: string, password: string) {
+    return this.apollo.mutate<ResponseLoginMutation>({
+      mutation: LOG_IN_MUTATION,
+      variables: {
+        email: email,
+        password: password
+      }
+    });
   }
 }
