@@ -46,6 +46,9 @@ export class AuthService {
 
     // Dispatching to all listeners that the user is not authenticated
     this._isAuthenticated.next(false);
+
+    // Reset the store after logout logic
+    this.apollo.client.resetStore();
   }
 
   autoLogin() {
