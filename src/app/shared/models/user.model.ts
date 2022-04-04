@@ -1,6 +1,6 @@
 import { BaseEntity } from '../classes/base.entity';
 import { UserRoles } from '../enums/user-roles.enum';
-import { IUser } from '../intefaces/user.interface';
+import { IUser } from '../interfaces/user.interface';
 
 export class User extends BaseEntity implements IUser {
   private _name: string;
