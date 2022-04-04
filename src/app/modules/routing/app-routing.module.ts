@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from '../../components/home/home.component';
 
-import { NbLoginComponent, NbRegisterComponent } from '@nebular/auth';
+import { NbRegisterComponent } from '@nebular/auth';
+import { LoginComponent } from '../authentication/components/login/login.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'login',
-    component: NbLoginComponent
+    component: LoginComponent
   },
   {
     path: 'register',

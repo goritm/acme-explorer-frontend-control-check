@@ -3,5 +3,10 @@
     "login": "Login",
     "register": "Register",
     "logout": "Logout"
+  },
+  "home": {
+    "title": "Home",
+    "welcome": "Welcome to the home page",
+    "works": "Home works"
   }
 }

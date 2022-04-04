@@ -91,18 +91,3 @@ export const UPDATE_SELF_PASSWORD_MUTATION = gql`
     }
   }
 `;
-
-export const GET_USER = gql`
-  query Self {
-    self {
-      id
-      email
-      name
-      lastName
-      telephoneNumber
-      address
-      profilePicture
-      role
-    }
-  }
-`;

@@ -3,5 +3,10 @@
     "login": "Entrar",
     "register": "Registro",
     "logout": "Salir"
+  },
+  "home": {
+    "title": "Pagina Principal",
+    "welcome": "Bienvenido a la pagina principal",
+    "works": "El componente home funciona"
   }
 }

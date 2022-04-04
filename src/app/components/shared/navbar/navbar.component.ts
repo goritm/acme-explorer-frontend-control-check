@@ -7,6 +7,8 @@ import {
   NbThemeService
 } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
+import { Languages } from 'src/app/shared/enums/languages.enum';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -21,11 +23,11 @@ export class NavbarComponent implements OnInit {
   languageList = [
     {
       title: 'English',
-      data: 'en'
+      data: Languages.EN
     },
     {
       title: 'Spanish',
-      data: 'es'
+      data: Languages.ES
     }
   ];
 

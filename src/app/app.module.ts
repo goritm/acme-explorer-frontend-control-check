@@ -8,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './modules/routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -33,8 +33,9 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 
 // pipes
-import { LocalizedDataPipe } from './pipes/localized-data.pipe';
+import { LocalizedDataPipe } from '../utils/pipes/localized-data.pipe';
 import { NgxTranslateModule } from './modules/translate/translate.module';
+import { AuthenticationModule } from './modules/authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { NgxTranslateModule } from './modules/translate/translate.module';
     NbEvaIconsModule,
     NbContextMenuModule,
     NbButtonModule,
-    NbFormFieldModule
+    NbFormFieldModule,
+    AuthenticationModule
   ],
   providers: [
     {
