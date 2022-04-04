@@ -1,5 +1,12 @@
+import { HttpClientModule } from '@angular/common/http';
+import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
+import { InMemoryCache } from '@apollo/client/core';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +20,8 @@ import {
   NbIconModule,
   NbSidebarModule,
   NbMenuModule,
-  NbButtonModule
+  NbButtonModule,
+  NbFormFieldModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -40,6 +48,8 @@ import { NgxTranslateModule } from './translate/translate.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    ApolloModule,
     NgxTranslateModule,
     NbIconModule,
     NbSidebarModule.forRoot(),
@@ -49,12 +59,34 @@ import { NgxTranslateModule } from './translate/translate.module';
         ? 'dark'
         : 'default'
     }),
+    NbAuthModule.forRoot({
+      strategies: [
+        NbPasswordAuthStrategy.setup({
+          name: 'email'
+        })
+      ],
+      forms: {}
+    }),
     NbLayoutModule,
     NbEvaIconsModule,
     NbContextMenuModule,
-    NbButtonModule
+    NbButtonModule,
+    NbFormFieldModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httpLink.create({
+            uri: 'https://api-gateway-bujosa.cloud.okteto.net/graphql'
+          })
+        };
+      },
+      deps: [HttpLink]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

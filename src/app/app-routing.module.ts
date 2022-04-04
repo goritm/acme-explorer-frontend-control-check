@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 
+import { NbLoginComponent, NbRegisterComponent } from '@nebular/auth';
+
 const routes: Routes = [
   {
     path: 'home',
@@ -13,6 +15,14 @@ const routes: Routes = [
     path: 'users',
     loadChildren: () =>
       import('./users/users.module').then((m) => m.UsersModule)
+  },
+  {
+    path: 'login',
+    component: NbLoginComponent
+  },
+  {
+    path: 'register',
+    component: NbRegisterComponent
   },
   { path: '**', redirectTo: 'home' }
 ];
