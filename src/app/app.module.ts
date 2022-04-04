@@ -34,7 +34,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 
 // pipes
 import { LocalizedDataPipe } from './pipes/localized-data.pipe';
-import { NgxTranslateModule } from './translate/translate.module';
+import { NgxTranslateModule } from './modules/translate/translate.module';
 
 @NgModule({
   declarations: [
