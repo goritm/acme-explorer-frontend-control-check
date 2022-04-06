@@ -5,9 +5,17 @@ import {
   STORAGE_USER,
   STORAGE_USER_ID
 } from 'src/utils/constants/user.constants';
+import { IUser } from 'src/app/shared/interfaces/user.interface';
+import {
+  BaseUserInput,
+  ExtendedUserInput
+} from './../../../shared/types/user.type';
 
 import { Apollo } from 'apollo-angular';
-import { ResponseLoginMutation } from 'src/utils/mutations/responses';
+import {
+  ResponseLoginMutation,
+  ResponseSignUpMutation
+} from 'src/utils/mutations/responses';
 import {
   LOG_IN_MUTATION,
   SIGN_UP_MUTATION
@@ -21,8 +29,17 @@ import {
 export class AuthService {
   private userId: string | null = null;
   private _isAuthenticated = new BehaviorSubject(false);
+  private currentUserSubject: BehaviorSubject<IUser>;
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo) {
+    this.currentUserSubject = new BehaviorSubject<IUser>(
+      JSON.parse(localStorage.getItem(STORAGE_USER) || '{}')
+    );
+  }
+
+  get getCurrentUser(): Observable<IUser> {
+    return this.currentUserSubject.asObservable();
+  }
 
   // Providing a observable to listen the authentication state
   get isAuthenticated(): Observable<boolean> {
@@ -39,7 +56,16 @@ export class AuthService {
   saveUserData(data: ResponseLoginMutation) {
     const { accessToken, user } = data.signInUser;
 
-    localStorage.setItem(STORAGE_USER_ID, data.signInUser.user.id);
+    localStorage.setItem(STORAGE_USER_ID, user.id);
+    localStorage.setItem(STORAGE_ACCESS_TOKEN, accessToken);
+    localStorage.setItem(STORAGE_USER, JSON.stringify(user));
+    this.setUserId(user.id);
+  }
+
+  saveUserDataRegister(data: ResponseSignUpMutation) {
+    const { accessToken, user } = data.signUpUser;
+
+    localStorage.setItem(STORAGE_USER_ID, user.id);
     localStorage.setItem(STORAGE_ACCESS_TOKEN, accessToken);
     localStorage.setItem(STORAGE_USER, JSON.stringify(user));
     this.setUserId(user.id);
@@ -67,33 +93,28 @@ export class AuthService {
     }
   }
 
-  login(email: string, password: string) {
+  login(user: BaseUserInput) {
+    const { email, password } = user;
     return this.apollo.mutate<ResponseLoginMutation>({
       mutation: LOG_IN_MUTATION,
       variables: {
-        email: email,
-        password: password
+        email,
+        password
       }
     });
   }
 
-  signup(
-    email: string,
-    password: string,
-    name: string,
-    lastName: string,
-    telephoneNumber: string,
-    address: string
-  ) {
-    return this.apollo.mutate<ResponseLoginMutation>({
+  signup(user: ExtendedUserInput) {
+    const { email, password, name, lastName, telephoneNumber, address } = user;
+    return this.apollo.mutate<ResponseSignUpMutation>({
       mutation: SIGN_UP_MUTATION,
       variables: {
-        email: email,
-        password: password,
-        name: name,
-        lastName: lastName,
-        telephoneNumber: telephoneNumber,
-        address: address
+        email,
+        password,
+        name,
+        lastName,
+        telephoneNumber,
+        address
       }
     });
   }

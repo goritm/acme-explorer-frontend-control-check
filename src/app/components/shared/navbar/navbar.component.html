@@ -4,8 +4,9 @@
     class="sidebar-toggle"
     icon="menu-outline"
   ></nb-icon>
-  <img src="assets/images/acme-explorer-logo.png" alt="" />
-
+  <div class="control-status-example">
+    <nb-icon icon="globe-outline"></nb-icon>
+  </div>
   <a routerLink="/">ACME Explorer</a>
 </div>
 <div class="buttons">
@@ -25,7 +26,7 @@
     (click)="changeTheme()"
     icon="sun-outline"
   ></nb-icon>
-  <div *ngIf="!isLoggedIn">
+  <div *ngIf="!isLoggedIn" class="auth-buttons">
     <button nbButton [routerLink]="'login'">
       {{ 'security.login' | translate }}
     </button>
@@ -34,10 +35,12 @@
     </button>
   </div>
   <nb-user
-    name="gori"
-    title="el gorilongo"
+    shape="semi-round"
+    name="{{ currentUser.name }} {{ currentUser.lastName }}"
+    title="{{ currentUser.role }}"
     [showTitle]="false"
+    [picture]="currentUser.profilePicture!"
+    [nbContextMenu]="items"
     *ngIf="isLoggedIn"
   ></nb-user>
-  <button nbButton [nbContextMenu]="items" *ngIf="isLoggedIn">Menu</button>
 </div>

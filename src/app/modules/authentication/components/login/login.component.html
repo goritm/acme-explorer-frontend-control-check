@@ -7,61 +7,76 @@
   </p>
 </div>
 
-<form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
+<form (ngSubmit)="login()" [formGroup]="loginForm">
   <nb-card>
     <nb-card-body class="login-card">
       <div>
-        <label class="label" for="input-email">Email address:</label>
+        <label class="label" for="email">Email address:</label>
         <input
           nbInput
           fullWidth
-          [(ngModel)]="user.email"
-          #email="ngModel"
+          type="email"
+          id="email"
           name="email"
-          id="input-email"
-          pattern=".+@.+\..+"
+          formControlName="email"
           placeholder="Email address"
           fieldSize="large"
           autofocus
           status="basic"
           required="true"
-          [attr.aria-invalid]="email.invalid && email.touched ? true : null"
         />
-        <ng-container *ngIf="email.invalid && email.touched"> </ng-container>
+        <div *ngIf="submitted && loginForm.controls['email']">
+          <p
+            class="error-text"
+            *ngIf="loginForm.controls['email']?.errors?.['required']"
+          >
+            Please enter your email address
+          </p>
+          <p
+            class="error-text"
+            *ngIf="loginForm.controls['email']?.errors?.['email']"
+          >
+            Your email address must be valid
+          </p>
+        </div>
       </div>
       <div>
-        <label class="label" for="input-password">Password:</label>
+        <label class="label" for="password">Password:</label>
         <input
           nbInput
           fullWidth
-          [(ngModel)]="user.password"
-          #password="ngModel"
-          name="password"
           type="password"
-          id="input-password"
+          id="password"
+          name="password"
+          formControlName="password"
           placeholder="Password"
           fieldSize="large"
           status="basic"
-          [required]="true"
-          minlength="6"
-          maxlength="40"
-          [attr.aria-invalid]="
-            password.invalid && password.touched ? true : null
-          "
+          required="true"
         />
-        <ng-container *ngIf="password.invalid && password.touched">
-        </ng-container>
+        <div *ngIf="submitted && loginForm.controls['password']">
+          <p
+            class="error-text"
+            *ngIf="loginForm.controls['password']?.errors?.['required']"
+          >
+            Please enter your password
+          </p>
+          <p
+            class="error-text"
+            *ngIf="loginForm.controls['password']?.errors?.['minlength']"
+          >
+            Password must be at least 6 characters long
+          </p>
+          <p
+            class="error-text"
+            *ngIf="loginForm.controls['password']?.errors?.['maxlength']"
+          >
+            Password must be less than 40 characters long
+          </p>
+        </div>
       </div>
-
-      <button
-        nbButton
-        fullWidth
-        status="primary"
-        size="large"
-        [disabled]="submitted || !form.valid"
-        [class.btn-pulse]="submitted"
-      >
-        Log In
+      <button nbButton fullWidth type="submit" status="primary" size="large">
+        Login
       </button>
     </nb-card-body>
   </nb-card>

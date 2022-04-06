@@ -7,3 +7,10 @@ export interface ResponseLoginMutation {
     user: IUser & IBaseEntity;
   };
 }
+
+export interface ResponseSignUpMutation {
+  signUpUser: {
+    accessToken: string;
+    user: IUser & IBaseEntity;
+  };
+}

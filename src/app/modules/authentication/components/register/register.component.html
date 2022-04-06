@@ -1,1 +1,179 @@
-<p>Hola A todos soy el register </p>
+<div class="header-text">
+  <h1 class="title">Register</h1>
+  <p class="sub-title">Create an account!</p>
+  <p class="sub-title" aria-label="login">
+    Already have an account?
+    <a routerLink="/login">Login</a>
+  </p>
+</div>
+
+<form (ngSubmit)="register()" [formGroup]="registerForm">
+  <nb-card>
+    <nb-card-body class="register-card">
+      <div>
+        <label class="label" for="email">Email address:</label>
+        <input
+          nbInput
+          fullWidth
+          type="email"
+          id="email"
+          name="email"
+          formControlName="email"
+          placeholder="Email address"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && registerForm.controls['email']">
+          <p
+            class="error-text"
+            *ngIf="registerForm.controls['email']?.errors?.['required']"
+          >
+            Please enter your email address
+          </p>
+          <p
+            class="error-text"
+            *ngIf="registerForm.controls['email']?.errors?.['email']"
+          >
+            Your email address must be valid
+          </p>
+        </div>
+      </div>
+      <div>
+        <label class="label" for="password">Password:</label>
+        <input
+          nbInput
+          fullWidth
+          type="password"
+          id="password"
+          name="password"
+          formControlName="password"
+          placeholder="Password"
+          fieldSize="large"
+          status="basic"
+          required="true"
+          minlength="6"
+          maxlength="40"
+        />
+        <div *ngIf="submitted && registerForm.controls['password']">
+          <p
+            class="error-text"
+            *ngIf="registerForm.controls['password']?.errors?.['required']"
+          >
+            Please enter your password
+          </p>
+          <p
+            class="error-text"
+            *ngIf="registerForm.controls['password']?.errors?.['minlength']"
+          >
+            Password must be at least 6 characters long
+          </p>
+          <p
+            class="error-text"
+            *ngIf="registerForm.controls['password']?.errors?.['maxlength']"
+          >
+            Password must be less than 40 characters long
+          </p>
+        </div>
+      </div>
+      <div>
+        <label class="label" for="first-name">First Name:</label>
+        <input
+          nbInput
+          fullWidth
+          type="text"
+          id="first-name"
+          name="first-name"
+          formControlName="name"
+          placeholder="First Name"
+          fieldSize="large"
+          status="basic"
+          required="true"
+        />
+        <p
+          class="error-text"
+          *ngIf="submitted && registerForm.controls['name']?.errors"
+        >
+          Please enter your first name
+        </p>
+      </div>
+      <div>
+        <label class="label" for="last-name">Last Name:</label>
+        <input
+          nbInput
+          fullWidth
+          type="text"
+          id="last-name"
+          name="last-name"
+          formControlName="lastName"
+          placeholder="Last Name"
+          fieldSize="large"
+          status="basic"
+          required="true"
+        />
+        <p
+          class="error-text"
+          *ngIf="submitted && registerForm.controls['lastName']?.errors"
+        >
+          Please enter your last name
+        </p>
+      </div>
+      <div>
+        <label class="label" for="phone">Phone Number:</label>
+        <input
+          nbInput
+          fullWidth
+          type="tel"
+          id="phone"
+          name="phone"
+          pattern="[0-9]{9}"
+          formControlName="telephoneNumber"
+          placeholder="Phone Number"
+          fieldSize="large"
+          status="basic"
+          required="false"
+        />
+        <div *ngIf="submitted && registerForm.controls['telephoneNumber']">
+          <p
+            class="error-text"
+            *ngIf="registerForm.controls['telephoneNumber']?.errors?.['maxlength']"
+          >
+            Phone number must be 9 digits long
+          </p>
+          <p
+            class="error-text"
+            *ngIf="registerForm.controls['telephoneNumber']?.errors?.['pattern']"
+          >
+            Please enter a valid phone number
+          </p>
+        </div>
+      </div>
+      <div>
+        <label class="label" for="address">Address:</label>
+        <input
+          nbInput
+          fullWidth
+          type="text"
+          id="address"
+          name="address"
+          formControlName="address"
+          placeholder="Address"
+          fieldSize="large"
+          status="basic"
+          required="false"
+        />
+        <p
+          class="error-text"
+          *ngIf="submitted && registerForm.controls['address']?.errors"
+        >
+          Please enter your address
+        </p>
+      </div>
+
+      <button nbButton fullWidth type="submit" status="primary" size="large">
+        Sign Up
+      </button>
+    </nb-card-body>
+  </nb-card>
+</form>

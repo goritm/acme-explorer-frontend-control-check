@@ -7,7 +7,13 @@
   .buttons {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
+  }
+
+  .auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   .side-menu-buttons {
@@ -22,5 +28,10 @@
 
   nb-icon {
     cursor: pointer;
+  }
+
+  .control-status-example {
+    padding: 0.25rem;
+    margin: 0.25rem;
   }
 }

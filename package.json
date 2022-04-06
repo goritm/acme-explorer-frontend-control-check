@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
     "@apollo/client": "^3.5.10",
-    "@nebular/auth": "^9.0.1",
     "@nebular/eva-icons": "9.0.1",
     "@nebular/theme": "^9.0.1",
     "@ngx-translate/core": "^14.0.0",
