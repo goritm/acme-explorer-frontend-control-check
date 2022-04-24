@@ -19,8 +19,8 @@ import { AuthService } from 'src/app/modules/authentication/services/auth.servic
 })
 export class NavbarComponent implements OnInit {
   items: NbMenuItem[] = [{ title: 'Profile' }, { title: 'Logout' }];
-  currentTheme!: string;
-  siteLanguage!: string;
+  currentTheme = 'default';
+  siteLanguage = 'en';
   isLoggedIn = false;
   currentUser!: IUser;
 
@@ -56,15 +56,6 @@ export class NavbarComponent implements OnInit {
       'en';
     this.translateService.setDefaultLang(this.siteLanguage);
     this.changeLanguage(this.siteLanguage);
-
-    // logged in
-    this.authService.isAuthenticated.subscribe((isLoggedIn) => {
-      this.isLoggedIn = isLoggedIn;
-    });
-
-    this.authService.getCurrentUser.subscribe((user) => {
-      this.currentUser = user;
-    });
   }
 
   toggleSidebar(): boolean {
@@ -91,6 +82,14 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.getCurrentUser.subscribe((user) => {
+      this.currentUser = user;
+    });
+
+    this.authService.isAuthenticated.subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
+
     this.menuService.onItemClick().subscribe(({ item }) => {
       if (item.title === 'Logout') {
         this.authService.logout();

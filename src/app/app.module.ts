@@ -19,7 +19,11 @@ import {
   NbUserModule,
   NbToastrModule
 } from '@nebular/theme';
+import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+
+// main components
+import { ApplicationsComponent } from './components/applications/applications.component';
 
 // shared components
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -33,13 +37,37 @@ import { NgxTranslateModule } from './modules/translate/translate.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { TripModule } from './modules/trip/trip.module';
 import { ApplicationModule } from './modules/application/application.module';
+import { RoleService } from './modules/authentication/services/role.service';
+
+const roleConfig = {
+  accessControl: {
+    guest: {
+      view: ['trips']
+    },
+    explorer: {
+      parent: 'guest',
+      view: ['applications'],
+      create: 'applications'
+    },
+    manager: {
+      parent: 'explorer',
+      create: 'trips'
+    },
+    admin: {
+      parent: 'manager',
+      create: '*',
+      remove: '*'
+    }
+  }
+};
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    LocalizedDataPipe
+    LocalizedDataPipe,
+    ApplicationsComponent
   ],
   imports: [
     ApplicationModule,
@@ -56,6 +84,7 @@ import { ApplicationModule } from './modules/application/application.module';
     NbThemeModule.forRoot({
       name: localStorage.getItem('theme') ?? 'default'
     }),
+    NbSecurityModule.forRoot(roleConfig),
     NbToastrModule.forRoot(),
     NbLayoutModule,
     NbEvaIconsModule,
@@ -63,7 +92,12 @@ import { ApplicationModule } from './modules/application/application.module';
     NbButtonModule,
     NbUserModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: NbRoleProvider,
+      useClass: RoleService
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
