@@ -56,27 +56,8 @@ export const LIST_APPLICATIONS = gql`
 export const GET_TRIP = gql`
   query getTrip($id: ID!) {
     getTripById(id: $id) {
-      id
-      pictures
-      title
-      ticket
-      manager {
-        id
-        name
-        lastName
-        profilePicture
-      }
-      description
-      state
-      stages {
-        id
-        description
-        title
-        price
-      }
-      price
-      startDate
-      endDate
+      ...TripData
     }
   }
+  ${TRIP_DATA}
 `;
