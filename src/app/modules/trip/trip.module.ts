@@ -6,9 +6,11 @@ import {
   NbButtonModule,
   NbCardModule,
   NbFormFieldModule,
+  NbIconModule,
   NbInputModule,
   NbLayoutRulerService,
-  NbListModule
+  NbListModule,
+  NbSpinnerModule
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
 import { NgxTranslateModule } from '../translate/translate.module';
@@ -34,6 +36,8 @@ import { TripDetailComponent } from './components/trip-detail/trip-detail.compon
     NbButtonModule,
     NbCardModule,
     NbListModule,
+    NbIconModule,
+    NbSpinnerModule,
     NgxTranslateModule
   ],
   providers: [NbLayoutRulerService, NbLayoutRulerService, TripService],
