@@ -11,11 +11,15 @@ import {
   NbListModule
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
-import { ListTripsComponent } from './components/list-trips/list-trips.component';
-import { ListTripsService } from './components/list-trips/list-trips.service';
 import { NgxTranslateModule } from '../translate/translate.module';
-import { TripDetailComponent } from './components/trip-detail/trip-detail.component';
+
+// directives
 import { HoverClassDirective } from './directives/hover-class.directive';
+
+// trips
+import { TripService } from './components/trip.service';
+import { ListTripsComponent } from './components/list-trips/list-trips.component';
+import { TripDetailComponent } from './components/trip-detail/trip-detail.component';
 
 @NgModule({
   declarations: [ListTripsComponent, TripDetailComponent, HoverClassDirective],
@@ -32,7 +36,7 @@ import { HoverClassDirective } from './directives/hover-class.directive';
     NbListModule,
     NgxTranslateModule
   ],
-  providers: [NbLayoutRulerService, NbLayoutRulerService, ListTripsService],
+  providers: [NbLayoutRulerService, NbLayoutRulerService, TripService],
   exports: [ListTripsComponent, TripDetailComponent]
 })
 export class TripModule {}

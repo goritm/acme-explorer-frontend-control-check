@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { LIST_TRIPS } from 'src/utils/queries/queries';
-import { ResponseListTripsQuery } from 'src/utils/queries/responses';
 import { FilterInputParams } from 'src/app/shared/inputs/filter-input-params';
+import { GET_TRIP, LIST_TRIPS } from 'src/utils/queries/queries';
+import {
+  ResponseListTripsQuery,
+  ResponseTripByIDQuery
+} from 'src/utils/queries/responses';
 
-/**
- * This is list trip service.
- * Should be used to as an interlayer between UI Components and Fetch trips strategy.
- */
-@Injectable()
-export class ListTripsService {
+@Injectable({
+  providedIn: 'root'
+})
+export class TripService {
   start = 0;
   limit = 10;
   where: unknown = {};
@@ -30,6 +31,15 @@ export class ListTripsService {
         start: this.start,
         limit: this.limit,
         where: this.where
+      }
+    });
+  }
+
+  getTripDetail(id: string | null) {
+    return this.apollo.query<ResponseTripByIDQuery>({
+      query: GET_TRIP,
+      variables: {
+        id
       }
     });
   }
