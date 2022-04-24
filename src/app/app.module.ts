@@ -21,9 +21,6 @@ import {
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
-// main components
-import { HomeComponent } from './components/home/home.component';
-
 // shared components
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
@@ -40,7 +37,6 @@ import { ApplicationModule } from './modules/application/application.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NavbarComponent,
     FooterComponent,
     LocalizedDataPipe

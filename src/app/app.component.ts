@@ -11,9 +11,9 @@ export class AppComponent {
 
   items: NbMenuItem[] = [
     {
-      title: 'Home',
+      title: 'Trips',
       icon: 'home-outline',
-      link: '/home',
+      link: '/trips',
       home: true
     }
   ];
