@@ -1,1 +1,16 @@
-<p>trip-detail works!</p>
+<nb-card *ngIf="trip">
+  <nb-card-header>{{ trip.title }}</nb-card-header>
+  <nb-card-body>
+    {{ trip.description }}
+    <br />
+    <img
+      class="img-responsive"
+      src="{{ trip.pictures[0] }}"
+      alt="{{ trip.title }}"
+    />
+  </nb-card-body>
+  <nb-card-footer>
+    <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
+    <button (click)="goBack()">go back</button>
+  </nb-card-footer>
+</nb-card>
