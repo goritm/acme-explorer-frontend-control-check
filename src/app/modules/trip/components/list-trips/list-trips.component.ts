@@ -5,6 +5,7 @@ import { ListTripsService } from './list-trips.service';
 @Component({
   selector: 'list-trips',
   templateUrl: './list-trips.component.html',
+  styleUrls: ['./list-trips.component.scss'],
   providers: [ListTripsService]
 })
 export class ListTripsComponent {
