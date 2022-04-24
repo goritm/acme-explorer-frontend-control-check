@@ -16,7 +16,8 @@ import {
   NbSidebarModule,
   NbMenuModule,
   NbButtonModule,
-  NbUserModule
+  NbUserModule,
+  NbToastrModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -59,6 +60,7 @@ import { ApplicationModule } from './modules/application/application.module';
     NbThemeModule.forRoot({
       name: localStorage.getItem('theme') ?? 'default'
     }),
+    NbToastrModule.forRoot(),
     NbLayoutModule,
     NbEvaIconsModule,
     NbContextMenuModule,

@@ -8,7 +8,7 @@
 </div>
 
 <form (ngSubmit)="login()" [formGroup]="loginForm">
-  <nb-card>
+  <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
     <nb-card-body class="login-card">
       <div>
         <label class="label" for="email">Email address:</label>
@@ -75,7 +75,14 @@
           </p>
         </div>
       </div>
-      <button nbButton fullWidth type="submit" status="primary" size="large">
+      <button
+        nbButton
+        fullWidth
+        [disabled]="loginForm.invalid"
+        type="submit"
+        status="primary"
+        size="large"
+      >
         Login
       </button>
     </nb-card-body>

@@ -9,7 +9,8 @@ import {
   NbButtonModule,
   NbCardModule,
   NbFormFieldModule,
-  NbInputModule
+  NbInputModule,
+  NbSpinnerModule
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
 
@@ -24,7 +25,8 @@ import { AppRoutingModule } from '../routing/app-routing.module';
     NbFormFieldModule,
     NbInputModule,
     NbButtonModule,
-    NbCardModule
+    NbCardModule,
+    NbSpinnerModule
   ],
   providers: [AuthService],
   exports: [LoginComponent, RegisterComponent]
