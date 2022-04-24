@@ -5,12 +5,17 @@ import { HomeComponent } from '../../components/home/home.component';
 
 import { LoginComponent } from '../authentication/components/login/login.component';
 import { RegisterComponent } from './../authentication/components/register/register.component';
+import { ApplicationsComponent } from 'src/app/components/applications/applications.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'trips', pathMatch: 'full' },
   {
-    path: 'home',
+    path: 'trips',
     component: HomeComponent
+  },
+  {
+    path: 'applications',
+    component: ApplicationsComponent
   },
   {
     path: 'login',
@@ -20,7 +25,7 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'trips' }
 ];
 
 @NgModule({

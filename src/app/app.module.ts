@@ -23,6 +23,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 // main components
 import { HomeComponent } from './components/home/home.component';
+import { ApplicationsComponent } from './components/applications/applications.component';
 
 // shared components
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -43,7 +44,8 @@ import { ApplicationModule } from './modules/application/application.module';
     HomeComponent,
     NavbarComponent,
     FooterComponent,
-    LocalizedDataPipe
+    LocalizedDataPipe,
+    ApplicationsComponent
   ],
   imports: [
     ApplicationModule,
