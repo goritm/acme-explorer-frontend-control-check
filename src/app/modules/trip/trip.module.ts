@@ -14,9 +14,10 @@ import { AppRoutingModule } from '../routing/app-routing.module';
 import { ListTripsComponent } from './components/list-trips/list-trips.component';
 import { ListTripsService } from './components/list-trips/list-trips.service';
 import { NgxTranslateModule } from '../translate/translate.module';
+import { TripDetailComponent } from './components/trip-detail/trip-detail.component';
 
 @NgModule({
-  declarations: [ListTripsComponent],
+  declarations: [ListTripsComponent, TripDetailComponent],
   imports: [
     GraphQLModule,
     AppRoutingModule,
@@ -31,6 +32,6 @@ import { NgxTranslateModule } from '../translate/translate.module';
     NgxTranslateModule
   ],
   providers: [NbLayoutRulerService, NbLayoutRulerService, ListTripsService],
-  exports: [ListTripsComponent]
+  exports: [ListTripsComponent, TripDetailComponent]
 })
 export class TripModule {}
