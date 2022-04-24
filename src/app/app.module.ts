@@ -31,6 +31,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { LocalizedDataPipe } from '../utils/pipes/localized-data.pipe';
 import { NgxTranslateModule } from './modules/translate/translate.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
+import { ApplicationModule } from './modules/application/application.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
     LocalizedDataPipe
   ],
   imports: [
+    ApplicationModule,
     AuthenticationModule,
     BrowserModule,
     AppRoutingModule,
