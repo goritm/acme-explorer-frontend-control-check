@@ -1,17 +1,21 @@
+import { ListTripsComponent } from './../trip/components/list-trips/list-trips.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from '../../components/home/home.component';
-
 import { LoginComponent } from '../authentication/components/login/login.component';
 import { RegisterComponent } from './../authentication/components/register/register.component';
+import { TripDetailComponent } from '../trip/components/trip-detail/trip-detail.component';
 import { ApplicationsComponent } from 'src/app/components/applications/applications.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
   {
     path: 'trips',
-    component: HomeComponent
+    component: ListTripsComponent
+  },
+  {
+    path: 'trips/:id',
+    component: TripDetailComponent
   },
   {
     path: 'applications',

@@ -23,7 +23,6 @@ import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 // main components
-import { HomeComponent } from './components/home/home.component';
 import { ApplicationsComponent } from './components/applications/applications.component';
 
 // shared components
@@ -65,7 +64,6 @@ const roleConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NavbarComponent,
     FooterComponent,
     LocalizedDataPipe,

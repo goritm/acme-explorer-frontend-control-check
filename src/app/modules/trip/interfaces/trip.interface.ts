@@ -1,3 +1,4 @@
+import { TripState } from 'src/app/shared/enums/trip-state.enum';
 import { IBaseEntity } from 'src/app/shared/interfaces/base-entity.interface';
 import { IUser } from 'src/app/shared/interfaces/user.interface';
 import { IStage } from './stage.interface';
@@ -12,6 +13,7 @@ export interface ITrip extends IBaseEntity {
   endDate: string;
   pictures: string[];
   reasonCancelled?: string;
+  state: TripState;
   stages: IStage[];
   manager: IUser;
 }

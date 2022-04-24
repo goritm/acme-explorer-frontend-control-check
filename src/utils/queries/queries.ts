@@ -52,3 +52,12 @@ export const LIST_APPLICATIONS = gql`
   ${TRIP_DATA}
   ${TRIP_USER_DATA}
 `;
+
+export const GET_TRIP = gql`
+  query getTrip($id: ID!) {
+    getTripById(id: $id) {
+      ...TripData
+    }
+  }
+  ${TRIP_DATA}
+`;
