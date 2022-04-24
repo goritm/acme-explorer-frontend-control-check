@@ -106,6 +106,7 @@ export class AuthService {
 
   signup(user: ExtendedUserInput) {
     const { email, password, name, lastName, telephoneNumber, address } = user;
+
     return this.apollo.mutate<ResponseSignUpMutation>({
       mutation: SIGN_UP_MUTATION,
       variables: {
@@ -113,8 +114,8 @@ export class AuthService {
         password,
         name,
         lastName,
-        telephoneNumber,
-        address
+        ...(telephoneNumber && { telephoneNumber }),
+        ...(address && { address })
       }
     });
   }
