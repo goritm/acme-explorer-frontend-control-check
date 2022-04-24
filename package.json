@@ -22,6 +22,7 @@
     "@angular/router": "~13.3.0",
     "@apollo/client": "^3.5.10",
     "@nebular/eva-icons": "9.0.1",
+    "@nebular/security": "^9.0.2",
     "@nebular/theme": "^9.0.1",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
