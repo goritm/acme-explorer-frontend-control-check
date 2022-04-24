@@ -53,36 +53,11 @@ export class AuthService {
     this._isAuthenticated.next(true);
   }
 
-  saveUserData(data: ResponseLoginMutation) {
-    const { accessToken, user } = data.signInUser;
+  setUser(user: IUser) {
+    this.userId = user.id;
 
-    localStorage.setItem(STORAGE_USER_ID, user.id);
-    localStorage.setItem(STORAGE_ACCESS_TOKEN, accessToken);
-    localStorage.setItem(STORAGE_USER, JSON.stringify(user));
-    this.setUserId(user.id);
-  }
-
-  saveUserDataRegister(data: ResponseSignUpMutation) {
-    const { accessToken, user } = data.signUpUser;
-
-    localStorage.setItem(STORAGE_USER_ID, user.id);
-    localStorage.setItem(STORAGE_ACCESS_TOKEN, accessToken);
-    localStorage.setItem(STORAGE_USER, JSON.stringify(user));
-    this.setUserId(user.id);
-  }
-
-  logout() {
-    // Removing user data from local storage and the service
-    localStorage.removeItem(STORAGE_USER_ID);
-    localStorage.removeItem(STORAGE_ACCESS_TOKEN);
-    localStorage.removeItem(STORAGE_USER);
-    this.userId = null;
-
-    // Dispatching to all listeners that the user is not authenticated
-    this._isAuthenticated.next(false);
-
-    // Reset the store after logout logic
-    this.apollo.client.resetStore();
+    this._isAuthenticated.next(true);
+    this.currentUserSubject.next(user);
   }
 
   autoLogin() {
@@ -118,5 +93,37 @@ export class AuthService {
         ...(address && { address })
       }
     });
+  }
+
+  saveUserData(data: ResponseLoginMutation) {
+    const { accessToken, user } = data.signInUser;
+
+    localStorage.setItem(STORAGE_USER_ID, user.id);
+    localStorage.setItem(STORAGE_ACCESS_TOKEN, accessToken);
+    localStorage.setItem(STORAGE_USER, JSON.stringify(user));
+    this.setUser(user);
+  }
+
+  saveUserDataRegister(data: ResponseSignUpMutation) {
+    const { accessToken, user } = data.signUpUser;
+
+    localStorage.setItem(STORAGE_USER_ID, user.id);
+    localStorage.setItem(STORAGE_ACCESS_TOKEN, accessToken);
+    localStorage.setItem(STORAGE_USER, JSON.stringify(user));
+    this.setUser(user);
+  }
+
+  logout() {
+    // Removing user data from local storage and the service
+    localStorage.removeItem(STORAGE_USER_ID);
+    localStorage.removeItem(STORAGE_ACCESS_TOKEN);
+    localStorage.removeItem(STORAGE_USER);
+    this.userId = null;
+
+    // Dispatching to all listeners that the user is not authenticated
+    this._isAuthenticated.next(false);
+
+    // Reset the store after logout logic
+    this.apollo.client.resetStore();
   }
 }
