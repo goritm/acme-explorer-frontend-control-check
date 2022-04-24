@@ -8,5 +8,8 @@
     "title": "Pagina Principal",
     "welcome": "Bienvenido a la pagina principal",
     "works": "El componente home funciona"
+  },
+  "card-trip": {
+    "price": "Precio"
   }
 }
