@@ -12,6 +12,7 @@
     <nb-card-body class="register-card">
       <div>
         <label class="label" for="email">Email address:</label>
+        <span style="color: red"> *</span>
         <input
           nbInput
           fullWidth
@@ -42,6 +43,7 @@
       </div>
       <div>
         <label class="label" for="password">Password:</label>
+        <span style="color: red"> *</span>
         <input
           nbInput
           fullWidth
@@ -79,6 +81,7 @@
       </div>
       <div>
         <label class="label" for="first-name">First Name:</label>
+        <span style="color: red"> *</span>
         <input
           nbInput
           fullWidth
@@ -100,6 +103,7 @@
       </div>
       <div>
         <label class="label" for="last-name">Last Name:</label>
+        <span style="color: red"> *</span>
         <input
           nbInput
           fullWidth
@@ -163,12 +167,6 @@
           status="basic"
           required="false"
         />
-        <p
-          class="error-text"
-          *ngIf="submitted && registerForm.controls['address']?.errors"
-        >
-          Please enter your address
-        </p>
       </div>
 
       <button
