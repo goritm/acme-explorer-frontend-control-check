@@ -1,1 +1,25 @@
-<p>list-applications works!</p>
+<nb-card *ngIf="applications.length > 0; else noItems">
+  <nb-list
+    nbInfiniteList
+    listenWindowScroll
+    [threshold]="1"
+    (bottomThreshold)="loadNext()"
+  >
+    <nb-list-item *ngFor="let application of applications">
+      <nb-card>
+        <nb-card-body>
+          <p>{{ application.reasonCancelled }}</p>
+          <p>{{ application.comments[0] }}</p>
+        </nb-card-body>
+      </nb-card>
+    </nb-list-item>
+  </nb-list>
+</nb-card>
+
+<ng-template #noItems>
+  <nb-card>
+    <nb-card-body>
+      <p>No applications found</p>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
