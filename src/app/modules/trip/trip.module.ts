@@ -15,9 +15,10 @@ import { ListTripsComponent } from './components/list-trips/list-trips.component
 import { ListTripsService } from './components/list-trips/list-trips.service';
 import { NgxTranslateModule } from '../translate/translate.module';
 import { TripDetailComponent } from './components/trip-detail/trip-detail.component';
+import { HoverClassDirective } from './directives/hover-class.directive';
 
 @NgModule({
-  declarations: [ListTripsComponent, TripDetailComponent],
+  declarations: [ListTripsComponent, TripDetailComponent, HoverClassDirective],
   imports: [
     GraphQLModule,
     AppRoutingModule,
