@@ -1,4 +1,5 @@
 import { gql } from 'apollo-angular';
+import { TRIP_DATA, TRIP_USER_DATA } from '../fragments/fragments';
 
 export const GET_USER = gql`
   query Self {
@@ -20,28 +21,34 @@ export const LIST_TRIPS = gql`
     listTrips(input: { start: $start, limit: $limit, where: $where }) {
       count
       data {
-        id
-        pictures
-        title
-        ticket
-        manager {
-          id
-          name
-          lastName
-          profilePicture
-        }
-        description
-        state
-        stages {
-          id
-          description
-          title
-          price
-        }
-        price
-        startDate
-        endDate
+        ...TripData
       }
     }
   }
+  ${TRIP_DATA}
+`;
+
+export const LIST_APPLICATIONS = gql`
+  query listApplications($start: Int, $limit: Int, $where: JSON) {
+    listApplications(input: { start: $start, limit: $limit, where: $where }) {
+      count
+      data {
+        id
+        comments
+        explorer {
+          ...TripUserData
+        }
+        manager {
+          ...TripUserData
+        }
+        reasonRejected
+        state
+        trip {
+          ...TripData
+        }
+      }
+    }
+  }
+  ${TRIP_DATA}
+  ${TRIP_USER_DATA}
 `;
