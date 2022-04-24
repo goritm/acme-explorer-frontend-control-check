@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ListApplicationsComponent } from './components/list-applications/list-applications.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [ListApplicationsComponent],
   imports: [CommonModule],
-  exports: []
+  exports: [ListApplicationsComponent]
 })
 export class ApplicationModule {}
