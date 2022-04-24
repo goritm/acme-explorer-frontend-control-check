@@ -39,6 +39,28 @@ import { TripModule } from './modules/trip/trip.module';
 import { ApplicationModule } from './modules/application/application.module';
 import { RoleService } from './modules/authentication/services/role.service';
 
+const roleConfig = {
+  accessControl: {
+    guest: {
+      view: ['trips']
+    },
+    explorer: {
+      parent: 'guest',
+      view: ['applications'],
+      create: 'applications'
+    },
+    manager: {
+      parent: 'explorer',
+      create: 'trips'
+    },
+    admin: {
+      parent: 'manager',
+      create: '*',
+      remove: '*'
+    }
+  }
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,27 +84,7 @@ import { RoleService } from './modules/authentication/services/role.service';
     NbThemeModule.forRoot({
       name: localStorage.getItem('theme') ?? 'default'
     }),
-    NbSecurityModule.forRoot({
-      accessControl: {
-        guest: {
-          view: ['trips']
-        },
-        explorer: {
-          parent: 'guest',
-          view: ['applications'],
-          create: 'applications'
-        },
-        manager: {
-          parent: 'explorer',
-          create: 'trips'
-        },
-        admin: {
-          parent: 'manager',
-          create: '*',
-          remove: '*'
-        }
-      }
-    }),
+    NbSecurityModule.forRoot(roleConfig),
     NbToastrModule.forRoot(),
     NbLayoutModule,
     NbEvaIconsModule,
