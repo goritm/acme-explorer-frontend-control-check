@@ -1,29 +1,90 @@
-<nb-card *ngIf="trip">
-  <nb-card-header>
-    <nb-icon
-      icon="arrow-back-outline"
-      (click)="goBack()"
-      hover-class="hover"
-    ></nb-icon>
-    <p>{{ trip.title }}</p>
-  </nb-card-header>
-  <nb-card-body>
-    {{ trip.description }}
-    <br />
-    <img
-      class="img-responsive"
-      src="{{ trip.pictures[0] }}"
-      alt="{{ trip.title }}"
-    />
-    <br />
-    <p>{{ trip.startDate }} - {{ trip.endDate }}</p>
-    <p *ngIf="trip.reasonCancelled">{{ trip.reasonCancelled }}</p>
-    <p>Application State: {{ trip.state }}</p>
-  </nb-card-body>
-  <nb-card-footer>
-    <p>
-      <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
-    </p>
-    <button nbButton (click)="openModal()">Apply to trip</button>
-  </nb-card-footer>
-</nb-card>
+<div class="header-text">
+  <h1 class="title">Create your Trip</h1>
+  <p class="sub-title">Please complete the form</p>
+</div>
+
+<form (ngSubmit)="createTrip()" [formGroup]="createTripForm">
+  <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
+    <nb-card-body class="login-card">
+      <div>
+        <label class="label" for="title">Title:</label>
+        <input
+          nbInput
+          fullWidth
+          id="email"
+          name="title"
+          formControlName="title"
+          placeholder="Title"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && createTripForm.controls['title']">
+          <p
+            class="error-text"
+            *ngIf="createTripForm.controls['title']?.errors?.['required']"
+          >
+            Please enter your title for the trip
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createTripForm.controls['title']?.errors?.['minlength']"
+          >
+            Title must be at least 5 characters long
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createTripForm.controls['title']?.errors?.['maxlength']"
+          >
+            Title must be less than 40 characters long
+          </p>
+        </div>
+      </div>
+      <div>
+        <label class="label" for="description">Description:</label>
+        <input
+          nbInput
+          fullWidth
+          id="description"
+          name="description"
+          formControlName="description"
+          placeholder="Description"
+          fieldSize="large"
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && createTripForm.controls['description']">
+          <p
+            class="error-text"
+            *ngIf="createTripForm.controls['description']?.errors?.['required']"
+          >
+            Please enter your description
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createTripForm.controls['description']?.errors?.['minlength']"
+          >
+            Description must be at least 5 characters long
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createTripForm.controls['description']?.errors?.['maxlength']"
+          >
+            Description must be less than 40 characters long
+          </p>
+        </div>
+      </div>
+      <button
+        nbButton
+        fullWidth
+        [disabled]="createTripForm.invalid"
+        type="submit"
+        status="primary"
+        size="large"
+      >
+        Create Trip
+      </button>
+    </nb-card-body>
+  </nb-card>
+</form>

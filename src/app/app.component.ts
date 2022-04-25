@@ -22,6 +22,12 @@ export class AppComponent implements OnInit {
       icon: 'file-text-outline',
       link: '/applications',
       home: false
+    },
+    {
+      title: 'Create Trip',
+      icon: 'plus-outline',
+      link: '/create-trip',
+      home: false
     }
   ];
 

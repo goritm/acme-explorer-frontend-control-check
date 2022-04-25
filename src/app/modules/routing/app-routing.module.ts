@@ -6,6 +6,7 @@ import { LoginComponent } from '../authentication/components/login/login.compone
 import { RegisterComponent } from './../authentication/components/register/register.component';
 import { TripDetailComponent } from '../trip/components/trip-detail/trip-detail.component';
 import { ApplicationsComponent } from 'src/app/components/applications/applications.component';
+import { CreateTripComponent } from '../trip/components/create-trip/create-trip.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'create-trip',
+    component: CreateTripComponent
   },
   { path: '**', redirectTo: 'trips' }
 ];

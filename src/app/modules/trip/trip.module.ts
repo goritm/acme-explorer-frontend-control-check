@@ -51,6 +51,6 @@ import { CreateTripComponent } from './components/create-trip/create-trip.compon
     NbDialogModule.forChild()
   ],
   providers: [NbLayoutRulerService, NbLayoutRulerService, TripService],
-  exports: [ListTripsComponent, TripDetailComponent]
+  exports: [ListTripsComponent, TripDetailComponent, CreateTripComponent]
 })
 export class TripModule {}

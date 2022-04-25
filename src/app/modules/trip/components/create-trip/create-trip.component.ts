@@ -1,28 +1,67 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { ITrip } from '../../interfaces/trip.interface';
+import { Router } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component
+} from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { NbToastrService } from '@nebular/theme';
+import { finalize } from 'rxjs';
 import { TripService } from '../../trip.service';
-import { NbDialogService } from '@nebular/theme';
 
 @Component({
   selector: 'create-trip',
   templateUrl: './create-trip.component.html',
-  styleUrls: ['./create-trip.component.scss']
+  styleUrls: ['./create-trip.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateTripComponent implements OnInit {
-  trip: ITrip | undefined;
+export class CreateTripComponent {
+  submitted = false;
+  loading = false;
+  createTripForm = this.fb.group({
+    title: [
+      '',
+      [Validators.required, Validators.minLength(5), Validators.maxLength(40)]
+    ],
+    description: [
+      '',
+      [Validators.required, Validators.minLength(5), Validators.maxLength(40)]
+    ],
+    startDate: ['', [Validators.required]],
+    endDate: ['', [Validators.required]],
+    requirements: ['', [Validators.required]]
+  });
 
   constructor(
-    private route: ActivatedRoute,
-    private tripService: TripService,
-    private location: Location,
-    private dialogService: NbDialogService
+    protected tripService: TripService,
+    private router: Router,
+    private fb: FormBuilder,
+    private toastrService: NbToastrService,
+    private cdr: ChangeDetectorRef
   ) {}
 
-  goBack(): void {
-    this.location.back();
-  }
+  createTrip(): void {
+    this.submitted = true;
+    this.loading = true;
 
-  ngOnInit(): void {}
+    this.tripService
+      .createTrip(this.createTripForm.value)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        error: (err) => {
+          this.toastrService.show(err.message, 'Error', {
+            duration: 3000,
+            status: 'danger'
+          });
+        },
+        complete: () => {
+          this.router.navigate(['/']);
+        }
+      });
+  }
 }
