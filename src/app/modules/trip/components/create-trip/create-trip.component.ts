@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ITrip } from '../../interfaces/trip.interface';
-import { TripService } from '../trip.service';
+import { TripService } from '../../trip.service';
 import { NbDialogService } from '@nebular/theme';
 
 @Component({
