@@ -76,9 +76,15 @@
       </div>
       <div>
         <div>
-           <label class="label-index" for="dates">Select your dates:</label>
-           <input nbInput fullWidth formControlName="dates"  placeholder="Pick Date Range" [nbDatepicker]="formpicker">
-           <nb-rangepicker #formpicker [min]="min"></nb-rangepicker>
+          <label class="label-index" for="dates">Select your dates:</label>
+          <input
+            nbInput
+            fullWidth
+            formControlName="dates"
+            placeholder="Pick Date Range"
+            [nbDatepicker]="formpicker"
+          />
+          <nb-rangepicker #formpicker [min]="min"></nb-rangepicker>
         </div>
         <div *ngIf="submitted && createTripForm.controls['dates']">
           <p
@@ -97,7 +103,48 @@
         required="true"
         placeholder="Requeriments..."
       ></textarea>
-      <app-file-upload formControlName="image" [progress]="progress"></app-file-upload>
+      <app-file-upload
+        formControlName="image"
+        [progress]="progress"
+      ></app-file-upload>
+
+      <ng-form formGroupName="stages">
+        <input nbInput type="text" name="title" formControlName="title" />
+        <input
+          nbInput
+          type="text"
+          name="description"
+          formControlName="description"
+        />
+        <input nbInput type="number" name="price" formControlName="price" />
+        <button
+          nbButton
+          status="primary"
+          size="large"
+          (click)="addStage()"
+          type="button"
+        >
+          Add stage
+        </button>
+      </ng-form>
+
+      <nb-list *ngIf="stages">
+        <nb-list-item *ngFor="let stage of stages">
+          <p>{{ stage.title }}</p>
+          <p>{{ stage.description }}</p>
+          <p>{{ stage.price }}</p>
+          <button
+            nbButton
+            status="primary"
+            size="small"
+            (click)="deleteStage(stage)"
+            type="button"
+          >
+            Remove stage
+          </button>
+        </nb-list-item>
+      </nb-list>
+
       <button
         nbButton
         fullWidth

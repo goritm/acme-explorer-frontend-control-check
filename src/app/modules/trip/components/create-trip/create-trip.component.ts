@@ -20,8 +20,9 @@ export class CreateTripComponent {
   submitted = false;
   loading = false;
   progress = 0;
-
   min = new Date();
+
+  stages: any[] = [];
 
   createTripForm = this.fb.group({
     title: [
@@ -34,7 +35,15 @@ export class CreateTripComponent {
     ],
     dates: [{}, Validators.required],
     requirements: ['', [Validators.required]],
-    image: ['', [Validators.required]]
+    image: ['', [Validators.required]],
+    stages: this.fb.group({
+      title: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      price: [
+        '',
+        [Validators.required, Validators.min(0), Validators.max(10000)]
+      ]
+    })
   });
 
   constructor(
@@ -44,6 +53,27 @@ export class CreateTripComponent {
     private toastrService: NbToastrService,
     private cdr: ChangeDetectorRef
   ) {}
+
+  addStage() {
+    this.stages = [
+      ...this.stages,
+      {
+        title: this.createTripForm.get('stages.title')?.value,
+        description: this.createTripForm.get('stages.description')?.value,
+        price: this.createTripForm.get('stages.price')?.value
+      }
+    ];
+  }
+
+  deleteStage(stageToDelete: {
+    title: string;
+    description: string;
+    price: number;
+  }) {
+    this.stages = this.stages.filter(
+      (stage) => stage.title !== stageToDelete.title
+    );
+  }
 
   createTrip(): void {
     this.submitted = true;
@@ -66,7 +96,6 @@ export class CreateTripComponent {
       ]
     };
 
-    console.log(createTripInput);
     // this.tripService
     //   .createTrip(this.createTripForm.value)
     //   .pipe(
