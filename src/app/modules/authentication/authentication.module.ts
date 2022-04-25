@@ -13,6 +13,7 @@ import {
   NbSpinnerModule
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
+import { RoleService } from './services/role.service';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
@@ -28,7 +29,7 @@ import { AppRoutingModule } from '../routing/app-routing.module';
     NbCardModule,
     NbSpinnerModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, RoleService],
   exports: [LoginComponent, RegisterComponent]
 })
 export class AuthenticationModule {}
