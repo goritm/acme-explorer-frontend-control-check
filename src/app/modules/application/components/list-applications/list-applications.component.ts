@@ -9,7 +9,7 @@ import { IApplication } from '../../interfaces/application.interface';
 })
 export class ListApplicationsComponent {
   applications: IApplication[] = [];
-  placeholders: any = [];
+  placeholders: unknown = [];
   pageSize = 10;
   pageToLoadNext = 1;
   loading = false;

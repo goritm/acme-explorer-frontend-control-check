@@ -11,7 +11,7 @@ import { TripService } from '../../trip.service';
 export class ListTripsComponent {
   trips: ITrip[] = [];
   pageSize = 10;
-  placeholders: any = [];
+  placeholders: unknown = [];
   pageToLoadNext = 1;
   loading = false;
 
