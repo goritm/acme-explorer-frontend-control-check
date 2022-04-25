@@ -19,6 +19,7 @@ import { CreateTripInput } from '../../inputs/create-trip.input';
 export class CreateTripComponent {
   submitted = false;
   loading = false;
+  progress = 0;
 
   min = new Date();
 
@@ -32,7 +33,8 @@ export class CreateTripComponent {
       [Validators.required, Validators.minLength(5), Validators.maxLength(40)]
     ],
     dates: [{}, Validators.required],
-    requirements: ['', [Validators.required]]
+    requirements: ['', [Validators.required]],
+    image: ['', [Validators.required]]
   });
 
   constructor(
@@ -54,7 +56,14 @@ export class CreateTripComponent {
         .toISOString()
         .split('T')[0],
       endDate: this.createTripForm.value.dates.end.toISOString().split('T')[0],
-      requirements: this.createTripForm.value.requirements.split('\n')
+      requirements: this.createTripForm.value.requirements.split('\n'),
+      stages: [
+        {
+          title: 'Stage 1',
+          description: 'Description of stage 1',
+          price: 2500
+        }
+      ]
     };
 
     console.log(createTripInput);

@@ -1,4 +1,3 @@
-import { GraphQLModule } from '../graphql/graphql.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,6 +25,7 @@ import { ListTripsComponent } from './components/list-trips/list-trips.component
 import { TripDetailComponent } from './components/trip-detail/trip-detail.component';
 import { ApplyToTripDialogComponent } from './components/trip-detail/dialog/apply-to-trip-dialog/apply-to-trip-dialog.component';
 import { CreateTripComponent } from './components/create-trip/create-trip.component';
+import { ShareModule } from 'src/app/components/shared/share.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { CreateTripComponent } from './components/create-trip/create-trip.compon
     ApplyToTripDialogComponent
   ],
   imports: [
-    GraphQLModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
@@ -50,7 +49,8 @@ import { CreateTripComponent } from './components/create-trip/create-trip.compon
     NbSpinnerModule,
     NbDatepickerModule.forRoot(),
     NgxTranslateModule,
-    NbDialogModule.forChild()
+    NbDialogModule.forChild(),
+    ShareModule
   ],
   providers: [NbLayoutRulerService, NbLayoutRulerService, TripService],
   exports: [ListTripsComponent, TripDetailComponent, CreateTripComponent]
