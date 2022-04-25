@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbButtonModule,
   NbCardModule,
+  NbDatepickerModule,
   NbDialogModule,
   NbFormFieldModule,
   NbIconModule,
@@ -47,6 +48,7 @@ import { CreateTripComponent } from './components/create-trip/create-trip.compon
     NbListModule,
     NbIconModule,
     NbSpinnerModule,
+    NbDatepickerModule.forRoot(),
     NgxTranslateModule,
     NbDialogModule.forChild()
   ],

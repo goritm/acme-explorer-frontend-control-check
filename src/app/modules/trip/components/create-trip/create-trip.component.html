@@ -1,13 +1,12 @@
 <div class="header-text">
   <h1 class="title">Create your Trip</h1>
-  <p class="sub-title">Please complete the form</p>
 </div>
 
 <form (ngSubmit)="createTrip()" [formGroup]="createTripForm">
   <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
-    <nb-card-body class="login-card">
+    <nb-card-body class="create-trip-card">
       <div>
-        <label class="label" for="title">Title:</label>
+        <label class="label-index" for="title">Title:</label>
         <input
           nbInput
           fullWidth
@@ -42,7 +41,7 @@
         </div>
       </div>
       <div>
-        <label class="label" for="description">Description:</label>
+        <label class="label-index" for="description">Description:</label>
         <input
           nbInput
           fullWidth
@@ -75,6 +74,30 @@
           </p>
         </div>
       </div>
+      <div>
+        <div>
+           <label class="label-index" for="dates">Select your dates:</label>
+           <input nbInput fullWidth formControlName="dates"  placeholder="Pick Date Range" [nbDatepicker]="formpicker">
+           <nb-rangepicker #formpicker [min]="min"></nb-rangepicker>
+        </div>
+        <div *ngIf="submitted && createTripForm.controls['dates']">
+          <p
+            class="error-text"
+            *ngIf="createTripForm.controls['dates']?.errors?.['required']"
+          >
+            Please select your date ranges
+          </p>
+        </div>
+      </div>
+      <textarea
+        formControlName="requirements"
+        nbInput
+        fullWidth
+        rows="3"
+        required="true"
+        placeholder="Requeriments..."
+      ></textarea>
+      <app-file-upload formControlName="image"></app-file-upload>
       <button
         nbButton
         fullWidth

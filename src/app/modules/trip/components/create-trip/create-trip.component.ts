@@ -8,6 +8,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
 import { finalize } from 'rxjs';
 import { TripService } from '../../trip.service';
+import { CreateTripInput } from '../../inputs/create-trip.input';
 
 @Component({
   selector: 'create-trip',
@@ -18,6 +19,9 @@ import { TripService } from '../../trip.service';
 export class CreateTripComponent {
   submitted = false;
   loading = false;
+
+  min = new Date();
+
   createTripForm = this.fb.group({
     title: [
       '',
@@ -27,8 +31,7 @@ export class CreateTripComponent {
       '',
       [Validators.required, Validators.minLength(5), Validators.maxLength(40)]
     ],
-    startDate: ['', [Validators.required]],
-    endDate: ['', [Validators.required]],
+    dates: [{}, Validators.required],
     requirements: ['', [Validators.required]]
   });
 
@@ -44,24 +47,35 @@ export class CreateTripComponent {
     this.submitted = true;
     this.loading = true;
 
-    this.tripService
-      .createTrip(this.createTripForm.value)
-      .pipe(
-        finalize(() => {
-          this.loading = false;
-          this.cdr.detectChanges();
-        })
-      )
-      .subscribe({
-        error: (err) => {
-          this.toastrService.show(err.message, 'Error', {
-            duration: 3000,
-            status: 'danger'
-          });
-        },
-        complete: () => {
-          this.router.navigate(['/']);
-        }
-      });
+    console.log(this.createTripForm.value);
+    const createTripInput: CreateTripInput = {
+      ...this.createTripForm.value,
+      startDate: this.createTripForm.value.dates.start
+        .toISOString()
+        .split('T')[0],
+      endDate: this.createTripForm.value.dates.end.toISOString().split('T')[0],
+      requirements: this.createTripForm.value.requirements.split('\n')
+    };
+
+    console.log(createTripInput);
+    // this.tripService
+    //   .createTrip(this.createTripForm.value)
+    //   .pipe(
+    //     finalize(() => {
+    //       this.loading = false;
+    //       this.cdr.detectChanges();
+    //     })
+    //   )
+    //   .subscribe({
+    //     error: (err) => {
+    //       this.toastrService.show(err.message, 'Error', {
+    //         duration: 3000,
+    //         status: 'danger'
+    //       });
+    //     },
+    //     complete: () => {
+    //       this.router.navigate(['/']);
+    //     }
+    //   });
   }
 }
