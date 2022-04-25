@@ -13,7 +13,7 @@ export interface ResponseListTripsQuery {
 }
 
 export interface ResponseListApplicationsQuery {
-  listApplications: {
+  getSelfApplications: {
     count: number;
     data: IApplication[];
   };

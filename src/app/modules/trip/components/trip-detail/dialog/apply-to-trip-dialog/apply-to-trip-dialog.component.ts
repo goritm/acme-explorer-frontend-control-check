@@ -35,8 +35,7 @@ export class ApplyToTripDialogComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     this.tripService.applyToTrip(form.value.comments, this.trip.id).subscribe({
-      next: (app) => {
-        console.log(app);
+      next: () => {
         this.toastrService.success(
           `You have successfully applied to the trip ${this.trip.title}`
         );

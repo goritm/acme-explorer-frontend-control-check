@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/app/shared/inputs/filter-input-params';
-import { LIST_APPLICATIONS } from 'src/utils/queries/queries';
+import { GET_SELF_APPLICATIONS } from 'src/utils/queries/queries';
 import { ResponseListApplicationsQuery } from 'src/utils/queries/responses';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class ListApplicationsService {
       this.where = where || this.where;
     }
     return this.apollo.query<ResponseListApplicationsQuery>({
-      query: LIST_APPLICATIONS,
+      query: GET_SELF_APPLICATIONS,
       variables: {
         start: this.start,
         limit: this.limit,

@@ -28,9 +28,11 @@ export const LIST_TRIPS = gql`
   ${TRIP_DATA}
 `;
 
-export const LIST_APPLICATIONS = gql`
-  query listApplications($start: Int, $limit: Int, $where: JSON) {
-    listApplications(input: { start: $start, limit: $limit, where: $where }) {
+export const GET_SELF_APPLICATIONS = gql`
+  query getSelfApplications($start: Int, $limit: Int, $where: JSON) {
+    getSelfApplications(
+      input: { start: $start, limit: $limit, where: $where }
+    ) {
       count
       data {
         ...ApplicationData
