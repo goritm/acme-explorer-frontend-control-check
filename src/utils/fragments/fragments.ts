@@ -1,5 +1,18 @@
 import { gql } from 'apollo-angular';
 
+export const USER_DATA = gql`
+  fragment UserData on User {
+    id
+    email
+    name
+    lastName
+    telephoneNumber
+    address
+    profilePicture
+    role
+  }
+`;
+
 export const TRIP_USER_DATA = gql`
   fragment TripUserData on TripsUser {
     id
@@ -32,4 +45,45 @@ export const TRIP_DATA = gql`
     endDate
   }
   ${TRIP_USER_DATA}
+`;
+
+export const TRIP_DATA_WITHOUT_MANAGER = gql`
+  fragment TripDataWithoutManager on Trip {
+    id
+    pictures
+    title
+    ticket
+    description
+    state
+    stages {
+      id
+      description
+      title
+      price
+    }
+    price
+    startDate
+    endDate
+  }
+  ${TRIP_USER_DATA}
+`;
+
+export const APPLICATION_DATA = gql`
+  fragment ApplicationData on Application {
+    id
+    comments
+    explorer {
+      ...TripUserData
+    }
+    manager {
+      ...TripUserData
+    }
+    reasonRejected
+    state
+    trip {
+      ...TripDataWithoutManager
+    }
+  }
+  ${TRIP_USER_DATA}
+  ${TRIP_DATA_WITHOUT_MANAGER}
 `;

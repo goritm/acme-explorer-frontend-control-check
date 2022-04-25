@@ -1,4 +1,5 @@
 import { gql } from 'apollo-angular';
+import { APPLICATION_DATA, USER_DATA } from '../fragments/fragments';
 
 export const SIGN_UP_MUTATION = gql`
   mutation signUp(
@@ -21,17 +22,11 @@ export const SIGN_UP_MUTATION = gql`
     ) {
       accessToken
       user {
-        id
-        email
-        name
-        lastName
-        telephoneNumber
-        address
-        profilePicture
-        role
+        ...UserData
       }
     }
   }
+  ${USER_DATA}
 `;
 
 export const LOG_IN_MUTATION = gql`
@@ -39,17 +34,11 @@ export const LOG_IN_MUTATION = gql`
     signInUser(input: { email: $email, password: $password }) {
       accessToken
       user {
-        id
-        email
-        name
-        lastName
-        telephoneNumber
-        address
-        profilePicture
-        role
+        ...UserData
       }
     }
   }
+  ${USER_DATA}
 `;
 
 export const SOCIAL_SIGN_IN_MUTATION = gql`
@@ -57,17 +46,11 @@ export const SOCIAL_SIGN_IN_MUTATION = gql`
     socialSignIn(input: { token: $token }) {
       accessToken
       user {
-        id
-        email
-        name
-        lastName
-        telephoneNumber
-        address
-        profilePicture
-        role
+        ...UserData
       }
     }
   }
+  ${USER_DATA}
 `;
 
 export const VALIDATE_TOKEN_MUTATION = gql`
@@ -90,4 +73,13 @@ export const UPDATE_SELF_PASSWORD_MUTATION = gql`
       passwordUpdated
     }
   }
+`;
+
+export const APPLY_TO_TRIP = gql`
+  mutation applyToTrip($comments: [String!], $trip: ID!) {
+    createSelfApplication(input: { comments: $comments, trip: $trip }) {
+      ...ApplicationData
+    }
+  }
+  ${APPLICATION_DATA}
 `;

@@ -25,7 +25,7 @@ export class ListApplicationsComponent {
     this.placeholders = new Array(this.pageSize);
     this.listApplicationService.fetch().subscribe(({ data }) => {
       this.placeholders = [];
-      this.applications.push(...data.listApplications.data);
+      this.applications = data.getSelfApplications.data;
       this.loading = false;
       this.pageToLoadNext++;
     });

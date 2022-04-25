@@ -1,4 +1,4 @@
-<nb-card *ngIf="applications.length > 0; else noItems">
+<nb-card>
   <nb-list
     nbInfiniteList
     listenWindowScroll
@@ -8,15 +8,21 @@
     <nb-list-item *ngFor="let application of applications">
       <nb-card>
         <nb-card-body>
-          <p>{{ application.reasonCancelled }}</p>
+          <p>{{ application.trip.title }}</p>
+          <p>{{ application.trip.description }}</p>
+          <br />
           <p>{{ application.comments[0] }}</p>
+          <p>{{ application.state }}</p>
+          <p *ngIf="application.reasonCancelled">
+            {{ application.reasonCancelled }}
+          </p>
         </nb-card-body>
       </nb-card>
     </nb-list-item>
   </nb-list>
 </nb-card>
 
-<ng-template #noItems>
+<ng-template #noApplications>
   <nb-card>
     <nb-card-body>
       <p>No applications found</p>

@@ -1,5 +1,5 @@
 import { gql } from 'apollo-angular';
-import { TRIP_DATA, TRIP_USER_DATA } from '../fragments/fragments';
+import { APPLICATION_DATA, TRIP_DATA } from '../fragments/fragments';
 
 export const GET_USER = gql`
   query Self {
@@ -28,29 +28,18 @@ export const LIST_TRIPS = gql`
   ${TRIP_DATA}
 `;
 
-export const LIST_APPLICATIONS = gql`
-  query listApplications($start: Int, $limit: Int, $where: JSON) {
-    listApplications(input: { start: $start, limit: $limit, where: $where }) {
+export const GET_SELF_APPLICATIONS = gql`
+  query getSelfApplications($start: Int, $limit: Int, $where: JSON) {
+    getSelfApplications(
+      input: { start: $start, limit: $limit, where: $where }
+    ) {
       count
       data {
-        id
-        comments
-        explorer {
-          ...TripUserData
-        }
-        manager {
-          ...TripUserData
-        }
-        reasonRejected
-        state
-        trip {
-          ...TripData
-        }
+        ...ApplicationData
       }
     }
   }
-  ${TRIP_DATA}
-  ${TRIP_USER_DATA}
+  ${APPLICATION_DATA}
 `;
 
 export const GET_TRIP = gql`

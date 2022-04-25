@@ -1,0 +1,37 @@
+<nb-card *ngIf="trip">
+  <nb-card-header class="header-container">
+    <p>
+      {{ title }}: <b>{{ trip.title }}</b>
+    </p>
+    <nb-icon
+      icon="close-outline"
+      (click)="close()"
+      hover-class="hover"
+    ></nb-icon>
+  </nb-card-header>
+  <nb-card-body>
+    <p>{{ trip.description }}</p>
+    <br />
+    <p>Start Date: {{ trip.startDate | date: 'medium' }}</p>
+    <p>End Date: {{ trip.endDate | date: 'medium' }}</p>
+    <br />
+    <p class="price">
+      <b> ${{ trip.price }} </b>
+    </p>
+    <br />
+    <p>Want to apply? Leave some comments if you'd like:</p>
+
+    <form [formGroup]="applicationForm" (ngSubmit)="onSubmit(applicationForm)">
+      <textarea
+        formControlName="comments"
+        nbInput
+        fullWidth
+        rows="3"
+        placeholder="Comments..."
+      ></textarea>
+      <br />
+      <br />
+      <button nbButton type="submit">Apply</button>
+    </form>
+  </nb-card-body>
+</nb-card>

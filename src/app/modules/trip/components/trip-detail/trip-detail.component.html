@@ -1,6 +1,13 @@
 <!-- !TODO - add more info and make it prettier  -->
 <nb-card *ngIf="trip">
-  <nb-card-header>{{ trip.title }}</nb-card-header>
+  <nb-card-header>
+    <nb-icon
+      icon="arrow-back-outline"
+      (click)="goBack()"
+      hover-class="hover"
+    ></nb-icon>
+    <p>{{ trip.title }}</p>
+  </nb-card-header>
   <nb-card-body>
     {{ trip.description }}
     <br />
@@ -15,7 +22,9 @@
     <p>Application State: {{ trip.state }}</p>
   </nb-card-body>
   <nb-card-footer>
-    <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
-    <button (click)="goBack()">go back</button>
+    <p>
+      <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
+    </p>
+    <button nbButton (click)="openModal()">Apply to trip</button>
   </nb-card-footer>
 </nb-card>

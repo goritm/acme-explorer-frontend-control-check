@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ITrip } from '../../interfaces/trip.interface';
 import { TripService } from '../trip.service';
+import { NbDialogService } from '@nebular/theme';
+import { ApplyToTripDialogComponent } from './dialog/apply-to-trip-dialog/apply-to-trip-dialog.component';
 
 @Component({
   selector: 'trip-detail',
@@ -15,7 +17,8 @@ export class TripDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tripService: TripService,
-    private location: Location
+    private location: Location,
+    private dialogService: NbDialogService
   ) {}
 
   ngOnInit(): void {
@@ -31,5 +34,14 @@ export class TripDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  openModal(): void {
+    this.dialogService.open(ApplyToTripDialogComponent, {
+      context: {
+        title: 'Apply to trip',
+        trip: this.trip
+      }
+    });
   }
 }
