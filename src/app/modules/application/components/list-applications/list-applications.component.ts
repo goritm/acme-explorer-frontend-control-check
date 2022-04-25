@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ListApplicationsService } from './list-applications.service';
 import { IApplication } from '../../interfaces/application.interface';
 
@@ -7,7 +7,7 @@ import { IApplication } from '../../interfaces/application.interface';
   templateUrl: './list-applications.component.html',
   styleUrls: ['./list-applications.component.scss']
 })
-export class ListApplicationsComponent {
+export class ListApplicationsComponent implements OnInit {
   applications: IApplication[] = [];
   placeholders: any = [];
   pageSize = 10;
@@ -15,6 +15,10 @@ export class ListApplicationsComponent {
   loading = false;
 
   constructor(private listApplicationService: ListApplicationsService) {}
+
+  ngOnInit(): void {
+    this.loadNext();
+  }
 
   loadNext() {
     if (this.loading) {

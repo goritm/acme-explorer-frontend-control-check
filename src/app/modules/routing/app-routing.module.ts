@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../authentication/components/login/login.component';
 import { RegisterComponent } from './../authentication/components/register/register.component';
 import { TripDetailComponent } from '../trip/components/trip-detail/trip-detail.component';
-import { ApplicationsComponent } from 'src/app/components/applications/applications.component';
+import { ListApplicationsComponent } from '../application/components/list-applications/list-applications.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'applications',
-    component: ApplicationsComponent
+    component: ListApplicationsComponent
   },
   {
     path: 'login',
