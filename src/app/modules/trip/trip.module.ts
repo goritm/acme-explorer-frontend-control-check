@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbButtonModule,
   NbCardModule,
+  NbDialogModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
@@ -22,9 +23,15 @@ import { HoverClassDirective } from './directives/hover-class.directive';
 import { TripService } from './components/trip.service';
 import { ListTripsComponent } from './components/list-trips/list-trips.component';
 import { TripDetailComponent } from './components/trip-detail/trip-detail.component';
+import { ApplyToTripDialogComponent } from './components/trip-detail/dialog/apply-to-trip-dialog/apply-to-trip-dialog.component';
 
 @NgModule({
-  declarations: [ListTripsComponent, TripDetailComponent, HoverClassDirective],
+  declarations: [
+    ListTripsComponent,
+    TripDetailComponent,
+    HoverClassDirective,
+    ApplyToTripDialogComponent
+  ],
   imports: [
     GraphQLModule,
     AppRoutingModule,
@@ -38,7 +45,8 @@ import { TripDetailComponent } from './components/trip-detail/trip-detail.compon
     NbListModule,
     NbIconModule,
     NbSpinnerModule,
-    NgxTranslateModule
+    NgxTranslateModule,
+    NbDialogModule.forChild()
   ],
   providers: [NbLayoutRulerService, NbLayoutRulerService, TripService],
   exports: [ListTripsComponent, TripDetailComponent]

@@ -47,6 +47,27 @@ export const TRIP_DATA = gql`
   ${TRIP_USER_DATA}
 `;
 
+export const TRIP_DATA_WITHOUT_MANAGER = gql`
+  fragment TripDataWithoutManager on Trip {
+    id
+    pictures
+    title
+    ticket
+    description
+    state
+    stages {
+      id
+      description
+      title
+      price
+    }
+    price
+    startDate
+    endDate
+  }
+  ${TRIP_USER_DATA}
+`;
+
 export const APPLICATION_DATA = gql`
   fragment ApplicationData on Application {
     id
@@ -60,9 +81,9 @@ export const APPLICATION_DATA = gql`
     reasonRejected
     state
     trip {
-      ...TripData
+      ...TripDataWithoutManager
     }
   }
   ${TRIP_USER_DATA}
-  ${TRIP_DATA}
+  ${TRIP_DATA_WITHOUT_MANAGER}
 `;

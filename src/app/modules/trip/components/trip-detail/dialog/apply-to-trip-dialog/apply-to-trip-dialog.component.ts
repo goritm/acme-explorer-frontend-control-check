@@ -34,21 +34,18 @@ export class ApplyToTripDialogComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    console.log(form.value.comments);
-    this.tripService
-      .applyToTrip(form.value.comments, this.trip.id)
-      .subscribe((application) => {
-        console.log(application);
-        this.toastrService.show(
-          `Applied successfully to trip ${this.trip.title}`,
-          'Success!',
-          {
-            duration: 3000,
-            status: 'success'
-          }
+    this.tripService.applyToTrip(form.value.comments, this.trip.id).subscribe({
+      next: (app) => {
+        console.log(app);
+        this.toastrService.success(
+          `You have successfully applied to the trip ${this.trip.title}`
         );
         this.applicationForm.reset();
         this.dialogRef.close();
-      });
+      },
+      error: (err) => {
+        this.toastrService.danger(err.message);
+      }
+    });
   }
 }

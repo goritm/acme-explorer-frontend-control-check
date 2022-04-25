@@ -39,7 +39,7 @@ export class TripDetailComponent implements OnInit {
   openModal(): void {
     this.dialogService.open(ApplyToTripDialogComponent, {
       context: {
-        title: 'Apply to trip!',
+        title: 'Apply to trip',
         trip: this.trip
       }
     });

@@ -76,10 +76,8 @@ export const UPDATE_SELF_PASSWORD_MUTATION = gql`
 `;
 
 export const APPLY_TO_TRIP = gql`
-  mutation applyToTrip($newPassword: String!, $oldPassword: String!) {
-    createSelfApplication(
-      input: { newPassword: $newPassword, oldPassword: $oldPassword }
-    ) {
+  mutation applyToTrip($comments: [String!], $trip: ID!) {
+    createSelfApplication(input: { comments: $comments, trip: $trip }) {
       ...ApplicationData
     }
   }
