@@ -30,4 +30,8 @@ export class ListApplicationsComponent {
       this.pageToLoadNext++;
     });
   }
+
+  ngOnInit(): void {
+    this.loadNext();
+  }
 }
