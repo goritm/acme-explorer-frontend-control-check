@@ -20,13 +20,15 @@ import { NgxTranslateModule } from '../translate/translate.module';
 import { HoverClassDirective } from './directives/hover-class.directive';
 
 // trips
-import { TripService } from './components/trip.service';
+import { TripService } from './trip.service';
 import { ListTripsComponent } from './components/list-trips/list-trips.component';
 import { TripDetailComponent } from './components/trip-detail/trip-detail.component';
 import { ApplyToTripDialogComponent } from './components/trip-detail/dialog/apply-to-trip-dialog/apply-to-trip-dialog.component';
+import { CreateTripComponent } from './components/create-trip/create-trip.component';
 
 @NgModule({
   declarations: [
+    CreateTripComponent,
     ListTripsComponent,
     TripDetailComponent,
     HoverClassDirective,

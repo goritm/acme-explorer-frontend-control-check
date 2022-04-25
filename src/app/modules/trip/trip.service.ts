@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/app/shared/inputs/filter-input-params';
-import { APPLY_TO_TRIP } from 'src/utils/mutations/mutations';
+import { APPLY_TO_TRIP, CREATE_TRIP } from 'src/utils/mutations/mutations';
+import { ResponseCreateTrip } from 'src/utils/mutations/responses';
 import { GET_TRIP, LIST_TRIPS } from 'src/utils/queries/queries';
 import {
   ResponseListTripsQuery,
   ResponseTripByIDQuery
 } from 'src/utils/queries/responses';
+import { CreateTripInput } from './inputs/create-trip.input';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +53,17 @@ export class TripService {
       variables: {
         comments,
         trip
+      }
+    });
+  }
+
+  createTrip(createTripInput: CreateTripInput) {
+    return this.apollo.mutate<ResponseCreateTrip>({
+      mutation: CREATE_TRIP,
+      variables: {
+        input: {
+          ...createTripInput
+        }
       }
     });
   }
