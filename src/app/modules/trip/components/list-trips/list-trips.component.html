@@ -1,27 +1,27 @@
-<nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
-  <nb-list
-    nbInfiniteList
-    listenWindowScroll
-    [threshold]="1"
-    (bottomThreshold)="loadNext()"
-  >
-    <nb-list-item *ngFor="let trip of trips">
-      <nb-card routerLink="/trips/{{ trip.id }}" hover-class="hover">
-        <nb-card-header>{{ trip.title }}</nb-card-header>
-        <nb-card-body>
-          {{ trip.description }}
-          <br />
-          <br />
-          <img
-            class="img-responsive"
-            src="{{ trip.pictures[0] }}"
-            alt="{{ trip.title }}"
-          />
-        </nb-card-body>
-        <nb-card-footer>
-          <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
-        </nb-card-footer>
-      </nb-card>
-    </nb-list-item>
-  </nb-list>
-</nb-card>
+<nb-list
+  nbInfiniteList
+  listenWindowScroll
+  [threshold]="1"
+  (bottomThreshold)="loadNext()"
+  [nbSpinner]="loading"
+  nbSpinnerStatus="basic"
+>
+  <nb-list-item *ngFor="let trip of trips">
+    <nb-card routerLink="/trips/{{ trip.id }}" hover-class="hover">
+      <nb-card-header>{{ trip.title }}</nb-card-header>
+      <nb-card-body>
+        {{ trip.description }}
+        <br />
+        <br />
+        <img
+          class="img-responsive"
+          src="{{ trip.pictures[0] }}"
+          alt="{{ trip.title }}"
+        />
+      </nb-card-body>
+      <nb-card-footer>
+        <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
+      </nb-card-footer>
+    </nb-card>
+  </nb-list-item>
+</nb-list>

@@ -1,26 +1,24 @@
-<nb-card>
-  <nb-list
-    nbInfiniteList
-    listenWindowScroll
-    [threshold]="1"
-    (bottomThreshold)="loadNext()"
-  >
-    <nb-list-item *ngFor="let application of applications">
-      <nb-card>
-        <nb-card-body>
-          <p>{{ application.trip.title }}</p>
-          <p>{{ application.trip.description }}</p>
-          <br />
-          <p>{{ application.comments[0] }}</p>
-          <p>{{ application.state }}</p>
-          <p *ngIf="application.reasonCancelled">
-            {{ application.reasonCancelled }}
-          </p>
-        </nb-card-body>
-      </nb-card>
-    </nb-list-item>
-  </nb-list>
-</nb-card>
+<nb-list
+  nbInfiniteList
+  listenWindowScroll
+  [threshold]="1"
+  (bottomThreshold)="loadNext()"
+>
+  <nb-list-item *ngFor="let application of applications">
+    <nb-card>
+      <nb-card-body>
+        <p>{{ application.trip.title }}</p>
+        <p>{{ application.trip.description }}</p>
+        <br />
+        <p>{{ application.comments[0] }}</p>
+        <p>{{ application.state }}</p>
+        <p *ngIf="application.reasonCancelled">
+          {{ application.reasonCancelled }}
+        </p>
+      </nb-card-body>
+    </nb-card>
+  </nb-list-item>
+</nb-list>
 
 <ng-template #noApplications>
   <nb-card>
