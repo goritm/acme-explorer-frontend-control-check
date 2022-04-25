@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card *ngIf="applications.length > 0; else noApplications">
   <nb-list
     nbInfiniteList
     listenWindowScroll
