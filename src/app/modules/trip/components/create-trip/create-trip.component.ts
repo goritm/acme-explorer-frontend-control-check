@@ -22,7 +22,7 @@ export class CreateTripComponent {
   progress = 0;
   min = new Date();
 
-  stages: any[] = [];
+  stages: { title: string; description: string; price: number }[] = [];
 
   createTripForm = this.fb.group({
     title: [
@@ -55,14 +55,22 @@ export class CreateTripComponent {
   ) {}
 
   addStage() {
-    this.stages = [
-      ...this.stages,
-      {
-        title: this.createTripForm.get('stages.title')?.value,
-        description: this.createTripForm.get('stages.description')?.value,
-        price: this.createTripForm.get('stages.price')?.value
-      }
-    ];
+    const title = this.createTripForm.get('stages.title')?.value;
+    const description = this.createTripForm.get('stages.description')?.value;
+    const price = this.createTripForm.get('stages.price')?.value;
+
+    if (title && description && price) {
+      this.stages.push({ title, description, price });
+      this.createTripForm.get('stages.title')?.setValue('');
+      this.createTripForm.get('stages.description')?.setValue('');
+      this.createTripForm.get('stages.price')?.setValue('');
+    } else {
+      // this.toastrService.danger('Please fill all fields');
+      this.toastrService.show('Please fill all fields', 'Error', {
+        duration: 3000,
+        status: 'danger'
+      });
+    }
   }
 
   deleteStage(stageToDelete: {
@@ -86,34 +94,35 @@ export class CreateTripComponent {
         .toISOString()
         .split('T')[0],
       endDate: this.createTripForm.value.dates.end.toISOString().split('T')[0],
-      requirements: this.createTripForm.value.requirements.split('\n'),
-      stages: [
-        {
-          title: 'Stage 1',
-          description: 'Description of stage 1',
-          price: 2500
-        }
-      ]
+      requirements: this.createTripForm.value.requirements.split('\n')
     };
 
-    // this.tripService
-    //   .createTrip(this.createTripForm.value)
-    //   .pipe(
-    //     finalize(() => {
-    //       this.loading = false;
-    //       this.cdr.detectChanges();
-    //     })
-    //   )
-    //   .subscribe({
-    //     error: (err) => {
-    //       this.toastrService.show(err.message, 'Error', {
-    //         duration: 3000,
-    //         status: 'danger'
-    //       });
-    //     },
-    //     complete: () => {
-    //       this.router.navigate(['/']);
-    //     }
-    //   });
+    if (this.createTripForm.value.stages.length > 0) {
+      console.log('LOL');
+      // this.tripService
+      //   .createTrip(this.createTripForm.value)
+      //   .pipe(
+      //     finalize(() => {
+      //       this.loading = false;
+      //       this.cdr.detectChanges();
+      //     })
+      //   )
+      //   .subscribe({
+      //     error: (err) => {
+      //       this.toastrService.show(err.message, 'Error', {
+      //         duration: 3000,
+      //         status: 'danger'
+      //       });
+      //     },
+      //     complete: () => {
+      //       this.router.navigate(['/']);
+      //     }
+      //   });
+    } else {
+      this.toastrService.show('Agregue al menos uno csm', 'Error', {
+        duration: 3000,
+        status: 'danger'
+      });
+    }
   }
 }
