@@ -10,7 +10,7 @@ import { IApplication } from '../../interfaces/application.interface';
 export class ListApplicationsComponent implements OnInit {
   applications: IApplication[] = [];
   placeholders: any = [];
-  pageSize = 10;
+  pageSize = 25;
   pageToLoadNext = 1;
   loading = false;
 
@@ -27,11 +27,13 @@ export class ListApplicationsComponent implements OnInit {
 
     this.loading = true;
     this.placeholders = new Array(this.pageSize);
-    this.listApplicationService.fetch().subscribe(({ data }) => {
-      this.placeholders = [];
-      this.applications = data.getSelfApplications.data;
-      this.loading = false;
-      this.pageToLoadNext++;
-    });
+    this.listApplicationService
+      .fetch({ limit: this.pageSize })
+      .subscribe(({ data }) => {
+        this.placeholders = [];
+        this.applications = data.getSelfApplications.data;
+        this.loading = false;
+        this.pageToLoadNext++;
+      });
   }
 }
