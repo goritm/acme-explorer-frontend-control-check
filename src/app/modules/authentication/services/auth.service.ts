@@ -25,7 +25,9 @@ import {
  * Common authentication service.
  * Should be used to as an interlayer between UI Components and Auth Strategy.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   private userId: string | null = null;
   private _isAuthenticated = new BehaviorSubject(false);

@@ -4,6 +4,14 @@
   align-items: center;
   width: 100%;
 
+  h1 {
+    font-size: large;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+
   .buttons {
     display: flex;
     align-items: center;

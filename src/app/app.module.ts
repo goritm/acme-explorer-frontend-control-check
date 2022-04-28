@@ -22,9 +22,6 @@ import {
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
-// main components
-import { ApplicationsComponent } from './components/applications/applications.component';
-
 // shared components
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
@@ -67,8 +64,7 @@ const roleConfig = {
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    LocalizedDataPipe,
-    ApplicationsComponent
+    LocalizedDataPipe
   ],
   imports: [
     ApplicationModule,

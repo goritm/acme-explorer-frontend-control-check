@@ -4,14 +4,20 @@
   </nb-layout-header>
 
   <nb-sidebar class="menu-sidebar" responsive start state="compacted">
-    <nb-menu [items]="items"></nb-menu>
+    <aside>
+      <nb-menu [items]="items"></nb-menu>
+    </aside>
   </nb-sidebar>
 
   <nb-layout-column>
-    <router-outlet></router-outlet>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
   </nb-layout-column>
 
-  <nb-layout-footer fixed>
-    <app-footer></app-footer>
+  <nb-layout-footer>
+    <footer>
+      <app-footer></app-footer>
+    </footer>
   </nb-layout-footer>
 </nb-layout>
