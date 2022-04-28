@@ -11,5 +11,10 @@
   },
   "card-trip": {
     "price": "Precio"
+  },
+   "menu": {
+    "trips": "Viajes",
+    "applications": "Applicaciones",
+    "createTrip": "Crear un Viaje"
   }
 }

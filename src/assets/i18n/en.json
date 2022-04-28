@@ -11,5 +11,10 @@
   },
   "card-trip": {
     "price": "Price"
+  },
+  "menu": {
+    "trips": "Trips",
+    "applications": "Applications",
+    "createTrip": "Create Trip"
   }
 }
