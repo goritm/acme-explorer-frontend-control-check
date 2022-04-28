@@ -23,8 +23,8 @@ import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 // shared components
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { FooterComponent } from './components/shared/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 // i18n
 import { LocalizedDataPipe } from '../utils/pipes/localized-data.pipe';
@@ -35,7 +35,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
 import { TripModule } from './modules/trip/trip.module';
 import { ApplicationModule } from './modules/application/application.module';
 import { RoleService } from './modules/authentication/services/role.service';
-import { ShareModule } from './components/shared/share.module';
+import { ShareModule } from './components/share.module';
 
 const roleConfig = {
   accessControl: {
