@@ -103,10 +103,6 @@
         required="true"
         placeholder="Requeriments..."
       ></textarea>
-      <app-file-upload
-        formControlName="image"
-        [progress]="progress"
-      ></app-file-upload>
 
       <ng-form formGroupName="stages">
         <input nbInput type="text" name="title" formControlName="title" />
@@ -144,6 +140,11 @@
           </button>
         </nb-list-item>
       </nb-list>
+
+      <app-file-upload
+        formControlName="image"
+        [progress]="progress"
+      ></app-file-upload>
 
       <button
         nbButton
