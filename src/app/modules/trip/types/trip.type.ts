@@ -1,5 +1,5 @@
-import { BaseEntity } from 'src/app/shared/classes/base.entity';
-import { TripState } from 'src/app/shared/enums/trip-state.enum';
+import { BaseEntity } from 'src/utils/classes/base.entity';
+import { TripState } from 'src/utils/enums/trip-state.enum';
 import { User } from '../../authentication/types/user.type';
 import { Stage } from './stage.type';
 
