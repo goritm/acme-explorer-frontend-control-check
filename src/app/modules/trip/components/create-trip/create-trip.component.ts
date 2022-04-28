@@ -87,37 +87,36 @@ export class CreateTripComponent {
     this.submitted = true;
     this.loading = true;
 
-    console.log(this.createTripForm.value);
     const createTripInput: CreateTripInput = {
       ...this.createTripForm.value,
       startDate: this.createTripForm.value.dates.start
         .toISOString()
         .split('T')[0],
       endDate: this.createTripForm.value.dates.end.toISOString().split('T')[0],
-      requirements: this.createTripForm.value.requirements.split('\n')
+      requirements: this.createTripForm.value.requirements.split('\n'),
+      pictures: ['https://picsum.photos/200/300?image=10']
     };
 
     if (this.createTripForm.value.stages.length > 0) {
-      console.log('LOL');
-      // this.tripService
-      //   .createTrip(this.createTripForm.value)
-      //   .pipe(
-      //     finalize(() => {
-      //       this.loading = false;
-      //       this.cdr.detectChanges();
-      //     })
-      //   )
-      //   .subscribe({
-      //     error: (err) => {
-      //       this.toastrService.show(err.message, 'Error', {
-      //         duration: 3000,
-      //         status: 'danger'
-      //       });
-      //     },
-      //     complete: () => {
-      //       this.router.navigate(['/']);
-      //     }
-      //   });
+      this.tripService
+        .createTrip(createTripInput)
+        .pipe(
+          finalize(() => {
+            this.loading = false;
+            this.cdr.detectChanges();
+          })
+        )
+        .subscribe({
+          error: (err) => {
+            this.toastrService.show(err.message, 'Error', {
+              duration: 3000,
+              status: 'danger'
+            });
+          },
+          complete: () => {
+            this.router.navigate(['/']);
+          }
+        });
     } else {
       this.toastrService.show('Agregue al menos uno csm', 'Error', {
         duration: 3000,
