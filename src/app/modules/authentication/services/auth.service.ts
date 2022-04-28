@@ -6,10 +6,7 @@ import {
   STORAGE_USER_ID
 } from 'src/utils/constants/user.constants';
 import { IUser } from 'src/app/shared/interfaces/user.interface';
-import {
-  BaseUserInput,
-  ExtendedUserInput
-} from './../../../shared/types/user.type';
+import { BaseUserInput, ExtendedUserInput } from 'src/utils/types/user.type';
 
 import { Apollo } from 'apollo-angular';
 import {
