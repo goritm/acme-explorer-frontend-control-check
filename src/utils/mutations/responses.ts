@@ -1,6 +1,6 @@
 import { Trip } from 'src/app/modules/trip/types/trip.type';
-import { IBaseEntity } from 'src/app/shared/interfaces/base-entity.interface';
-import { IUser } from 'src/app/shared/interfaces/user.interface';
+import { IBaseEntity } from 'src/utils/interfaces/base-entity.interface';
+import { IUser } from 'src/utils/interfaces/user.interface';
 
 export interface ResponseLoginMutation {
   signInUser: {

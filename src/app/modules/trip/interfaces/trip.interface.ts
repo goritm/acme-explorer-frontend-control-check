@@ -1,6 +1,6 @@
 import { TripState } from 'src/app/shared/enums/trip-state.enum';
-import { IBaseEntity } from 'src/app/shared/interfaces/base-entity.interface';
-import { IUser } from 'src/app/shared/interfaces/user.interface';
+import { IBaseEntity } from 'src/utils/interfaces/base-entity.interface';
+import { IUser } from 'src/utils/interfaces/user.interface';
 import { IStage } from './stage.interface';
 
 export interface ITrip extends IBaseEntity {

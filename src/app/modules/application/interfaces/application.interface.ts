@@ -1,6 +1,6 @@
 import { ApplicationState } from 'src/app/shared/enums/application-state.enum';
-import { IBaseEntity } from 'src/app/shared/interfaces/base-entity.interface';
-import { IUser } from 'src/app/shared/interfaces/user.interface';
+import { IBaseEntity } from 'src/utils/interfaces/base-entity.interface';
+import { IUser } from 'src/utils/interfaces/user.interface';
 import { ITrip } from '../../trip/interfaces/trip.interface';
 
 export interface IApplication extends IBaseEntity {

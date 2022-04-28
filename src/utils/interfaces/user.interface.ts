@@ -1,4 +1,4 @@
-import { UserRoles } from '../enums/user-roles.enum';
+import { UserRoles } from '../../app/shared/enums/user-roles.enum';
 import { IBaseEntity } from './base-entity.interface';
 
 export interface IUser extends IBaseEntity {

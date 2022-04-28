@@ -1,4 +1,4 @@
-import { IUser } from 'src/app/shared/interfaces/user.interface';
+import { IUser } from 'src/utils/interfaces/user.interface';
 import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
 

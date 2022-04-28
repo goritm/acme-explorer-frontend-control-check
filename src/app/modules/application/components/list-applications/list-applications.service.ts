@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { FilterInputParams } from 'src/app/shared/inputs/filter-input-params';
+import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
 import { GET_SELF_APPLICATIONS } from 'src/utils/queries/queries';
 import { ResponseListApplicationsQuery } from 'src/utils/queries/responses';
 

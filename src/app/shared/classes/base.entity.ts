@@ -1,4 +1,4 @@
-import { IBaseEntity } from '../interfaces/base-entity.interface';
+import { IBaseEntity } from 'src/utils/interfaces/base-entity.interface';
 
 export class BaseEntity implements IBaseEntity {
   private _id: string;

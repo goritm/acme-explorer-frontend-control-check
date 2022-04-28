@@ -1,4 +1,4 @@
-import { User } from 'src/app/shared/models/user.model';
+import { User } from 'src/utils/models/user.model';
 
 export class AuthenticationType {
   private _accessToken: string;

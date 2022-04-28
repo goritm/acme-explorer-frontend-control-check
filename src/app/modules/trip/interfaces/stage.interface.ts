@@ -1,4 +1,4 @@
-import { IBaseEntity } from 'src/app/shared/interfaces/base-entity.interface';
+import { IBaseEntity } from 'src/utils/interfaces/base-entity.interface';
 
 export interface IStage extends IBaseEntity {
   title: string;
