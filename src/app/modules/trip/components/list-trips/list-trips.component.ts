@@ -24,12 +24,12 @@ export class ListTripsComponent {
 
     this.loading = true;
     this.placeholders = new Array(this.pageSize);
-    this.tripService.fetch().subscribe({
+    this.tripService.fetch({ limit: this.pageSize }).subscribe({
       next: ({ data }) => {
         this.placeholders = [];
         this.trips = data.listTrips.data;
-        this.pageToLoadNext++;
         this.loading = false;
+        this.pageToLoadNext++;
       }
     });
   }
