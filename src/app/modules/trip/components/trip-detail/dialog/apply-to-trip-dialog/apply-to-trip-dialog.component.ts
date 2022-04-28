@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NbDialogRef, NbToastrService } from '@nebular/theme';
 import { ITrip } from 'src/app/modules/trip/interfaces/trip.interface';
-import { TripService } from '../../../trip.service';
+import { TripService } from 'src/app/modules/trip/trip.service';
 
 @Component({
   selector: 'app-apply-to-trip-dialog',

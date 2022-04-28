@@ -1,3 +1,4 @@
+import { Trip } from 'src/app/modules/trip/types/trip.type';
 import { IBaseEntity } from 'src/app/shared/interfaces/base-entity.interface';
 import { IUser } from 'src/app/shared/interfaces/user.interface';
 
@@ -13,4 +14,8 @@ export interface ResponseSignUpMutation {
     accessToken: string;
     user: IUser & IBaseEntity;
   };
+}
+
+export interface ResponseCreateTrip {
+  createTrip: Trip;
 }

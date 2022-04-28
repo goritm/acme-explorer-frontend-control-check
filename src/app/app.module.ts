@@ -35,6 +35,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
 import { TripModule } from './modules/trip/trip.module';
 import { ApplicationModule } from './modules/application/application.module';
 import { RoleService } from './modules/authentication/services/role.service';
+import { ShareModule } from './components/shared/share.module';
 
 const roleConfig = {
   accessControl: {
@@ -80,6 +81,7 @@ const roleConfig = {
     NbThemeModule.forRoot({
       name: localStorage.getItem('theme') ?? 'default'
     }),
+    ShareModule,
     NbSecurityModule.forRoot(roleConfig),
     NbToastrModule.forRoot(),
     NbLayoutModule,

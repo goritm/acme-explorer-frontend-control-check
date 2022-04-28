@@ -9,16 +9,12 @@ import { IApplication } from '../../interfaces/application.interface';
 })
 export class ListApplicationsComponent implements OnInit {
   applications: IApplication[] = [];
-  placeholders: any = [];
+  placeholders: unknown = [];
   pageSize = 25;
   pageToLoadNext = 1;
   loading = false;
 
   constructor(private listApplicationService: ListApplicationsService) {}
-
-  ngOnInit(): void {
-    this.loadNext();
-  }
 
   loadNext() {
     if (this.loading) {
@@ -35,5 +31,9 @@ export class ListApplicationsComponent implements OnInit {
         this.loading = false;
         this.pageToLoadNext++;
       });
+  }
+
+  ngOnInit(): void {
+    this.loadNext();
   }
 }

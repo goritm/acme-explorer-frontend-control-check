@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../authentication/components/login/login.component';
 import { RegisterComponent } from './../authentication/components/register/register.component';
 import { TripDetailComponent } from '../trip/components/trip-detail/trip-detail.component';
+import { CreateTripComponent } from '../trip/components/create-trip/create-trip.component';
 import { ListApplicationsComponent } from '../application/components/list-applications/list-applications.component';
 
 const routes: Routes = [
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'create-trip',
+    component: CreateTripComponent
   },
   { path: '**', redirectTo: 'trips' }
 ];

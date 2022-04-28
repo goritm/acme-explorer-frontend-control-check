@@ -1,5 +1,5 @@
 import { gql } from 'apollo-angular';
-import { APPLICATION_DATA, USER_DATA } from '../fragments/fragments';
+import { APPLICATION_DATA, TRIP_DATA, USER_DATA } from '../fragments/fragments';
 
 export const SIGN_UP_MUTATION = gql`
   mutation signUp(
@@ -82,4 +82,13 @@ export const APPLY_TO_TRIP = gql`
     }
   }
   ${APPLICATION_DATA}
+`;
+
+export const CREATE_TRIP = gql`
+  mutation CreateTrip($input: CreateTripInput!) {
+    createTrip(input: $input) {
+      ...TripData
+    }
+  }
+  ${TRIP_DATA}
 `;

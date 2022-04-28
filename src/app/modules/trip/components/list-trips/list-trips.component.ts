@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ITrip } from '../../interfaces/trip.interface';
-import { TripService } from '../trip.service';
+import { TripService } from '../../trip.service';
 
 @Component({
   selector: 'list-trips',
@@ -10,8 +10,8 @@ import { TripService } from '../trip.service';
 })
 export class ListTripsComponent {
   trips: ITrip[] = [];
-  placeholders: any = [];
   pageSize = 10;
+  placeholders: unknown = [];
   pageToLoadNext = 1;
   loading = false;
 
@@ -26,11 +26,15 @@ export class ListTripsComponent {
     this.placeholders = new Array(this.pageSize);
     this.tripService.fetch().subscribe({
       next: ({ data }) => {
+        this.placeholders = [];
         this.trips = data.listTrips.data;
-        //[...this.trips, ...data.listTrips.data];
         this.pageToLoadNext++;
         this.loading = false;
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.loadNext();
   }
 }

@@ -1,10 +1,10 @@
-import { GraphQLModule } from '../graphql/graphql.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbButtonModule,
   NbCardModule,
+  NbDatepickerModule,
   NbDialogModule,
   NbFormFieldModule,
   NbIconModule,
@@ -20,20 +20,22 @@ import { NgxTranslateModule } from '../translate/translate.module';
 import { HoverClassDirective } from './directives/hover-class.directive';
 
 // trips
-import { TripService } from './components/trip.service';
+import { TripService } from './trip.service';
 import { ListTripsComponent } from './components/list-trips/list-trips.component';
 import { TripDetailComponent } from './components/trip-detail/trip-detail.component';
 import { ApplyToTripDialogComponent } from './components/trip-detail/dialog/apply-to-trip-dialog/apply-to-trip-dialog.component';
+import { CreateTripComponent } from './components/create-trip/create-trip.component';
+import { ShareModule } from 'src/app/components/shared/share.module';
 
 @NgModule({
   declarations: [
+    CreateTripComponent,
     ListTripsComponent,
     TripDetailComponent,
     HoverClassDirective,
     ApplyToTripDialogComponent
   ],
   imports: [
-    GraphQLModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
@@ -45,10 +47,12 @@ import { ApplyToTripDialogComponent } from './components/trip-detail/dialog/appl
     NbListModule,
     NbIconModule,
     NbSpinnerModule,
+    NbDatepickerModule.forRoot(),
     NgxTranslateModule,
-    NbDialogModule.forChild()
+    NbDialogModule.forChild(),
+    ShareModule
   ],
   providers: [NbLayoutRulerService, NbLayoutRulerService, TripService],
-  exports: [ListTripsComponent, TripDetailComponent]
+  exports: [ListTripsComponent, TripDetailComponent, CreateTripComponent]
 })
 export class TripModule {}
