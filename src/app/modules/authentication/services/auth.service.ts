@@ -17,6 +17,7 @@ import {
   LOG_IN_MUTATION,
   SIGN_UP_MUTATION
 } from 'src/utils/mutations/mutations';
+import { UserRoles } from 'src/utils/enums/user-roles.enum';
 
 /**
  * Common authentication service.
@@ -27,6 +28,7 @@ import {
 })
 export class AuthService {
   private userId: string | null = null;
+  private userRole: string = UserRoles.GUEST;
   private _isAuthenticated = new BehaviorSubject(false);
   private currentUserSubject: BehaviorSubject<IUser>;
 
@@ -76,6 +78,14 @@ export class AuthService {
         password
       }
     });
+  }
+
+  getRole(): string {
+    if (this.userId) {
+      this.currentUserSubject.subscribe((user) => (this.userRole = user.role));
+    }
+
+    return this.userRole;
   }
 
   signup(user: ExtendedUserInput) {

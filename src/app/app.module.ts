@@ -19,7 +19,6 @@ import {
   NbUserModule,
   NbToastrModule
 } from '@nebular/theme';
-import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 // shared components
@@ -34,36 +33,15 @@ import { NgxTranslateModule } from './modules/translate/translate.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { TripModule } from './modules/trip/trip.module';
 import { ApplicationModule } from './modules/application/application.module';
-import { RoleService } from './modules/authentication/services/role.service';
 import { ShareModule } from './components/share.module';
-
-const roleConfig = {
-  accessControl: {
-    guest: {
-      view: ['trips']
-    },
-    explorer: {
-      parent: 'guest',
-      view: ['applications'],
-      create: 'applications'
-    },
-    manager: {
-      parent: 'explorer',
-      create: 'trips'
-    },
-    admin: {
-      parent: 'manager',
-      create: '*',
-      remove: '*'
-    }
-  }
-};
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
+    PageNotFoundComponent,
     LocalizedDataPipe
   ],
   imports: [
@@ -82,19 +60,12 @@ const roleConfig = {
       name: localStorage.getItem('theme') ?? 'default'
     }),
     ShareModule,
-    NbSecurityModule.forRoot(roleConfig),
     NbToastrModule.forRoot(),
     NbLayoutModule,
     NbEvaIconsModule,
     NbContextMenuModule,
     NbButtonModule,
     NbUserModule
-  ],
-  providers: [
-    {
-      provide: NbRoleProvider,
-      useClass: RoleService
-    }
   ],
   bootstrap: [AppComponent]
 })

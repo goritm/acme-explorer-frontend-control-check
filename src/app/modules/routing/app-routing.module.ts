@@ -7,6 +7,9 @@ import { RegisterComponent } from './../authentication/components/register/regis
 import { TripDetailComponent } from '../trip/components/trip-detail/trip-detail.component';
 import { CreateTripComponent } from '../trip/components/create-trip/create-trip.component';
 import { ListApplicationsComponent } from '../application/components/list-applications/list-applications.component';
+import { PageNotFoundComponent } from 'src/app/components/page-not-found/page-not-found.component';
+import { AuthGuard } from 'src/app/modules/authentication/auth.guard';
+import { UserRoles } from 'src/utils/enums/user-roles.enum';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -16,25 +19,45 @@ const routes: Routes = [
   },
   {
     path: 'trips/:id',
-    component: TripDetailComponent
+    component: TripDetailComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.EXPLORER, UserRoles.MANAGER, UserRoles.ADMIN]
+    }
   },
   {
     path: 'applications',
-    component: ListApplicationsComponent
+    component: ListApplicationsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.MANAGER, UserRoles.ADMIN]
+    }
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.GUEST]
+    }
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.GUEST]
+    }
   },
   {
     path: 'create-trip',
-    component: CreateTripComponent
+    component: CreateTripComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.MANAGER, UserRoles.ADMIN]
+    }
   },
-  { path: '**', redirectTo: 'trips' }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
