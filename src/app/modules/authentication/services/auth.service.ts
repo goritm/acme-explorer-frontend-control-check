@@ -128,6 +128,7 @@ export class AuthService {
     localStorage.removeItem(STORAGE_ACCESS_TOKEN);
     localStorage.removeItem(STORAGE_USER);
     this.userId = null;
+    this.userRole = UserRoles.GUEST;
 
     // Dispatching to all listeners that the user is not authenticated
     this._isAuthenticated.next(false);
