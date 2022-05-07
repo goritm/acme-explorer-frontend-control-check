@@ -36,6 +36,7 @@ import { TripModule } from './modules/trip/trip.module';
 import { ApplicationModule } from './modules/application/application.module';
 import { RoleService } from './modules/authentication/services/role.service';
 import { ShareModule } from './components/share.module';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const roleConfig = {
   accessControl: {
@@ -64,6 +65,7 @@ const roleConfig = {
     AppComponent,
     NavbarComponent,
     FooterComponent,
+    PageNotFoundComponent,
     LocalizedDataPipe
   ],
   imports: [

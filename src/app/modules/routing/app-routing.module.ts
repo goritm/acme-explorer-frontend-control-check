@@ -7,6 +7,7 @@ import { RegisterComponent } from './../authentication/components/register/regis
 import { TripDetailComponent } from '../trip/components/trip-detail/trip-detail.component';
 import { CreateTripComponent } from '../trip/components/create-trip/create-trip.component';
 import { ListApplicationsComponent } from '../application/components/list-applications/list-applications.component';
+import { PageNotFoundComponent } from 'src/app/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -34,7 +35,7 @@ const routes: Routes = [
     path: 'create-trip',
     component: CreateTripComponent
   },
-  { path: '**', redirectTo: 'trips' }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
