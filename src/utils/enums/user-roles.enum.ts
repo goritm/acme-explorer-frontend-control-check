@@ -1,6 +1,7 @@
 export enum UserRoles {
-  EXPLORER = 'explorer',
-  MANAGER = 'manager',
-  ADMIN = 'admin',
-  SPONSOR = 'sponsor'
+  GUEST = 'GUEST',
+  EXPLORER = 'EXPLORER',
+  MANAGER = 'MANAGER',
+  ADMIN = 'ADMIN',
+  SPONSOR = 'SPONSOR'
 }
