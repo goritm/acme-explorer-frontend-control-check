@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NbMenuItem } from '@nebular/theme';
 import { AuthService } from './modules/authentication/services/auth.service';
 
 @Component({
@@ -9,27 +8,6 @@ import { AuthService } from './modules/authentication/services/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'acme-explorer-front';
-
-  items: NbMenuItem[] = [
-    {
-      title: 'Trips',
-      icon: 'paper-plane-outline',
-      link: '/trips',
-      home: true
-    },
-    {
-      title: 'Applications',
-      icon: 'file-text-outline',
-      link: '/applications',
-      home: false
-    },
-    {
-      title: 'Create Trip',
-      icon: 'plus-outline',
-      link: '/create-trip',
-      home: false
-    }
-  ];
 
   constructor(protected authService: AuthService) {}
 

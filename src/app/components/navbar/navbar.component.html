@@ -1,21 +1,43 @@
 <div class="side-menu-buttons">
-  <nb-icon
-    (click)="toggleSidebar()"
-    class="sidebar-toggle"
-    icon="menu-outline"
-  ></nb-icon>
   <div class="control-status-example" routerLink="/">
     <nb-icon icon="globe-2-outline"></nb-icon>
   </div>
   <h1>ACME Explorer</h1>
+
+  <nb-actions size="small">
+    <nb-action
+      icon="paper-plane-outline"
+      link="/trips"
+      title="All Trips"
+    ></nb-action>
+    <nb-action
+      *ngIf="currentUser.role === 'EXPLORER'"
+      icon="file-text-outline"
+      link="/applications"
+      title="My Applications"
+    ></nb-action>
+  </nb-actions>
+
+  <nb-actions size="small" *ngIf="currentUser.role === 'MANAGER'">
+    <nb-action
+      icon="file-text-outline"
+      link="/applications"
+      title="Trip Applications"
+    ></nb-action>
+    <nb-action
+      icon="plus-outline"
+      link="/create-trip"
+      title="Create Trip"
+    ></nb-action>
+  </nb-actions>
 </div>
+
 <div class="buttons">
   <nb-icon
     icon="globe"
     [nbContextMenu]="languageList"
     nbContextMenuTag="language-list-menu"
   ></nb-icon>
-  <!-- TODO: check if replaceable with ternary operator -->
   <nb-icon
     *ngIf="this.currentTheme === 'default'"
     (click)="changeTheme()"

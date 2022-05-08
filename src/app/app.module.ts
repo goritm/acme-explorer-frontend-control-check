@@ -13,11 +13,11 @@ import {
   NbLayoutModule,
   NbContextMenuModule,
   NbIconModule,
-  NbSidebarModule,
   NbMenuModule,
   NbButtonModule,
   NbUserModule,
-  NbToastrModule
+  NbToastrModule,
+  NbActionsModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -54,7 +54,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     NgxTranslateModule,
     TripModule,
     NbIconModule,
-    NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbThemeModule.forRoot({
       name: localStorage.getItem('theme') ?? 'default'
@@ -65,7 +64,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     NbEvaIconsModule,
     NbContextMenuModule,
     NbButtonModule,
-    NbUserModule
+    NbUserModule,
+    NbActionsModule
   ],
   bootstrap: [AppComponent]
 })
