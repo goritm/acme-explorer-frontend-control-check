@@ -39,14 +39,8 @@
     nbContextMenuTag="language-list-menu"
   ></nb-icon>
   <nb-icon
-    *ngIf="this.currentTheme === 'default'"
     (click)="changeTheme()"
-    icon="moon"
-  ></nb-icon>
-  <nb-icon
-    *ngIf="this.currentTheme === 'dark'"
-    (click)="changeTheme()"
-    icon="sun-outline"
+    [icon]="this.currentTheme === 'default' ? 'moon-outline' : 'sun-outline'"
   ></nb-icon>
   <div *ngIf="!isLoggedIn" class="auth-buttons">
     <button nbButton [routerLink]="'login'">
