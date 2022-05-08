@@ -10,7 +10,7 @@
         <input
           nbInput
           fullWidth
-          id="email"
+          id="title"
           name="title"
           formControlName="title"
           placeholder="Title"
@@ -80,6 +80,8 @@
           <input
             nbInput
             fullWidth
+            id="dates"
+            name="dates"
             formControlName="dates"
             placeholder="Pick Date Range"
             [nbDatepicker]="formpicker"
@@ -95,8 +97,14 @@
           </p>
         </div>
       </div>
+
+      <label class="label-index" for="requirements"
+        >Add a requirement per line:
+      </label>
       <textarea
         formControlName="requirements"
+        id="requirements"
+        name="requirements"
         nbInput
         fullWidth
         rows="3"
@@ -104,56 +112,88 @@
         placeholder="Requeriments..."
       ></textarea>
 
-      <ng-form formGroupName="stages">
-        <input nbInput type="text" name="title" formControlName="title" />
-        <input
-          nbInput
-          type="text"
-          name="description"
-          formControlName="description"
-        />
-        <input nbInput type="number" name="price" formControlName="price" />
-        <button
-          nbButton
-          status="primary"
-          size="large"
-          (click)="addStage()"
-          type="button"
-        >
-          Add stage
-        </button>
-      </ng-form>
-
-      <nb-list *ngIf="stages">
-        <nb-list-item *ngFor="let stage of stages">
-          <p>{{ stage.title }}</p>
-          <p>{{ stage.description }}</p>
-          <p>{{ stage.price }}</p>
+      <div class="stage-container">
+        <ng-form class="stage-form" formGroupName="stages">
+          <div class="stage-input">
+            <label for="stage-title">Stage Title:</label>
+            <input
+              nbInput
+              type="text"
+              id="stage-title"
+              name="stage-title"
+              formControlName="title"
+            />
+          </div>
+          <div class="stage-input">
+            <label for="stage-description">Stage Description:</label>
+            <input
+              nbInput
+              type="text"
+              id="stage-description"
+              name="stage-description"
+              formControlName="description"
+            />
+          </div>
+          <div class="stage-input">
+            <label for="stage-price">Stage Price:</label>
+            <input
+              nbInput
+              type="number"
+              id="stage-price"
+              name="stage-price"
+              formControlName="price"
+            />
+          </div>
           <button
             nbButton
-            status="primary"
-            size="small"
-            (click)="deleteStage(stage)"
             type="button"
+            status="primary"
+            size="large"
+            (click)="addStage()"
           >
-            Remove stage
+            Add stage
           </button>
-        </nb-list-item>
-      </nb-list>
+        </ng-form>
 
-      <app-file-upload
-        formControlName="image"
-        [progress]="progress"
-      ></app-file-upload>
+        <nb-list *ngIf="stages">
+          <nb-list-item *ngFor="let stage of stages">
+            <div class="stage-list-item">
+              <div>
+                <p>
+                  <b>{{ stage.title }}</b
+                  >: {{ stage.description }}
+                </p>
+              </div>
+              <div class="price-separation">
+                <p>
+                  <b>{{ stage.price }}</b> USD
+                </p>
+                <button
+                  nbButton
+                  status="primary"
+                  size="small"
+                  (click)="deleteStage(stage)"
+                  type="button"
+                >
+                  Remove stage
+                </button>
+              </div>
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </div>
 
-      <button
-        nbButton
-        fullWidth
-        [disabled]="createTripForm.invalid"
-        type="submit"
-        status="primary"
-        size="large"
-      >
+      <div>
+        <label for="pictures">Pictures</label>
+        <app-file-upload
+          id="pictures"
+          name="pictures"
+          formControlName="pictures"
+          [progress]="progress"
+        ></app-file-upload>
+      </div>
+
+      <button nbButton fullWidth type="submit" status="primary" size="large">
         Create Trip
       </button>
     </nb-card-body>
