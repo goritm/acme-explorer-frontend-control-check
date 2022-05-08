@@ -89,7 +89,7 @@ export class CreateTripComponent {
   }
 
   createTrip(): void {
-    if (this.createTripForm.value.stages.length > 0) {
+    if (this.stages.length > 0) {
       this.submitted = true;
       this.loading = true;
 
@@ -114,6 +114,11 @@ export class CreateTripComponent {
           })
         )
         .subscribe({
+          // next: ({ data }) => {
+          //   if (!(data === undefined || data === null)) {
+          //     this.authService.saveUserData(data);
+          //   }
+          // },
           error: (err) => {
             this.toastrService.show(err.message, 'Error', {
               duration: 3000,
