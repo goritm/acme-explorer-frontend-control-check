@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -13,16 +14,19 @@ import { ApplyToTripDialogComponent } from './dialog/apply-to-trip-dialog/apply-
 })
 export class TripDetailComponent implements OnInit {
   trip: ITrip | undefined;
+  userRole: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private tripService: TripService,
     private location: Location,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.getTripDetail();
+    this.userRole = this.authService.getRole();
   }
 
   getTripDetail(): void {

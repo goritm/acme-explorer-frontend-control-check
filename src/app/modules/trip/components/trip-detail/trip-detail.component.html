@@ -25,6 +25,8 @@
     <p>
       <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
     </p>
-    <button nbButton (click)="openModal()">Apply to trip</button>
+    <button *ngIf="userRole === 'EXPLORER'" nbButton (click)="openModal()">
+      Apply to trip
+    </button>
   </nb-card-footer>
 </nb-card>
