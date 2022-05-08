@@ -19,10 +19,14 @@ const routes: Routes = [
   },
   {
     path: 'trips/:id',
-    component: TripDetailComponent,
+    component: TripDetailComponent
+  },
+  {
+    path: 'create-trip',
+    component: CreateTripComponent,
     canActivate: [AuthGuard],
     data: {
-      expectedRoles: [UserRoles.EXPLORER, UserRoles.MANAGER, UserRoles.ADMIN]
+      expectedRoles: [UserRoles.MANAGER, UserRoles.ADMIN]
     }
   },
   {
@@ -30,7 +34,7 @@ const routes: Routes = [
     component: ListApplicationsComponent,
     canActivate: [AuthGuard],
     data: {
-      expectedRoles: [UserRoles.MANAGER, UserRoles.ADMIN]
+      expectedRoles: [UserRoles.EXPLORER, UserRoles.MANAGER, UserRoles.ADMIN]
     }
   },
   {
@@ -47,14 +51,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       expectedRoles: [UserRoles.GUEST]
-    }
-  },
-  {
-    path: 'create-trip',
-    component: CreateTripComponent,
-    canActivate: [AuthGuard],
-    data: {
-      expectedRoles: [UserRoles.MANAGER, UserRoles.ADMIN]
     }
   },
   { path: '**', component: PageNotFoundComponent }

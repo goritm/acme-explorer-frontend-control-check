@@ -10,6 +10,12 @@ import { finalize } from 'rxjs';
 import { TripService } from '../../trip.service';
 import { CreateTripInput } from '../../inputs/create-trip.input';
 
+interface Stage {
+  title: string;
+  description: string;
+  price: number;
+}
+
 @Component({
   selector: 'create-trip',
   templateUrl: './create-trip.component.html',
@@ -22,7 +28,7 @@ export class CreateTripComponent {
   progress = 0;
   min = new Date();
 
-  stages: { title: string; description: string; price: number }[] = [];
+  stages: Stage[] = [];
 
   createTripForm = this.fb.group({
     title: [
@@ -35,7 +41,7 @@ export class CreateTripComponent {
     ],
     dates: [{}, Validators.required],
     requirements: ['', [Validators.required]],
-    image: ['', [Validators.required]],
+    pictures: ['', [Validators.required]],
     stages: this.fb.group({
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
@@ -65,7 +71,6 @@ export class CreateTripComponent {
       this.createTripForm.get('stages.description')?.setValue('');
       this.createTripForm.get('stages.price')?.setValue('');
     } else {
-      // this.toastrService.danger('Please fill all fields');
       this.toastrService.show('Please fill all fields', 'Error', {
         duration: 3000,
         status: 'danger'
@@ -84,20 +89,22 @@ export class CreateTripComponent {
   }
 
   createTrip(): void {
-    this.submitted = true;
-    this.loading = true;
+    if (this.stages.length > 0) {
+      this.submitted = true;
+      this.loading = true;
 
-    const createTripInput: CreateTripInput = {
-      ...this.createTripForm.value,
-      startDate: this.createTripForm.value.dates.start
-        .toISOString()
-        .split('T')[0],
-      endDate: this.createTripForm.value.dates.end.toISOString().split('T')[0],
-      requirements: this.createTripForm.value.requirements.split('\n'),
-      pictures: ['https://picsum.photos/200/300?image=10']
-    };
+      const createTripInput: CreateTripInput = {
+        ...this.createTripForm.value,
+        startDate: this.createTripForm.value.dates.start
+          .toISOString()
+          .split('T')[0],
+        endDate: this.createTripForm.value.dates.end
+          .toISOString()
+          .split('T')[0],
+        requirements: this.createTripForm.value.requirements.split('\n'),
+        pictures: ['https://picsum.photos/200/300?image=10']
+      };
 
-    if (this.createTripForm.value.stages.length > 0) {
       this.tripService
         .createTrip(createTripInput)
         .pipe(
@@ -107,6 +114,11 @@ export class CreateTripComponent {
           })
         )
         .subscribe({
+          // next: ({ data }) => {
+          //   if (!(data === undefined || data === null)) {
+          //     this.authService.saveUserData(data);
+          //   }
+          // },
           error: (err) => {
             this.toastrService.show(err.message, 'Error', {
               duration: 3000,
@@ -118,7 +130,7 @@ export class CreateTripComponent {
           }
         });
     } else {
-      this.toastrService.show('Agregue al menos uno csm', 'Error', {
+      this.toastrService.show('Add at least one stage', 'Error', {
         duration: 3000,
         status: 'danger'
       });

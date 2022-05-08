@@ -2,12 +2,7 @@ import { IUser } from 'src/utils/interfaces/user.interface';
 import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
 
-import {
-  NbMenuItem,
-  NbMenuService,
-  NbSidebarService,
-  NbThemeService
-} from '@nebular/theme';
+import { NbMenuItem, NbMenuService, NbThemeService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { Languages } from 'src/utils/enums/languages.enum';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
@@ -35,10 +30,8 @@ export class NavbarComponent implements OnInit {
     }
   ];
 
-  // TODO: Remove this logic out of navbar
   constructor(
     private readonly authService: AuthService,
-    private readonly sidebarService: NbSidebarService,
     private readonly themeService: NbThemeService,
     private readonly translateService: TranslateService,
     private readonly menuService: NbMenuService
@@ -56,11 +49,6 @@ export class NavbarComponent implements OnInit {
       'en';
     this.translateService.setDefaultLang(this.siteLanguage);
     this.changeLanguage(this.siteLanguage);
-  }
-
-  toggleSidebar(): boolean {
-    this.sidebarService.toggle(true);
-    return false;
   }
 
   changeTheme() {

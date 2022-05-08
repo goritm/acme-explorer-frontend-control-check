@@ -18,6 +18,7 @@ import {
   SIGN_UP_MUTATION
 } from 'src/utils/mutations/mutations';
 import { UserRoles } from 'src/utils/enums/user-roles.enum';
+import { Router } from '@angular/router';
 
 /**
  * Common authentication service.
@@ -32,7 +33,7 @@ export class AuthService {
   private _isAuthenticated = new BehaviorSubject(false);
   private currentUserSubject: BehaviorSubject<IUser>;
 
-  constructor(private apollo: Apollo) {
+  constructor(private apollo: Apollo, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<IUser>(
       JSON.parse(localStorage.getItem(STORAGE_USER) || '{}')
     );
@@ -128,6 +129,9 @@ export class AuthService {
     localStorage.removeItem(STORAGE_ACCESS_TOKEN);
     localStorage.removeItem(STORAGE_USER);
     this.userId = null;
+    this.userRole = UserRoles.GUEST;
+
+    this.router.navigate(['/']);
 
     // Dispatching to all listeners that the user is not authenticated
     this._isAuthenticated.next(false);
