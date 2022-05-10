@@ -40,6 +40,10 @@
         "min": "TelephoneNumber must be at least 9 characters long",
         "max": "TelephoneNumber must be less than 500 characters long"
       }
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "update": "Update"
     }
   }
 }

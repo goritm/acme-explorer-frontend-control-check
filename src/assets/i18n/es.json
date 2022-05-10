@@ -35,6 +35,10 @@
         "min": "El teléfono debe tener al menos 9 caracteres",
         "max": "El teléfono como máximo debe tener 11 caracteres"
       }
+    },
+    "buttons": {
+      "cancel": "Cancelar",
+      "update": "Actualizar"
     }
   }
 }
