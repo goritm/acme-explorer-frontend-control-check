@@ -11,6 +11,7 @@ import { finalize } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { UpdateUserPayload } from '../../graphql/inputs/update-user.payload';
 import { IUser } from 'src/utils/interfaces/user.interface';
+import { validateTelephoneNumber } from 'src/utils/validations/telephone-number.validator';
 
 @Component({
   selector: 'profile',
@@ -41,6 +42,19 @@ export class ProfileComponent implements OnInit {
   validate(): void {
     for (const value in this.updateSelfForm.value) {
       const field = this.updateSelfForm.value[value];
+
+      if (value === 'telephoneNumber' && field !== '') {
+        const result: boolean = validateTelephoneNumber(field);
+        result
+          ? (this.validateForm = true)
+          : this.toastrService.show('Telephone Number is invalid', 'Error', {
+              duration: 3000,
+              status: 'danger'
+            });
+
+        break;
+      }
+
       if (field !== '') {
         this.validateForm = true;
         break;
@@ -89,11 +103,11 @@ export class ProfileComponent implements OnInit {
         })
       )
       .subscribe({
-        // next: ({ data }) => {
-        //   if (!(data === undefined || data === null)) {
-        //     this.authService.saveUserData(data);
-        //   }
-        // },
+        next: ({ data }) => {
+          if (!(data === undefined || data === null)) {
+            this.userService.saveUserData(data);
+          }
+        },
         error: (err: { message: string }) => {
           this.toastrService.show(err.message, 'Error', {
             duration: 3000,
