@@ -13,7 +13,10 @@ import { AuthService } from 'src/app/modules/authentication/services/auth.servic
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  items: NbMenuItem[] = [{ title: 'Profile' }, { title: 'Logout' }];
+  items: NbMenuItem[] = [
+    { title: 'Profile', link: 'profile' },
+    { title: 'Logout' }
+  ];
   currentTheme = 'default';
   siteLanguage = 'en';
   isLoggedIn = false;
