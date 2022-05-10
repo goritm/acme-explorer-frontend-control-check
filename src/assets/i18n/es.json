@@ -17,6 +17,24 @@
     "name": "Nombre",
     "lastName": "Apellido",
     "address": "Dirección",
-    "telephoneNumber": "Teléfono"
+    "telephoneNumber": "Teléfono",
+    "form": {
+      "name": {
+        "min": "El nombre debe tener al menos 1 carácter",
+        "max": "El nombre como máximo debe tener 25 caracteres"
+      },
+      "lastName": {
+        "min": "El apellido debe tener al menos 1 carácter",
+        "max": "El apellido como máximo debe tener 25 caracteres"
+      },
+      "address": {
+        "min": "La dirección debe tener al menos 5 caracteres",
+        "max": "La dirección como máximo debe tener 500 caracteres"
+      },
+      "telephoneNumber": {
+        "min": "El teléfono debe tener al menos 9 caracteres",
+        "max": "El teléfono como máximo debe tener 11 caracteres"
+      }
+    }
   }
 }
