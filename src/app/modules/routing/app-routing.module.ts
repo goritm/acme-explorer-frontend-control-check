@@ -9,7 +9,8 @@ import { CreateTripComponent } from '../trip/components/create-trip/create-trip.
 import { ListApplicationsComponent } from '../application/components/list-applications/list-applications.component';
 import { PageNotFoundComponent } from 'src/app/components/page-not-found/page-not-found.component';
 import { AuthGuard } from 'src/app/modules/authentication/auth.guard';
-import { UserRoles } from 'src/utils/enums/user-roles.enum';
+import { ALL_ROLES, UserRoles } from 'src/utils/enums/user-roles.enum';
+import { ProfileComponent } from '../user/components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -43,6 +44,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       expectedRoles: [UserRoles.GUEST]
+    }
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: ALL_ROLES
     }
   },
   {

@@ -2,7 +2,8 @@
   "security": {
     "login": "Login",
     "register": "Register",
-    "logout": "Logout"
+    "logout": "Logout",
+    "profile": "Profile"
   },
   "home": {
     "title": "Home",
@@ -16,5 +17,34 @@
     "trips": "Trips",
     "applications": "Applications",
     "createTrip": "Create Trip"
+  },
+  "profile": {
+    "title": "Your profile",
+    "name": "Name",
+    "lastName": "Lastname",
+    "address": "Address",
+    "telephoneNumber": "Telephone Number",
+    "form": {
+      "name": {
+        "min": "Name must be at least 1 characters long",
+        "max": "Name must be less than 25 characters long"
+      },
+      "lastName": {
+        "min": "LastName must be at least 1 characters long",
+        "max": "LastName must be less than 25 characters long"
+      },
+      "address": {
+        "min": "Address must be at least 5 characters long",
+        "max": "Address must be less than 500 characters long"
+      },
+      "telephoneNumber": {
+        "min": "TelephoneNumber must be at least 9 characters long",
+        "max": "TelephoneNumber must be less than 500 characters long"
+      }
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "update": "Update"
+    }
   }
 }

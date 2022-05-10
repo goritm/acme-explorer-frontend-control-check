@@ -5,3 +5,10 @@ export enum UserRoles {
   ADMIN = 'ADMIN',
   SPONSOR = 'SPONSOR'
 }
+
+export const ALL_ROLES = [
+  UserRoles.EXPLORER,
+  UserRoles.MANAGER,
+  UserRoles.ADMIN,
+  UserRoles.SPONSOR
+];

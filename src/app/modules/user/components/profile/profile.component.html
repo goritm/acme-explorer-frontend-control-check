@@ -1,0 +1,145 @@
+<div class="header-text">
+  <h1 class="title"> {{ 'profile.title' | translate }} </h1>
+</div>
+
+<form (ngSubmit)="validate()" [formGroup]="updateSelfForm">
+  <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
+    <nb-card-body class="update-profile-card">
+
+      <div>
+        <div *ngIf="updateSelfForm.value.name !== '' ">
+          <label class="label-index" for="name">{{ 'profile.name' | translate }}:</label>
+        </div>
+        <input
+          nbInput
+          fullWidth
+          id="name"
+          name="name"
+          formControlName="name"
+          placeholder="{{ 'profile.name' | translate }}"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && updateSelfForm.controls['name']">
+          <p
+            class="error-text"
+            *ngIf="updateSelfForm.controls['name']?.errors?.['minlength']"
+          >
+            {{ 'profile.form.name.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="updateSelfForm.controls['name']?.errors?.['maxlength']"
+          >
+            {{ 'profile.form.name.max' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div *ngIf="updateSelfForm.value.lastName !== '' ">
+          <label class="label-index" for="lastName">{{ 'profile.lastName' | translate }}:</label>
+        </div>
+        <input
+          nbInput
+          fullWidth
+          id="lastName"
+          name="lastName"
+          formControlName="lastName"
+          placeholder="{{ 'profile.lastName' | translate }}"
+          fieldSize="large"
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && updateSelfForm.controls['lastName']">
+          <p
+            class="error-text"
+            *ngIf="updateSelfForm.controls['lastName']?.errors?.['minlength']"
+          >
+            {{ 'profile.form.lastName.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="updateSelfForm.controls['lastName']?.errors?.['maxlength']"
+          >
+            {{ 'profile.form.lastName.max' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div *ngIf="updateSelfForm.value.telephoneNumber !== '' ">
+          <label class="label-index" for="telephoneNumber">{{ 'profile.telephoneNumber' | translate }}:</label>
+        </div>
+        <input
+          nbInput
+          fullWidth
+          id="telephoneNumber"
+          name="telephoneNumber"
+          formControlName="telephoneNumber"
+          placeholder="{{ 'profile.telephoneNumber' | translate }}"
+          fieldSize="large"
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && updateSelfForm.controls['telephoneNumber']">
+          <p
+            class="error-text"
+            *ngIf="updateSelfForm.controls['telephoneNumber']?.errors?.['minlength']"
+          >
+            {{ 'profile.form.telephoneNumber.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="updateSelfForm.controls['telephoneNumber']?.errors?.['maxlength']"
+          >
+            {{ 'profile.form.telephoneNumber.max' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div *ngIf="updateSelfForm.value.address !== '' ">
+          <label class="label-index" for="address">{{ 'profile.address' | translate }}:</label>
+        </div>
+        <textarea
+          formControlName="address"
+          id="address"
+          name="address"
+          nbInput
+          fullWidth
+          rows="3"
+          placeholder="{{ 'profile.address' | translate }}"
+        ></textarea>
+        <div *ngIf="submitted && updateSelfForm.controls['address']">
+          <p
+            class="error-text"
+            *ngIf="updateSelfForm.controls['address']?.errors?.['minlength']"
+          >
+            {{ 'profile.form.address.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="updateSelfForm.controls['address']?.errors?.['maxlength']"
+          >
+            {{ 'profile.form.address.max' | translate }}
+          </p>
+        </div>
+      </div>
+
+    </nb-card-body>
+
+    <nb-card-body class="button-rows">
+      <button  nbButton (click)="cancel()" fullWidth type="cancel" status="danger" size="medium">
+        {{ 'profile.buttons.cancel' | translate }}
+      </button>
+
+      <button nbButton fullWidth type="submit" status="primary" size="medium">
+        {{ 'profile.buttons.update' | translate }}
+      </button>
+    </nb-card-body>
+
+  </nb-card>
+</form>

@@ -6,6 +6,7 @@ import { NbMenuItem, NbMenuService, NbThemeService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { Languages } from 'src/utils/enums/languages.enum';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -34,7 +35,8 @@ export class NavbarComponent implements OnInit {
     private readonly authService: AuthService,
     private readonly themeService: NbThemeService,
     private readonly translateService: TranslateService,
-    private readonly menuService: NbMenuService
+    private readonly menuService: NbMenuService,
+    private readonly router: Router
   ) {
     // theme
     this.themeService.onThemeChange().subscribe(({ name }) => {
@@ -81,6 +83,10 @@ export class NavbarComponent implements OnInit {
     this.menuService.onItemClick().subscribe(({ item }) => {
       if (item.title === 'Logout') {
         this.authService.logout();
+      }
+
+      if (item.title === 'Profile') {
+        this.router.navigate(['/profile']);
       }
     });
 
