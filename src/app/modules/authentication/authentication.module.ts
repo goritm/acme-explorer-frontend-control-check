@@ -13,6 +13,7 @@ import {
   NbSpinnerModule
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
+
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
   imports: [
