@@ -4,7 +4,7 @@ import { USER_DATA } from 'src/utils/fragments/fragments';
 export const UPDATE_SELF = gql`
   mutation updateSelf($input: UpdateUserPayload!) {
     updateSelf(input: $input) {
-      UserData
+      ...UserData
     }
   }
   ${USER_DATA}
