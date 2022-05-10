@@ -3,7 +3,7 @@
     "login": "Entrar",
     "register": "Registro",
     "logout": "Salir",
-    "Profile": "Perfil"
+    "profile": "Perfil"
   },
   "home": {
     "title": "Pagina Principal",
@@ -13,9 +13,10 @@
   "card-trip": {
     "price": "Precio"
   },
-   "menu": {
-    "trips": "Viajes",
-    "applications": "Applicaciones",
-    "createTrip": "Crear un Viaje"
+  "profile": {
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "address": "Dirección",
+    "telephoneNumber": "Teléfono"
   }
 }

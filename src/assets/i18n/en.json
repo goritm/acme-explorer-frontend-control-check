@@ -3,7 +3,7 @@
     "login": "Login",
     "register": "Register",
     "logout": "Logout",
-    "Profile": "Profile"
+    "profile": "Profile"
   },
   "home": {
     "title": "Home",
@@ -17,5 +17,11 @@
     "trips": "Trips",
     "applications": "Applications",
     "createTrip": "Create Trip"
+  },
+  "profile": {
+    "name": "Name",
+    "lastName": "Lastname",
+    "address": "Address",
+    "telephoneNumber": "Telephone Number"
   }
 }
