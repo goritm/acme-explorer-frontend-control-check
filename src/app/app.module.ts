@@ -35,6 +35,7 @@ import { TripModule } from './modules/trip/trip.module';
 import { ApplicationModule } from './modules/application/application.module';
 import { ShareModule } from './components/share.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { UserModule } from './modules/user/user.module';
 
 @NgModule({
   declarations: [
@@ -58,14 +59,15 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     NbThemeModule.forRoot({
       name: localStorage.getItem('theme') ?? 'default'
     }),
-    ShareModule,
     NbToastrModule.forRoot(),
     NbLayoutModule,
     NbEvaIconsModule,
     NbContextMenuModule,
     NbButtonModule,
     NbUserModule,
-    NbActionsModule
+    NbActionsModule,
+    ShareModule,
+    UserModule
   ],
   bootstrap: [AppComponent]
 })
