@@ -14,6 +14,7 @@
     "price": "Precio"
   },
   "profile": {
+    "title": "Tu perfil",
     "name": "Nombre",
     "lastName": "Apellido",
     "address": "Dirección",

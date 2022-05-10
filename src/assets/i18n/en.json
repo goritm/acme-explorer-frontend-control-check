@@ -19,6 +19,7 @@
     "createTrip": "Create Trip"
   },
   "profile": {
+    "title": "Your profile",
     "name": "Name",
     "lastName": "Lastname",
     "address": "Address",
