@@ -2,7 +2,8 @@
   "security": {
     "login": "Login",
     "register": "Register",
-    "logout": "Logout"
+    "logout": "Logout",
+    "Profile": "Profile"
   },
   "home": {
     "title": "Home",

@@ -2,7 +2,8 @@
   "security": {
     "login": "Entrar",
     "register": "Registro",
-    "logout": "Salir"
+    "logout": "Salir",
+    "Profile": "Perfil"
   },
   "home": {
     "title": "Pagina Principal",
