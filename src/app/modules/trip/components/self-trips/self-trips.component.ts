@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ITrip } from '../../interfaces/trip.interface';
 import { TripService } from '../../trip.service';
 
@@ -8,7 +8,7 @@ import { TripService } from '../../trip.service';
   styleUrls: ['./self-trips.component.scss'],
   providers: [TripService]
 })
-export class SelfTripsComponent {
+export class SelfTripsComponent implements OnInit {
   trips: ITrip[] = [];
   pageSize = 10;
   placeholders: unknown = [];
