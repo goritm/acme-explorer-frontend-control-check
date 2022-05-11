@@ -8,8 +8,13 @@
       nbSpinnerStatus="basic"
     >
       <nb-list-item *ngFor="let trip of trips">
-        <nb-card routerLink="/trips/{{ trip.id }}" hover-class="hover">
-          <nb-card-header>{{ trip.title }}</nb-card-header>
+        <nb-card  routerLink="/trips/{{ trip.id }}" hover-class="hover" class="listing-container">
+          <nb-card-header>
+
+             {{ trip.title }}
+
+          </nb-card-header>
+
           <nb-card-body>
             {{ trip.description }}
             <br />
@@ -20,6 +25,7 @@
               alt="{{ trip.title }}"
             />
           </nb-card-body>
+
           <nb-card-footer>
             <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
           </nb-card-footer>
