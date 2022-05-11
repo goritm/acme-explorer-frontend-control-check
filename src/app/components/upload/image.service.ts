@@ -22,4 +22,20 @@ export class ImageService {
       responseType: 'text'
     });
   }
+
+  public deleteImage(url: string) {
+    return this.http.delete(
+      'https://upload-service-bujosa.cloud.okteto.net/upload/file',
+      {
+        headers: new HttpHeaders({
+          Authorization: localStorage.getItem('token')
+            ? `Bearer ${localStorage.getItem('token')}`
+            : ''
+        }),
+        body: {
+          url: url
+        }
+      }
+    );
+  }
 }
