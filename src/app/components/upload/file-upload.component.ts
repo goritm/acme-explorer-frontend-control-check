@@ -1,16 +1,31 @@
-import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
+import { ControlContainer } from '@angular/forms';
+import {
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  Input,
+  SkipSelf
+} from '@angular/core';
 import { finalize } from 'rxjs';
 import { ImageService } from './image.service';
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.scss']
+  styleUrls: ['./file-upload.component.scss'],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useFactory: (container: ControlContainer) => container,
+      deps: [[new SkipSelf(), ControlContainer]]
+    }
+  ]
 })
 export class FileUploadComponent {
   file: File | null = null;
   loading = false;
   imageUrl: string | null = '';
+  @Input() controlName!: string;
 
   constructor(
     private imageService: ImageService,

@@ -7,7 +7,7 @@
   <span class="file-msg">{{
     file ? file.name : 'Choose file or drag and drop file here'
   }}</span>
-  <input class="file-input" type="file" />
+  <input class="file-input" type="file" [formControlName]="controlName" />
 </div>
 <img
   class="file-preview"

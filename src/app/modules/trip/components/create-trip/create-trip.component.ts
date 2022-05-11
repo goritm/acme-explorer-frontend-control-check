@@ -4,7 +4,7 @@ import {
   ChangeDetectorRef,
   Component
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
 import { finalize } from 'rxjs';
 import { TripService } from '../../trip.service';
@@ -41,7 +41,7 @@ export class CreateTripComponent {
     ],
     dates: [{}, Validators.required],
     requirements: ['', [Validators.required]],
-    pictures: [''],
+    images: this.fb.array([]),
     stages: this.fb.group({
       title: [''],
       description: [''],
@@ -98,8 +98,7 @@ export class CreateTripComponent {
         endDate: this.createTripForm.value.dates.end
           .toISOString()
           .split('T')[0],
-        requirements: this.createTripForm.value.requirements.split('\n'),
-        pictures: ['https://picsum.photos/200/300?image=10']
+        requirements: this.createTripForm.value.requirements.split('\n')
       };
 
       this.tripService
@@ -137,5 +136,25 @@ export class CreateTripComponent {
         status: 'danger'
       });
     }
+  }
+
+  get imageArray(): FormArray {
+    return this.createTripForm.controls['images'] as FormArray;
+  }
+
+  addImage() {
+    const urlForm = this.fb.group({
+      url: ['', Validators.required]
+    });
+
+    this.imageArray.push(urlForm);
+  }
+
+  removeImage(imageIndex: number) {
+    this.imageArray.removeAt(imageIndex);
+  }
+
+  onSubmitImages() {
+    console.log(this.createTripForm.value.images);
   }
 }

@@ -185,14 +185,45 @@
         </nb-list>
       </div>
 
-      <div>
-        <label for="pictures">Pictures</label>
-        <app-file-upload
-          id="pictures"
-          name="pictures"
-          formControlName="pictures"
-        ></app-file-upload>
-      </div>
+      <ng-container formArrayName="images">
+        <label for="images">Images</label>
+        <ng-container
+          *ngFor="let urlForm of imageArray.controls; let i = index"
+        >
+          <div id="images" [formGroupName]="i">
+            <app-file-upload controlName="url"></app-file-upload>
+            <button
+              nbButton
+              status="primary"
+              size="small"
+              (click)="removeImage(i)"
+              type="button"
+            >
+              Borrar
+            </button>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <button
+        nbButton
+        status="primary"
+        size="small"
+        (click)="addImage()"
+        type="button"
+      >
+        Agregar Imagen
+      </button>
+
+      <button
+        nbButton
+        status="primary"
+        size="small"
+        (click)="onSubmitImages()"
+        type="button"
+      >
+        ver
+      </button>
 
       <button
         nbButton
