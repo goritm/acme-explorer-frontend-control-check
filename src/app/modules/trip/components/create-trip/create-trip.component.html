@@ -80,13 +80,15 @@
           <input
             nbInput
             fullWidth
+            type="text"
+            readonly
             id="dates"
             name="dates"
             formControlName="dates"
             placeholder="Pick Date Range"
-            [nbDatepicker]="formpicker"
+            [nbDatepicker]="rangepicker"
           />
-          <nb-rangepicker #formpicker [min]="min"></nb-rangepicker>
+          <nb-rangepicker #rangepicker [min]="min"></nb-rangepicker>
         </div>
         <div *ngIf="submitted && createTripForm.controls['dates']">
           <p
@@ -189,11 +191,17 @@
           id="pictures"
           name="pictures"
           formControlName="pictures"
-          [progress]="progress"
         ></app-file-upload>
       </div>
 
-      <button nbButton fullWidth type="submit" status="primary" size="large">
+      <button
+        nbButton
+        fullWidth
+        type="submit"
+        status="primary"
+        size="large"
+        [disabled]="!createTripForm.valid"
+      >
         Create Trip
       </button>
     </nb-card-body>

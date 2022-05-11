@@ -41,14 +41,11 @@ export class CreateTripComponent {
     ],
     dates: [{}, Validators.required],
     requirements: ['', [Validators.required]],
-    pictures: ['', [Validators.required]],
+    pictures: [''],
     stages: this.fb.group({
-      title: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      price: [
-        '',
-        [Validators.required, Validators.min(0), Validators.max(10000)]
-      ]
+      title: [''],
+      description: [''],
+      price: ['']
     })
   });
 
@@ -114,11 +111,16 @@ export class CreateTripComponent {
           })
         )
         .subscribe({
-          // next: ({ data }) => {
-          //   if (!(data === undefined || data === null)) {
-          //     this.authService.saveUserData(data);
-          //   }
-          // },
+          next: ({ data }) => {
+            if (!(data === undefined || data === null)) {
+              this.toastrService.show('Trip saved!', 'Success', {
+                duration: 3000,
+                status: 'success'
+              });
+
+              this.router.navigate(['/trips']);
+            }
+          },
           error: (err) => {
             this.toastrService.show(err.message, 'Error', {
               duration: 3000,
