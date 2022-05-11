@@ -2,7 +2,7 @@
   <h1 class="title"> {{ 'selfTrips.title' | translate }} </h1>
 </div>
 
-<div *ngIf="trips.length > 0; else noTrips">
+<div *ngIf="trips.length > 0; else noTrips" class="center">
   <nb-list
       nbInfiniteList
       listenWindowScroll
