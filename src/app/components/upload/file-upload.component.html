@@ -1,4 +1,9 @@
-<div class="file-drop-area">
+<div
+  class="file-drop-area"
+  [nbSpinner]="loading"
+  nbSpinnerMessage="Uploading your picture..."
+  nbSpinnerStatus="basic"
+>
   <span class="file-msg">{{
     file ? file.name : 'Choose file or drag and drop file here'
   }}</span>

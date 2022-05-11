@@ -1,4 +1,5 @@
-import { Component, HostListener } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
+import { finalize } from 'rxjs';
 import { ImageService } from './image.service';
 
 @Component({
@@ -8,20 +9,33 @@ import { ImageService } from './image.service';
 })
 export class FileUploadComponent {
   file: File | null = null;
+  loading = false;
   imageUrl: string | null = '';
 
-  constructor(private imageService: ImageService) {}
+  constructor(
+    private imageService: ImageService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
+    this.loading = true;
     this.file = event?.[0];
-    this.imageService.uploadImage(this.file).subscribe({
-      next: (data) => {
-        console.log(data?.body);
-        this.imageUrl = data?.body;
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
+    this.imageService
+      .uploadImage(this.file)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: (data) => {
+          console.log(data?.body);
+          this.imageUrl = data?.body;
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
   }
 }

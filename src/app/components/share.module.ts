@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NbSpinnerModule } from '@nebular/theme';
 import { GraphQLModule } from 'src/app/modules/graphql/graphql.module';
 import { NgxTranslateModule } from 'src/app/modules/translate/translate.module';
 import { AppRoutingModule } from '../modules/routing/app-routing.module';
@@ -7,7 +8,12 @@ import { FileUploadComponent } from './upload/file-upload.component';
 
 @NgModule({
   declarations: [FileUploadComponent, ProgressComponent],
-  imports: [GraphQLModule, NgxTranslateModule, AppRoutingModule],
+  imports: [
+    GraphQLModule,
+    NgxTranslateModule,
+    AppRoutingModule,
+    NbSpinnerModule
+  ],
   providers: [],
   exports: [FileUploadComponent, ProgressComponent]
 })
