@@ -26,6 +26,19 @@ export class NavbarComponent implements OnInit {
     return MANAGER.includes(this.currentUser.role);
   }
 
+  menu(): NbMenuItem[] {
+    if (this.isManager()) {
+      this.items = [
+        { title: 'Profile' },
+        {
+          title: 'My Trips'
+        },
+        { title: 'Logout' }
+      ];
+    }
+    return this.items;
+  }
+
   languageList = [
     {
       title: 'English',
@@ -86,6 +99,8 @@ export class NavbarComponent implements OnInit {
       this.isLoggedIn = isLoggedIn;
     });
 
+    this.menu();
+
     this.menuService.onItemClick().subscribe(({ item }) => {
       if (item.title === 'Logout') {
         this.authService.logout();
@@ -93,6 +108,10 @@ export class NavbarComponent implements OnInit {
 
       if (item.title === 'Profile') {
         this.router.navigate(['/profile']);
+      }
+
+      if (item.title === 'My Trips') {
+        this.router.navigate(['/self-trips']);
       }
     });
 
