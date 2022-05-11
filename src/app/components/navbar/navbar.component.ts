@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Languages } from 'src/utils/enums/languages.enum';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 import { Router } from '@angular/router';
+import { MANAGER } from 'src/utils/enums/user-roles.enum';
 
 @Component({
   selector: 'app-navbar',
@@ -19,6 +20,11 @@ export class NavbarComponent implements OnInit {
   siteLanguage = 'en';
   isLoggedIn = false;
   currentUser!: IUser;
+
+  // Navbar for manager
+  isManager(): boolean {
+    return MANAGER.includes(this.currentUser.role);
+  }
 
   languageList = [
     {
