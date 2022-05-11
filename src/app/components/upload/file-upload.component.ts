@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { ImageService } from './image.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -6,14 +7,21 @@ import { Component, ElementRef, HostListener, Input } from '@angular/core';
   styleUrls: ['./file-upload.component.scss']
 })
 export class FileUploadComponent {
-  @Input() progress: any;
-
   file: File | null = null;
+  imageUrl: string | null = '';
+
+  constructor(private imageService: ImageService) {}
 
   @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
-    const file = event && event.item(0);
-    this.file = file;
+    this.file = event?.[0];
+    this.imageService.uploadImage(this.file).subscribe({
+      next: (data) => {
+        console.log(data?.body);
+        this.imageUrl = data?.body;
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
-
-  constructor(private host: ElementRef<HTMLInputElement>) {}
 }
