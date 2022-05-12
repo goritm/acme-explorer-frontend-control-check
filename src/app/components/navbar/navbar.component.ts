@@ -1,5 +1,5 @@
 import { IUser } from 'src/utils/interfaces/user.interface';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
 
 import { NbMenuItem, NbMenuService, NbThemeService } from '@nebular/theme';
@@ -93,13 +93,12 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getCurrentUser.subscribe((user) => {
       this.currentUser = user;
+      this.menu();
     });
 
     this.authService.isAuthenticated.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
-
-    this.menu();
 
     this.menuService.onItemClick().subscribe(({ item }) => {
       if (item.title === 'Logout') {

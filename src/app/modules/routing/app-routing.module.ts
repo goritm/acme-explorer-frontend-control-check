@@ -9,7 +9,7 @@ import { CreateTripComponent } from '../trip/components/create-trip/create-trip.
 import { ListApplicationsComponent } from '../application/components/list-applications/list-applications.component';
 import { PageNotFoundComponent } from 'src/app/components/page-not-found/page-not-found.component';
 import { AuthGuard } from 'src/app/modules/authentication/auth.guard';
-import { ALL_ROLES, UserRoles } from 'src/utils/enums/user-roles.enum';
+import { ALL_ROLES, MANAGER, UserRoles } from 'src/utils/enums/user-roles.enum';
 import { ProfileComponent } from '../user/components/profile/profile.component';
 import { SelfTripsComponent } from '../trip/components/self-trips/self-trips.component';
 
@@ -28,7 +28,7 @@ const routes: Routes = [
     component: CreateTripComponent,
     canActivate: [AuthGuard],
     data: {
-      expectedRoles: [UserRoles.MANAGER, UserRoles.ADMIN]
+      expectedRoles: MANAGER
     }
   },
   {
@@ -36,7 +36,7 @@ const routes: Routes = [
     component: SelfTripsComponent,
     canActivate: [AuthGuard],
     data: {
-      expectedRoles: [UserRoles.MANAGER, UserRoles.ADMIN]
+      expectedRoles: MANAGER
     }
   },
   {
