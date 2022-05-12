@@ -14,6 +14,7 @@ import { NbToastrService } from '@nebular/theme';
 import { finalize } from 'rxjs';
 import { TripService } from '../../trip.service';
 import { CreateTripInput } from '../../inputs/create-trip.input';
+import { ImageService } from 'src/app/components/upload/image.service';
 
 interface Stage {
   title: string;
@@ -59,7 +60,8 @@ export class CreateTripComponent {
     private router: Router,
     private fb: FormBuilder,
     private toastrService: NbToastrService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private imageService: ImageService
   ) {}
 
   addStage() {
@@ -153,10 +155,27 @@ export class CreateTripComponent {
   }
 
   removeImage(imageIndex: number) {
-    this.imageArray.removeAt(imageIndex);
-  }
+    const { value } = this.imageArray.at(imageIndex);
 
-  onSubmitImages() {
-    console.log(this.createTripForm.value.images);
+    console.log(value);
+
+    if (value) {
+      this.imageService.deleteImage(value).subscribe({
+        next: () => {
+          this.toastrService.show('Deleted image', 'Deleted', {
+            duration: 3000,
+            status: 'basic'
+          });
+        },
+        error: (err) => {
+          this.toastrService.show(err.message, 'Error', {
+            duration: 3000,
+            status: 'danger'
+          });
+        }
+      });
+    }
+
+    this.imageArray.removeAt(imageIndex);
   }
 }

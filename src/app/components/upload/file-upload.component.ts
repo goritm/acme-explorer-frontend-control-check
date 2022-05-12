@@ -1,4 +1,4 @@
-import { AbstractControl, ControlContainer, FormControl } from '@angular/forms';
+import { ControlContainer, FormControl } from '@angular/forms';
 import { ChangeDetectorRef, Component, Input, SkipSelf } from '@angular/core';
 import { finalize } from 'rxjs';
 import { ImageService } from './image.service';
@@ -41,8 +41,8 @@ export class FileUploadComponent {
       )
       .subscribe({
         next: (data) => {
-          console.log(data?.body);
           this.imageUrl = data?.body;
+          console.log(this.imageUrl);
           this.control.setValue(this.imageUrl, {
             emitModelToViewChange: false
           });
