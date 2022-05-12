@@ -37,17 +37,11 @@ export class CreateTripComponent {
   stages: Stage[] = [];
 
   createTripForm = this.fb.group({
-    title: [
-      '',
-      [Validators.required, Validators.minLength(5), Validators.maxLength(40)]
-    ],
-    description: [
-      '',
-      [Validators.required, Validators.minLength(5), Validators.maxLength(40)]
-    ],
+    title: ['', [Validators.required]],
+    description: ['', [Validators.required]],
     dates: [{}, Validators.required],
     requirements: ['', [Validators.required]],
-    images: this.fb.array([]),
+    pictures: this.fb.array([]),
     stages: this.fb.group({
       title: [''],
       description: [''],
@@ -109,6 +103,8 @@ export class CreateTripComponent {
         stages: this.stages
       };
 
+      delete createTripInput.dates;
+
       this.tripService
         .createTrip(createTripInput)
         .pipe(
@@ -147,7 +143,7 @@ export class CreateTripComponent {
   }
 
   get imageArray(): FormArray {
-    return this.createTripForm.controls['images'] as FormArray;
+    return this.createTripForm.controls['pictures'] as FormArray;
   }
 
   addImage() {
