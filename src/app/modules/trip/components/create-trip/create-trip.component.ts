@@ -157,14 +157,12 @@ export class CreateTripComponent {
   removeImage(imageIndex: number) {
     const { value } = this.imageArray.at(imageIndex);
 
-    console.log(value);
-
     if (value) {
       this.imageService.deleteImage(value).subscribe({
         next: () => {
-          this.toastrService.show('Deleted image', 'Deleted', {
+          this.toastrService.show('Deleted image', 'Success', {
             duration: 3000,
-            status: 'basic'
+            status: 'success'
           });
         },
         error: (err) => {

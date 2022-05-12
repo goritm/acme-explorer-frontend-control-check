@@ -33,7 +33,7 @@ export class ImageService {
             : ''
         }),
         body: {
-          url: url
+          url
         }
       }
     );
