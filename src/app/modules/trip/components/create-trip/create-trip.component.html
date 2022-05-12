@@ -187,8 +187,14 @@
 
       <ng-container formArrayName="images">
         <label for="images">Images</label>
-        <div *ngFor="let image of imageArray.controls; let i = index">
-          <app-file-upload [control]="$any(image)"></app-file-upload>
+        <div
+          class="image-container"
+          *ngFor="let image of imageArray.controls; let i = index"
+        >
+          <app-file-upload
+            class="image-container"
+            [control]="$any(image)"
+          ></app-file-upload>
           <button
             nbButton
             status="primary"
