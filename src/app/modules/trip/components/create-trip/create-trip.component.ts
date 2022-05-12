@@ -4,7 +4,12 @@ import {
   ChangeDetectorRef,
   Component
 } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
 import { finalize } from 'rxjs';
 import { TripService } from '../../trip.service';
@@ -144,11 +149,7 @@ export class CreateTripComponent {
   }
 
   addImage() {
-    const urlForm = this.fb.group({
-      url: ['', Validators.required]
-    });
-
-    this.imageArray.push(urlForm);
+    this.imageArray.push(new FormControl('', [Validators.required]));
   }
 
   removeImage(imageIndex: number) {

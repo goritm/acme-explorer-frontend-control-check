@@ -187,22 +187,18 @@
 
       <ng-container formArrayName="images">
         <label for="images">Images</label>
-        <ng-container
-          *ngFor="let urlForm of imageArray.controls; let i = index"
-        >
-          <div id="images" [formGroupName]="i">
-            <app-file-upload controlName="url"></app-file-upload>
-            <button
-              nbButton
-              status="primary"
-              size="small"
-              (click)="removeImage(i)"
-              type="button"
-            >
-              Borrar
-            </button>
-          </div>
-        </ng-container>
+        <div *ngFor="let image of imageArray.controls; let i = index">
+          <app-file-upload [control]="$any(image)"></app-file-upload>
+          <button
+            nbButton
+            status="primary"
+            size="small"
+            (click)="removeImage(i)"
+            type="button"
+          >
+            Borrar
+          </button>
+        </div>
       </ng-container>
 
       <button

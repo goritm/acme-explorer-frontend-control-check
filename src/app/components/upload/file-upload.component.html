@@ -7,7 +7,12 @@
   <span class="file-msg">{{
     file ? file.name : 'Choose file or drag and drop file here'
   }}</span>
-  <input class="file-input" type="file" [formControlName]="controlName" />
+  <input
+    class="file-input"
+    type="file"
+    (change)="uploadImage($event)"
+    [formControl]="control"
+  />
 </div>
 <img
   class="file-preview"
