@@ -1,5 +1,5 @@
 import { IUser } from 'src/utils/interfaces/user.interface';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
 
 import { NbMenuItem, NbMenuService, NbThemeService } from '@nebular/theme';
@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Languages } from 'src/utils/enums/languages.enum';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 import { Router } from '@angular/router';
+import { MANAGER } from 'src/utils/enums/user-roles.enum';
 
 @Component({
   selector: 'app-navbar',
@@ -19,6 +20,24 @@ export class NavbarComponent implements OnInit {
   siteLanguage = 'en';
   isLoggedIn = false;
   currentUser!: IUser;
+
+  // Navbar for manager
+  isManager(): boolean {
+    return MANAGER.includes(this.currentUser.role);
+  }
+
+  menu(): NbMenuItem[] {
+    if (this.isManager()) {
+      this.items = [
+        { title: 'Profile' },
+        {
+          title: 'My Trips'
+        },
+        { title: 'Logout' }
+      ];
+    }
+    return this.items;
+  }
 
   languageList = [
     {
@@ -74,6 +93,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getCurrentUser.subscribe((user) => {
       this.currentUser = user;
+      this.menu();
     });
 
     this.authService.isAuthenticated.subscribe((isLoggedIn) => {
@@ -87,6 +107,10 @@ export class NavbarComponent implements OnInit {
 
       if (item.title === 'Profile') {
         this.router.navigate(['/profile']);
+      }
+
+      if (item.title === 'My Trips') {
+        this.router.navigate(['/self-trips']);
       }
     });
 

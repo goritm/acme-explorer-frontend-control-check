@@ -2,7 +2,7 @@
   <div class="control-status-example" routerLink="/">
     <nb-icon icon="globe-2-outline"></nb-icon>
   </div>
-  <h1>ACME Explorer</h1>
+  <h1><a routerLink="/trips" style="text-decoration:none"> ACME Explorer </a></h1>
 
   <nb-actions size="small">
     <nb-action
@@ -18,7 +18,7 @@
     ></nb-action>
   </nb-actions>
 
-  <nb-actions size="small" *ngIf="currentUser.role === 'MANAGER'">
+  <nb-actions size="small" *ngIf="isManager()">
     <nb-action
       icon="file-text-outline"
       link="/applications"

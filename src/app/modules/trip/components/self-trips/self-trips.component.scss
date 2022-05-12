@@ -1,0 +1,25 @@
+.hover {
+  cursor: pointer;
+}
+
+.header-text {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.center {
+  margin: auto;
+  padding: 10px;
+}
+
+.img-responsive {
+  max-width: 100%;
+}
+
+.listing-container {
+  text-align: center;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}

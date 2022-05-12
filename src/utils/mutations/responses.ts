@@ -1,4 +1,4 @@
-import { Trip } from 'src/app/modules/trip/types/trip.type';
+import { Trip } from 'src/app/modules/trip/graphql/types/trip.type';
 import { IBaseEntity } from 'src/utils/interfaces/base-entity.interface';
 import { IUser } from 'src/utils/interfaces/user.interface';
 

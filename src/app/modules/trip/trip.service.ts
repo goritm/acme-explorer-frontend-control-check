@@ -8,6 +8,8 @@ import {
   ResponseListTripsQuery,
   ResponseTripByIDQuery
 } from 'src/utils/queries/responses';
+import { SELF_TRIPS } from './graphql/queries/self-trips.query';
+import { ResponseSelfTripsQuery } from './graphql/responses/self-trips.response';
 import { CreateTripInput } from './inputs/create-trip.input';
 
 @Injectable({
@@ -30,6 +32,24 @@ export class TripService {
 
     return this.apollo.query<ResponseListTripsQuery>({
       query: LIST_TRIPS,
+      variables: {
+        start: this.start,
+        limit: this.limit,
+        where: this.where
+      }
+    });
+  }
+
+  selfTrips(listTripsParams?: FilterInputParams) {
+    if (listTripsParams) {
+      const { start, limit, where } = listTripsParams;
+      this.start = start || this.start;
+      this.limit = limit || this.limit;
+      this.where = where || this.where;
+    }
+
+    return this.apollo.query<ResponseSelfTripsQuery>({
+      query: SELF_TRIPS,
       variables: {
         start: this.start,
         limit: this.limit,

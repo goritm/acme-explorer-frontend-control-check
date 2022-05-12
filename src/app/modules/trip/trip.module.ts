@@ -26,6 +26,7 @@ import { TripDetailComponent } from './components/trip-detail/trip-detail.compon
 import { ApplyToTripDialogComponent } from './components/trip-detail/dialog/apply-to-trip-dialog/apply-to-trip-dialog.component';
 import { CreateTripComponent } from './components/create-trip/create-trip.component';
 import { ShareModule } from 'src/app/components/share.module';
+import { SelfTripsComponent } from './components/self-trips/self-trips.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ShareModule } from 'src/app/components/share.module';
     ListTripsComponent,
     TripDetailComponent,
     HoverClassDirective,
-    ApplyToTripDialogComponent
+    ApplyToTripDialogComponent,
+    SelfTripsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -53,6 +55,11 @@ import { ShareModule } from 'src/app/components/share.module';
     ShareModule
   ],
   providers: [NbLayoutRulerService, NbLayoutRulerService, TripService],
-  exports: [ListTripsComponent, TripDetailComponent, CreateTripComponent]
+  exports: [
+    ListTripsComponent,
+    TripDetailComponent,
+    CreateTripComponent,
+    SelfTripsComponent
+  ]
 })
 export class TripModule {}
