@@ -58,7 +58,6 @@ export class TripService {
   }
 
   createTrip(createTripInput: CreateTripInput) {
-    console.log(createTripInput);
     return this.apollo.mutate<ResponseCreateTrip>({
       mutation: CREATE_TRIP,
       variables: {
