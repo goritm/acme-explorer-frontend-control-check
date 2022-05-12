@@ -98,7 +98,8 @@ export class CreateTripComponent {
         endDate: this.createTripForm.value.dates.end
           .toISOString()
           .split('T')[0],
-        requirements: this.createTripForm.value.requirements.split('\n')
+        requirements: this.createTripForm.value.requirements.split('\n'),
+        stages: this.stages
       };
 
       this.tripService
