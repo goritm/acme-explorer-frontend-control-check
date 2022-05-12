@@ -36,6 +36,7 @@ import { ApplicationModule } from './modules/application/application.module';
 import { ShareModule } from './components/share.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserModule } from './modules/user/user.module';
+import { SponsorshipModule } from './modules/sponsorship/sponsorship.module';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { UserModule } from './modules/user/user.module';
     HttpClientModule,
     NgxTranslateModule,
     TripModule,
+    SponsorshipModule,
     NbIconModule,
     NbMenuModule.forRoot(),
     NbThemeModule.forRoot({
