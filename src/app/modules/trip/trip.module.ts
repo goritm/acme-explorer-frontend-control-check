@@ -11,7 +11,8 @@ import {
   NbInputModule,
   NbLayoutRulerService,
   NbListModule,
-  NbSpinnerModule
+  NbSpinnerModule,
+  NbStepperModule
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
 import { NgxTranslateModule } from '../translate/translate.module';
@@ -49,6 +50,7 @@ import { SelfTripsComponent } from './components/self-trips/self-trips.component
     NbListModule,
     NbIconModule,
     NbSpinnerModule,
+    NbStepperModule,
     NbDatepickerModule.forRoot(),
     NgxTranslateModule,
     NbDialogModule.forChild(),
