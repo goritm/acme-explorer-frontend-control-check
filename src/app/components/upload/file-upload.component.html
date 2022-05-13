@@ -1,5 +1,23 @@
-<div class="file-drop-area">
-  <span class="file-msg">{{file ? file.name : 'Choose file or drag and drop file here' }}</span>
-  <input class="file-input" type="file">
+<div
+  class="file-drop-area"
+  [nbSpinner]="loading"
+  nbSpinnerMessage="Uploading your picture..."
+  nbSpinnerStatus="basic"
+>
+  <span class="file-msg">{{
+    file ? file.name : 'Choose file or drag and drop file here'
+  }}</span>
+  <input
+    class="file-input"
+    type="file"
+    (change)="uploadImage($event)"
+    [formControl]="control"
+  />
 </div>
-<app-progress [progress]="progress"></app-progress>
+<img
+  class="file-preview"
+  [src]="imageUrl"
+  height="150"
+  width="200px"
+  style="margin: 3px"
+/>

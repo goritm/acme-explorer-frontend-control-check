@@ -1,6 +1,7 @@
 import { CreateStageInput } from './create-stage.input';
 
 export type CreateTripInput = {
+  dates?: string[];
   title: string;
   description: string;
   endDate: string;

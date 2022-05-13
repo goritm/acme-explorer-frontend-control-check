@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api-gateway-bujosa.cloud.okteto.net/graphql' // Replace with your own API url
+  apiUrl: 'https://api-gateway-bujosa.cloud.okteto.net' // Replace with your own API url
 };
 
 /*

@@ -1,19 +1,55 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import { ControlContainer, FormControl } from '@angular/forms';
+import { ChangeDetectorRef, Component, Input, SkipSelf } from '@angular/core';
+import { finalize } from 'rxjs';
+import { ImageService } from './image.service';
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.scss']
+  styleUrls: ['./file-upload.component.scss'],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useFactory: (container: ControlContainer) => container,
+      deps: [[new SkipSelf(), ControlContainer]]
+    }
+  ]
 })
 export class FileUploadComponent {
-  @Input() progress: any;
-
   file: File | null = null;
+  loading = false;
+  imageUrl: string | null = '';
+  @Input() control!: FormControl;
 
-  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
-    const file = event && event.item(0);
+  constructor(
+    private imageService: ImageService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  uploadImage($event: any) {
+    const file = $event.target.files?.[0];
+    this.loading = true;
     this.file = file;
-  }
 
-  constructor(private host: ElementRef<HTMLInputElement>) {}
+    this.imageService
+      .uploadImage(file)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: (data) => {
+          this.imageUrl = data?.body;
+          console.log(this.imageUrl);
+          this.control.setValue(this.imageUrl, {
+            emitModelToViewChange: false
+          });
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
+  }
 }

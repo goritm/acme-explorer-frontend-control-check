@@ -80,13 +80,15 @@
           <input
             nbInput
             fullWidth
+            type="text"
+            readonly
             id="dates"
             name="dates"
             formControlName="dates"
             placeholder="Pick Date Range"
-            [nbDatepicker]="formpicker"
+            [nbDatepicker]="rangepicker"
           />
-          <nb-rangepicker #formpicker [min]="min"></nb-rangepicker>
+          <nb-rangepicker #rangepicker [min]="min"></nb-rangepicker>
         </div>
         <div *ngIf="submitted && createTripForm.controls['dates']">
           <p
@@ -183,17 +185,46 @@
         </nb-list>
       </div>
 
-      <div>
-        <label for="pictures">Pictures</label>
-        <app-file-upload
-          id="pictures"
-          name="pictures"
-          formControlName="pictures"
-          [progress]="progress"
-        ></app-file-upload>
-      </div>
+      <ng-container formArrayName="pictures">
+        <label for="images">Images</label>
+        <div
+          class="image-container"
+          *ngFor="let image of imageArray.controls; let i = index"
+        >
+          <app-file-upload
+            class="image-container"
+            [control]="$any(image)"
+          ></app-file-upload>
+          <button
+            nbButton
+            status="primary"
+            size="small"
+            (click)="removeImage(i)"
+            type="button"
+          >
+            Borrar
+          </button>
+        </div>
+      </ng-container>
 
-      <button nbButton fullWidth type="submit" status="primary" size="large">
+      <button
+        nbButton
+        status="primary"
+        size="small"
+        (click)="addImage()"
+        type="button"
+      >
+        Upload Image
+      </button>
+
+      <button
+        nbButton
+        fullWidth
+        type="submit"
+        status="primary"
+        size="large"
+        [disabled]="!createTripForm.valid"
+      >
         Create Trip
       </button>
     </nb-card-body>

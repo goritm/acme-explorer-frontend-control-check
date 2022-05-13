@@ -4,11 +4,17 @@ import {
   ChangeDetectorRef,
   Component
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
 import { finalize } from 'rxjs';
 import { TripService } from '../../trip.service';
 import { CreateTripInput } from '../../inputs/create-trip.input';
+import { ImageService } from 'src/app/components/upload/image.service';
 
 interface Stage {
   title: string;
@@ -31,24 +37,15 @@ export class CreateTripComponent {
   stages: Stage[] = [];
 
   createTripForm = this.fb.group({
-    title: [
-      '',
-      [Validators.required, Validators.minLength(5), Validators.maxLength(40)]
-    ],
-    description: [
-      '',
-      [Validators.required, Validators.minLength(5), Validators.maxLength(40)]
-    ],
+    title: ['', [Validators.required]],
+    description: ['', [Validators.required]],
     dates: [{}, Validators.required],
     requirements: ['', [Validators.required]],
-    pictures: ['', [Validators.required]],
+    pictures: this.fb.array([]),
     stages: this.fb.group({
-      title: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      price: [
-        '',
-        [Validators.required, Validators.min(0), Validators.max(10000)]
-      ]
+      title: [''],
+      description: [''],
+      price: ['']
     })
   });
 
@@ -57,7 +54,8 @@ export class CreateTripComponent {
     private router: Router,
     private fb: FormBuilder,
     private toastrService: NbToastrService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private imageService: ImageService
   ) {}
 
   addStage() {
@@ -102,8 +100,10 @@ export class CreateTripComponent {
           .toISOString()
           .split('T')[0],
         requirements: this.createTripForm.value.requirements.split('\n'),
-        pictures: ['https://picsum.photos/200/300?image=10']
+        stages: this.stages
       };
+
+      delete createTripInput.dates;
 
       this.tripService
         .createTrip(createTripInput)
@@ -114,11 +114,16 @@ export class CreateTripComponent {
           })
         )
         .subscribe({
-          // next: ({ data }) => {
-          //   if (!(data === undefined || data === null)) {
-          //     this.authService.saveUserData(data);
-          //   }
-          // },
+          next: ({ data }) => {
+            if (!(data === undefined || data === null)) {
+              this.toastrService.show('Trip saved!', 'Success', {
+                duration: 3000,
+                status: 'success'
+              });
+
+              this.router.navigate(['/trips']);
+            }
+          },
           error: (err) => {
             this.toastrService.show(err.message, 'Error', {
               duration: 3000,
@@ -135,5 +140,36 @@ export class CreateTripComponent {
         status: 'danger'
       });
     }
+  }
+
+  get imageArray(): FormArray {
+    return this.createTripForm.controls['pictures'] as FormArray;
+  }
+
+  addImage() {
+    this.imageArray.push(new FormControl('', [Validators.required]));
+  }
+
+  removeImage(imageIndex: number) {
+    const { value } = this.imageArray.at(imageIndex);
+
+    if (value) {
+      this.imageService.deleteImage(value).subscribe({
+        next: () => {
+          this.toastrService.show('Deleted image', 'Success', {
+            duration: 3000,
+            status: 'success'
+          });
+        },
+        error: (err) => {
+          this.toastrService.show(err.message, 'Error', {
+            duration: 3000,
+            status: 'danger'
+          });
+        }
+      });
+    }
+
+    this.imageArray.removeAt(imageIndex);
   }
 }
