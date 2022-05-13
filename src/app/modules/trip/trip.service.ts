@@ -1,8 +1,12 @@
+import { UpdateTripInput } from './inputs/update-trip.input';
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
 import { APPLY_TO_TRIP, CREATE_TRIP } from 'src/utils/mutations/mutations';
-import { ResponseCreateTrip } from 'src/utils/mutations/responses';
+import {
+  ResponseCreateTrip,
+  ResponseUpdateTrip
+} from 'src/utils/mutations/responses';
 import { GET_TRIP, LIST_TRIPS } from 'src/utils/queries/queries';
 import {
   ResponseListTripsQuery,
@@ -83,6 +87,22 @@ export class TripService {
       variables: {
         input: {
           ...createTripInput
+        }
+      }
+    });
+  }
+
+  updateTrip(updateTripInput: UpdateTripInput) {
+    return this.apollo.mutate<ResponseUpdateTrip>({
+      mutation: CREATE_TRIP,
+      variables: {
+        input: {
+          data: {
+            ...updateTripInput.data
+          },
+          where: {
+            ...updateTripInput.where
+          }
         }
       }
     });

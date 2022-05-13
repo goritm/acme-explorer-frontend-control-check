@@ -92,3 +92,12 @@ export const CREATE_TRIP = gql`
   }
   ${TRIP_DATA}
 `;
+
+export const UPDATE_TRIP = gql`
+  mutation UpdateTrip($input: UpdateTripInput!) {
+    updateTrip(input: $input) {
+      ...TripData
+    }
+  }
+  ${TRIP_DATA}
+`;

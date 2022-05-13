@@ -19,3 +19,7 @@ export interface ResponseSignUpMutation {
 export interface ResponseCreateTrip {
   createTrip: Trip;
 }
+
+export interface ResponseUpdateTrip {
+  updateTrip: Trip;
+}
