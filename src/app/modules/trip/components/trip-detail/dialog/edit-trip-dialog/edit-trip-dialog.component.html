@@ -1,0 +1,180 @@
+<nb-card *ngIf="trip" class="root-container">
+  <nb-card-header class="header-container">
+    <p>
+      {{ title }}: <b>{{ trip.title }}</b>
+    </p>
+    <nb-icon
+      icon="close-outline"
+      (click)="close()"
+      hover-class="hover"
+    ></nb-icon>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="updateTripForm" (ngSubmit)="updateTrip()">
+      <div [nbSpinner]="loading" nbSpinnerStatus="basic">
+        <label class="label-index" for="title">Title:</label>
+        <input
+          nbInput
+          fullWidth
+          id="title"
+          name="title"
+          formControlName="title"
+          placeholder="Title"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && updateTripForm.controls['title']">
+          <p
+            class="error-text"
+            *ngIf="updateTripForm.controls['title']?.errors?.['required']"
+          >
+            Please enter your title for the trip
+          </p>
+          <p
+            class="error-text"
+            *ngIf="updateTripForm.controls['title']?.errors?.['minlength']"
+          >
+            Title must be at least 5 characters long
+          </p>
+          <p
+            class="error-text"
+            *ngIf="updateTripForm.controls['title']?.errors?.['maxlength']"
+          >
+            Title must be less than 40 characters long
+          </p>
+        </div>
+      </div>
+      <div>
+        <label class="label-index" for="description">Description:</label>
+        <input
+          nbInput
+          fullWidth
+          id="description"
+          name="description"
+          formControlName="description"
+          placeholder="Description"
+          fieldSize="large"
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && updateTripForm.controls['description']">
+          <p
+            class="error-text"
+            *ngIf="updateTripForm.controls['description']?.errors?.['required']"
+          >
+            Please enter your description
+          </p>
+          <p
+            class="error-text"
+            *ngIf="updateTripForm.controls['description']?.errors?.['minlength']"
+          >
+            Description must be at least 5 characters long
+          </p>
+          <p
+            class="error-text"
+            *ngIf="updateTripForm.controls['description']?.errors?.['maxlength']"
+          >
+            Description must be less than 40 characters long
+          </p>
+        </div>
+      </div>
+      <label class="label-index" for="requirements"
+        >Add a requirement per line:
+      </label>
+      <textarea
+        formControlName="requirements"
+        id="requirements"
+        name="requirements"
+        nbInput
+        fullWidth
+        rows="3"
+        required="true"
+        placeholder="Requeriments..."
+      ></textarea>
+
+      <div class="stage-container">
+        <ng-form class="stage-form" formGroupName="stages">
+          <div class="stage-input">
+            <label for="stage-title">Stage Title:</label>
+            <input
+              nbInput
+              type="text"
+              id="stage-title"
+              name="stage-title"
+              formControlName="title"
+            />
+          </div>
+          <div class="stage-input">
+            <label for="stage-description">Stage Description:</label>
+            <input
+              nbInput
+              type="text"
+              id="stage-description"
+              name="stage-description"
+              formControlName="description"
+            />
+          </div>
+          <div class="stage-input">
+            <label for="stage-price">Stage Price:</label>
+            <input
+              nbInput
+              type="number"
+              id="stage-price"
+              name="stage-price"
+              formControlName="price"
+            />
+          </div>
+          <button
+            nbButton
+            type="button"
+            status="primary"
+            size="large"
+            (click)="addStage()"
+          >
+            Add stage
+          </button>
+        </ng-form>
+
+        <nb-list *ngIf="stages">
+          <nb-list-item *ngFor="let stage of stages">
+            <div class="stage-list-item">
+              <div>
+                <p>
+                  <b>{{ stage.title }}</b
+                  >: {{ stage.description }}
+                </p>
+              </div>
+              <div class="price-separation">
+                <p>
+                  <b>{{ stage.price }}</b> USD
+                </p>
+                <button
+                  nbButton
+                  status="primary"
+                  size="small"
+                  (click)="deleteStage(stage)"
+                  type="button"
+                >
+                  Remove stage
+                </button>
+              </div>
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </div>
+
+      <button
+        nbButton
+        fullWidth
+        type="submit"
+        status="primary"
+        size="large"
+        [disabled]="!updateTripForm.valid"
+      >
+        Update Trip
+      </button>
+    </form>
+  </nb-card-body>
+</nb-card>

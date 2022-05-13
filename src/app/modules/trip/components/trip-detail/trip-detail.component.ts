@@ -6,6 +6,8 @@ import { ITrip } from '../../interfaces/trip.interface';
 import { TripService } from '../../trip.service';
 import { NbDialogService } from '@nebular/theme';
 import { ApplyToTripDialogComponent } from './dialog/apply-to-trip-dialog/apply-to-trip-dialog.component';
+import { EditTripDialogComponent } from './dialog/edit-trip-dialog/edit-trip-dialog.component';
+import { UserRoles } from 'src/utils/enums/user-roles.enum';
 
 @Component({
   selector: 'trip-detail',
@@ -16,6 +18,7 @@ export class TripDetailComponent implements OnInit {
   trip: ITrip | undefined;
   userRole: string | undefined;
   isOwnTrip = false;
+  isExplorer = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +31,7 @@ export class TripDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getTripDetail();
     this.userRole = this.authService.getRole();
+    this.isExplorer = this.userRole === UserRoles.EXPLORER;
   }
 
   getTripDetail(): void {
@@ -41,7 +45,7 @@ export class TripDetailComponent implements OnInit {
   checkOwnTrip(): void {
     this.authService.getCurrentUser.subscribe((user) => {
       this.isOwnTrip =
-        user.role === 'MANAGER' && user.id === this.trip?.manager.id;
+        user.role === UserRoles.MANAGER && user.id === this.trip?.manager.id;
     });
   }
 
@@ -58,8 +62,13 @@ export class TripDetailComponent implements OnInit {
     });
   }
 
-  modifyTrip(): void {
-    console.log('modificar');
+  editTrip(): void {
+    this.dialogService.open(EditTripDialogComponent, {
+      context: {
+        title: 'Edit trip',
+        trip: this.trip
+      }
+    });
   }
 
   cancelTrip(): void {
