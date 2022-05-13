@@ -6,3 +6,10 @@
   max-width: 100%;
   width: 600px;
 }
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-end;
+}

@@ -15,6 +15,7 @@ import { ApplyToTripDialogComponent } from './dialog/apply-to-trip-dialog/apply-
 export class TripDetailComponent implements OnInit {
   trip: ITrip | undefined;
   userRole: string | undefined;
+  isOwnTrip = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,9 +32,17 @@ export class TripDetailComponent implements OnInit {
 
   getTripDetail(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.tripService
-      .getTripDetail(id)
-      .subscribe(({ data }) => (this.trip = data.getTripById));
+    this.tripService.getTripDetail(id).subscribe(({ data }) => {
+      this.trip = data.getTripById;
+      this.checkOwnTrip();
+    });
+  }
+
+  checkOwnTrip(): void {
+    this.authService.getCurrentUser.subscribe((user) => {
+      this.isOwnTrip =
+        user.role === 'MANAGER' && user.id === this.trip?.manager.id;
+    });
   }
 
   goBack(): void {
@@ -47,5 +56,13 @@ export class TripDetailComponent implements OnInit {
         trip: this.trip
       }
     });
+  }
+
+  modifyTrip(): void {
+    console.log('modificar');
+  }
+
+  cancelTrip(): void {
+    console.log('cancelar');
   }
 }

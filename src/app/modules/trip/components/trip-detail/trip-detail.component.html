@@ -20,13 +20,21 @@
     <p>{{ trip.startDate }} - {{ trip.endDate }}</p>
     <p *ngIf="trip.reasonCancelled">{{ trip.reasonCancelled }}</p>
     <p>Application State: {{ trip.state }}</p>
-  </nb-card-body>
-  <nb-card-footer>
     <p>
       <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
     </p>
-    <button *ngIf="userRole === 'EXPLORER'" nbButton (click)="openModal()">
-      Apply to trip
-    </button>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="button-group">
+      <button *ngIf="isOwnTrip" nbButton (click)="modifyTrip()">
+        Modify trip
+      </button>
+      <button *ngIf="isOwnTrip" nbButton (click)="cancelTrip()">
+        Cancel trip
+      </button>
+      <button *ngIf="userRole === 'EXPLORER'" nbButton (click)="openModal()">
+        Apply to trip
+      </button>
+    </div>
   </nb-card-footer>
 </nb-card>
