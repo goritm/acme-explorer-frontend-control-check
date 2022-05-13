@@ -1,4 +1,4 @@
-import { CreateStageInput } from './create-stage.input';
+import { StageInput } from './stage.input';
 
 export type CreateTripInput = {
   dates?: string[];
@@ -6,7 +6,7 @@ export type CreateTripInput = {
   description: string;
   endDate: string;
   startDate: string;
-  stages: CreateStageInput[];
+  stages: StageInput[];
   requirements: string[];
   pictures: string[];
 };

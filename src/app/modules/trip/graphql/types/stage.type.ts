@@ -1,3 +1,3 @@
-import { CreateStageInput } from 'src/app/modules/trip/inputs/create-stage.input';
+import { StageInput } from 'src/app/modules/trip/inputs/stage.input';
 
-export type Stage = CreateStageInput;
+export type Stage = StageInput;
