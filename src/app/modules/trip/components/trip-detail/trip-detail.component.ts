@@ -74,12 +74,14 @@ export class TripDetailComponent implements OnInit {
   }
 
   editTrip(): void {
-    this.dialogService.open(EditTripDialogComponent, {
-      context: {
-        title: 'Edit trip',
-        trip: this.trip
-      }
-    });
+    this.dialogService
+      .open(EditTripDialogComponent, {
+        context: {
+          title: 'Edit trip',
+          trip: this.trip
+        }
+      })
+      .onClose.subscribe(() => this.getTripDetail());
   }
 
   cancelTrip(): void {
