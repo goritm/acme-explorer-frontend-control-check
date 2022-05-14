@@ -4,7 +4,7 @@
   </h1>
 </div>
 
-<form (ngSubmit)="createSponsorship()" [formGroup]="createSponsorshipForm">
+<form (ngSubmit)="validate()" [formGroup]="createSponsorshipForm">
   <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
     <nb-card-body class="create-sponsorship-card">
       <div>
@@ -75,23 +75,9 @@
         <label class="label-index" for="trip">
           {{ 'sponsorship.create.form.trip.name' | translate }}:
         </label>
-        <nb-select placeholder="{{ 'sponsorship.create.form.trip.name' | translate }}" formControlName="trip">
-          <nb-option value="1">Option 1</nb-option>
-          <nb-option value="2">Option 2</nb-option>
-          <nb-option value="3">Option 3</nb-option>
-          <nb-option value="4">Option 4</nb-option>
+        <nb-select fullWidth placeholder="{{ 'sponsorship.create.form.trip.name' | translate }}" formControlName="trip">
+          <nb-option *ngFor="let trip of trips" [value]="trip.id">{{ trip.title }}</nb-option>
         </nb-select>
-        <input
-          nbInput
-          fullWidth
-          id="description"
-          name="description"
-          formControlName="description"
-          placeholder="Description"
-          fieldSize="large"
-          status="basic"
-          required="true"
-        />
         <div *ngIf="submitted && createSponsorshipForm.controls['trip']">
           <p
             class="error-text"
@@ -120,8 +106,7 @@
         fullWidth
         type="submit"
         status="primary"
-        size="medium"
-        [disabled]="!createSponsorshipForm.valid">
+        size="medium">
         {{ 'sponsorship.create.buttons.create' | translate }}
       </button>
     </nb-card-body>
