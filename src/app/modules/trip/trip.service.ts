@@ -13,9 +13,10 @@ import {
   ResponseCreateTrip,
   ResponseUpdateTrip
 } from 'src/utils/mutations/responses';
-import { GET_TRIP, LIST_TRIPS } from 'src/utils/queries/queries';
+import { GET_TRIP, LIST_TRIPS, PUBLISH_TRIP } from 'src/utils/queries/queries';
 import {
   ResponseListTripsQuery,
+  ResponsePublishSelfTripQuery,
   ResponseTripByIDQuery
 } from 'src/utils/queries/responses';
 import { SELF_TRIPS } from './graphql/queries/self-trips.query';
@@ -84,6 +85,15 @@ export class TripService {
       variables: {
         comments,
         trip
+      }
+    });
+  }
+
+  publishTrip(id: string | null) {
+    return this.apollo.query<ResponsePublishSelfTripQuery>({
+      query: PUBLISH_TRIP,
+      variables: {
+        id
       }
     });
   }
