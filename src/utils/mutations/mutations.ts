@@ -94,8 +94,8 @@ export const CREATE_TRIP = gql`
 `;
 
 export const UPDATE_TRIP = gql`
-  mutation UpdateTrip($input: UpdateTripInput!) {
-    updateTrip(input: $input) {
+  mutation UpdateSelfTrip($input: UpdateTripInput!) {
+    updateSelfTrip(input: $input) {
       ...TripData
     }
   }
