@@ -1,12 +1,15 @@
 export const SPONSOR_MENU_ITEMS = {
   title: 'Sponsors',
+  icon: 'tv-outline',
   children: [
     {
       title: 'My Sponsorships',
-      link: '/sponsors/self'
+      link: '/sponsors/self',
+      icon: 'tv-outline'
     },
     {
       title: 'Create Sponsor',
+      icon: 'plus-outline',
       link: '/sponsors/create'
     }
   ]
@@ -46,7 +49,7 @@ export const MANAGER_MENU_ITEMS = [
 export const ADMIN_MENU_ITEMS = [
   {
     title: 'Dashboard',
-    icon: 'home-outline'
+    icon: 'keypad-outline'
   },
   ...MANAGER_MENU_ITEMS,
   SPONSOR_MENU_ITEMS,
