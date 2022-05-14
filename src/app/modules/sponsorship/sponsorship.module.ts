@@ -4,23 +4,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbButtonModule,
   NbCardModule,
-  NbDatepickerModule,
   NbDialogModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
   NbLayoutRulerService,
   NbListModule,
+  NbSelectModule,
   NbSpinnerModule
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
 import { NgxTranslateModule } from '../translate/translate.module';
-
 import { ShareModule } from 'src/app/components/share.module';
 import { SponsorshipService } from './sponsorship.service';
+import { TripModule } from '../trip/trip.module';
+import { CreateSponsorshipComponent } from './components/create-sponsorship/create-sponsorship.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [CreateSponsorshipComponent],
   imports: [
     AppRoutingModule,
     CommonModule,
@@ -33,12 +34,13 @@ import { SponsorshipService } from './sponsorship.service';
     NbListModule,
     NbIconModule,
     NbSpinnerModule,
-    NbDatepickerModule.forRoot(),
-    NgxTranslateModule,
+    NbSelectModule,
     NbDialogModule.forChild(),
-    ShareModule
+    NgxTranslateModule,
+    ShareModule,
+    TripModule
   ],
   providers: [NbLayoutRulerService, NbLayoutRulerService, SponsorshipService],
-  exports: []
+  exports: [CreateSponsorshipComponent]
 })
 export class SponsorshipModule {}

@@ -44,5 +44,32 @@
   },
   "selfTrips": {
     "title": "Mis Viajes Creados"
+  },
+   "sponsorship": {
+    "create": {
+      "title": "Crea tu publicidad",
+      "form": {
+        "link": {
+          "name": "Enlace de tu comercio",
+          "example": "https://www.google.com",
+          "required": "El enlace es requerido",
+          "invalid": "Por favor ingresa un enlace válido"
+        },
+        "banner": {
+          "name": "Banner publicitario",
+          "example": "https://www.example.com/banner.png",
+          "required": "El banner es requerido",
+          "invalid": "Por favor ingresa un enlace de imagen válido"
+        },
+        "trip": {
+          "name": "Selecciona un viaje",
+          "required": "Por favor selecciona un viaje"
+        }
+      },
+      "buttons": {
+        "cancel": "Cancelar",
+        "create": "Crear"
+      }
+    }
   }
 }

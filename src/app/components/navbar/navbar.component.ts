@@ -1,5 +1,5 @@
 import { IUser } from 'src/utils/interfaces/user.interface';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
 
 import { NbMenuItem, NbMenuService, NbThemeService } from '@nebular/theme';
@@ -7,7 +7,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { Languages } from 'src/utils/enums/languages.enum';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 import { Router } from '@angular/router';
-import { MANAGER } from 'src/utils/enums/user-roles.enum';
+import { MANAGER, SPONSOR, UserRoles } from 'src/utils/enums/user-roles.enum';
+import {
+  ADMIN_MENU_ITEMS,
+  EXPLORER_MENU_ITEMS,
+  MANAGER_MENU_ITEMS,
+  SPONSOR_MENU_ITEMS
+} from './utils/nb-menu-items';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +21,7 @@ import { MANAGER } from 'src/utils/enums/user-roles.enum';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  items: NbMenuItem[] = [{ title: 'Profile' }, { title: 'Logout' }];
+  items: NbMenuItem[] = EXPLORER_MENU_ITEMS;
   currentTheme = 'default';
   siteLanguage = 'en';
   isLoggedIn = false;
@@ -26,15 +32,23 @@ export class NavbarComponent implements OnInit {
     return MANAGER.includes(this.currentUser.role);
   }
 
+  isSponsor(): boolean {
+    return SPONSOR.includes(this.currentUser.role);
+  }
+
+  isAdmin(): boolean {
+    console.log(this.currentUser.role === UserRoles.ADMIN);
+    return this.currentUser.role === UserRoles.ADMIN;
+  }
+
   menu(): NbMenuItem[] {
-    if (this.isManager()) {
-      this.items = [
-        { title: 'Profile' },
-        {
-          title: 'My Trips'
-        },
-        { title: 'Logout' }
-      ];
+    if (this.isAdmin()) {
+      this.items = ADMIN_MENU_ITEMS;
+      return this.items;
+    } else if (this.isManager()) {
+      this.items = [...MANAGER_MENU_ITEMS, ...EXPLORER_MENU_ITEMS];
+    } else if (this.isSponsor()) {
+      this.items = [SPONSOR_MENU_ITEMS, ...EXPLORER_MENU_ITEMS];
     }
     return this.items;
   }
@@ -105,13 +119,7 @@ export class NavbarComponent implements OnInit {
         this.authService.logout();
       }
 
-      if (item.title === 'Profile') {
-        this.router.navigate(['/profile']);
-      }
-
-      if (item.title === 'My Trips') {
-        this.router.navigate(['/self-trips']);
-      }
+      this.router.navigate([item.link]);
     });
 
     this.menuService

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ITrip } from '../../interfaces/trip.interface';
+import { Trip } from '../../graphql/types/trip.type';
 import { TripService } from '../../trip.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { TripService } from '../../trip.service';
   providers: [TripService]
 })
 export class ListTripsComponent {
-  trips: ITrip[] = [];
+  trips: Trip[] = [];
   pageSize = 10;
   placeholders: unknown = [];
   pageToLoadNext = 1;
