@@ -39,7 +39,7 @@
       <button *ngIf="isOwnTrip" nbButton (click)="cancelTrip()">
         Cancel trip
       </button>
-      <button *ngIf="isExplorer" nbButton (click)="openModal()">
+      <button *ngIf="isExplorer && trip.state === 'ACTIVE'" nbButton (click)="openModal()">
         Apply to trip
       </button>
     </div>
