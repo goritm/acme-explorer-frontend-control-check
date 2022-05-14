@@ -63,7 +63,7 @@ export class CancelTripDialogComponent implements OnInit {
         next: ({ data }) => {
           if (!(data === undefined || data === null)) {
             this.toastrService.success(
-              `You have successfully applied to the trip ${this.trip.title}`
+              `You have successfully cancelled this trip: ${this.trip.title}`
             );
             this.cancelTripForm.reset();
             this.dialogRef.close();

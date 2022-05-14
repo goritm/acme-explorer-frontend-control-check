@@ -10,17 +10,9 @@
     ></nb-icon>
   </nb-card-header>
   <nb-card-body>
-    <p>{{ trip.description }}</p>
-    <br />
-    <p>Start Date: {{ trip.startDate | date: 'medium' }}</p>
-    <p>End Date: {{ trip.endDate | date: 'medium' }}</p>
-    <br />
-    <p class="price">
-      <b> ${{ trip.price }} </b>
-    </p>
-    <br />
     <p>
-      If you'd like to cancel a trip, you must specify a reason of cancellation:
+      Are you sure that you want to cancel the trip? If so, you must specify a
+      reason of cancellation:
     </p>
     <form [formGroup]="cancelTripForm" (ngSubmit)="cancelTrip()">
       <textarea
@@ -29,8 +21,8 @@
         fullWidth
         rows="3"
         placeholder="Please add a reason of cancellation..."
+        class="textarea-container"
       ></textarea>
-      <br />
       <button nbButton type="submit" [disabled]="!cancelTripForm.valid">
         Cancel trip
       </button>

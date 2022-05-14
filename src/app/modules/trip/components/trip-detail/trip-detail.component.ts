@@ -65,12 +65,14 @@ export class TripDetailComponent implements OnInit {
   }
 
   openModal(): void {
-    this.dialogService.open(ApplyToTripDialogComponent, {
-      context: {
-        title: 'Apply to trip',
-        trip: this.trip
-      }
-    });
+    this.dialogService
+      .open(ApplyToTripDialogComponent, {
+        context: {
+          title: 'Apply to trip',
+          trip: this.trip
+        }
+      })
+      .onClose.subscribe(() => this.getTripDetail());
   }
 
   editTrip(): void {
@@ -104,11 +106,13 @@ export class TripDetailComponent implements OnInit {
       return;
     }
 
-    this.dialogService.open(CancelTripDialogComponent, {
-      context: {
-        title: 'Cancel trip',
-        trip: this.trip
-      }
-    });
+    this.dialogService
+      .open(CancelTripDialogComponent, {
+        context: {
+          title: 'Cancel trip',
+          trip: this.trip
+        }
+      })
+      .onClose.subscribe(() => this.getTripDetail());
   }
 }
