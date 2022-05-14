@@ -1,5 +1,5 @@
 export enum TripState {
-  ACTIVE = 'active',
-  CANCELLED = 'cancelled',
-  INACTIVE = 'inactive'
+  ACTIVE = 'ACTIVE',
+  CANCELLED = 'CANCELLED',
+  INACTIVE = 'INACTIVE'
 }
