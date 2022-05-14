@@ -50,3 +50,12 @@ export const GET_TRIP = gql`
   }
   ${TRIP_DATA}
 `;
+
+export const PUBLISH_TRIP = gql`
+  query publishSelfTrip($id: ID!) {
+    publishSelfTrip(id: $id) {
+      ...TripData
+    }
+  }
+  ${TRIP_DATA}
+`;

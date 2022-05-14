@@ -5,6 +5,10 @@ export interface ResponseTripByIDQuery {
   getTripById: ITrip;
 }
 
+export interface ResponsePublishSelfTripQuery {
+  publishSelfTrip: ITrip;
+}
+
 export interface ResponseListTripsQuery {
   listTrips: {
     count: number;
