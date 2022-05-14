@@ -15,12 +15,7 @@ import { finalize } from 'rxjs';
 import { TripService } from '../../trip.service';
 import { CreateTripInput } from '../../inputs/create-trip.input';
 import { ImageService } from 'src/app/components/upload/image.service';
-
-interface Stage {
-  title: string;
-  description: string;
-  price: number;
-}
+import { Stage } from '../../graphql/types/stage.type';
 
 @Component({
   selector: 'create-trip',

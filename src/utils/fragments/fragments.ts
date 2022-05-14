@@ -43,6 +43,8 @@ export const TRIP_DATA = gql`
     price
     startDate
     endDate
+    requirements
+    reasonCancelled
   }
   ${TRIP_USER_DATA}
 `;
