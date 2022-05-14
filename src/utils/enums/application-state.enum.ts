@@ -1,7 +1,7 @@
 export enum ApplicationState {
-  ACCEPTED = 'accepted',
-  CANCELLED = 'cancelled',
-  DUE = 'due',
   PENDING = 'pending',
-  REJECTED = 'rejected'
+  CANCELLED = 'cancelled',
+  REJECTED = 'rejected',
+  DUE = 'due',
+  PAID = 'paid'
 }
