@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
 import { CreateSponsorshipInput } from './graphql/inputs/create-sponsorship.input';
+import { CREATE_SELF_SPONSORSHIP } from './graphql/mutation/create-sponsorship.mutation';
+import { ResponseCreateSelfSponsorship } from './graphql/responses/self-trips.response';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +26,16 @@ export class SponsorshipService {
     // TODO: Add query logic
   }
 
-  getSponsorshipDetail(id: string | null) {
-    // TODO: Add query logic
-  }
+  // getSponsorshipDetail(id: string | null) {
+  //   // TODO: Add query logic
+  // }
 
   createSponsorship(createSponsorshipInput: CreateSponsorshipInput) {
-    // TODO: Add mutation logic
+    return this.apollo.mutate<ResponseCreateSelfSponsorship>({
+      mutation: CREATE_SELF_SPONSORSHIP,
+      variables: {
+        input: createSponsorshipInput
+      }
+    });
   }
 }
