@@ -23,3 +23,7 @@ export interface ResponseCreateTrip {
 export interface ResponseUpdateTrip {
   updateTrip: Trip;
 }
+
+export interface ResponseCancelTrip {
+  cancelTrip: Trip;
+}

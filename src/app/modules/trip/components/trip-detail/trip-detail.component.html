@@ -10,16 +10,14 @@
   </nb-card-header>
   <nb-card-body>
     <p>{{ trip.description }}</p>
-    <img
-      class="img-responsive"
-      src="{{ trip.pictures[0] }}"
-      alt="{{ trip.title }}"
-    />
+    <img class="img-responsive" src="{{ trip.pictures[0] }}" />
     <p>{{ trip.startDate }} - {{ trip.endDate }}</p>
-    <p *ngIf="trip.reasonCancelled">{{ trip.reasonCancelled }}</p>
-    <p>Application State: {{ trip.state }}</p>
     <p>
       <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
+    </p>
+    <p>Trip State: {{ trip.state }}</p>
+    <p *ngIf="trip.reasonCancelled">
+      Reason Cancelled: {{ trip.reasonCancelled }}
     </p>
     <nb-stepper orientation="vertical">
       <ng-container *ngFor="let stage of trip.stages">

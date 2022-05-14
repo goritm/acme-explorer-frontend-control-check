@@ -29,6 +29,7 @@ import { EditTripDialogComponent } from './components/trip-detail/dialog/edit-tr
 import { CreateTripComponent } from './components/create-trip/create-trip.component';
 import { ShareModule } from 'src/app/components/share.module';
 import { SelfTripsComponent } from './components/self-trips/self-trips.component';
+import { CancelTripDialogComponent } from './components/trip-detail/dialog/cancel-trip-dialog/cancel-trip-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SelfTripsComponent } from './components/self-trips/self-trips.component
     HoverClassDirective,
     ApplyToTripDialogComponent,
     EditTripDialogComponent,
+    CancelTripDialogComponent,
     SelfTripsComponent
   ],
   imports: [

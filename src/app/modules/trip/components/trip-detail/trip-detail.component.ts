@@ -4,10 +4,12 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ITrip } from '../../interfaces/trip.interface';
 import { TripService } from '../../trip.service';
-import { NbDialogService } from '@nebular/theme';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { ApplyToTripDialogComponent } from './dialog/apply-to-trip-dialog/apply-to-trip-dialog.component';
 import { EditTripDialogComponent } from './dialog/edit-trip-dialog/edit-trip-dialog.component';
 import { UserRoles } from 'src/utils/enums/user-roles.enum';
+import { differenceInDays } from 'date-fns';
+import { CancelTripDialogComponent } from './dialog/cancel-trip-dialog/cancel-trip-dialog.component';
 
 @Component({
   selector: 'trip-detail',
@@ -19,12 +21,14 @@ export class TripDetailComponent implements OnInit {
   userRole: string | undefined;
   isOwnTrip = false;
   isExplorer = false;
+  currentDate = new Date();
 
   constructor(
     private route: ActivatedRoute,
     private tripService: TripService,
     private location: Location,
     private dialogService: NbDialogService,
+    private toastrService: NbToastrService,
     private authService: AuthService
   ) {}
 
@@ -72,6 +76,30 @@ export class TripDetailComponent implements OnInit {
   }
 
   cancelTrip(): void {
-    console.log('cancelar');
+    const startDate = new Date(this.trip?.startDate ?? this.currentDate);
+
+    // If trip is already started, show error
+    if (startDate < this.currentDate) {
+      this.toastrService.danger(
+        'You cannot cancel a trip that has already started'
+      );
+      return;
+    }
+
+    // If trip is less than a week away, show warning
+    const diffInDays = differenceInDays(startDate, this.currentDate);
+    if (diffInDays < 7) {
+      this.toastrService.warning(
+        'You cannot cancel a trip that is less than a week away'
+      );
+      return;
+    }
+
+    this.dialogService.open(CancelTripDialogComponent, {
+      context: {
+        title: 'Cancel trip',
+        trip: this.trip
+      }
+    });
   }
 }

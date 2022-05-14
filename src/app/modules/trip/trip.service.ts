@@ -4,10 +4,12 @@ import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
 import {
   APPLY_TO_TRIP,
+  CANCEL_TRIP,
   CREATE_TRIP,
   UPDATE_TRIP
 } from 'src/utils/mutations/mutations';
 import {
+  ResponseCancelTrip,
   ResponseCreateTrip,
   ResponseUpdateTrip
 } from 'src/utils/mutations/responses';
@@ -19,6 +21,7 @@ import {
 import { SELF_TRIPS } from './graphql/queries/self-trips.query';
 import { ResponseSelfTripsQuery } from './graphql/responses/self-trips.response';
 import { CreateTripInput } from './inputs/create-trip.input';
+import { CancelTripInput } from './inputs/cancel-trip.input';
 
 @Injectable({
   providedIn: 'root'
@@ -107,6 +110,17 @@ export class TripService {
           where: {
             ...updateTripInput.where
           }
+        }
+      }
+    });
+  }
+
+  cancelTrip(cancelTripInput: CancelTripInput) {
+    return this.apollo.mutate<ResponseCancelTrip>({
+      mutation: CANCEL_TRIP,
+      variables: {
+        input: {
+          ...cancelTripInput
         }
       }
     });

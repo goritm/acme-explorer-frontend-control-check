@@ -101,3 +101,12 @@ export const UPDATE_TRIP = gql`
   }
   ${TRIP_DATA}
 `;
+
+export const CANCEL_TRIP = gql`
+  mutation CancelTrip($input: UpdateTripInput!) {
+    cancelSelfTrip(input: $input) {
+      ...TripData
+    }
+  }
+  ${TRIP_DATA}
+`;
