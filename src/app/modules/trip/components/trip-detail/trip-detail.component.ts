@@ -10,6 +10,7 @@ import { EditTripDialogComponent } from './dialog/edit-trip-dialog/edit-trip-dia
 import { UserRoles } from 'src/utils/enums/user-roles.enum';
 import { differenceInDays } from 'date-fns';
 import { CancelTripDialogComponent } from './dialog/cancel-trip-dialog/cancel-trip-dialog.component';
+import { TripState } from 'src/utils/enums/trip-state.enum';
 
 @Component({
   selector: 'trip-detail',
@@ -20,6 +21,7 @@ export class TripDetailComponent implements OnInit {
   trip: ITrip | undefined;
   userRole: string | undefined;
   isOwnTrip = false;
+  tripIsNotCancelled = false;
   isExplorer = false;
   currentDate = new Date();
 
@@ -43,6 +45,7 @@ export class TripDetailComponent implements OnInit {
     this.tripService.getTripDetail(id).subscribe(({ data }) => {
       this.trip = data.getTripById;
       this.checkOwnTrip();
+      this.checkTripIsNotCancelled();
     });
   }
 
@@ -51,6 +54,10 @@ export class TripDetailComponent implements OnInit {
       this.isOwnTrip =
         user.role === UserRoles.MANAGER && user.id === this.trip?.manager.id;
     });
+  }
+
+  checkTripIsNotCancelled(): void {
+    this.tripIsNotCancelled = this.trip?.state !== TripState.CANCELLED;
   }
 
   goBack(): void {

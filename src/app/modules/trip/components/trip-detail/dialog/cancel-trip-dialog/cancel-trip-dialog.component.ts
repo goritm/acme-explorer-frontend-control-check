@@ -71,6 +71,7 @@ export class CancelTripDialogComponent implements OnInit {
         },
         error: (err) => {
           this.toastrService.danger(err.message);
+          console.error(err);
         }
       });
   }
