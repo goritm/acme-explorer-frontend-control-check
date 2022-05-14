@@ -9,9 +9,15 @@ import { CreateTripComponent } from '../trip/components/create-trip/create-trip.
 import { ListApplicationsComponent } from '../application/components/list-applications/list-applications.component';
 import { PageNotFoundComponent } from 'src/app/components/page-not-found/page-not-found.component';
 import { AuthGuard } from 'src/app/modules/authentication/auth.guard';
-import { ALL_ROLES, MANAGER, UserRoles } from 'src/utils/enums/user-roles.enum';
+import {
+  ALL_ROLES,
+  MANAGER,
+  SPONSOR,
+  UserRoles
+} from 'src/utils/enums/user-roles.enum';
 import { ProfileComponent } from '../user/components/profile/profile.component';
 import { SelfTripsComponent } from '../trip/components/self-trips/self-trips.component';
+import { CreateSponsorshipComponent } from '../sponsorship/components/create-sponsorship/create-sponsorship.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -24,7 +30,7 @@ const routes: Routes = [
     component: TripDetailComponent
   },
   {
-    path: 'create-trip',
+    path: 'trips/create',
     component: CreateTripComponent,
     canActivate: [AuthGuard],
     data: {
@@ -32,11 +38,19 @@ const routes: Routes = [
     }
   },
   {
-    path: 'self-trips',
+    path: 'trips/self',
     component: SelfTripsComponent,
     canActivate: [AuthGuard],
     data: {
       expectedRoles: MANAGER
+    }
+  },
+  {
+    path: 'sponsors/create',
+    component: CreateSponsorshipComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: SPONSOR
     }
   },
   {
