@@ -1,5 +1,6 @@
 import { ITrip } from 'src/app/modules/trip/interfaces/trip.interface';
 import { IApplication } from 'src/app/modules/application/interfaces/application.interface';
+import { Trip } from 'src/app/modules/trip/graphql/types/trip.type';
 
 export interface ResponseTripByIDQuery {
   getTripById: ITrip;
@@ -8,7 +9,7 @@ export interface ResponseTripByIDQuery {
 export interface ResponseListTripsQuery {
   listTrips: {
     count: number;
-    data: ITrip[];
+    data: Trip[];
   };
 }
 
