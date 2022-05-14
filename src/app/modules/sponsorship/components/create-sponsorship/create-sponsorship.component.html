@@ -17,7 +17,7 @@
           id="link"
           name="link"
           formControlName="link"
-          placeholder="{{ 'sponsorship.create.form.link.name' | translate }}"
+          placeholder="{{ 'sponsorship.create.form.link.example' | translate }}"
           fieldSize="large"
           autofocus
           status="basic"
@@ -49,7 +49,7 @@
           id="banner"
           name="banner"
           formControlName="banner"
-          placeholder="{{ 'sponsorship.create.form.banner.name' | translate }}"
+          placeholder="{{ 'sponsorship.create.form.banner.example' | translate }}"
           fieldSize="large"
           autofocus
           status="basic"
@@ -86,6 +86,7 @@
             {{ 'sponsorship.create.form.trip.name' | translate }}
           </p>
         </div>
+
       </div>
 
     </nb-card-body>
@@ -106,6 +107,7 @@
         fullWidth
         type="submit"
         status="primary"
+        [disabled]="trips.length === 0"
         size="medium">
         {{ 'sponsorship.create.buttons.create' | translate }}
       </button>

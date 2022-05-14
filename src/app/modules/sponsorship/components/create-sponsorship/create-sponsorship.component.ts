@@ -30,8 +30,7 @@ export class CreateSponsorshipComponent implements OnInit {
     trip: ['', [Validators.required]],
     link: [
       '',
-      Validators.required,
-      Validators.pattern(/^(http:\/\/|https:\/\/).+$/)
+      [Validators.required, Validators.pattern(/^(http:\/\/|https:\/\/).+$/)]
     ],
     banner: [
       '',
@@ -50,7 +49,6 @@ export class CreateSponsorshipComponent implements OnInit {
 
   validate() {
     this.submitted = false;
-    console.log('Validation ' + this.createSponsorshipForm.valid);
     if (this.createSponsorshipForm.valid) {
       this.createSponsorship();
     } else {
