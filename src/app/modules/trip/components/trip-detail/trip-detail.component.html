@@ -9,24 +9,39 @@
     <p>{{ trip.title }}</p>
   </nb-card-header>
   <nb-card-body>
-    {{ trip.description }}
-    <br />
-    <img
-      class="img-responsive"
-      src="{{ trip.pictures[0] }}"
-      alt="{{ trip.title }}"
-    />
-    <br />
+    <p>{{ trip.description }}</p>
+    <img class="img-responsive" src="{{ trip.pictures[0] }}" />
     <p>{{ trip.startDate }} - {{ trip.endDate }}</p>
-    <p *ngIf="trip.reasonCancelled">{{ trip.reasonCancelled }}</p>
-    <p>Application State: {{ trip.state }}</p>
-  </nb-card-body>
-  <nb-card-footer>
     <p>
       <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
     </p>
-    <button *ngIf="userRole === 'EXPLORER'" nbButton (click)="openModal()">
-      Apply to trip
-    </button>
+    <p>Trip State: {{ trip.state }}</p>
+    <p *ngIf="trip.reasonCancelled">
+      Reason Cancelled: {{ trip.reasonCancelled }}
+    </p>
+    <nb-stepper orientation="vertical">
+      <ng-container *ngFor="let stage of trip.stages">
+        <nb-step [label]="stage.title">
+          <h2>{{ stage.title }}</h2>
+          <p>{{ stage.description }}</p>
+          <p>
+            <b>${{ stage.price }}</b>
+          </p>
+        </nb-step>
+      </ng-container>
+    </nb-stepper>
+  </nb-card-body>
+  <nb-card-footer *ngIf="tripIsNotCancelled">
+    <div class="button-group">
+      <button *ngIf="isOwnTrip" nbButton (click)="editTrip()">
+        Modify trip
+      </button>
+      <button *ngIf="isOwnTrip" nbButton (click)="cancelTrip()">
+        Cancel trip
+      </button>
+      <button *ngIf="isExplorer && trip.state === 'ACTIVE'" nbButton (click)="openModal()">
+        Apply to trip
+      </button>
+    </div>
   </nb-card-footer>
 </nb-card>

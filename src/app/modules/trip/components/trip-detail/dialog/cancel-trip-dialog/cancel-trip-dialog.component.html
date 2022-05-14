@@ -1,0 +1,31 @@
+<nb-card *ngIf="trip" [nbSpinner]="loading" nbSpinnerStatus="basic">
+  <nb-card-header class="header-container">
+    <p>
+      {{ title }}: <b>{{ trip.title }}</b>
+    </p>
+    <nb-icon
+      icon="close-outline"
+      (click)="close()"
+      hover-class="hover"
+    ></nb-icon>
+  </nb-card-header>
+  <nb-card-body>
+    <p>
+      Are you sure that you want to cancel the trip? If so, you must specify a
+      reason of cancellation:
+    </p>
+    <form [formGroup]="cancelTripForm" (ngSubmit)="cancelTrip()">
+      <textarea
+        formControlName="reasonCancelled"
+        nbInput
+        fullWidth
+        rows="3"
+        placeholder="Please add a reason of cancellation..."
+        class="textarea-container"
+      ></textarea>
+      <button nbButton type="submit" [disabled]="!cancelTripForm.valid">
+        Cancel trip
+      </button>
+    </form>
+  </nb-card-body>
+</nb-card>

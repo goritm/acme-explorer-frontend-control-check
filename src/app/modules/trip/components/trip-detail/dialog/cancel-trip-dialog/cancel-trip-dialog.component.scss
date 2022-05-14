@@ -1,0 +1,18 @@
+p {
+  font-family: nb-theme(font-family-primary);
+  color: nb-theme(text-basic-color);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textarea-container {
+  margin-bottom: 1rem;
+}
+
+.hover {
+  cursor: pointer;
+}

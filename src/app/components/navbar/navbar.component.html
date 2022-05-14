@@ -2,7 +2,9 @@
   <div class="control-status-example" routerLink="/">
     <nb-icon icon="globe-2-outline"></nb-icon>
   </div>
-  <h1><a routerLink="/trips" style="text-decoration:none"> ACME Explorer </a></h1>
+  <h1>
+    <a routerLink="/trips" style="text-decoration: none"> ACME Explorer </a>
+  </h1>
 
   <nb-actions size="small">
     <nb-action
@@ -53,8 +55,8 @@
   <nb-user
     shape="semi-round"
     name="{{ currentUser.name }} {{ currentUser.lastName }}"
-    title="{{ currentUser.role }}"
-    [showTitle]="false"
+    title="{{ currentUser.role.toLowerCase() }}"
+    [showTitle]="true"
     [picture]="currentUser.profilePicture!"
     [nbContextMenu]="items"
     *ngIf="isLoggedIn"
