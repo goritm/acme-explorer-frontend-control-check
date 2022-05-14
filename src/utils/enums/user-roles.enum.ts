@@ -14,3 +14,5 @@ export const ALL_ROLES = [
 ];
 
 export const MANAGER = [UserRoles.MANAGER, UserRoles.ADMIN];
+
+export const SPONSOR = [UserRoles.SPONSOR, UserRoles.ADMIN];
