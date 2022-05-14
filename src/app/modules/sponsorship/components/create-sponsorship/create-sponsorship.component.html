@@ -1,0 +1,129 @@
+<div class="header-text">
+  <h1 class="title">
+    {{ 'sponsorship.create.title' | translate }}
+  </h1>
+</div>
+
+<form (ngSubmit)="createSponsorship()" [formGroup]="createSponsorshipForm">
+  <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
+    <nb-card-body class="create-sponsorship-card">
+      <div>
+        <label class="label-index" for="link">
+           {{ 'sponsorship.create.form.link.name' | translate }}:
+        </label>
+        <input
+          nbInput
+          fullWidth
+          id="link"
+          name="link"
+          formControlName="link"
+          placeholder="{{ 'sponsorship.create.form.link.name' | translate }}"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && createSponsorshipForm.controls['link']">
+          <p
+            class="error-text"
+            *ngIf="createSponsorshipForm.controls['link']?.errors?.['required']"
+          >
+            {{ 'sponsorship.create.form.link.required' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createSponsorshipForm.controls['link']?.errors?.['pattern']"
+          >
+            {{ 'sponsorship.create.form.link.invalid' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-index" for="banner">
+           {{ 'sponsorship.create.form.banner.name' | translate }}:
+        </label>
+        <input
+          nbInput
+          fullWidth
+          id="banner"
+          name="banner"
+          formControlName="banner"
+          placeholder="{{ 'sponsorship.create.form.banner.name' | translate }}"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && createSponsorshipForm.controls['banner']">
+          <p
+            class="error-text"
+            *ngIf="createSponsorshipForm.controls['banner']?.errors?.['required']"
+          >
+            {{ 'sponsorship.create.form.banner.required' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createSponsorshipForm.controls['banner']?.errors?.['pattern']"
+          >
+            {{ 'sponsorship.create.form.banner.invalid' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-index" for="trip">
+          {{ 'sponsorship.create.form.trip.name' | translate }}:
+        </label>
+        <nb-select placeholder="{{ 'sponsorship.create.form.trip.name' | translate }}" formControlName="trip">
+          <nb-option value="1">Option 1</nb-option>
+          <nb-option value="2">Option 2</nb-option>
+          <nb-option value="3">Option 3</nb-option>
+          <nb-option value="4">Option 4</nb-option>
+        </nb-select>
+        <input
+          nbInput
+          fullWidth
+          id="description"
+          name="description"
+          formControlName="description"
+          placeholder="Description"
+          fieldSize="large"
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && createSponsorshipForm.controls['trip']">
+          <p
+            class="error-text"
+            *ngIf="createSponsorshipForm.controls['trip']?.errors?.['required']"
+          >
+            {{ 'sponsorship.create.form.trip.name' | translate }}
+          </p>
+        </div>
+      </div>
+
+    </nb-card-body>
+
+    <nb-card-body class="button-rows">
+      <button
+        nbButton
+        (click)="cancel()"
+        fullWidth
+        type="cancel"
+        status="danger"
+        size="medium">
+        {{ 'sponsorship.create.buttons.cancel' | translate }}
+      </button>
+
+      <button
+        nbButton
+        fullWidth
+        type="submit"
+        status="primary"
+        size="medium"
+        [disabled]="!createSponsorshipForm.valid">
+        {{ 'sponsorship.create.buttons.create' | translate }}
+      </button>
+    </nb-card-body>
+  </nb-card>
+</form>
