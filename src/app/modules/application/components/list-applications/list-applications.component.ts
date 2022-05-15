@@ -12,7 +12,9 @@ import { RejectApplicationDialogComponent } from '../dialog/reject-application-d
   styleUrls: ['./list-applications.component.scss']
 })
 export class ListApplicationsComponent implements OnInit {
+  Object = Object;
   applications: IApplication[] = [];
+  applicationCategories: any = {};
   placeholders: unknown = [];
   pageSize = 25;
   pageToLoadNext = 1;
@@ -40,7 +42,22 @@ export class ListApplicationsComponent implements OnInit {
         this.placeholders = [];
         this.applications = data.getSelfApplications.data;
         this.pageToLoadNext++;
+
+        this.applicationCategories = this.categorizeApplications(
+          data.getSelfApplications.data
+        );
       });
+  }
+
+  categorizeApplications(applications: IApplication[]) {
+    return applications.reduce((categories: any, application) => {
+      const { state } = application;
+
+      if (!categories[state]) categories[state] = [];
+
+      categories[state].push(application);
+      return categories;
+    }, {});
   }
 
   acceptApplication(id: string) {
