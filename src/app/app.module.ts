@@ -75,10 +75,6 @@ import { ConfigurationModule } from './modules/configuration/configuration.modul
     NbButtonModule,
     NbUserModule,
     NbActionsModule,
-    ShareModule,
-    UserModule,
-    PaymentModule,
-    ConfigurationModule,
     NbSearchModule
   ],
   bootstrap: [AppComponent]
