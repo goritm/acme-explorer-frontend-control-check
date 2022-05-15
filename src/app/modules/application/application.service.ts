@@ -1,7 +1,11 @@
+import { ResponseGetApplicationByIdQuery } from './../../../utils/queries/responses';
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
-import { GET_SELF_APPLICATIONS } from 'src/utils/queries/queries';
+import {
+  GET_APLICATION_BY_ID,
+  GET_SELF_APPLICATIONS
+} from 'src/utils/queries/queries';
 import { ResponseListApplicationsQuery } from 'src/utils/queries/responses';
 import { ACCEPT_APPLICATION } from './graphql/mutations/accept-application.mutation';
 import { AcceptApplicationResponse } from './graphql/responses/accept-application.response';
@@ -34,6 +38,15 @@ export class ApplicationService {
         start: this.start,
         limit: this.limit,
         where: this.where
+      }
+    });
+  }
+
+  getApplicationById(id: string) {
+    return this.apollo.query<ResponseGetApplicationByIdQuery>({
+      query: GET_APLICATION_BY_ID,
+      variables: {
+        id
       }
     });
   }

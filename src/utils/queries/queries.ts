@@ -42,6 +42,15 @@ export const GET_SELF_APPLICATIONS = gql`
   ${APPLICATION_DATA}
 `;
 
+export const GET_APLICATION_BY_ID = gql`
+  query getApplicationById($id: ID!) {
+    getApplicationById(id: $id) {
+      ...ApplicationData
+    }
+  }
+  ${APPLICATION_DATA}
+`;
+
 export const GET_TRIP = gql`
   query getTrip($id: ID!) {
     getTripById(id: $id) {
