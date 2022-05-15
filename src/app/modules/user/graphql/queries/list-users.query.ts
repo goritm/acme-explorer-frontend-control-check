@@ -7,6 +7,7 @@ export const LIST_USERS = gql`
       data {
         id
         name
+        email
         lastName
         profilePicture
         address
