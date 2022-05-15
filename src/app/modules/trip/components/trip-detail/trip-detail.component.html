@@ -1,56 +1,68 @@
 <!-- !TODO - add more info and make it prettier  -->
-<nb-card *ngIf="trip" [nbSpinner]="loading" nbSpinnerStatus="basic">
-  <nb-card-header>
-    <nb-icon
-      icon="arrow-back-outline"
-      (click)="goBack()"
-      hover-class="hover"
-    ></nb-icon>
-    <p>{{ trip.title }}</p>
-  </nb-card-header>
-  <nb-card-body>
-    <p>{{ trip.description }}</p>
-    <img class="img-responsive" src="{{ trip.pictures[0] }}" />
-    <p>{{ trip.startDate }} - {{ trip.endDate }}</p>
-    <p>
-      <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
-    </p>
-    <p>Trip State: {{ trip.state }}</p>
-    <p *ngIf="trip.reasonCancelled">
-      Reason Cancelled: {{ trip.reasonCancelled }}
-    </p>
-    <nb-stepper orientation="vertical">
-      <ng-container *ngFor="let stage of trip.stages">
-        <nb-step [label]="stage.title">
-          <h2>{{ stage.title }}</h2>
-          <p>{{ stage.description }}</p>
-          <p>
-            <b>${{ stage.price }}</b>
-          </p>
-        </nb-step>
-      </ng-container>
-    </nb-stepper>
-  </nb-card-body>
-  <nb-card-footer *ngIf="tripIsNotCancelled">
-    <div class="button-group">
-      <button *ngIf="isOwnTrip" nbButton (click)="editTrip()">Edit trip</button>
-      <button
-        *ngIf="isOwnTrip && trip.state === 'INACTIVE'"
-        nbButton
-        (click)="publishTrip()"
-      >
-        Publish trip
-      </button>
-      <button *ngIf="isOwnTrip" nbButton (click)="cancelTrip()">
-        Cancel trip
-      </button>
-      <button
-        *ngIf="isExplorer && trip.state === 'ACTIVE'"
-        nbButton
-        (click)="openModal()"
-      >
-        Apply to trip
-      </button>
-    </div>
-  </nb-card-footer>
-</nb-card>
+<div [nbSpinner]="loading" nbSpinnerStatus="basic">
+  <nb-card *ngIf="trip; else noTrip">
+    <nb-card-header>
+      <nb-icon
+        icon="arrow-back-outline"
+        (click)="goBack()"
+        hover-class="hover"
+      ></nb-icon>
+      <p>{{ trip.title }}</p>
+    </nb-card-header>
+    <nb-card-body>
+      <p>{{ trip.description }}</p>
+      <img class="img-responsive" src="{{ trip.pictures[0] }}" />
+      <p>{{ trip.startDate }} - {{ trip.endDate }}</p>
+      <p>
+        <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
+      </p>
+      <p>Trip State: {{ trip.state }}</p>
+      <p *ngIf="trip.reasonCancelled">
+        Reason Cancelled: {{ trip.reasonCancelled }}
+      </p>
+      <nb-stepper orientation="vertical">
+        <ng-container *ngFor="let stage of trip.stages">
+          <nb-step [label]="stage.title">
+            <h2>{{ stage.title }}</h2>
+            <p>{{ stage.description }}</p>
+            <p>
+              <b>${{ stage.price }}</b>
+            </p>
+          </nb-step>
+        </ng-container>
+      </nb-stepper>
+    </nb-card-body>
+    <nb-card-footer *ngIf="tripIsNotCancelled">
+      <div class="button-group">
+        <button *ngIf="isOwnTrip" nbButton (click)="editTrip()">
+          Edit trip
+        </button>
+        <button
+          *ngIf="isOwnTrip && trip.state === 'INACTIVE'"
+          nbButton
+          (click)="publishTrip()"
+        >
+          Publish trip
+        </button>
+        <button *ngIf="isOwnTrip" nbButton (click)="cancelTrip()">
+          Cancel trip
+        </button>
+        <button
+          *ngIf="isExplorer && trip.state === 'ACTIVE'"
+          nbButton
+          (click)="openModal()"
+        >
+          Apply to trip
+        </button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+
+  <ng-template #noTrip>
+    <nb-card>
+      <nb-card-body>
+        <p>No trip found</p>
+      </nb-card-body>
+    </nb-card>
+  </ng-template>
+</div>

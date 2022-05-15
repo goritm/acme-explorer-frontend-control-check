@@ -1,47 +1,44 @@
-<nb-accordion
-  multi
-  *ngIf="applications.length > 0; else noApplications"
-  [nbSpinner]="loading"
-  nbSpinnerStatus="basic"
->
-  <nb-accordion-item *ngFor="let application of applications">
-    <nb-accordion-item-header>
-      <span>{{ application.trip.title }}</span> -
-      <span>{{ application.state }}</span>
-    </nb-accordion-item-header>
-    <nb-accordion-item-body>
-      <p>Description: {{ application.trip.description }}</p>
-      <br />
-      <p>Comments: {{ application.comments[0] }}</p>
-      <p>Reason Rejected: {{ application.reasonRejected }}</p>
+<div [nbSpinner]="loading" nbSpinnerStatus="basic">
+  <nb-accordion multi *ngIf="applications.length > 0; else noApplications">
+    <nb-accordion-item *ngFor="let application of applications">
+      <nb-accordion-item-header>
+        <span>{{ application.trip.title }}</span> -
+        <span>{{ application.state }}</span>
+      </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <p>Description: {{ application.trip.description }}</p>
+        <br />
+        <p>Comments: {{ application.comments[0] }}</p>
+        <p>Reason Rejected: {{ application.reasonRejected }}</p>
 
-      <div
-        *ngIf="userRole === 'MANAGER' && application.state == 'PENDING'"
-        class="manager-buttons"
-      >
-        <button
-          nbButton
-          status="success"
-          (click)="acceptApplication(application.id)"
+        <div
+          *ngIf="userRole === 'MANAGER' && application.state == 'PENDING'"
+          class="manager-buttons"
         >
-          Accept
-        </button>
-        <button
-          nbButton
-          status="danger"
-          (click)="rejectApplication(application)"
-        >
-          Reject
-        </button>
-      </div>
-    </nb-accordion-item-body>
-  </nb-accordion-item>
-</nb-accordion>
+          <button
+            nbButton
+            status="success"
+            (click)="acceptApplication(application.id)"
+          >
+            Accept
+          </button>
+          <button
+            nbButton
+            status="danger"
+            (click)="rejectApplication(application)"
+          >
+            Reject
+          </button>
+        </div>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
 
-<ng-template #noApplications>
-  <nb-card>
-    <nb-card-body>
-      <p>No applications found</p>
-    </nb-card-body>
-  </nb-card>
-</ng-template>
+  <ng-template #noApplications>
+    <nb-card>
+      <nb-card-body>
+        <p>No applications found</p>
+      </nb-card-body>
+    </nb-card>
+  </ng-template>
+</div>

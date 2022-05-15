@@ -13,8 +13,6 @@ import { TripService } from '../../trip.service';
 export class ListTripsComponent {
   trips: Trip[] = [];
   pageSize = 25;
-  placeholders: unknown = [];
-  pageToLoadNext = 1;
   loading = false;
 
   constructor(
@@ -43,20 +41,13 @@ export class ListTripsComponent {
   }
 
   loadNext() {
-    if (this.loading) {
-      return;
-    }
-
     this.loading = true;
-    this.placeholders = new Array(this.pageSize);
     this.tripService
       .fetch({ limit: this.pageSize, where: { state: TripState.ACTIVE } })
       .subscribe({
         next: ({ data }) => {
-          this.placeholders = [];
           this.trips = data.listTrips.data;
           this.loading = false;
-          this.pageToLoadNext++;
         }
       });
   }
