@@ -38,11 +38,7 @@ export class ListTripsComponent {
             );
           }
         );
-
-        console.log(filteredTrips);
-
         this.trips = filteredTrips;
-
         // Fetch in DB
         // this.tripService
         //   .fetch({
