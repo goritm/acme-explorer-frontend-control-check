@@ -56,10 +56,21 @@
               >
                 Go to Trip
               </button>
+              <button
+                nbButton
+                status="danger"
+                (click)="cancelApplication(application.id)"
+                *ngIf="
+                  userRole === 'EXPLORER' &&
+                  (application.state == 'PENDING' || application.state == 'DUE')
+                "
+              >
+                Cancel Application
+              </button>
             </div>
 
             <div
-              class="manager-buttons"
+              class="buttons"
               *ngIf="userRole === 'MANAGER' && application.state == 'PENDING'"
             >
               <button

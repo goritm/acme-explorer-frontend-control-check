@@ -8,6 +8,8 @@ import { AcceptApplicationResponse } from './graphql/responses/accept-applicatio
 import { REJECT_APPLICATION } from './graphql/mutations/reject-application.mutation';
 import { RejectApplicationResponse } from './graphql/responses/reject-application.response';
 import { RejectApplicationInput } from './graphql/inputs/reject-application.input';
+import { CancelApplicationResponse } from './graphql/responses/cancel-application.response';
+import { CANCEL_APPLICATION } from './graphql/mutations/cancel-application.mutation';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +54,15 @@ export class ApplicationService {
         input: {
           ...rejectApplicationInput
         }
+      }
+    });
+  }
+
+  cancelApplication(id: string) {
+    return this.apollo.mutate<CancelApplicationResponse>({
+      mutation: CANCEL_APPLICATION,
+      variables: {
+        id
       }
     });
   }

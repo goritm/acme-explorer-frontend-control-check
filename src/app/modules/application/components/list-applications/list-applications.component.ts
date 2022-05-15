@@ -95,6 +95,31 @@ export class ListApplicationsComponent implements OnInit {
     });
   }
 
+  cancelApplication(id: string) {
+    this.loading = true;
+
+    this.applicationService
+      .cancelApplication(id)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: ({ data }) => {
+          if (!(data === undefined || data === null)) {
+            this.toastrService.success(`Application has been cancelled.`);
+            this.loadNext();
+          }
+        },
+        error: (err) => {
+          this.toastrService.danger(err.message);
+          console.error(err);
+        }
+      });
+  }
+
   goToTrip(id: string) {
     this.router.navigate(['/trips/detail/', id]);
   }
