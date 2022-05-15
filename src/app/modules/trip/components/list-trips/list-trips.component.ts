@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { NbSearchService } from '@nebular/theme';
 import { TripState } from 'src/utils/enums/trip-state.enum';
 import { Trip } from '../../graphql/types/trip.type';
@@ -39,19 +39,6 @@ export class ListTripsComponent {
           }
         );
         this.trips = filteredTrips;
-        // Fetch in DB
-        // this.tripService
-        //   .fetch({
-        //     where: {
-        //       title: searchBarResult
-        //     }
-        //   })
-        //   .subscribe({
-        //     next: ({ data }) => {
-        //       console.log(data.listTrips.data);
-        //       this.trips = data.listTrips.data;
-        //     }
-        //   });
       });
   }
 
