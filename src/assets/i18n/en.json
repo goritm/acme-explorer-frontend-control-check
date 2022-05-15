@@ -97,5 +97,65 @@
         "owner": "Owner: "
       }
     }
+  },
+  "user": {
+    "create": {
+      "title": "Create a new user",
+      "form": {
+        "name": {
+          "name": "Name",
+          "required": "Please enter a name",
+          "min": "Name must be at least 1 characters long",
+          "max": "Name must be less than 25 characters long"
+        },
+        "lastName": {
+          "name": "Lastname",
+          "required": "Please enter a lastname",
+          "min": "Lastname must be at least 1 characters long",
+          "max": "Lastname must be less than 25 characters long"
+        },
+        "email": {
+          "name": "Email",
+          "required": "Please enter an email",
+          "invalid": "Please enter a valid email"
+        },
+        "password": {
+          "name": "Password",
+          "required": "Please enter a password",
+          "min": "Password must be at least 8 characters long",
+          "max": "Password must be less than 25 characters long"
+        },
+        "passwordConfirmation": {
+          "name": "Password confirmation",
+          "required": "Please enter a password confirmation",
+          "min": "Password confirmation must be at least 8 characters long",
+          "max": "Password confirmation must be less than 25 characters long"
+        }
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "list": {
+      "title": "List Users",
+      "row": {
+        "name": "Name: ",
+        "lastName": "Lastname: ",
+        "email": "Email: ",
+        "role": {
+          "name": "Role: ",
+          "admin": "Admin",
+          "explorer": "Explorer",
+          "manager": "Manager",
+          "sponsor": "Sponsor"
+        }
+      },
+      "buttons": {
+        "unlock": "Unlock",
+        "lock": "lock"
+      },
+      "notFound": "No users found"
+    }
   }
 }

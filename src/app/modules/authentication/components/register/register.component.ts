@@ -64,8 +64,6 @@ export class RegisterComponent {
             duration: 3000,
             status: 'danger'
           });
-
-          console.error(err);
         },
         complete: () => {
           this.router.navigate(['/']);

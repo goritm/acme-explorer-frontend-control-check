@@ -51,6 +51,22 @@ export const ADMIN_MENU_ITEMS = [
     title: 'Dashboard',
     icon: 'keypad-outline'
   },
+  {
+    title: 'Manage Users',
+    icon: 'shield-outline',
+    children: [
+      {
+        title: 'All Users',
+        icon: 'people-outline',
+        link: '/users'
+      },
+      {
+        title: 'Create User',
+        icon: 'person-add-outline',
+        link: '/users/create'
+      }
+    ]
+  },
   ...MANAGER_MENU_ITEMS,
   SPONSOR_MENU_ITEMS,
   ...EXPLORER_MENU_ITEMS

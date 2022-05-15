@@ -45,7 +45,7 @@
   "selfTrips": {
     "title": "Mis Viajes Creados"
   },
-   "sponsorship": {
+  "sponsorship": {
     "create": {
       "title": "Crea tu publicidad",
       "form": {
@@ -91,6 +91,66 @@
         "description": "Descripción: ",
         "owner": "Propietario: "
       }
+    }
+  },
+  "user": {
+    "create": {
+      "title": "Crear un usuario",
+      "form": {
+        "name": {
+          "name": "Nombre",
+          "required": "Por favor ingresa un nombre",
+          "min": "El nombre debe tener al menos 1 carácter",
+          "max": "El nombre como máximo debe tener 25 caracteres"
+        },
+        "lastName": {
+          "name": "Apellido",
+          "required": "Por favor ingresa un apellido",
+          "min": "El apellido debe tener al menos 1 carácter",
+          "max": "El apellido como máximo debe tener 25 caracteres"
+        },
+        "email": {
+          "name": "Correo electrónico",
+          "required": "Por favor ingresa un email",
+          "invalid": "Por favor ingresa un email válido"
+        },
+        "password": {
+          "name": "Contraseña",
+          "required": "Por favor ingresa una contraseña",
+          "min": "La contraseña debe tener al menos 8 caracteres",
+          "max": "La contraseña como máximo debe tener 25 caracteres"
+        },
+        "passwordConfirmation": {
+          "name": "Confirmar contraseña",
+          "required": "Por favor ingresa una contraseña de confirmación",
+          "min": "La contraseña de confirmación debe tener al menos 8 caracteres",
+          "max": "La contraseña de confirmación como máximo debe tener 25 caracteres"
+        }
+      },
+      "buttons": {
+        "cancel": "Cancelar",
+        "create": "Crear"
+      }
+    },
+    "list": {
+      "title": "Lista de usuarios",
+      "row": {
+        "name": "Nombre: ",
+        "lastName": "Apellido: ",
+        "email": "Correo electrónico: ",
+        "role": {
+          "name": "Role: ",
+          "admin": "Administrador",
+          "explorer": "Explorador",
+          "manager": "Manejador",
+          "sponsor": "Sponsor"
+        }
+      },
+      "buttons": {
+        "unlock": "Desbloquear",
+        "lock": "Bloquear"
+      },
+      "notFound": "No se encontraron usuarios"
     }
   }
 }

@@ -1,0 +1,38 @@
+.hover {
+  cursor: pointer;
+}
+
+.header-text {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.listing-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.footer-card {
+  width: 25%;
+  text-align: center;
+}
+
+.header-card {
+  width: 75%;
+  margin: auto;
+
+
+  .header-card-title {
+    font-size: 1.0rem;
+    font-weight: bold;
+  }
+
+  .header-card-subtitle {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+}
+
