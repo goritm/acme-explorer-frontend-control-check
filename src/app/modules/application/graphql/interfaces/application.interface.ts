@@ -7,7 +7,7 @@ export interface IApplication extends IBaseEntity {
   explorer: IUser;
   manager: IUser;
   comments: string[];
-  reasonCancelled?: string;
+  reasonRejected?: string;
   trip: ITrip;
   state: ApplicationState;
 }

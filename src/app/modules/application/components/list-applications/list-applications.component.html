@@ -10,12 +10,10 @@
       <span>{{ application.state }}</span>
     </nb-accordion-item-header>
     <nb-accordion-item-body>
-      <p>{{ application.trip.description }}</p>
+      <p>Description: {{ application.trip.description }}</p>
       <br />
-      <p>{{ application.comments[0] }}</p>
-      <p>
-        {{ application.reasonCancelled }}
-      </p>
+      <p>Comments: {{ application.comments[0] }}</p>
+      <p>Reason Rejected: {{ application.reasonRejected }}</p>
 
       <div
         *ngIf="userRole === 'MANAGER' && application.state == 'PENDING'"

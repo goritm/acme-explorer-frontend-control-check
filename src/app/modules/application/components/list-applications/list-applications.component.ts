@@ -57,7 +57,7 @@ export class ListApplicationsComponent implements OnInit {
       .subscribe({
         next: ({ data }) => {
           if (!(data === undefined || data === null)) {
-            this.toastrService.success(`Application has been accepted`);
+            this.toastrService.success(`Application has been accepted.`);
           }
         },
         error: (err) => {
