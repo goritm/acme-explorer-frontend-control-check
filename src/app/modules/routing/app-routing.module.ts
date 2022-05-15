@@ -85,6 +85,14 @@ const routes: Routes = [
       expectedRoles: [UserRoles.GUEST]
     }
   },
+  {
+    path: 'users',
+    component: RegisterComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.ADMIN]
+    }
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 
