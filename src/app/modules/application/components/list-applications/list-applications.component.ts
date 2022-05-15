@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { finalize } from 'rxjs';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
@@ -26,6 +27,7 @@ export class ListApplicationsComponent implements OnInit {
     private authService: AuthService,
     private dialogService: NbDialogService,
     private toastrService: NbToastrService,
+    private router: Router,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -91,5 +93,9 @@ export class ListApplicationsComponent implements OnInit {
         application
       }
     });
+  }
+
+  goToTrip(id: string) {
+    this.router.navigate(['/trips/detail/', id]);
   }
 }
