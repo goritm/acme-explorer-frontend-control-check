@@ -10,7 +10,7 @@ import { TripService } from '../../trip.service';
 })
 export class ListTripsComponent {
   trips: Trip[] = [];
-  pageSize = 10;
+  pageSize = 25;
   placeholders: unknown = [];
   pageToLoadNext = 1;
   loading = false;
