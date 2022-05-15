@@ -1,0 +1,65 @@
+<div class="header-text">
+  <h1 class="title"> {{ 'user.list.title' | translate }} </h1>
+</div>
+
+<div *ngIf="users.length > 0; else noUsers">
+  <nb-list
+      nbInfiniteList
+      listenWindowScroll
+      [threshold]="1"
+      (bottomThreshold)="loadNext()"
+      [nbSpinner]="loading"
+      nbSpinnerStatus="basic"
+    >
+      <nb-list-item *ngFor="let user of users">
+        <nb-card hover-class="hover" class="listing-container">
+          <nb-card-header class="header-card">
+              <nb-icon icon="email-outline"></nb-icon>
+              <b class="header-card-title">{{ 'user.list.row.email' | translate }} </b> {{ user.email }}
+
+              <nb-icon icon="shield-outline"></nb-icon>
+              <b class="header-card-title">{{ 'user.list.row.role.name' | translate }}  </b>
+              <span *ngIf="user.role == 'EXPLORER'">{{ 'user.list.row.role.explorer' | translate }}</span>
+              <span *ngIf="user.role == 'ADMIN'">{{ 'user.list.row.role.admin' | translate }}</span>
+              <span *ngIf="user.role == 'MANAGER'">{{ 'user.list.row.role.manager' | translate }}</span>
+              <span *ngIf="user.role == 'SPONSOR'">{{ 'user.list.row.role.sponsor' | translate }}</span>
+          </nb-card-header>
+
+          <nb-card-footer class="footer-card">
+             <button
+              nbButton
+              (click)="unlockUser(user)"
+              fullWidth
+              type="submit"
+              [disabled]="currentUser.id === user.id"
+              *ngIf="user.status === 'LOCK'"
+              status="primary"
+              size="medium">
+              <nb-icon icon="unlock-outline"></nb-icon>
+              {{ 'user.list.buttons.unlock' | translate }}
+            </button>
+            <button
+              nbButton
+              fullWidth
+              [disabled]="currentUser.id === user.id"
+              (click)="lockUser(user)"
+              type="submit"
+              status="danger"
+              *ngIf="user.status === 'UNLOCK'"
+              size="medium">
+              <nb-icon icon="lock-outline"></nb-icon>
+              {{ 'user.list.buttons.lock' | translate }}
+            </button>
+          </nb-card-footer>
+        </nb-card>
+      </nb-list-item>
+  </nb-list>
+</div>
+
+<ng-template #noUsers>
+  <nb-card class="listing-container">
+    <nb-card-body>
+      <p> {{ 'user.list.notFound' | translate }}  </p>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

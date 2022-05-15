@@ -18,6 +18,7 @@ import {
 import { ProfileComponent } from '../user/components/profile/profile.component';
 import { SelfTripsComponent } from '../trip/components/self-trips/self-trips.component';
 import { CreateSponsorshipComponent } from '../sponsorship/components/create-sponsorship/create-sponsorship.component';
+import { ListUsersComponent } from '../user/components/list-users/list-users.component';
 import { SelfSponsorshipsComponent } from '../sponsorship/components/self-sponsorships/self-sponsorships.component';
 
 const routes: Routes = [
@@ -92,6 +93,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       expectedRoles: [UserRoles.GUEST]
+    }
+  },
+  {
+    path: 'users',
+    component: ListUsersComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.ADMIN]
     }
   },
   { path: '**', component: PageNotFoundComponent }

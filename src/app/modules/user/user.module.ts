@@ -6,7 +6,9 @@ import {
   NbButtonModule,
   NbCardModule,
   NbFormFieldModule,
+  NbIconModule,
   NbInputModule,
+  NbListModule,
   NbSpinnerModule
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
@@ -14,9 +16,10 @@ import { UserService } from './services/user.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthService } from '../authentication/services/auth.service';
 import { NgxTranslateModule } from '../translate/translate.module';
+import { ListUsersComponent } from './components/list-users/list-users.component';
 
 @NgModule({
-  declarations: [ProfileComponent],
+  declarations: [ProfileComponent, ListUsersComponent],
   imports: [
     GraphQLModule,
     AppRoutingModule,
@@ -26,11 +29,14 @@ import { NgxTranslateModule } from '../translate/translate.module';
     NbFormFieldModule,
     NbInputModule,
     NbButtonModule,
+    NbSpinnerModule,
+    NbIconModule,
+    NbListModule,
     NbCardModule,
     NbSpinnerModule,
     NgxTranslateModule
   ],
   providers: [UserService, AuthService],
-  exports: [ProfileComponent]
+  exports: [ProfileComponent, ListUsersComponent]
 })
 export class UserModule {}
