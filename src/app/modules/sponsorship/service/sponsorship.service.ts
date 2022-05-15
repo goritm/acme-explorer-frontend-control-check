@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
-import { CreateSponsorshipInput } from './graphql/inputs/create-sponsorship.input';
-import { CREATE_SELF_SPONSORSHIP } from './graphql/mutation/create-sponsorship.mutation';
-import { ResponseCreateSelfSponsorship } from './graphql/responses/self-trips.response';
+import { CreateSponsorshipInput } from '../graphql/inputs/create-sponsorship.input';
+import { CREATE_SELF_SPONSORSHIP } from '../graphql/mutation/create-sponsorship.mutation';
+import { GET_SELF_SPONSORSHIPS } from '../graphql/queries/self-sponsorships.query';
+import { ResponseCreateSelfSponsorship } from '../graphql/responses/create-self-sponsorship.response';
+import { ResponseSelfSponsorshipsQuery } from '../graphql/responses/self-sponsorships.response';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,14 @@ export class SponsorshipService {
       this.where = where || this.where;
     }
 
-    // TODO: Add query logic
+    return this.apollo.query<ResponseSelfSponsorshipsQuery>({
+      query: GET_SELF_SPONSORSHIPS,
+      variables: {
+        start: this.start,
+        limit: this.limit,
+        where: this.where
+      }
+    });
   }
 
   // getSponsorshipDetail(id: string | null) {
