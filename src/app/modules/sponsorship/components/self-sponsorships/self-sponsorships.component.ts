@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GraphqlSortOperationEnum } from 'src/utils/enums/graphql-sort-operation.enum';
 import { Sponsorship } from '../../graphql/types/sponsorship.type';
 import { SponsorshipService } from '../../service/sponsorship.service';
@@ -15,10 +16,17 @@ export class SelfSponsorshipsComponent implements OnInit {
   pageToLoadNext = 1;
   loading = false;
 
-  constructor(private sponsorshipService: SponsorshipService) {}
+  constructor(
+    private sponsorshipService: SponsorshipService,
+    private router: Router
+  ) {}
 
-  paySponsor(): void {
-    // TODO: implement
+  paySponsorship(id: string): void {
+    this.router.navigate(['/payments'], {
+      queryParams: {
+        sponsorshipId: id
+      }
+    });
   }
 
   loadNext() {

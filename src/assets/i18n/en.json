@@ -157,5 +157,22 @@
       },
       "notFound": "No users found"
     }
+  },
+  "configurations": {
+    "flatRate": {
+      "title": "Flat Rate",
+      "form": {
+        "price": {
+          "name": "Flat Rate",
+          "required": "Please enter a price",
+          "min": "Flat Rate must be at least 1",
+          "max": "Flat Rate must be less than 9999"
+        }
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "update": "Update"
+      }
+    }
   }
 }

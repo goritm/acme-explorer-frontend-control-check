@@ -3,8 +3,10 @@ import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
 import { CreateSponsorshipInput } from '../graphql/inputs/create-sponsorship.input';
 import { CREATE_SELF_SPONSORSHIP } from '../graphql/mutation/create-sponsorship.mutation';
+import { GET_SPONSORSHIP } from '../graphql/queries/get-sponsorship-by-id.query';
 import { GET_SELF_SPONSORSHIPS } from '../graphql/queries/self-sponsorships.query';
 import { ResponseCreateSelfSponsorship } from '../graphql/responses/create-self-sponsorship.response';
+import { ResponseGetSponsorshipByIdQuery } from '../graphql/responses/get-sponsorship-by-id.response';
 import { ResponseSelfSponsorshipsQuery } from '../graphql/responses/self-sponsorships.response';
 
 @Injectable({
@@ -47,6 +49,15 @@ export class SponsorshipService {
       mutation: CREATE_SELF_SPONSORSHIP,
       variables: {
         input: createSponsorshipInput
+      }
+    });
+  }
+
+  getSponsorshipById(id: string) {
+    return this.apollo.query<ResponseGetSponsorshipByIdQuery>({
+      query: GET_SPONSORSHIP,
+      variables: {
+        id
       }
     });
   }

@@ -9,6 +9,7 @@
             <br />
             <br />
             <img
+              *ngIf="trip.pictures.length > 0"
               class="img-responsive"
               src="{{ trip.pictures[0] }}"
               alt="{{ trip.title }}"

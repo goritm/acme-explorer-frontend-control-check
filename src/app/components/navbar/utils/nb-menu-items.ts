@@ -69,5 +69,16 @@ export const ADMIN_MENU_ITEMS = [
   },
   ...MANAGER_MENU_ITEMS,
   SPONSOR_MENU_ITEMS,
+  {
+    title: 'Configurations',
+    icon: 'settings-outline',
+    children: [
+      {
+        title: 'FlatRates',
+        icon: 'hash-outline',
+        link: '/configurations/flat-rate'
+      }
+    ]
+  },
   ...EXPLORER_MENU_ITEMS
 ];

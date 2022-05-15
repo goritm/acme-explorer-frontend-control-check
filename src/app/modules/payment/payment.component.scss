@@ -1,0 +1,19 @@
+.header-text {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+
+  nb-card {
+    width: fit-content;
+
+    nb-card-body {
+      margin: 0 auto;
+    }
+  }
+}

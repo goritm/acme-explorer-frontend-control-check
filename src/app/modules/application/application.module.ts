@@ -1,4 +1,3 @@
-import { RejectApplicationDialogComponent } from './components/dialog/reject-application-dialog/reject-application-dialog.component';
 import { GraphQLModule } from './../graphql/graphql.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,9 +9,11 @@ import {
   NbDialogModule,
   NbIconModule,
   NbInputModule,
+  NbListModule,
   NbSpinnerModule
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RejectApplicationDialogComponent } from './components/dialog/reject-application-dialog/reject-application-dialog.component';
 
 @NgModule({
   declarations: [ListApplicationsComponent, RejectApplicationDialogComponent],
@@ -27,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbCardModule,
     NbSpinnerModule,
     NbIconModule,
+    NbListModule,
     NbDialogModule.forChild()
   ],
   exports: [ListApplicationsComponent]
