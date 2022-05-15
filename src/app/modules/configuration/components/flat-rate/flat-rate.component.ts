@@ -88,7 +88,6 @@ export class FlatRateComponent implements OnInit {
   ngOnInit(): void {
     this.configurationService.listConfigurations({}).subscribe({
       next: ({ data }) => {
-        console.log(data);
         if (data.listConfigurations.count > 0) {
           this.configurationForm.patchValue({
             flatRate: data.listConfigurations.data[0].flatRate
