@@ -18,6 +18,7 @@ import {
 import { ProfileComponent } from '../user/components/profile/profile.component';
 import { SelfTripsComponent } from '../trip/components/self-trips/self-trips.component';
 import { CreateSponsorshipComponent } from '../sponsorship/components/create-sponsorship/create-sponsorship.component';
+import { ListUsersComponent } from '../user/components/list-users/list-users.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -87,7 +88,7 @@ const routes: Routes = [
   },
   {
     path: 'users',
-    component: RegisterComponent,
+    component: ListUsersComponent,
     canActivate: [AuthGuard],
     data: {
       expectedRoles: [UserRoles.ADMIN]
