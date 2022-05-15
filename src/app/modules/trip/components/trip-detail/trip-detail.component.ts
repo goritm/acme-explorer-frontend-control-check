@@ -20,7 +20,7 @@ import { finalize } from 'rxjs';
 })
 export class TripDetailComponent implements OnInit {
   trip: ITrip | undefined;
-  loading = false;
+  loading = true;
   userRole: string | undefined;
   isOwnTrip = false;
   tripIsNotCancelled = false;
@@ -49,6 +49,7 @@ export class TripDetailComponent implements OnInit {
       this.trip = data.getTripById;
       this.checkOwnTrip();
       this.checkTripIsNotCancelled();
+      this.loading = false;
     });
   }
 

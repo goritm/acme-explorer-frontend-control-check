@@ -16,9 +16,7 @@ export class ListApplicationsComponent implements OnInit {
   Object = Object;
   applications: IApplication[] = [];
   applicationCategories: any = {};
-  placeholders: unknown = [];
   pageSize = 25;
-  pageToLoadNext = 1;
   loading = false;
   userRole: string | undefined;
 
@@ -37,17 +35,16 @@ export class ListApplicationsComponent implements OnInit {
   }
 
   loadNext() {
-    this.placeholders = new Array(this.pageSize);
+    this.loading = true;
     this.applicationService
       .fetch({ limit: this.pageSize })
       .subscribe(({ data }) => {
-        this.placeholders = [];
         this.applications = data.getSelfApplications.data;
-        this.pageToLoadNext++;
 
         this.applicationCategories = this.categorizeApplications(
           data.getSelfApplications.data
         );
+        this.loading = false;
       });
   }
 
