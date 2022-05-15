@@ -46,7 +46,6 @@ export class ApplicationService {
   }
 
   rejectApplication(rejectApplicationInput: RejectApplicationInput) {
-    console.log(rejectApplicationInput);
     return this.apollo.mutate<RejectApplicationResponse>({
       mutation: REJECT_APPLICATION,
       variables: {
