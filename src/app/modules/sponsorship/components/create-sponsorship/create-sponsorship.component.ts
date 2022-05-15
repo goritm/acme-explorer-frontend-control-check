@@ -9,7 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
 import { finalize } from 'rxjs';
 import { CreateSponsorshipInput } from '../../graphql/inputs/create-sponsorship.input';
-import { SponsorshipService } from '../../sponsorship.service';
+import { SponsorshipService } from '../../service/sponsorship.service';
 import { TripService } from 'src/app/modules/trip/trip.service';
 import { TripState } from 'src/utils/enums/trip-state.enum';
 import { Trip } from 'src/app/modules/trip/graphql/types/trip.type';
@@ -107,7 +107,6 @@ export class CreateSponsorshipComponent implements OnInit {
       })
       .subscribe({
         next: ({ data }) => {
-          console.log('Count: ' + data.listTrips.count);
           this.trips = data.listTrips.data;
           this.loading = false;
         },
