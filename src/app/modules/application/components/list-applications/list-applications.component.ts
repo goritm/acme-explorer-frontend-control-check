@@ -95,6 +95,16 @@ export class ListApplicationsComponent implements OnInit {
     });
   }
 
+  payApplication(id: string) {
+    this.loading = true;
+
+    this.router.navigate(['/payments'], {
+      queryParams: {
+        applicationId: id
+      }
+    });
+  }
+
   cancelApplication(id: string) {
     this.loading = true;
 

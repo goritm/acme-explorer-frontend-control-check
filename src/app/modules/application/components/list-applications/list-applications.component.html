@@ -58,6 +58,14 @@
               </button>
               <button
                 nbButton
+                status="success"
+                (click)="payApplication(application.id)"
+                *ngIf="userRole === 'EXPLORER' && application.state == 'DUE'"
+              >
+                Pay
+              </button>
+              <button
+                nbButton
                 status="danger"
                 (click)="cancelApplication(application.id)"
                 *ngIf="
@@ -65,7 +73,7 @@
                   (application.state == 'PENDING' || application.state == 'DUE')
                 "
               >
-                Cancel Application
+                Cancel
               </button>
             </div>
 
