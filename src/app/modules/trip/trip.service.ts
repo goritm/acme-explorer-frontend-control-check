@@ -114,12 +114,8 @@ export class TripService {
       mutation: UPDATE_TRIP,
       variables: {
         input: {
-          data: {
-            ...updateTripInput.data
-          },
-          where: {
-            ...updateTripInput.where
-          }
+          data: updateTripInput.data,
+          where: updateTripInput.where
         }
       }
     });

@@ -1,5 +1,5 @@
 import { User } from 'src/app/modules/authentication/types/user.type';
-import { Trip } from 'src/app/modules/trip/types/trip.type';
+import { Trip } from 'src/app/modules/trip/graphql/types/trip.type';
 import { BaseEntity } from 'src/utils/classes/base.entity';
 import { SponsorshipState } from '../enums/sponsorship-states.enum';
 

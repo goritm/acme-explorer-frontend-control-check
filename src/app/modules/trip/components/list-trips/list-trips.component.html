@@ -8,7 +8,7 @@
       nbSpinnerStatus="basic"
     >
       <nb-list-item *ngFor="let trip of trips">
-        <nb-card routerLink="/trips/{{ trip.id }}" hover-class="hover">
+        <nb-card routerLink="/trips/detail/{{ trip.id }}" hover-class="hover">
           <nb-card-header>{{ trip.title }}</nb-card-header>
           <nb-card-body>
             {{ trip.description }}

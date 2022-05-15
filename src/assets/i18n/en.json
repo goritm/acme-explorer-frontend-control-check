@@ -75,6 +75,27 @@
         "cancel": "Cancel",
         "create": "Create"
       }
+    },
+    "self-list": {
+      "title": "My Sponsors",
+      "not-found": "You don't have any sponsorships yet",
+      "sponsor": {
+        "name": " <- Banner for your company",
+        "status": {
+          "inactive": "Status: Inactive",
+          "active": "Status: Active"
+        },
+        "buttons": {
+          "pay": "Pay"
+        },
+        "price": "Price for the sponsorship: "
+      },
+      "trips": {
+        "name": "Trip",
+        "title": "You are sponsoring this trip: ",
+        "description": "Description: ",
+        "owner": "Owner: "
+      }
     }
   }
 }

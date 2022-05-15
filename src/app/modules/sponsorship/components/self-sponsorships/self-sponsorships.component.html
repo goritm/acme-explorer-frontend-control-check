@@ -1,0 +1,96 @@
+<div class="header-text">
+  <h1 class="title">
+    {{ 'sponsorship.self-list.title' | translate }}
+  </h1>
+</div>
+
+<nb-accordion multi *ngIf="sponsorships.length > 0; else noSponsorships">
+  <nb-accordion-item *ngFor="let sponsor of sponsorships">
+    <nb-accordion-item-header>
+      <img class="picture-icon" [src]="sponsor.trip.pictures[0]" alt="{{ 'sponsorship.self-list.banner' | translate }}" />
+      <span>
+        {{ sponsor.trip.title }}
+      </span>
+        &nbsp;
+        -
+        &nbsp;
+      <span *ngIf="sponsor.state == 'ACTIVE'" >
+        {{ 'sponsorship.self-list.sponsor.status.active' | translate }}
+      </span>
+
+      <span *ngIf="sponsor.state == 'INACTIVE'" >
+        {{ 'sponsorship.self-list.sponsor.status.inactive' | translate }}
+      </span>
+    </nb-accordion-item-header>
+
+    <nb-accordion-item-body>
+       <nb-card>
+        <nb-card-body class="accordion-row">
+          <div class="accordion-colum">
+            <h2>
+              {{ 'sponsorship.self-list.trips.name' | translate }}
+            </h2>
+
+            <div class="separate-element">
+              <b>
+                {{ 'sponsorship.self-list.trips.title' | translate }}
+              </b>
+              <br>
+              {{ sponsor.trip.title }}
+            </div>
+
+            <div class="separate-element">
+              <b>
+                {{ 'sponsorship.self-list.trips.description' | translate }}
+              </b>
+              <br>
+              {{ sponsor.trip.description }}
+            </div>
+
+            <div class="separate-element">
+              <b>
+                {{ 'sponsorship.self-list.trips.owner' | translate }}
+              </b>
+              <br>
+              {{ sponsor.trip.manager.name }} {{ sponsor.trip.manager.lastName }}
+            </div>
+
+          </div>
+
+          <div class="accordion-colum">
+            <a href="{{ sponsor.link }}">
+              <img src="{{ sponsor.banner }}" alt="{{ sponsor.banner }}" class="img-responsive"/>
+            </a>
+          </div>
+
+          <div class="accordion-colum">
+
+            <h6>{{ 'sponsorship.self-list.sponsor.name' | translate }}</h6>
+            <b> {{ 'sponsorship.self-list.sponsor.price' | translate }} </b> 4500
+            <br>
+            <br>
+            <button
+                *ngIf="sponsor.state == 'INACTIVE'"
+                nbButton
+                status="danger"
+                size="medium"
+                (click)="paySponsor()">
+                {{ 'sponsorship.self-list.sponsor.buttons.pay' | translate }}
+            </button>
+          </div>
+
+        </nb-card-body>
+      </nb-card>
+    </nb-accordion-item-body>
+
+  </nb-accordion-item>
+</nb-accordion>
+
+<ng-template #noSponsorships>
+  <nb-card>
+    <nb-card-body>
+      <p>{{ 'sponsorship.self-list.not-found' | translate }}</p>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
