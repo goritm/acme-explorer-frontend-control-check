@@ -17,7 +17,8 @@ import {
   NbButtonModule,
   NbUserModule,
   NbToastrModule,
-  NbActionsModule
+  NbActionsModule,
+  NbSearchModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -50,6 +51,10 @@ import { ConfigurationModule } from './modules/configuration/configuration.modul
   ],
   imports: [
     ApplicationModule,
+    ShareModule,
+    UserModule,
+    PaymentModule,
+    ConfigurationModule,
     AuthenticationModule,
     BrowserModule,
     AppRoutingModule,
@@ -73,7 +78,8 @@ import { ConfigurationModule } from './modules/configuration/configuration.modul
     ShareModule,
     UserModule,
     PaymentModule,
-    ConfigurationModule
+    ConfigurationModule,
+    NbSearchModule
   ],
   bootstrap: [AppComponent]
 })
