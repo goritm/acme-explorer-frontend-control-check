@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { NbSearchService } from '@nebular/theme';
 import { TripState } from 'src/utils/enums/trip-state.enum';
 import { Trip } from '../../graphql/types/trip.type';
 import { TripService } from '../../trip.service';
@@ -16,7 +17,47 @@ export class ListTripsComponent {
   pageToLoadNext = 1;
   loading = false;
 
-  constructor(private tripService: TripService) {}
+  constructor(
+    private tripService: TripService,
+    private searchService: NbSearchService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadNext();
+
+    this.searchService
+      .onSearchSubmit()
+      .subscribe(({ term: searchBarResult }: any) => {
+        const filteredTrips = this.trips.filter(
+          ({ title, description, ticket }) => {
+            const sbResultLowerCase = searchBarResult.toLowerCase();
+            return (
+              title.toLowerCase().includes(sbResultLowerCase) ||
+              description.toLowerCase().includes(sbResultLowerCase) ||
+              ticket.toLowerCase().includes(sbResultLowerCase)
+            );
+          }
+        );
+
+        console.log(filteredTrips);
+
+        this.trips = filteredTrips;
+
+        // Fetch in DB
+        // this.tripService
+        //   .fetch({
+        //     where: {
+        //       title: searchBarResult
+        //     }
+        //   })
+        //   .subscribe({
+        //     next: ({ data }) => {
+        //       console.log(data.listTrips.data);
+        //       this.trips = data.listTrips.data;
+        //     }
+        //   });
+      });
+  }
 
   loadNext() {
     if (this.loading) {
@@ -35,9 +76,5 @@ export class ListTripsComponent {
           this.pageToLoadNext++;
         }
       });
-  }
-
-  ngOnInit(): void {
-    this.loadNext();
   }
 }

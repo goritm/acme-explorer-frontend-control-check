@@ -17,7 +17,8 @@ import {
   NbButtonModule,
   NbUserModule,
   NbToastrModule,
-  NbActionsModule
+  NbActionsModule,
+  NbSearchModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -48,6 +49,8 @@ import { SponsorshipModule } from './modules/sponsorship/sponsorship.module';
   ],
   imports: [
     ApplicationModule,
+    ShareModule,
+    UserModule,
     AuthenticationModule,
     BrowserModule,
     AppRoutingModule,
@@ -68,8 +71,7 @@ import { SponsorshipModule } from './modules/sponsorship/sponsorship.module';
     NbButtonModule,
     NbUserModule,
     NbActionsModule,
-    ShareModule,
-    UserModule
+    NbSearchModule
   ],
   bootstrap: [AppComponent]
 })
