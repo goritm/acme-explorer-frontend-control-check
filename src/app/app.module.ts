@@ -37,6 +37,7 @@ import { ShareModule } from './components/share.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserModule } from './modules/user/user.module';
 import { SponsorshipModule } from './modules/sponsorship/sponsorship.module';
+import { PaymentModule } from './modules/payment/payment.module';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { SponsorshipModule } from './modules/sponsorship/sponsorship.module';
     NbUserModule,
     NbActionsModule,
     ShareModule,
-    UserModule
+    UserModule,
+    PaymentModule
   ],
   bootstrap: [AppComponent]
 })
