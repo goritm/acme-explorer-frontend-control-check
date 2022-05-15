@@ -19,6 +19,7 @@ import { ProfileComponent } from '../user/components/profile/profile.component';
 import { SelfTripsComponent } from '../trip/components/self-trips/self-trips.component';
 import { CreateSponsorshipComponent } from '../sponsorship/components/create-sponsorship/create-sponsorship.component';
 import { ListUsersComponent } from '../user/components/list-users/list-users.component';
+import { SelfSponsorshipsComponent } from '../sponsorship/components/self-sponsorships/self-sponsorships.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -27,7 +28,7 @@ const routes: Routes = [
     component: ListTripsComponent
   },
   {
-    path: 'trips/:id',
+    path: 'trips/detail/:id',
     component: TripDetailComponent
   },
   {
@@ -49,6 +50,14 @@ const routes: Routes = [
   {
     path: 'sponsors/create',
     component: CreateSponsorshipComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: SPONSOR
+    }
+  },
+  {
+    path: 'sponsors/self',
+    component: SelfSponsorshipsComponent,
     canActivate: [AuthGuard],
     data: {
       expectedRoles: SPONSOR

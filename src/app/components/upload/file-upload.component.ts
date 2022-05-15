@@ -26,6 +26,7 @@ export class FileUploadComponent {
     private cdr: ChangeDetectorRef
   ) {}
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   uploadImage($event: any) {
     const file = $event.target.files?.[0];
     this.loading = true;
@@ -42,7 +43,6 @@ export class FileUploadComponent {
       .subscribe({
         next: (data) => {
           this.imageUrl = data?.body;
-          console.log(this.imageUrl);
           this.control.setValue(this.imageUrl, {
             emitModelToViewChange: false
           });

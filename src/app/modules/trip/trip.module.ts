@@ -65,7 +65,10 @@ import { CancelTripDialogComponent } from './components/trip-detail/dialog/cance
     ListTripsComponent,
     TripDetailComponent,
     CreateTripComponent,
-    SelfTripsComponent
+    SelfTripsComponent,
+    ApplyToTripDialogComponent,
+    EditTripDialogComponent,
+    CancelTripDialogComponent
   ]
 })
 export class TripModule {}
