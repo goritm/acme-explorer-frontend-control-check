@@ -1,0 +1,32 @@
+.hover {
+  cursor: pointer;
+}
+
+.header-text {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.update-flat-rate-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  gap: 1rem;
+}
+
+.update-flat-rate-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.error-text {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+.button-rows {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
