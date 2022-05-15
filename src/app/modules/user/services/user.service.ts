@@ -14,6 +14,9 @@ import { LOCK_USER } from '../graphql/mutations/lock-user.mutation';
 import { ResponseLockUserMutation } from '../graphql/types/lock-user-response.type';
 import { UNLOCK_USER } from '../graphql/mutations/unlock-user.mutation';
 import { ResponseUnlockUserMutation } from '../graphql/types/unlock-user-response.type';
+import { CreateUser } from '../graphql/inputs/create-user.input';
+import { CREATE_USER } from '../graphql/mutations/create-user.mutation';
+import { ResponseCreateUserMutation } from '../graphql/types/create-user-response.type';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +65,15 @@ export class UserService {
       mutation: UPDATE_SELF,
       variables: {
         input: updateUserPayload
+      }
+    });
+  }
+
+  create(createUser: CreateUser) {
+    return this.apollo.mutate<ResponseCreateUserMutation>({
+      mutation: CREATE_USER,
+      variables: {
+        input: createUser
       }
     });
   }
