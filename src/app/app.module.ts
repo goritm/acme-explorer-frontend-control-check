@@ -37,6 +37,7 @@ import { ShareModule } from './components/share.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserModule } from './modules/user/user.module';
 import { SponsorshipModule } from './modules/sponsorship/sponsorship.module';
+import { PaymentModule } from './modules/payment/payment.module';
 import { ConfigurationModule } from './modules/configuration/configuration.module';
 
 @NgModule({
@@ -71,6 +72,7 @@ import { ConfigurationModule } from './modules/configuration/configuration.modul
     NbActionsModule,
     ShareModule,
     UserModule,
+    PaymentModule
     ConfigurationModule
   ],
   bootstrap: [AppComponent]

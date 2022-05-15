@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { finalize } from 'rxjs';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
@@ -12,7 +13,9 @@ import { RejectApplicationDialogComponent } from '../dialog/reject-application-d
   styleUrls: ['./list-applications.component.scss']
 })
 export class ListApplicationsComponent implements OnInit {
+  Object = Object;
   applications: IApplication[] = [];
+  applicationCategories: any = {};
   placeholders: unknown = [];
   pageSize = 25;
   pageToLoadNext = 1;
@@ -24,6 +27,7 @@ export class ListApplicationsComponent implements OnInit {
     private authService: AuthService,
     private dialogService: NbDialogService,
     private toastrService: NbToastrService,
+    private router: Router,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -40,7 +44,22 @@ export class ListApplicationsComponent implements OnInit {
         this.placeholders = [];
         this.applications = data.getSelfApplications.data;
         this.pageToLoadNext++;
+
+        this.applicationCategories = this.categorizeApplications(
+          data.getSelfApplications.data
+        );
       });
+  }
+
+  categorizeApplications(applications: IApplication[]) {
+    return applications.reduce((categories: any, application) => {
+      const { state } = application;
+
+      if (!categories[state]) categories[state] = [];
+
+      categories[state].push(application);
+      return categories;
+    }, {});
   }
 
   acceptApplication(id: string) {
@@ -74,5 +93,42 @@ export class ListApplicationsComponent implements OnInit {
         application
       }
     });
+  }
+
+  payApplication(id: string) {
+    this.router.navigate(['/payments'], {
+      queryParams: {
+        applicationId: id
+      }
+    });
+  }
+
+  cancelApplication(id: string) {
+    this.loading = true;
+
+    this.applicationService
+      .cancelApplication(id)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: ({ data }) => {
+          if (!(data === undefined || data === null)) {
+            this.toastrService.success(`Application has been cancelled.`);
+            this.loadNext();
+          }
+        },
+        error: (err) => {
+          this.toastrService.danger(err.message);
+          console.error(err);
+        }
+      });
+  }
+
+  goToTrip(id: string) {
+    this.router.navigate(['/trips/detail/', id]);
   }
 }
