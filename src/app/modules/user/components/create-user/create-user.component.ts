@@ -2,29 +2,28 @@ import { Router } from '@angular/router';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component,
-  OnInit
+  Component
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
 import { finalize } from 'rxjs';
 import { TripService } from 'src/app/modules/trip/trip.service';
-import { TripState } from 'src/utils/enums/trip-state.enum';
-import { Trip } from 'src/app/modules/trip/graphql/types/trip.type';
+import { CreateUserInput } from '../../graphql/inputs/create-user.input';
+import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'create-sponsorship',
-  templateUrl: './create-sponsorship.component.html',
-  styleUrls: ['./create-sponsorship.component.scss'],
+  selector: 'create-user',
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateSponsorshipComponent implements OnInit {
-  trips: Trip[] = [];
+export class CreateUserComponent {
+  // trips: Trip[] = [];
   submitted = false;
   loading = false;
   progress = 0;
 
-  createSponsorshipForm = this.fb.group({
+  createUserForm = this.fb.group({
     trip: ['', [Validators.required]],
     link: [
       '',
@@ -37,7 +36,7 @@ export class CreateSponsorshipComponent implements OnInit {
   });
 
   constructor(
-    private sponsorshipService: SponsorshipService,
+    private userService: UserService,
     private tripService: TripService,
     private router: Router,
     private fb: FormBuilder,
@@ -47,7 +46,7 @@ export class CreateSponsorshipComponent implements OnInit {
 
   validate() {
     this.submitted = false;
-    if (this.createSponsorshipForm.valid) {
+    if (this.createUserForm.valid) {
       this.createSponsorship();
     } else {
       this.submitted = true;
@@ -58,11 +57,10 @@ export class CreateSponsorshipComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
 
-    const createSponsorshipInput: CreateSponsorshipInput =
-      this.createSponsorshipForm.value;
+    const createUserInput: CreateUserInput = this.createUserForm.value;
 
-    this.sponsorshipService
-      .createSponsorship(createSponsorshipInput)
+    this.userService
+      .create(createUserInput)
       .pipe(
         finalize(() => {
           this.loading = false;
@@ -94,26 +92,5 @@ export class CreateSponsorshipComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['/']);
-  }
-
-  ngOnInit(): void {
-    this.tripService
-      .fetch({
-        where: {
-          state: TripState.ACTIVE
-        }
-      })
-      .subscribe({
-        next: ({ data }) => {
-          this.trips = data.listTrips.data;
-          this.loading = false;
-        },
-        error: (err) => {
-          this.toastrService.show(err.message, 'Error', {
-            duration: 3000,
-            status: 'danger'
-          });
-        }
-      });
   }
 }

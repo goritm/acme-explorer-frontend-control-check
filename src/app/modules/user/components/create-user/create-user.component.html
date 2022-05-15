@@ -4,9 +4,9 @@
   </h1>
 </div>
 
-<form (ngSubmit)="validate()" [formGroup]="createSponsorshipForm">
+<form (ngSubmit)="validate()" [formGroup]="createUserForm">
   <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
-    <nb-card-body class="create-sponsorship-card">
+    <nb-card-body class="create-user-card">
       <div>
         <label class="label-index" for="link">
            {{ 'sponsorship.create.form.link.name' | translate }}:
@@ -23,18 +23,82 @@
           status="basic"
           required="true"
         />
-        <div *ngIf="submitted && createSponsorshipForm.controls['link']">
+        <div *ngIf="submitted && createUserForm.controls['link']">
           <p
             class="error-text"
-            *ngIf="createSponsorshipForm.controls['link']?.errors?.['required']"
+            *ngIf="createUserForm.controls['link']?.errors?.['required']"
           >
             {{ 'sponsorship.create.form.link.required' | translate }}
           </p>
           <p
             class="error-text"
-            *ngIf="createSponsorshipForm.controls['link']?.errors?.['pattern']"
+            *ngIf="createUserForm.controls['link']?.errors?.['pattern']"
           >
             {{ 'sponsorship.create.form.link.invalid' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-index" for="lastName">
+           {{ 'sponsorship.create.form.lastName.name' | translate }}:
+        </label>
+        <input
+          nbInput
+          fullWidth
+          id="lastName"
+          name="lastName"
+          formControlName="lastName"
+          placeholder="{{ 'sponsorship.create.form.lastName.example' | translate }}"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && createUserForm.controls['lastName']">
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['lastName']?.errors?.['required']"
+          >
+            {{ 'sponsorship.create.form.lastName.required' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['lastName']?.errors?.['pattern']"
+          >
+            {{ 'sponsorship.create.form.lastName.invalid' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-index" for="email">
+           {{ 'sponsorship.create.form.email.name' | translate }}:
+        </label>
+        <input
+          nbInput
+          fullWidth
+          id="email"
+          name="email"
+          formControlName="email"
+          placeholder="{{ 'sponsorship.create.form.email.example' | translate }}"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && createUserForm.controls['email']">
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['email']?.errors?.['required']"
+          >
+            {{ 'sponsorship.create.form.email.required' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['email']?.errors?.['pattern']"
+          >
+            {{ 'sponsorship.create.form.email.invalid' | translate }}
           </p>
         </div>
       </div>
@@ -55,16 +119,16 @@
           status="basic"
           required="true"
         />
-        <div *ngIf="submitted && createSponsorshipForm.controls['banner']">
+        <div *ngIf="submitted && createUserForm.controls['banner']">
           <p
             class="error-text"
-            *ngIf="createSponsorshipForm.controls['banner']?.errors?.['required']"
+            *ngIf="createUserForm.controls['banner']?.errors?.['required']"
           >
             {{ 'sponsorship.create.form.banner.required' | translate }}
           </p>
           <p
             class="error-text"
-            *ngIf="createSponsorshipForm.controls['banner']?.errors?.['pattern']"
+            *ngIf="createUserForm.controls['banner']?.errors?.['pattern']"
           >
             {{ 'sponsorship.create.form.banner.invalid' | translate }}
           </p>
@@ -76,12 +140,14 @@
           {{ 'sponsorship.create.form.trip.name' | translate }}:
         </label>
         <nb-select fullWidth placeholder="{{ 'sponsorship.create.form.trip.name' | translate }}" formControlName="trip">
-          <nb-option *ngFor="let trip of trips" [value]="trip.id">{{ trip.title }}</nb-option>
+          <nb-option >
+            {{ 'sponsorship.create.form.trip.option.1' | translate }}
+          </nb-option>
         </nb-select>
-        <div *ngIf="submitted && createSponsorshipForm.controls['trip']">
+        <div *ngIf="submitted && createUserForm.controls['trip']">
           <p
             class="error-text"
-            *ngIf="createSponsorshipForm.controls['trip']?.errors?.['required']"
+            *ngIf="createUserForm.controls['trip']?.errors?.['required']"
           >
             {{ 'sponsorship.create.form.trip.name' | translate }}
           </p>
@@ -107,7 +173,6 @@
         fullWidth
         type="submit"
         status="primary"
-        [disabled]="trips.length === 0"
         size="medium">
         {{ 'sponsorship.create.buttons.create' | translate }}
       </button>
