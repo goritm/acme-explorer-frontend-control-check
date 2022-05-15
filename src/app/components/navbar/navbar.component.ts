@@ -37,14 +37,12 @@ export class NavbarComponent implements OnInit {
   }
 
   isAdmin(): boolean {
-    console.log(this.currentUser.role === UserRoles.ADMIN);
     return this.currentUser.role === UserRoles.ADMIN;
   }
 
   menu(): NbMenuItem[] {
     if (this.isAdmin()) {
       this.items = ADMIN_MENU_ITEMS;
-      return this.items;
     } else if (this.isManager()) {
       this.items = [...MANAGER_MENU_ITEMS, ...EXPLORER_MENU_ITEMS];
     } else if (this.isSponsor()) {
