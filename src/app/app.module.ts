@@ -72,7 +72,7 @@ import { ConfigurationModule } from './modules/configuration/configuration.modul
     NbActionsModule,
     ShareModule,
     UserModule,
-    PaymentModule
+    PaymentModule,
     ConfigurationModule
   ],
   bootstrap: [AppComponent]
