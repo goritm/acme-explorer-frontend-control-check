@@ -3,6 +3,11 @@ import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
 import { GET_SELF_APPLICATIONS } from 'src/utils/queries/queries';
 import { ResponseListApplicationsQuery } from 'src/utils/queries/responses';
+import { ACCEPT_APPLICATION } from './graphql/mutations/accept-application.mutation';
+import { AcceptApplicationResponse } from './graphql/responses/accept-application.response';
+import { REJECT_APPLICATION } from './graphql/mutations/reject-application.mutation';
+import { RejectApplicationResponse } from './graphql/responses/reject-application.response';
+import { RejectApplicationInput } from './graphql/inputs/reject-application.input';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +36,24 @@ export class ApplicationService {
     });
   }
 
-  acceptApplication(id: string) {}
+  acceptApplication(id: string) {
+    return this.apollo.mutate<AcceptApplicationResponse>({
+      mutation: ACCEPT_APPLICATION,
+      variables: {
+        id
+      }
+    });
+  }
 
-  rejectApplication(id: string) {}
+  rejectApplication(rejectApplicationInput: RejectApplicationInput) {
+    console.log(rejectApplicationInput);
+    return this.apollo.mutate<RejectApplicationResponse>({
+      mutation: REJECT_APPLICATION,
+      variables: {
+        input: {
+          ...rejectApplicationInput
+        }
+      }
+    });
+  }
 }

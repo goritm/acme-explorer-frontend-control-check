@@ -1,0 +1,28 @@
+<nb-card *ngIf="application" [nbSpinner]="loading" nbSpinnerStatus="basic">
+  <nb-card-header class="header-container">
+    <p>
+      {{ title }}: <b>{{ application.id }}</b>
+    </p>
+    <nb-icon
+      icon="close-outline"
+      (click)="close()"
+      hover-class="hover"
+    ></nb-icon>
+  </nb-card-header>
+  <nb-card-body>
+    <p>Do you want to reject this application? This action cannot be undone.</p>
+    <form [formGroup]="rejectApplicationForm" (ngSubmit)="rejectApplication()">
+      <textarea
+        formControlName="reasonRejected"
+        nbInput
+        fullWidth
+        rows="3"
+        placeholder="Please add a reason of rejection..."
+        class="textarea-container"
+      ></textarea>
+      <button nbButton type="submit" [disabled]="!rejectApplicationForm.valid">
+        Reject application
+      </button>
+    </form>
+  </nb-card-body>
+</nb-card>

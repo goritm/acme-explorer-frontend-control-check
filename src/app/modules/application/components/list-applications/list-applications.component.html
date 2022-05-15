@@ -1,4 +1,9 @@
-<nb-accordion multi *ngIf="applications.length > 0; else noApplications">
+<nb-accordion
+  multi
+  *ngIf="applications.length > 0; else noApplications"
+  [nbSpinner]="loading"
+  nbSpinnerStatus="basic"
+>
   <nb-accordion-item *ngFor="let application of applications">
     <nb-accordion-item-header>
       <span>{{ application.trip.title }}</span> -
@@ -11,6 +16,26 @@
       <p>
         {{ application.reasonCancelled }}
       </p>
+
+      <div
+        *ngIf="userRole === 'MANAGER' && application.state == 'PENDING'"
+        class="manager-buttons"
+      >
+        <button
+          nbButton
+          status="success"
+          (click)="acceptApplication(application.id)"
+        >
+          Accept
+        </button>
+        <button
+          nbButton
+          status="danger"
+          (click)="rejectApplication(application)"
+        >
+          Reject
+        </button>
+      </div>
     </nb-accordion-item-body>
   </nb-accordion-item>
 </nb-accordion>

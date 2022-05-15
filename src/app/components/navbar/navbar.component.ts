@@ -37,7 +37,6 @@ export class NavbarComponent implements OnInit {
   }
 
   isAdmin(): boolean {
-    console.log(this.currentUser.role === UserRoles.ADMIN);
     return this.currentUser.role === UserRoles.ADMIN;
   }
 
