@@ -12,10 +12,12 @@ import {
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
 import { PaymentComponent } from './payment.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [PaymentComponent],
   imports: [
+    NgxPayPalModule,
     GraphQLModule,
     AppRoutingModule,
     CommonModule,
