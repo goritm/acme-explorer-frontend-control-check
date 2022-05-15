@@ -6,6 +6,7 @@ import {
   NbButtonModule,
   NbCardModule,
   NbFormFieldModule,
+  NbIconModule,
   NbInputModule,
   NbListModule,
   NbSpinnerModule
@@ -29,6 +30,7 @@ import { ListUsersComponent } from './components/list-users/list-users.component
     NbInputModule,
     NbButtonModule,
     NbSpinnerModule,
+    NbIconModule,
     NbListModule,
     NbCardModule,
     NbSpinnerModule,

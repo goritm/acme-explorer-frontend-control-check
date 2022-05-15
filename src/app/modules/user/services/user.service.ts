@@ -10,6 +10,10 @@ import { ResponseUpdateSelfMutation } from '../graphql/types/update-self-respons
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
 import { LIST_USERS } from '../graphql/queries/list-users.query';
 import { ResponseListUsersQuery } from '../graphql/types/list-users-reponse.type';
+import { LOCK_USER } from '../graphql/mutations/lock-user.mutation';
+import { ResponseLockUserMutation } from '../graphql/types/lock-user-response.type';
+import { UNLOCK_USER } from '../graphql/mutations/unlock-user.mutation';
+import { ResponseUnlockUserMutation } from '../graphql/types/unlock-user-response.type';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +62,24 @@ export class UserService {
       mutation: UPDATE_SELF,
       variables: {
         input: updateUserPayload
+      }
+    });
+  }
+
+  lockUser(id: string) {
+    return this.apollo.mutate<ResponseLockUserMutation>({
+      mutation: LOCK_USER,
+      variables: {
+        id
+      }
+    });
+  }
+
+  unlockUser(id: string) {
+    return this.apollo.mutate<ResponseUnlockUserMutation>({
+      mutation: UNLOCK_USER,
+      variables: {
+        id
       }
     });
   }
