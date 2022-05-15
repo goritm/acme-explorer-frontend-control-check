@@ -3,8 +3,17 @@
   margin-bottom: 2rem;
 }
 
-ngx-paypal > div {
+.card-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  margin-top: 2rem;
+
+  nb-card {
+    width: fit-content;
+
+    nb-card-body {
+      margin: 0 auto;
+    }
+  }
 }
