@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GraphqlSortOperationEnum } from 'src/utils/enums/graphql-sort-operation.enum';
 import { Sponsorship } from '../../graphql/types/sponsorship.type';
 import { SponsorshipService } from '../../service/sponsorship.service';
 
@@ -17,7 +18,7 @@ export class SelfSponsorshipsComponent implements OnInit {
   constructor(private sponsorshipService: SponsorshipService) {}
 
   paySponsor(): void {
-    console.log('paySponsor');
+    // TODO: implement
   }
 
   loadNext() {
@@ -28,7 +29,12 @@ export class SelfSponsorshipsComponent implements OnInit {
     this.loading = true;
     this.placeholders = new Array(this.pageSize);
     this.sponsorshipService
-      .fetch({ limit: this.pageSize })
+      .fetch({
+        limit: this.pageSize,
+        sort: {
+          createdAt: GraphqlSortOperationEnum.desc
+        }
+      })
       .subscribe(({ data }) => {
         this.placeholders = [];
         this.sponsorships = data.getSelfSponsorships.data;

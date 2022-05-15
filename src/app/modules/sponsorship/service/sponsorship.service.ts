@@ -14,15 +14,17 @@ export class SponsorshipService {
   start = 0;
   limit = 10;
   where: unknown = {};
+  sort: unknown = undefined;
 
   constructor(private apollo: Apollo) {}
 
   fetch(listSponsorshipsParams?: FilterInputParams) {
     if (listSponsorshipsParams) {
-      const { start, limit, where } = listSponsorshipsParams;
+      const { start, limit, where, sort } = listSponsorshipsParams;
       this.start = start || this.start;
       this.limit = limit || this.limit;
       this.where = where || this.where;
+      this.sort = sort || this.sort;
     }
 
     return this.apollo.query<ResponseSelfSponsorshipsQuery>({
@@ -30,7 +32,8 @@ export class SponsorshipService {
       variables: {
         start: this.start,
         limit: this.limit,
-        where: this.where
+        where: this.where,
+        sort: this.sort
       }
     });
   }

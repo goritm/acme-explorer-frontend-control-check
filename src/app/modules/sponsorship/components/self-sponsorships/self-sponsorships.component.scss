@@ -4,25 +4,32 @@
 }
 
 .img-responsive {
-  height: 400px;
-  width: 200px;
+  height: 300px;
+  width: 150px;
 }
 
 .picture-icon {
-  height: 4px;
-  width: 4px;
+  height: 80px;
+  width: 80px;
+  margin-right: 3%;
 }
 
 .accordion-row {
   display: flex;
-  align-items: center;
   flex-direction: row;
+  margin: auto;
   gap: 1rem;
+}
+
+.seperate-element {
+  margin-bottom: 2rem;
 }
 
 .accordion-column {
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: auto;
   gap: 1rem;
 }
+
