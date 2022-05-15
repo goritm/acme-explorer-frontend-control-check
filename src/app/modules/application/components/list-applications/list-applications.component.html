@@ -1,39 +1,85 @@
+<div class="header-text">
+  <h1 class="title">My Applications</h1>
+</div>
+
 <nb-accordion
   multi
   *ngIf="applications.length > 0; else noApplications"
   [nbSpinner]="loading"
   nbSpinnerStatus="basic"
 >
-  <nb-accordion-item *ngFor="let application of applications">
+  <nb-accordion-item
+    *ngFor="let category of Object.keys(applicationCategories)"
+    [ngStyle]="{
+      'background-color':
+        category === 'PENDING'
+          ? 'var(--color-primary-400)'
+          : category === 'DUE'
+          ? 'var(--color-info-500)'
+          : category === 'CANCELLED'
+          ? 'var(--color-warning-500)'
+          : category === 'REJECTED'
+          ? 'var(--color-danger-500)'
+          : ''
+    }"
+  >
     <nb-accordion-item-header>
-      <span>{{ application.trip.title }}</span> -
-      <span>{{ application.state }}</span>
+      <p>
+        <b>{{ category }}</b>
+      </p>
     </nb-accordion-item-header>
     <nb-accordion-item-body>
-      <p>Description: {{ application.trip.description }}</p>
-      <br />
-      <p>Comments: {{ application.comments[0] }}</p>
-      <p>Reason Rejected: {{ application.reasonRejected }}</p>
+      <nb-list>
+        <nb-list-item
+          *ngFor="let application of applicationCategories[category]"
+        >
+          <div class="list-item-container">
+            <div class="text-container">
+              <h3 class="title">{{ application.trip.title }}</h3>
+              <p class="description">{{ application.trip.description }}</p>
+            </div>
 
-      <div
-        *ngIf="userRole === 'MANAGER' && application.state == 'PENDING'"
-        class="manager-buttons"
-      >
-        <button
-          nbButton
-          status="success"
-          (click)="acceptApplication(application.id)"
-        >
-          Accept
-        </button>
-        <button
-          nbButton
-          status="danger"
-          (click)="rejectApplication(application)"
-        >
-          Reject
-        </button>
-      </div>
+            <div class="additional-info">
+              <p *ngIf="application.comments[0]">
+                <b>Comments:</b> {{ application.comments[0] }}
+              </p>
+              <p *ngIf="application.reasonRejected">
+                <b>Reason of rejection:</b> {{ application.reasonRejected }}
+              </p>
+            </div>
+
+            <div class="buttons">
+              <button
+                nbButton
+                status="primary"
+                (click)="goToTrip(application.trip.id)"
+              >
+                Go to Trip
+              </button>
+            </div>
+
+            <div
+              class="manager-buttons"
+              *ngIf="userRole === 'MANAGER' && application.state == 'PENDING'"
+            >
+              <button
+                nbButton
+                status="success"
+                (click)="acceptApplication(application.id)"
+              >
+                Accept
+              </button>
+              <button
+                nbButton
+                status="danger"
+                (click)="rejectApplication(application)"
+              >
+                Reject
+              </button>
+            </div>
+          </div>
+        </nb-list-item>
+      </nb-list>
     </nb-accordion-item-body>
   </nb-accordion-item>
 </nb-accordion>
