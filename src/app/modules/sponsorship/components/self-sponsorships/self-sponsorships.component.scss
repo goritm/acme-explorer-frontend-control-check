@@ -1,0 +1,28 @@
+.header-text {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.img-responsive {
+  height: 400px;
+  width: 200px;
+}
+
+.picture-icon {
+  height: 4px;
+  width: 4px;
+}
+
+.accordion-row {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.accordion-column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}

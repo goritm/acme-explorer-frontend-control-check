@@ -1,0 +1,64 @@
+<div class="header-text">
+  <h1 class="title">
+    {{ 'sponsorship.self-list.title' | translate }}
+  </h1>
+</div>
+
+<nb-accordion multi *ngIf="sponsorships.length > 0; else noSponsorships">
+  <nb-accordion-item *ngFor="let sponsor of sponsorships">
+    <nb-accordion-item-header>
+      <div class="row">
+        <div class="col-md-8">
+          <span>
+            {{ sponsor.trip.title }}
+          </span>
+          &nbsp;
+          -
+          &nbsp;
+          <span *ngIf="sponsor.state == 'ACTIVE'" class="danger" >
+            {{ 'sponsorship.self-list.active' | translate }}
+          </span>
+          <span *ngIf="sponsor.state == 'INACTIVE'" class="danger" >
+            {{ 'sponsorship.self-list.inactive' | translate }}
+          </span>
+          <h2 class="title">
+            {{ sponsor.trip.title }}
+          </h2>
+        </div>
+        <div class="col-md-4">
+          <button
+            nbButton
+            fullWidth
+            type="danger"
+            size="small">
+            {{ 'sponsorship.self-list.buttons.pay' | translate }}
+          </button>
+        </div>
+      </div>
+    </nb-accordion-item-header>
+
+    <nb-accordion-item-body>
+       <nb-card>
+         <nb-card-body class="accordion-row">
+        <p>
+          {{ sponsor.trip.description }}
+        </p>
+        <br />
+        <a href="{{ sponsor.link }}">
+          <img src="{{ sponsor.banner }}" alt="{{ sponsor.banner }}" class="img-responsive"/>
+        </a>
+        </nb-card-body>
+      </nb-card>
+    </nb-accordion-item-body>
+
+  </nb-accordion-item>
+</nb-accordion>
+
+<ng-template #noSponsorships>
+  <nb-card>
+    <nb-card-body>
+      <p>{{ 'sponsorship.self-list.not-found' | translate }}</p>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
