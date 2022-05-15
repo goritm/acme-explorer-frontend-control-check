@@ -70,6 +70,27 @@
         "cancel": "Cancelar",
         "create": "Crear"
       }
+    },
+    "self-list": {
+      "title": "Mis publicidades",
+      "not-found": "No tienes publicidades creadas",
+      "sponsor": {
+        "name": " <- Banner publicitario",
+        "status": {
+          "inactive": "Estado: Inactivo",
+          "active": "Estado: Activo"
+        },
+        "buttons": {
+          "pay": "Pagar"
+        },
+        "price": "Precio de la publicidad: "
+      },
+      "trips": {
+        "name": "Viaje",
+        "title": "Tu publicidad se mostrará en el siguiente viaje: ",
+        "description": "Descripción: ",
+        "owner": "Propietario: "
+      }
     }
   }
 }
