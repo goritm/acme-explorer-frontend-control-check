@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TripState } from 'src/utils/enums/trip-state.enum';
 import { Trip } from '../../graphql/types/trip.type';
 import { TripService } from '../../trip.service';
 
@@ -10,7 +11,7 @@ import { TripService } from '../../trip.service';
 })
 export class ListTripsComponent {
   trips: Trip[] = [];
-  pageSize = 10;
+  pageSize = 25;
   placeholders: unknown = [];
   pageToLoadNext = 1;
   loading = false;
@@ -24,14 +25,16 @@ export class ListTripsComponent {
 
     this.loading = true;
     this.placeholders = new Array(this.pageSize);
-    this.tripService.fetch({ limit: this.pageSize }).subscribe({
-      next: ({ data }) => {
-        this.placeholders = [];
-        this.trips = data.listTrips.data;
-        this.loading = false;
-        this.pageToLoadNext++;
-      }
-    });
+    this.tripService
+      .fetch({ limit: this.pageSize, where: { state: TripState.ACTIVE } })
+      .subscribe({
+        next: ({ data }) => {
+          this.placeholders = [];
+          this.trips = data.listTrips.data;
+          this.loading = false;
+          this.pageToLoadNext++;
+        }
+      });
   }
 
   ngOnInit(): void {

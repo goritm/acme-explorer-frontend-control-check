@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ListApplicationsService } from './list-applications.service';
-import { IApplication } from '../../interfaces/application.interface';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
+import { finalize } from 'rxjs';
+import { AuthService } from 'src/app/modules/authentication/services/auth.service';
+import { ApplicationService } from '../../application.service';
+import { IApplication } from '../../graphql/interfaces/application.interface';
+import { RejectApplicationDialogComponent } from '../dialog/reject-application-dialog/reject-application-dialog.component';
 
 @Component({
   selector: 'list-applications',
@@ -13,27 +17,62 @@ export class ListApplicationsComponent implements OnInit {
   pageSize = 25;
   pageToLoadNext = 1;
   loading = false;
+  userRole: string | undefined;
 
-  constructor(private listApplicationService: ListApplicationsService) {}
+  constructor(
+    private applicationService: ApplicationService,
+    private authService: AuthService,
+    private dialogService: NbDialogService,
+    private toastrService: NbToastrService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+    this.loadNext();
+    this.userRole = this.authService.getRole();
+  }
 
   loadNext() {
-    if (this.loading) {
-      return;
-    }
-
-    this.loading = true;
     this.placeholders = new Array(this.pageSize);
-    this.listApplicationService
+    this.applicationService
       .fetch({ limit: this.pageSize })
       .subscribe(({ data }) => {
         this.placeholders = [];
         this.applications = data.getSelfApplications.data;
-        this.loading = false;
         this.pageToLoadNext++;
       });
   }
 
-  ngOnInit(): void {
-    this.loadNext();
+  acceptApplication(id: string) {
+    this.loading = true;
+
+    this.applicationService
+      .acceptApplication(id)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: ({ data }) => {
+          if (!(data === undefined || data === null)) {
+            this.toastrService.success(`Application has been accepted.`);
+          }
+        },
+        error: (err) => {
+          this.toastrService.danger(err.message);
+          console.error(err);
+        }
+      });
+  }
+
+  rejectApplication(application: IApplication) {
+    this.dialogService.open(RejectApplicationDialogComponent, {
+      context: {
+        title: 'Reject application',
+        application
+      }
+    });
   }
 }

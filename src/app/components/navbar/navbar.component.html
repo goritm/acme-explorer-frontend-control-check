@@ -13,23 +13,15 @@
       title="All Trips"
     ></nb-action>
     <nb-action
-      *ngIf="currentUser.role === 'EXPLORER'"
+      *ngIf="isManager()"
+      icon="plus-outline"
+      link="/trips/create"
+      title="Create Trip"
+    ></nb-action>
+    <nb-action
       icon="file-text-outline"
       link="/applications"
       title="My Applications"
-    ></nb-action>
-  </nb-actions>
-
-  <nb-actions size="small" *ngIf="isManager()">
-    <nb-action
-      icon="file-text-outline"
-      link="/applications"
-      title="Trip Applications"
-    ></nb-action>
-    <nb-action
-      icon="plus-outline"
-      link="/create-trip"
-      title="Create Trip"
     ></nb-action>
   </nb-actions>
 </div>
