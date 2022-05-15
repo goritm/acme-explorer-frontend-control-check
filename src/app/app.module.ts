@@ -53,6 +53,8 @@ import { ConfigurationModule } from './modules/configuration/configuration.modul
     ApplicationModule,
     ShareModule,
     UserModule,
+    PaymentModule,
+    ConfigurationModule,
     AuthenticationModule,
     BrowserModule,
     AppRoutingModule,
@@ -73,11 +75,7 @@ import { ConfigurationModule } from './modules/configuration/configuration.modul
     NbButtonModule,
     NbUserModule,
     NbActionsModule,
-    NbSearchModule,
-    ShareModule,
-    UserModule,
-    PaymentModule,
-    ConfigurationModule
+    NbSearchModule
   ],
   bootstrap: [AppComponent]
 })
