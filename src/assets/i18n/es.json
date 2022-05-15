@@ -152,5 +152,22 @@
       },
       "notFound": "No se encontraron usuarios"
     }
+  },
+  "configurations": {
+    "flatRate": {
+      "title": "Tarifa plana",
+      "form": {
+        "price": {
+          "name": "Precio",
+          "required": "Por favor ingresa un precio",
+          "min": "El precio debe ser minimo 1",
+          "max": "El precio como máximo debe ser 9999"
+        }
+      },
+      "buttons": {
+        "cancel": "Cancelar",
+        "update": "Actualizar"
+      }
+    }
   }
 }
