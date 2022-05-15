@@ -7,16 +7,19 @@ import { Apollo } from 'apollo-angular';
 import { UpdateUserPayload } from '../graphql/inputs/update-user.payload';
 import { UPDATE_SELF } from '../graphql/mutations/update-self.mutation';
 import { ResponseUpdateSelfMutation } from '../graphql/types/update-self-response.type';
+import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
+import { LIST_USERS } from '../graphql/queries/list-users.query';
+import { ResponseListUsersQuery } from '../graphql/types/list-users-reponse.type';
 
-/**
- * Common authentication service.
- * Should be used to as an interlayer between UI Components and Auth Strategy.
- */
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private currentUserSubject: BehaviorSubject<IUser>;
+  start = 0;
+  limit = 10;
+  where: unknown = {};
+  sort: unknown = {};
 
   constructor(private apollo: Apollo) {
     this.currentUserSubject = new BehaviorSubject<IUser>(
@@ -26,6 +29,24 @@ export class UserService {
 
   get getCurrentUser(): Observable<IUser> {
     return this.currentUserSubject.asObservable();
+  }
+
+  listUsers(listTripsParams?: FilterInputParams) {
+    if (listTripsParams) {
+      const { start, limit, where } = listTripsParams;
+      this.start = start || this.start;
+      this.limit = limit || this.limit;
+      this.where = where || this.where;
+    }
+
+    return this.apollo.query<ResponseListUsersQuery>({
+      query: LIST_USERS,
+      variables: {
+        start: this.start,
+        limit: this.limit,
+        where: this.where
+      }
+    });
   }
 
   saveUserData(data: ResponseUpdateSelfMutation) {
