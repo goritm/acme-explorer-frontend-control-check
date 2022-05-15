@@ -21,6 +21,7 @@ import { CreateSponsorshipComponent } from '../sponsorship/components/create-spo
 import { ListUsersComponent } from '../user/components/list-users/list-users.component';
 import { SelfSponsorshipsComponent } from '../sponsorship/components/self-sponsorships/self-sponsorships.component';
 import { PaymentComponent } from '../payment/payment.component';
+import { FlatRateComponent } from '../configuration/components/flat-rate/flat-rate.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -107,6 +108,14 @@ const routes: Routes = [
   {
     path: 'users',
     component: ListUsersComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.ADMIN]
+    }
+  },
+  {
+    path: 'configurations/flat-rate',
+    component: FlatRateComponent,
     canActivate: [AuthGuard],
     data: {
       expectedRoles: [UserRoles.ADMIN]
