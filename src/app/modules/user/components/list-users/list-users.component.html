@@ -1,0 +1,39 @@
+<div *ngIf="users.length > 0; else noUsers">
+  <nb-list
+      nbInfiniteList
+      listenWindowScroll
+      [threshold]="1"
+      (bottomThreshold)="loadNext()"
+      [nbSpinner]="loading"
+      nbSpinnerStatus="basic"
+    >
+      <nb-list-item *ngFor="let user of users">
+        <nb-card hover-class="hover">
+          <nb-card-header>
+            {{ user.name }} {{ user.lastName }}
+          </nb-card-header>
+          <!-- <nb-card-body>
+            {{ trip.description }}
+            <br />
+            <br />
+            <img
+              class="img-responsive"
+              src="{{ trip.pictures[0] }}"
+              alt="{{ trip.title }}"
+            />
+          </nb-card-body>
+          <nb-card-footer>
+            <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
+          </nb-card-footer> -->
+        </nb-card>
+      </nb-list-item>
+  </nb-list>
+</div>
+
+<ng-template #noUsers>
+  <nb-card>
+    <nb-card-body>
+      <p> Not users found </p>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
