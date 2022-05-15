@@ -17,7 +17,8 @@ import {
   NbButtonModule,
   NbUserModule,
   NbToastrModule,
-  NbActionsModule
+  NbActionsModule,
+  NbSearchModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -37,6 +38,8 @@ import { ShareModule } from './components/share.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserModule } from './modules/user/user.module';
 import { SponsorshipModule } from './modules/sponsorship/sponsorship.module';
+import { PaymentModule } from './modules/payment/payment.module';
+import { ConfigurationModule } from './modules/configuration/configuration.module';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,10 @@ import { SponsorshipModule } from './modules/sponsorship/sponsorship.module';
   ],
   imports: [
     ApplicationModule,
+    ShareModule,
+    UserModule,
+    PaymentModule,
+    ConfigurationModule,
     AuthenticationModule,
     BrowserModule,
     AppRoutingModule,
@@ -68,8 +75,7 @@ import { SponsorshipModule } from './modules/sponsorship/sponsorship.module';
     NbButtonModule,
     NbUserModule,
     NbActionsModule,
-    ShareModule,
-    UserModule
+    NbSearchModule
   ],
   bootstrap: [AppComponent]
 })

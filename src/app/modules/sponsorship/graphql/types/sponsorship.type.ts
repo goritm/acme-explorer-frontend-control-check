@@ -9,4 +9,5 @@ export type Sponsorship = BaseEntity & {
   state: SponsorshipState;
   banner: string;
   link: string;
+  flatRate: number;
 };

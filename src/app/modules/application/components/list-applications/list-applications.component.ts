@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { finalize } from 'rxjs';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
@@ -12,10 +13,10 @@ import { RejectApplicationDialogComponent } from '../dialog/reject-application-d
   styleUrls: ['./list-applications.component.scss']
 })
 export class ListApplicationsComponent implements OnInit {
+  Object = Object;
   applications: IApplication[] = [];
-  placeholders: unknown = [];
+  applicationCategories: any = {};
   pageSize = 25;
-  pageToLoadNext = 1;
   loading = false;
   userRole: string | undefined;
 
@@ -24,6 +25,7 @@ export class ListApplicationsComponent implements OnInit {
     private authService: AuthService,
     private dialogService: NbDialogService,
     private toastrService: NbToastrService,
+    private router: Router,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -33,14 +35,28 @@ export class ListApplicationsComponent implements OnInit {
   }
 
   loadNext() {
-    this.placeholders = new Array(this.pageSize);
+    this.loading = true;
     this.applicationService
       .fetch({ limit: this.pageSize })
       .subscribe(({ data }) => {
-        this.placeholders = [];
         this.applications = data.getSelfApplications.data;
-        this.pageToLoadNext++;
+
+        this.applicationCategories = this.categorizeApplications(
+          data.getSelfApplications.data
+        );
+        this.loading = false;
       });
+  }
+
+  categorizeApplications(applications: IApplication[]) {
+    return applications.reduce((categories: any, application) => {
+      const { state } = application;
+
+      if (!categories[state]) categories[state] = [];
+
+      categories[state].push(application);
+      return categories;
+    }, {});
   }
 
   acceptApplication(id: string) {
@@ -74,5 +90,42 @@ export class ListApplicationsComponent implements OnInit {
         application
       }
     });
+  }
+
+  payApplication(id: string) {
+    this.router.navigate(['/payments'], {
+      queryParams: {
+        applicationId: id
+      }
+    });
+  }
+
+  cancelApplication(id: string) {
+    this.loading = true;
+
+    this.applicationService
+      .cancelApplication(id)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: ({ data }) => {
+          if (!(data === undefined || data === null)) {
+            this.toastrService.success(`Application has been cancelled.`);
+            this.loadNext();
+          }
+        },
+        error: (err) => {
+          this.toastrService.danger(err.message);
+          console.error(err);
+        }
+      });
+  }
+
+  goToTrip(id: string) {
+    this.router.navigate(['/trips/detail/', id]);
   }
 }

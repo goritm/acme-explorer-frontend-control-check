@@ -6,6 +6,7 @@ export const SPONSOR_DATA = gql`
     id
     link
     banner
+    flatRate
     sponsor {
       ...TripUserData
     }

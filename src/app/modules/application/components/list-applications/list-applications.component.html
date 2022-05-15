@@ -1,47 +1,116 @@
-<nb-accordion
-  multi
-  *ngIf="applications.length > 0; else noApplications"
-  [nbSpinner]="loading"
-  nbSpinnerStatus="basic"
->
-  <nb-accordion-item *ngFor="let application of applications">
-    <nb-accordion-item-header>
-      <span>{{ application.trip.title }}</span> -
-      <span>{{ application.state }}</span>
-    </nb-accordion-item-header>
-    <nb-accordion-item-body>
-      <p>Description: {{ application.trip.description }}</p>
-      <br />
-      <p>Comments: {{ application.comments[0] }}</p>
-      <p>Reason Rejected: {{ application.reasonRejected }}</p>
+<div class="header-text">
+  <h1 class="title">My Applications</h1>
+</div>
 
-      <div
-        *ngIf="userRole === 'MANAGER' && application.state == 'PENDING'"
-        class="manager-buttons"
-      >
-        <button
-          nbButton
-          status="success"
-          (click)="acceptApplication(application.id)"
-        >
-          Accept
-        </button>
-        <button
-          nbButton
-          status="danger"
-          (click)="rejectApplication(application)"
-        >
-          Reject
-        </button>
-      </div>
-    </nb-accordion-item-body>
-  </nb-accordion-item>
-</nb-accordion>
+<div [nbSpinner]="loading" nbSpinnerStatus="basic">
+  <nb-accordion
+    multi
+    *ngIf="applications.length > 0; else noApplications"
+    [nbSpinner]="loading"
+    nbSpinnerStatus="basic"
+  >
+    <nb-accordion-item
+      *ngFor="let category of Object.keys(applicationCategories)"
+      [ngStyle]="{
+        'background-color':
+          category === 'PENDING'
+            ? 'var(--color-primary-400)'
+            : category === 'DUE'
+            ? 'var(--color-info-400)'
+            : category === 'CANCELLED'
+            ? 'var(--color-warning-400)'
+            : category === 'REJECTED'
+            ? 'var(--color-danger-400)'
+            : 'var(--color-success-400)'
+      }"
+    >
+      <nb-accordion-item-header>
+        <p>
+          <b>{{ category }}</b>
+        </p>
+      </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <nb-list>
+          <nb-list-item
+            *ngFor="let application of applicationCategories[category]"
+          >
+            <div class="list-item-container">
+              <div class="text-container">
+                <h3 class="title">{{ application.trip.title }}</h3>
+                <p class="description">{{ application.trip.description }}</p>
+              </div>
 
-<ng-template #noApplications>
-  <nb-card>
-    <nb-card-body>
-      <p>No applications found</p>
-    </nb-card-body>
-  </nb-card>
-</ng-template>
+              <div class="additional-info">
+                <p class="price">€{{ application.trip.price }}</p>
+                <p *ngIf="application.comments[0]">
+                  <b>Comments:</b> {{ application.comments[0] }}
+                </p>
+                <p *ngIf="application.reasonRejected">
+                  <b>Reason of rejection:</b> {{ application.reasonRejected }}
+                </p>
+              </div>
+
+              <div class="buttons">
+                <button
+                  nbButton
+                  status="primary"
+                  (click)="goToTrip(application.trip.id)"
+                >
+                  Go to Trip
+                </button>
+                <button
+                  nbButton
+                  status="success"
+                  (click)="payApplication(application.id)"
+                  *ngIf="userRole === 'EXPLORER' && application.state == 'DUE'"
+                >
+                  Pay
+                </button>
+                <button
+                  nbButton
+                  status="danger"
+                  (click)="cancelApplication(application.id)"
+                  *ngIf="
+                    userRole === 'EXPLORER' &&
+                    (application.state == 'PENDING' ||
+                      application.state == 'DUE')
+                  "
+                >
+                  Cancel
+                </button>
+              </div>
+
+              <div
+                class="buttons"
+                *ngIf="userRole === 'MANAGER' && application.state == 'PENDING'"
+              >
+                <button
+                  nbButton
+                  status="success"
+                  (click)="acceptApplication(application.id)"
+                >
+                  Accept
+                </button>
+                <button
+                  nbButton
+                  status="danger"
+                  (click)="rejectApplication(application)"
+                >
+                  Reject
+                </button>
+              </div>
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+
+  <ng-template #noApplications>
+    <nb-card>
+      <nb-card-body>
+        <p>No applications found</p>
+      </nb-card-body>
+    </nb-card>
+  </ng-template>
+</div>

@@ -20,6 +20,8 @@ import { SelfTripsComponent } from '../trip/components/self-trips/self-trips.com
 import { CreateSponsorshipComponent } from '../sponsorship/components/create-sponsorship/create-sponsorship.component';
 import { ListUsersComponent } from '../user/components/list-users/list-users.component';
 import { SelfSponsorshipsComponent } from '../sponsorship/components/self-sponsorships/self-sponsorships.component';
+import { PaymentComponent } from '../payment/payment.component';
+import { FlatRateComponent } from '../configuration/components/flat-rate/flat-rate.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -64,6 +66,14 @@ const routes: Routes = [
     }
   },
   {
+    path: 'payments',
+    component: PaymentComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.EXPLORER, UserRoles.SPONSOR, UserRoles.ADMIN]
+    }
+  },
+  {
     path: 'applications',
     component: ListApplicationsComponent,
     canActivate: [AuthGuard],
@@ -98,6 +108,14 @@ const routes: Routes = [
   {
     path: 'users',
     component: ListUsersComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.ADMIN]
+    }
+  },
+  {
+    path: 'configurations/flat-rate',
+    component: FlatRateComponent,
     canActivate: [AuthGuard],
     data: {
       expectedRoles: [UserRoles.ADMIN]
