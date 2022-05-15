@@ -21,7 +21,6 @@ import { Configuration } from '../../graphql/types/configuration.type';
 export class FlatRateComponent implements OnInit {
   submitted = false;
   loading = false;
-  validateForm = false;
   configuration!: Configuration;
 
   configurationForm = this.fb.group({
@@ -37,7 +36,10 @@ export class FlatRateComponent implements OnInit {
   ) {}
 
   validate(): void {
-    if (this.validateForm) {
+    if (
+      this.configurationForm.value.flatRate >= 1 &&
+      this.configurationForm.value.flatRate <= 9999
+    ) {
       this.updateConfiguration();
     } else {
       this.toastrService.show('An error just occurred', 'Error', {
@@ -76,7 +78,7 @@ export class FlatRateComponent implements OnInit {
           });
         },
         complete: () => {
-          this.router.navigate(['/']);
+          this.toastrService.success('Configuration updated successfully');
         }
       });
   }
@@ -92,7 +94,15 @@ export class FlatRateComponent implements OnInit {
           this.configurationForm.patchValue({
             flatRate: data.listConfigurations.data[0].flatRate
           });
+
+          this.configuration = data.listConfigurations.data[0];
         }
+      },
+      error: (err: { message: string }) => {
+        this.toastrService.show(err.message, 'Error', {
+          duration: 3000,
+          status: 'danger'
+        });
       }
     });
   }
