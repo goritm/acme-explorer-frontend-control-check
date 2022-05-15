@@ -73,10 +73,10 @@ import { ConfigurationModule } from './modules/configuration/configuration.modul
     NbButtonModule,
     NbUserModule,
     NbActionsModule,
-    NbSearchModule
+    NbSearchModule,
     ShareModule,
     UserModule,
-    PaymentModule
+    PaymentModule,
     ConfigurationModule
   ],
   bootstrap: [AppComponent]

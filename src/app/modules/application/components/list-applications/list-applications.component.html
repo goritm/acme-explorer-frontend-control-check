@@ -1,8 +1,8 @@
-<div [nbSpinner]="loading" nbSpinnerStatus="basic">
-  <div class="header-text">
-    <h1 class="title">My Applications</h1>
-  </div>
+<div class="header-text">
+  <h1 class="title">My Applications</h1>
+</div>
 
+<div [nbSpinner]="loading" nbSpinnerStatus="basic">
   <nb-accordion
     multi
     *ngIf="applications.length > 0; else noApplications"
@@ -72,7 +72,8 @@
                   (click)="cancelApplication(application.id)"
                   *ngIf="
                     userRole === 'EXPLORER' &&
-                    (application.state == 'PENDING' || application.state == 'DUE')
+                    (application.state == 'PENDING' ||
+                      application.state == 'DUE')
                   "
                 >
                   Cancel
