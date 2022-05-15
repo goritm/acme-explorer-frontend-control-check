@@ -1,0 +1,33 @@
+.hover {
+  cursor: pointer;
+}
+
+.img-responsive {
+  max-width: 100%;
+  width: 600px;
+}
+
+.header-text {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.create-sponsorship-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.error-text {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+.button-rows {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+
+

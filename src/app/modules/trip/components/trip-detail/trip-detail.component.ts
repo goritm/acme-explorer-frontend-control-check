@@ -1,5 +1,5 @@
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ITrip } from '../../interfaces/trip.interface';
@@ -11,6 +11,7 @@ import { UserRoles } from 'src/utils/enums/user-roles.enum';
 import { differenceInDays } from 'date-fns';
 import { CancelTripDialogComponent } from './dialog/cancel-trip-dialog/cancel-trip-dialog.component';
 import { TripState } from 'src/utils/enums/trip-state.enum';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'trip-detail',
@@ -19,6 +20,7 @@ import { TripState } from 'src/utils/enums/trip-state.enum';
 })
 export class TripDetailComponent implements OnInit {
   trip: ITrip | undefined;
+  loading = false;
   userRole: string | undefined;
   isOwnTrip = false;
   tripIsNotCancelled = false;
@@ -31,7 +33,8 @@ export class TripDetailComponent implements OnInit {
     private location: Location,
     private dialogService: NbDialogService,
     private toastrService: NbToastrService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -84,6 +87,23 @@ export class TripDetailComponent implements OnInit {
         }
       })
       .onClose.subscribe(() => this.getTripDetail());
+  }
+
+  publishTrip(): void {
+    this.loading = true;
+
+    this.tripService
+      .publishTrip(this.trip?.id ?? '')
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe(() => {
+        this.toastrService.success('Trip published');
+        this.getTripDetail();
+      });
   }
 
   cancelTrip(): void {

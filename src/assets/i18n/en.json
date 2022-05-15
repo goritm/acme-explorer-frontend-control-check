@@ -49,5 +49,32 @@
   },
   "selfTrips": {
     "title": "My Trips created"
+  },
+  "sponsorship": {
+    "create": {
+      "title": "Create your Sponsor",
+      "form": {
+        "link": {
+          "name": "Link for your website",
+          "example": "https://www.google.com",
+          "required": "Please enter a link to your website",
+          "invalid": "Please enter a valid url to your website"
+        },
+        "banner": {
+          "name": "Banner for your company",
+          "example": "https://www.example.com/banner.png",
+          "required": "Please enter a banner image",
+          "invalid": "Please enter a valid url for the banner image"
+        },
+        "trip": {
+          "name": "Select a trip",
+          "required": "Please select a trip"
+        }
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    }
   }
 }

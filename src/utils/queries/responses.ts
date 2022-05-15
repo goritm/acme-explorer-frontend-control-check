@@ -1,14 +1,19 @@
 import { ITrip } from 'src/app/modules/trip/interfaces/trip.interface';
+import { Trip } from 'src/app/modules/trip/graphql/types/trip.type';
 import { IApplication } from 'src/app/modules/application/graphql/interfaces/application.interface';
 
 export interface ResponseTripByIDQuery {
   getTripById: ITrip;
 }
 
+export interface ResponsePublishSelfTripQuery {
+  publishSelfTrip: ITrip;
+}
+
 export interface ResponseListTripsQuery {
   listTrips: {
     count: number;
-    data: ITrip[];
+    data: Trip[];
   };
 }
 
