@@ -1,6 +1,6 @@
 import { UserRoles } from 'src/utils/enums/user-roles.enum';
 
-export type CreateUser = {
+export type CreateUserInput = {
   name: string;
   lastName: string;
   email: string;
