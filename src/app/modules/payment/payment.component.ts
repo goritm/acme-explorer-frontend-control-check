@@ -4,6 +4,7 @@ import { NbToastrService } from '@nebular/theme';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { environment } from 'src/environments/environment';
 import { ApplicationService } from '../application/application.service';
+import { SponsorshipService } from '../sponsorship/service/sponsorship.service';
 import { PaymentService } from './payment.service';
 
 @Component({
@@ -14,13 +15,14 @@ import { PaymentService } from './payment.service';
 export class PaymentComponent implements OnInit {
   id: string | undefined;
   type: 'application' | 'sponsorship' = 'application';
-  price: number | undefined;
+  price = 0;
   public payPalConfig?: IPayPalConfig;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private applicationService: ApplicationService,
+    private sponsorshipService: SponsorshipService,
     private paymentService: PaymentService,
     private toastrService: NbToastrService
   ) {}
@@ -44,16 +46,16 @@ export class PaymentComponent implements OnInit {
   private getApplicationData(): void {
     this.applicationService
       .getApplicationById(this.id ?? '')
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe(({ data }) => {
+        this.price = data.getApplicationById.trip.price;
       });
   }
 
   private getSponsorshipData(): void {
-    this.applicationService
-      .getApplicationById(this.id ?? '')
-      .subscribe((data) => {
-        console.log(data);
+    this.sponsorshipService
+      .getSponsorshipById(this.id ?? '')
+      .subscribe(({ data }) => {
+        this.price = data.getSponsorshipById.flatRate;
       });
   }
 
@@ -68,7 +70,7 @@ export class PaymentComponent implements OnInit {
             {
               amount: {
                 currency_code: 'EUR',
-                value: this.type === 'application' ? '9.99' : '10' // TODO: REPLACE WITH APPLICATION VALUE OR FLAT RATE
+                value: this.price.toString()
               }
             }
           ]
