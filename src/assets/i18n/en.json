@@ -174,5 +174,28 @@
         "update": "Update"
       }
     }
+  },
+  "dashboard": {
+    "analytics": {
+      "title": "Analytics Dashboard",
+      "trips": {
+        "pricePerTrip": "Price per trip",
+        "applicationPerTrip": "Applications per trip",
+        "tripManagedPerManager": "Trips managed per manager",
+        "ratioOfApplicationGroupByState": "Ratio of applications group by state",
+        "average": "Average",
+        "min": "Min",
+        "max": "Count of max",
+        "std": "Stadard deviation",
+        "ratio": "Ratio",
+        "state": {
+          "pending": "Pending",
+          "rejected": "Rejected",
+          "canceled": "Canceled",
+          "due": "Due",
+          "paid": "Paid"
+        }
+      }
+    }
   }
 }

@@ -169,5 +169,28 @@
         "update": "Actualizar"
       }
     }
+  },
+  "dashboard": {
+    "analytics": {
+      "title": "Analíticas de viajes",
+      "trips": {
+        "pricePerTrip": "Precio por viaje",
+        "applicationPerTrip": "Aplicaciones por viaje",
+        "tripManagedPerManager": "Viajes manejados por Manager",
+        "ratioOfApplicationGroupByState": "Proporción de aplicaciones por estado",
+        "average": "Average",
+        "min": "Min",
+        "max": "Count of max",
+        "std": "Stadard deviation",
+        "ratio": "Ratio",
+        "state": {
+          "pending": "Pendiente",
+          "rejected": "Rechazado",
+          "canceled": "Cancelado",
+          "due": "Por vencer",
+          "paid": "Pagado"
+        }
+      }
+    }
   }
 }

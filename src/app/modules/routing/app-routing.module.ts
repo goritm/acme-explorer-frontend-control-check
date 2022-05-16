@@ -22,6 +22,7 @@ import { ListUsersComponent } from '../user/components/list-users/list-users.com
 import { SelfSponsorshipsComponent } from '../sponsorship/components/self-sponsorships/self-sponsorships.component';
 import { PaymentComponent } from '../payment/payment.component';
 import { FlatRateComponent } from '../configuration/components/flat-rate/flat-rate.component';
+import { AnalyticsComponent } from '../dashboard/components/analytics/analytics.component';
 import { CreateUserComponent } from '../user/components/create-user/create-user.component';
 
 const routes: Routes = [
@@ -125,6 +126,14 @@ const routes: Routes = [
   {
     path: 'configurations/flat-rate',
     component: FlatRateComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.ADMIN]
+    }
+  },
+  {
+    path: 'admin/analytics',
+    component: AnalyticsComponent,
     canActivate: [AuthGuard],
     data: {
       expectedRoles: [UserRoles.ADMIN]

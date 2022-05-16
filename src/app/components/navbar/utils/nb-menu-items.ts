@@ -49,7 +49,19 @@ export const MANAGER_MENU_ITEMS = [
 export const ADMIN_MENU_ITEMS = [
   {
     title: 'Dashboard',
-    icon: 'keypad-outline'
+    icon: 'keypad-outline',
+    children: [
+      {
+        title: 'Home',
+        icon: 'home-outline',
+        link: '/admin/home'
+      },
+      {
+        title: 'Analytics',
+        icon: 'activity-outline',
+        link: '/admin/analytics'
+      }
+    ]
   },
   {
     title: 'Manage Users',
