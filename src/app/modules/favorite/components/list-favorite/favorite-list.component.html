@@ -12,7 +12,7 @@
       nbSpinnerStatus="basic"
     >
       <nb-list-item *ngFor="let trip of favoriteList.trips">
-        <nb-card *ngIf="trip.state === 'CANCELLED' " hover-class="hover" class="listing-container" accent="danger">
+        <nb-card *ngIf="trip.state === 'CANCELLED' || checkIfTripIsExpired(trip)" hover-class="hover" class="listing-container" accent="danger">
           <nb-card-header class="header-card" routerLink="/trips/detail/{{trip.id}}">
               <nb-icon icon="layers-outline"></nb-icon>
               <span>
@@ -42,7 +42,7 @@
           </nb-card-footer>
         </nb-card>
 
-        <nb-card *ngIf="trip.state !== 'CANCELLED' " hover-class="hover" class="listing-container">
+        <nb-card *ngIf="trip.state !== 'CANCELLED' && !checkIfTripIsExpired(trip)" hover-class="hover" class="listing-container">
           <nb-card-header class="header-card" routerLink="/trips/detail/{{trip.id}}">
               <nb-icon icon="layers-outline"></nb-icon>
               <span>

@@ -61,6 +61,14 @@ export class FavoriteListComponent implements OnInit {
     });
   }
 
+  checkIfTripIsExpired(trip: Trip): boolean {
+    const tripEndDate = new Date(trip.endDate);
+    const today = new Date();
+    const diff = tripEndDate.getTime() - today.getTime();
+
+    return diff < 0;
+  }
+
   ngOnInit(): void {
     this.loadNext();
   }
