@@ -15,7 +15,7 @@
     ></nb-icon>
   </nb-card-header>
 
-  <nb-card-body class="">
+  <nb-card-body>
     <form [formGroup]="updateFavoriteListForm" (ngSubmit)="renameFavoriteList()">
       <div>
         <label class="label-index" for="name" *ngIf="updateFavoriteListForm.value.name !== ''">{{ 'favorite.update.form.name.name' | translate }}</label>
