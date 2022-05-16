@@ -37,6 +37,18 @@ export const EXPLORER_MENU_ITEMS = [
   }
 ];
 
+export const COMMON_ITEMS = [
+  {
+    title: 'Profile',
+    icon: 'person-outline',
+    link: '/profile'
+  },
+  {
+    title: 'Logout',
+    icon: 'log-out-outline'
+  }
+];
+
 export const MANAGER_MENU_ITEMS = [
   {
     title: 'Trips',
