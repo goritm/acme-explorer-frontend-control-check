@@ -122,7 +122,6 @@ export class TripDetailComponent implements OnInit {
     this.dialogService
       .open(ApplyToTripDialogComponent, {
         context: {
-          title: 'Apply to trip',
           trip: this.trip
         }
       })
@@ -133,7 +132,6 @@ export class TripDetailComponent implements OnInit {
     this.dialogService
       .open(EditTripDialogComponent, {
         context: {
-          title: 'Edit trip',
           trip: this.trip
         }
       })
@@ -236,7 +234,6 @@ export class TripDetailComponent implements OnInit {
     this.dialogService
       .open(CancelTripDialogComponent, {
         context: {
-          title: 'Cancel trip',
           trip: this.trip
         }
       })

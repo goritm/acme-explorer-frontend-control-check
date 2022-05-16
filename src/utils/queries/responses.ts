@@ -10,6 +10,10 @@ export interface ResponsePublishSelfTripQuery {
   publishSelfTrip: ITrip;
 }
 
+export interface ResponseGetTripsQuery {
+  getTrips: Trip[];
+}
+
 export interface ResponseListTripsQuery {
   listTrips: {
     count: number;

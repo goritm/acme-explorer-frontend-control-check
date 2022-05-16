@@ -1,58 +1,69 @@
 <div class="header-text">
-  <h1> {{ 'finder.list.title' | translate }} </h1>
+  <h1>{{ 'finder.list.title' | translate }}</h1>
 </div>
 
-<div *ngIf="finders.length > 0; else noFinders">
-  <nb-list
+<div [nbSpinner]="loading" nbSpinnerStatus="basic">
+  <div *ngIf="finders.length > 0; else noFinders">
+    <nb-list
       nbInfiniteList
       listenWindowScroll
       [threshold]="1"
       (bottomThreshold)="loadNext()"
-      [nbSpinner]="loading"
-      nbSpinnerStatus="basic"
     >
       <nb-list-item *ngFor="let finder of finders">
         <nb-card hover-class="hover" class="listing-container">
           <nb-card-header class="header-card">
-              <nb-icon icon="funnel-outline"></nb-icon>
+            <nb-icon icon="funnel-outline"></nb-icon>
 
-               <span *ngIf="finder.keyword !== null">
-                <b class="header-card-title">{{ 'finder.list.row.keyword' | translate }}</b>
+            <div class="finder-inputs">
+              <span *ngIf="finder.keyword !== null">
+                <b class="header-card-title">{{
+                  'finder.list.row.keyword' | translate
+                }}</b>
                 {{ finder.keyword }}
               </span>
 
               <span *ngIf="finder.minDate !== null && finder.keyword === null">
-                <b class="header-card-title">{{ 'finder.list.row.minDate' | translate }}</b>
+                <b class="header-card-title">{{
+                  'finder.list.row.minDate' | translate
+                }}</b>
                 {{ finder.minDate }}
               </span>
 
               <span *ngIf="finder.maxDate !== null && finder.keyword === null">
-                <b class="header-card-title">{{ 'finder.list.row.maxDate' | translate }}</b>
+                <b class="header-card-title">{{
+                  'finder.list.row.maxDate' | translate
+                }}</b>
                 {{ finder.maxDate }}
               </span>
 
               <span *ngIf="finder.minPrice !== null && finder.keyword === null">
-                <b class="header-card-title">{{ 'finder.list.row.minDate' | translate }}</b>
+                <b class="header-card-title">{{
+                  'finder.list.row.minPrice' | translate
+                }}</b>
                 {{ finder.minPrice }}
               </span>
 
               <span *ngIf="finder.maxPrice !== null && finder.keyword === null">
-                <b class="header-card-title">{{ 'finder.list.row.maxDate' | translate }}</b>
+                <b class="header-card-title">{{
+                  'finder.list.row.maxPrice' | translate
+                }}</b>
                 {{ finder.maxPrice }}
               </span>
-
+            </div>
           </nb-card-header>
 
           <nb-card-footer class="footer-card">
-             <button
+            <button
               nbButton
               (click)="update(finder)"
               fullWidth
               type="submit"
               disabled="true"
               status="primary"
-              size="small">
-              <nb-icon icon="edit-2-outline" ></nb-icon>
+              size="small"
+            >
+              <nb-icon icon="edit-2-outline"></nb-icon>
             </button>
 
             <button
@@ -61,19 +72,21 @@
               (click)="delete(finder)"
               type="submit"
               status="danger"
-              size="small">
+              size="small"
+            >
               <nb-icon icon="trash-2-outline"></nb-icon>
             </button>
           </nb-card-footer>
         </nb-card>
       </nb-list-item>
-  </nb-list>
-</div>
+    </nb-list>
+  </div>
 
-<ng-template #noFinders>
-  <nb-card class="listing-container">
-    <nb-card-body>
-      <p> {{ 'finder.list.notFound' | translate }}  </p>
-    </nb-card-body>
-  </nb-card>
-</ng-template>
+  <ng-template #noFinders>
+    <nb-card class="listing-container">
+      <nb-card-body>
+        <p>{{ 'finder.list.notFound' | translate }}</p>
+      </nb-card-body>
+    </nb-card>
+  </ng-template>
+</div>

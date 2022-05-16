@@ -10,7 +10,6 @@ import { TripService } from 'src/app/modules/trip/trip.service';
   styleUrls: ['./apply-to-trip-dialog.component.scss']
 })
 export class ApplyToTripDialogComponent implements OnInit {
-  title = '';
   trip!: ITrip;
 
   applicationForm = this.fb.group({
@@ -25,7 +24,6 @@ export class ApplyToTripDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.title = this.dialogRef.componentRef.instance.title;
     this.trip = this.dialogRef.componentRef.instance.trip;
   }
 

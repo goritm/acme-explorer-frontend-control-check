@@ -5,13 +5,115 @@
     "logout": "Salir",
     "profile": "Perfil"
   },
+  "auth": {
+    "login": {
+      "title": "Entrar",
+      "subtitle": "Logueate con tu correo electrónico",
+      "submessage": "Aún no tienes una cuenta?"
+    },
+    "register": {
+      "title": "Registrate",
+      "subtitle": "Create una cuenta!",
+      "submessage": "Ya tienes una cuenta?"
+    },
+    "fields": {
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "firstName": "Primer nombre",
+      "lastName": "Apellido",
+      "phoneNumber": "Número telefónico",
+      "address": "Dirección"
+    }
+  },
+  "payment": "Pago",
+  "create-trip": {
+    "title": "Crear un viaje",
+    "fields": {
+      "title": "Titulo",
+      "description": "Descripcion",
+      "dates": "Elegir fechas",
+      "requirements": "Agregar requerimiento por cada linea",
+      "stageTitle": "Título de la etapa",
+      "stageDescription": "Descripción de la etapa",
+      "stagePrice": "Precio de la etapa"
+    },
+    "buttons": {
+      "addStage": "Agregar etapa",
+      "removeStage": "Borrar Etapa",
+      "upload": "Subir imagen",
+      "delete": "Borrar imagen",
+      "create": "Crear viaje"
+    }
+  },
+  "applications": {
+    "title": "Mis aplicaciones",
+    "comments": "Comentarios",
+    "reasonRejected": "Razón de rechazo",
+    "buttons": {
+      "accept": "Aceptar",
+      "reject": "Rechazar",
+      "cancel": "Cancelar",
+      "pay": "Pagar",
+      "goToTrip": "Ir a viaje"
+    }
+  },
   "home": {
     "title": "Pagina Principal",
     "welcome": "Bienvenido a la pagina principal",
-    "works": "El componente home funciona"
+    "works": "El componente home funciona",
+    "noTrips": "No hay viajes"
   },
-  "card-trip": {
-    "price": "Precio"
+  "trip-detail": {
+    "reasonCancelled": "El trip fue cancelado",
+    "description": "Descripción",
+    "startDate": "Fecha de inicio",
+    "endDate": "Fecha de fin",
+    "price": "Precio",
+    "requirements": "Requerimientos",
+    "stages": "Etapas",
+    "manager": "Creado por",
+    "buttons": {
+      "publish": "Publicar viaje",
+      "edit": "Editar viaje",
+      "cancel": "Cancelar viaje",
+      "delete": "Eliminar viaje",
+      "apply": "Aplicar a viaje"
+    },
+    "noTrips": "No se encontró el viaje",
+    "sponsorship": "Este viaje es patrocinado por...",
+    "applyToTrip": {
+      "title": "Aplicar a viaje",
+      "applyMessage": "Quieres aplicar? Deja unos comentarios si deseas",
+      "comments": "Comentarios...",
+      "buttons": {
+        "apply": "Aplicar"
+      }
+    },
+    "cancelTrip": {
+      "title": "Cancelar viaje",
+      "message": "Estas seguro de que quieres cancelar este viaje? Si es así, debes especificar la razón",
+      "placeholder": "Agregue una razón por la que cancela el viaje...",
+      "button": "Cancelar viaje"
+    },
+    "editTrip": {
+      "title": "Editar viaje",
+      "form": {
+        "title": "Titulo",
+        "titleErrors": {
+          "required": "El título es requerido",
+          "minlength": "El título debe tener al menos 5 caracteres",
+          "maxlength": "El título no puede tener más de 50 caracteres"
+        },
+        "description": "Description",
+        "descriptionErrors": {
+          "required": "La descripción es requerida",
+          "minlength": "La descripción debe tener al menos 5 caracteres",
+          "maxlength": "La descripción no puede tener más de 40 caracteres"
+        },
+        "requirements": "Agrega un requerimiento por línea:",
+        "button": "Editar viaje"
+      }
+    }
   },
   "profile": {
     "title": "Tu perfil",
@@ -201,6 +303,15 @@
     }
   },
   "finder": {
+    "search_bar": {
+      "keyword": "Palabra clave",
+      "minDate": "Fecha mínima",
+      "maxDate": "Fecha máxima",
+      "minPrice": "Precio mínimo",
+      "maxPrice": "Precio máximo",
+      "maxItems": "Cantidad",
+      "button": "Buscar"
+    },
     "list": {
       "title": "Mis ultimas búsquedas",
       "row": {

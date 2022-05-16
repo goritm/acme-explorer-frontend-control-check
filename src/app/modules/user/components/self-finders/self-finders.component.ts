@@ -14,7 +14,6 @@ export class SelfFinderComponent implements OnInit {
   finders: Finder[] = [];
   count = 0;
   pageSize = 10;
-  pageToLoadNext = 1;
   loading = false;
 
   constructor(
@@ -24,18 +23,22 @@ export class SelfFinderComponent implements OnInit {
   ) {}
 
   delete(finder: Finder) {
+    this.loading = true;
+
     this.finderService.delete(finder.id).subscribe({
       error: (err) => {
         this.toastrService.show(err.message, 'Error', {
           duration: 3000,
           status: 'danger'
         });
+        this.loading = false;
       },
       complete: () => {
         this.toastrService.success('Finder deleted');
         setTimeout(() => {
           window.location.reload();
         }, 3000);
+        this.loading = false;
       }
     });
   }
@@ -45,10 +48,8 @@ export class SelfFinderComponent implements OnInit {
   }
 
   loadNext() {
-    if (this.loading) {
-      return;
-    }
     this.loading = true;
+
     this.finderService
       .list({
         limit: this.pageSize,
@@ -59,7 +60,6 @@ export class SelfFinderComponent implements OnInit {
           this.finders = data.getSelfFinders.data;
           this.count = data.getSelfFinders.count;
           this.loading = false;
-          this.pageToLoadNext++;
         }
       });
   }

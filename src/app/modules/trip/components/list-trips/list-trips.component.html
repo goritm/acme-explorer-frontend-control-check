@@ -1,4 +1,72 @@
 <div [nbSpinner]="loading" nbSpinnerStatus="basic">
+  <nb-card>
+    <nb-card-body>
+      <form
+        [formGroup]="finderForm"
+        (ngSubmit)="findTrips()"
+        class="finder-container"
+      >
+        <input
+          type="text"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="keyword"
+          placeholder="{{ 'finder.search_bar.keyword' | translate }}"
+        />
+        <input
+          [nbDatepicker]="minDatePicker"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="minDate"
+          placeholder="{{ 'finder.search_bar.minDate' | translate }}"
+        />
+        <nb-datepicker #minDatePicker [min]="currentDate"></nb-datepicker>
+        <input
+          [nbDatepicker]="maxDatePicker"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="maxDate"
+          placeholder="{{ 'finder.search_bar.maxDate' | translate }}"
+        />
+        <nb-datepicker #maxDatePicker [min]="currentDate"></nb-datepicker>
+        <input
+          type="number"
+          min="0"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="minPrice"
+          placeholder="{{ 'finder.search_bar.minPrice' | translate }}"
+        />
+        <input
+          type="number"
+          min="0"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="maxPrice"
+          placeholder="{{ 'finder.search_bar.maxPrice' | translate }}"
+        />
+        <input
+          type="number"
+          min="0"
+          max="100"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="maxItems"
+          placeholder="{{ 'finder.search_bar.maxItems' | translate }}"
+        />
+        <button nbButton type="submit" [disabled]="!finderForm.valid">
+          {{ 'finder.search_bar.button' | translate }}
+        </button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+
   <div *ngIf="trips.length > 0; else noTrips" class="trip-list-container">
     <nb-list class="list-container">
       <nb-list-item *ngFor="let trip of trips">
@@ -36,7 +104,7 @@
   <ng-template #noTrips>
     <nb-card>
       <nb-card-body>
-        <p>No trips found</p>
+        <p>{{ 'home.noTrips' | translate }}</p>
       </nb-card-body>
     </nb-card>
   </ng-template>
