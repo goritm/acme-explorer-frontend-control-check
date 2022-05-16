@@ -1,7 +1,7 @@
 <nb-card *ngIf="trip">
   <nb-card-header class="header-container">
     <p>
-      {{ title }}: <b>{{ trip.title }}</b>
+      {{ 'trip-detail.applyToTrip.title' | translate }}: <b>{{ trip.title }}</b>
     </p>
     <nb-icon
       icon="close-outline"
@@ -12,14 +12,20 @@
   <nb-card-body>
     <p>{{ trip.description }}</p>
     <br />
-    <p>Start Date: {{ trip.startDate | date: 'medium' }}</p>
-    <p>End Date: {{ trip.endDate | date: 'medium' }}</p>
+    <p>
+      {{ 'trip-detail.startDate' | translate }}:
+      {{ trip.startDate | date: 'medium' }}
+    </p>
+    <p>
+      {{ 'trip-detail.endDate' | translate }}:
+      {{ trip.endDate | date: 'medium' }}
+    </p>
     <br />
     <p class="price">
       <b>€{{ trip.price }} </b>
     </p>
     <br />
-    <p>Want to apply? Leave some comments if you'd like:</p>
+    <p>{{ 'trip-detail.applyToTrip.applyMessage' | translate }}:</p>
 
     <form [formGroup]="applicationForm" (ngSubmit)="onSubmit(applicationForm)">
       <textarea
@@ -27,11 +33,13 @@
         nbInput
         fullWidth
         rows="3"
-        placeholder="Comments..."
+        placeholder="{{ 'trip-detail.applyToTrip.comments' | translate }}"
       ></textarea>
       <br />
       <br />
-      <button nbButton type="submit">Apply</button>
+      <button nbButton type="submit">
+        {{ 'trip-detail.applyToTrip.buttons.apply' | translate }}
+      </button>
     </form>
   </nb-card-body>
 </nb-card>

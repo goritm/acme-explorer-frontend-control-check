@@ -11,25 +11,26 @@
     </nb-card-header>
     <nb-card-body class="card-body">
       <p *ngIf="trip.reasonCancelled">
-        The trip was cancelled: {{ trip.reasonCancelled }}
+        {{ 'trip-detail.reasonCancelled' | translate }}
+        {{ trip.reasonCancelled }}
       </p>
-      <p>Description: {{ trip.description }}</p>
+      <p>{{ 'trip-detail.description' | translate }}: {{ trip.description }}</p>
 
       <img
         class="img-responsive"
         *ngFor="let picture of trip.pictures"
         src="{{ picture }}"
       />
-      <p>Start date: {{ trip.startDate }}</p>
-      <p>End date: {{ trip.endDate }}</p>
-      <p>{{ 'card-trip.price' | translate }}: €{{ trip.price }}</p>
-      <p>Requirements</p>
+      <p>{{ 'trip-detail.startDate' | translate }}: {{ trip.startDate }}</p>
+      <p>{{ 'trip-detail.endDate' | translate }}: {{ trip.endDate }}</p>
+      <p>{{ 'trip-detail.price' | translate }}: €{{ trip.price }}</p>
+      <p>{{ 'trip-detail.requirements' | translate }}:</p>
       <ul>
         <li *ngFor="let requirement of trip.requirements">
           {{ requirement }}
         </li>
       </ul>
-      <p>Stages</p>
+      <p>{{ 'trip-detail.stages' | translate }}:</p>
       <nb-stepper orientation="vertical">
         <ng-container *ngFor="let stage of trip.stages">
           <nb-step [label]="stage.title">
@@ -43,38 +44,38 @@
       </nb-stepper>
     </nb-card-body>
     <nb-card-footer *ngIf="tripIsNotCancelled" class="card-footer">
-      <p>Created by: {{ trip.manager.name }}</p>
+      <p>{{ 'trip-detail.manager' | translate }} {{ trip.manager.name }}</p>
       <div class="button-group">
         <button
           *ngIf="isOwnTrip && trip.state === 'INACTIVE'"
           nbButton
           (click)="publishTrip()"
         >
-          Publish trip
+          {{ 'trip-detail.buttons.publish' | translate }}
         </button>
         <button *ngIf="isOwnTrip" nbButton (click)="editTrip()">
-          Edit trip
+          {{ 'trip-detail.buttons.edit' | translate }}
         </button>
         <button
           *ngIf="isOwnTrip && trip.state === 'INACTIVE'"
           nbButton
           (click)="deleteTrip()"
         >
-          Delete trip
+          {{ 'trip-detail.buttons.delete' | translate }}
         </button>
         <button
           *ngIf="isOwnTrip && trip.state === 'ACTIVE'"
           nbButton
           (click)="cancelTrip()"
         >
-          Cancel trip
+          {{ 'trip-detail.buttons.cancel' | translate }}
         </button>
         <button
           *ngIf="isExplorer && trip.state === 'ACTIVE'"
           nbButton
           (click)="openModal()"
         >
-          Apply to trip
+          {{ 'trip-detail.buttons.apply' | translate }}
         </button>
       </div>
     </nb-card-footer>
@@ -83,14 +84,14 @@
   <ng-template #noTrip>
     <nb-card>
       <nb-card-body>
-        <p>No trip found</p>
+        <p>{{ 'trip-detail.noTrips' | translate }}</p>
       </nb-card-body>
     </nb-card>
   </ng-template>
 
   <nb-card *ngIf="sponsorship">
     <nb-card-header>
-      <h3>This trip is sponsored by...</h3>
+      <h3>{{ 'trip-detail.sponsorship' | translate }}</h3>
     </nb-card-header>
     <nb-card-body>
       <a href="{{ sponsorship?.link }}">

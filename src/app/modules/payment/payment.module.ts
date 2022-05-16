@@ -13,6 +13,7 @@ import {
 import { AppRoutingModule } from '../routing/app-routing.module';
 import { PaymentComponent } from './payment.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { NgxTranslateModule } from '../translate/translate.module';
 
 @NgModule({
   declarations: [PaymentComponent],
@@ -23,6 +24,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxTranslateModule,
     NbFormFieldModule,
     NbInputModule,
     NbButtonModule,

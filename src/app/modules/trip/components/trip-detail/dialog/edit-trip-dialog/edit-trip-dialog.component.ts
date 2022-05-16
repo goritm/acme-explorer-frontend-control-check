@@ -12,7 +12,6 @@ import { TripService } from 'src/app/modules/trip/trip.service';
   styleUrls: ['./edit-trip-dialog.component.scss']
 })
 export class EditTripDialogComponent implements OnInit {
-  title = '';
   trip!: ITrip;
 
   submitted = false;
@@ -34,7 +33,6 @@ export class EditTripDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.title = this.dialogRef.componentRef.instance.title;
     this.trip = this.dialogRef.componentRef.instance.trip;
     this.initForm();
   }

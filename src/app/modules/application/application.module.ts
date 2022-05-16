@@ -14,6 +14,7 @@ import {
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RejectApplicationDialogComponent } from './components/dialog/reject-application-dialog/reject-application-dialog.component';
+import { NgxTranslateModule } from '../translate/translate.module';
 
 @NgModule({
   declarations: [ListApplicationsComponent, RejectApplicationDialogComponent],
@@ -22,6 +23,7 @@ import { RejectApplicationDialogComponent } from './components/dialog/reject-app
     GraphQLModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxTranslateModule,
     NbAccordionModule,
     NbButtonModule,
     NbInputModule,

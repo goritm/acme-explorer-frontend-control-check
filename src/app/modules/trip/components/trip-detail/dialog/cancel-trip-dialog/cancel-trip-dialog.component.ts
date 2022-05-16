@@ -12,7 +12,6 @@ import { TripService } from 'src/app/modules/trip/trip.service';
   styleUrls: ['./cancel-trip-dialog.component.scss']
 })
 export class CancelTripDialogComponent implements OnInit {
-  title = '';
   trip!: ITrip;
   submitted = false;
   loading = false;
@@ -30,7 +29,6 @@ export class CancelTripDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.title = this.dialogRef.componentRef.instance.title;
     this.trip = this.dialogRef.componentRef.instance.trip;
   }
 

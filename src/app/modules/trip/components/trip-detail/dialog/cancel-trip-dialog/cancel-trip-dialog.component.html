@@ -1,7 +1,7 @@
 <nb-card *ngIf="trip" [nbSpinner]="loading" nbSpinnerStatus="basic">
   <nb-card-header class="header-container">
     <p>
-      {{ title }}: <b>{{ trip.title }}</b>
+      {{ 'trip-detail.cancelTrip.title' | translate }}: <b>{{ trip.title }}</b>
     </p>
     <nb-icon
       icon="close-outline"
@@ -10,21 +10,18 @@
     ></nb-icon>
   </nb-card-header>
   <nb-card-body>
-    <p>
-      Are you sure that you want to cancel the trip? If so, you must specify a
-      reason of cancellation:
-    </p>
+    <p>{{ 'trip-detail.cancelTrip.message' | translate }}:</p>
     <form [formGroup]="cancelTripForm" (ngSubmit)="cancelTrip()">
       <textarea
         formControlName="reasonCancelled"
         nbInput
         fullWidth
         rows="3"
-        placeholder="Please add a reason of cancellation..."
+        placeholder="{{ 'trip-detail.cancelTrip.placeholder' | translate }}"
         class="textarea-container"
       ></textarea>
       <button nbButton type="submit" [disabled]="!cancelTripForm.valid">
-        Cancel trip
+        {{ 'trip-detail.cancelTrip.button' | translate }}
       </button>
     </form>
   </nb-card-body>
