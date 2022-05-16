@@ -9,6 +9,8 @@ import { ResponseGetSelfFindersQuery } from '../graphql/types/finder/get-self-fi
 import { UpdateFinderInput } from '../graphql/inputs/finder/update-finder.input';
 import { UPDATE_SELF_FINDER } from '../graphql/mutations/finder/update-self-finder.mutation';
 import { ResponseUpdateSelfFinderMutation } from '../graphql/types/finder/update-self-finder-response.type';
+import { DELETE_SELF_FINDER } from '../graphql/mutations/finder/delete-self-finder.mutation';
+import { ResponseDeleteSelfFinderMutation } from '../graphql/types/finder/delete-self-finder-response.type';
 
 @Injectable({
   providedIn: 'root'
@@ -49,8 +51,8 @@ export class FinderService {
   }
 
   delete(id: string) {
-    return this.apollo.mutate<ResponseLockUserMutation>({
-      mutation: LOCK_USER,
+    return this.apollo.mutate<ResponseDeleteSelfFinderMutation>({
+      mutation: DELETE_SELF_FINDER,
       variables: {
         id
       }
