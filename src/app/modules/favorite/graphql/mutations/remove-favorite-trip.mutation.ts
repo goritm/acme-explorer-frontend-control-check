@@ -1,8 +1,8 @@
 import { gql } from 'apollo-angular';
 
-export const DELETE_FAVORITE_LIST = gql`
-  mutation deleteFavoriteList($id: ID!) {
-    deleteFavoriteList(id: $id) {
+export const REMOVE_FAVORITE_TRIP = gql`
+  mutation removeFavoriteTrip($input: RemoveFavoriteTripInput!) {
+    removeFavoriteTrip(input: $input) {
       id
       name
       trips {

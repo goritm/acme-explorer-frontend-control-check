@@ -1,5 +1,5 @@
 <div class="header-text">
-  <h1> {{ 'favorite.list.title' | translate }} {{ favoriteList.name }} </h1>
+  <h1> {{ favoriteList.name }} </h1>
 </div>
 
 <div *ngIf="favoriteList.trips.length > 0; else noTrips">
@@ -13,15 +13,15 @@
     >
       <nb-list-item *ngFor="let trip of favoriteList.trips">
         <nb-card hover-class="hover" class="listing-container">
-          <nb-card-header class="header-card" routerLink="/trips">
+          <nb-card-header class="header-card" routerLink="/trips/detail/{{trip.id}}">
               <nb-icon icon="layers-outline"></nb-icon>
               <span>
-                <b class="header-card-title">{{ 'favorite.list.row.name' | translate }}</b>
+                <b class="header-card-title">{{ 'favorite.detail.row.title' | translate }}</b>
                 {{ trip.title }}
               </span>
 
               <span>
-                <b class="header-card-title">{{ 'favorite.list.row.count' | translate }}</b>
+                <b class="header-card-title">{{ 'favorite.detail.row.price' | translate }}</b>
                 {{ trip.price }}
               </span>
           </nb-card-header>
@@ -36,6 +36,7 @@
               status="danger"
               size="small">
               <nb-icon icon="trash-2-outline"></nb-icon>
+              {{ 'favorite.detail.buttons.delete' | translate }}
             </button>
 
           </nb-card-footer>
@@ -47,7 +48,7 @@
 <ng-template #noTrips>
   <nb-card class="listing-container">
     <nb-card-body>
-      <p> {{ 'finder.list.notFound' | translate }}  </p>
+      <p> {{ 'favorite.detail.notFound' | translate }}  </p>
     </nb-card-body>
   </nb-card>
 </ng-template>

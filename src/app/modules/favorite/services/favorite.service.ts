@@ -13,6 +13,10 @@ import { ResponseDeleteFavoriteListMutation } from '../graphql/types/delete-favo
 import { ResponseRenameFavoriteListMutation } from '../graphql/types/rename-favorite-list-response.type';
 import { GET_SELF_FAVORITE_LIST } from '../graphql/queries/get-self-favorite-list.query';
 import { ResponseGetSelfFavoriteListQuery } from '../graphql/types/get-self-favorite-list-reponse.type';
+import { REMOVE_FAVORITE_TRIP } from '../graphql/mutations/remove-favorite-trip.mutation';
+import { ADD_FAVORITE_TRIP } from '../graphql/mutations/add-favorite-trip.mutation';
+import { ResponseRemoveFavoriteTripMutation } from '../graphql/types/remove-favorite-trip-response.type';
+import { ResponseAddFavoriteTripMutation } from '../graphql/types/add-favorite-trip-response.type';
 
 @Injectable({
   providedIn: 'root'
@@ -71,8 +75,8 @@ export class FavoriteService {
   }
 
   deleteFavoriteTrip(removeFavoriteTripInput: RemoveFavoriteTripInput) {
-    return this.apollo.mutate<ResponseDeleteFavoriteListMutation>({
-      mutation: DELETE_FAVORITE_LIST,
+    return this.apollo.mutate<ResponseRemoveFavoriteTripMutation>({
+      mutation: REMOVE_FAVORITE_TRIP,
       variables: {
         input: removeFavoriteTripInput
       }
@@ -80,8 +84,8 @@ export class FavoriteService {
   }
 
   addFavoriteTrip(addFavoriteTripInput: AddFavoriteTripInput) {
-    return this.apollo.mutate<ResponseDeleteFavoriteListMutation>({
-      mutation: DELETE_FAVORITE_LIST,
+    return this.apollo.mutate<ResponseAddFavoriteTripMutation>({
+      mutation: ADD_FAVORITE_TRIP,
       variables: {
         input: addFavoriteTripInput
       }

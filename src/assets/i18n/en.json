@@ -248,6 +248,16 @@
       "buttons": {
         "rename": "Rename"
       }
+    },
+    "detail": {
+      "row": {
+        "title": "Title: ",
+        "price": "Price: "
+      },
+      "buttons": {
+        "delete": "Delete"
+      },
+      "notFound": "No trips found"
     }
   }
 }

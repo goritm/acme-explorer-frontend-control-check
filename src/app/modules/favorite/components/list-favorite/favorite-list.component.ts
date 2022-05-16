@@ -21,8 +21,7 @@ export class FavoriteListComponent implements OnInit {
     protected favoriteService: FavoriteService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastrService: NbToastrService,
-    private dialogService: NbDialogService
+    private toastrService: NbToastrService
   ) {}
 
   removeFavoriteTrip(trip: Trip) {
@@ -34,9 +33,9 @@ export class FavoriteListComponent implements OnInit {
       .subscribe({
         next: () => {
           this.toastrService.success('Trip removed from favorite list');
-          this.favoriteList.trips = this.favoriteList.trips.filter(
-            (f) => f.id !== trip.id
-          );
+          setTimeout(() => {
+            this.router.navigate(['/favorites']);
+          }, 3000);
         }
       });
   }

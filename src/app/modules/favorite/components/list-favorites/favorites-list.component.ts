@@ -29,9 +29,10 @@ export class FavoritesListComponent implements OnInit {
     this.favoriteService.deleteFavoriteList(favoriteList.id).subscribe({
       next: () => {
         this.toastrService.success('Favorite list deleted');
-        this.favoritesList = this.favoritesList.filter(
-          (f) => f.id !== favoriteList.id
-        );
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       }
     });
   }

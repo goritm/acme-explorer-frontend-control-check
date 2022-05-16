@@ -17,9 +17,14 @@ import { NgxTranslateModule } from '../translate/translate.module';
 import { FavoritesListComponent } from './components/list-favorites/favorites-list.component';
 import { FavoriteService } from './services/favorite.service';
 import { RenameFavoriteListDialogComponent } from './components/list-favorites/dialogs/rename-favorite-list/rename-favorite-list-dialog.component';
+import { FavoriteListComponent } from './components/list-favorite/favorite-list.component';
 
 @NgModule({
-  declarations: [FavoritesListComponent, RenameFavoriteListDialogComponent],
+  declarations: [
+    FavoritesListComponent,
+    RenameFavoriteListDialogComponent,
+    FavoriteListComponent
+  ],
   imports: [
     GraphQLModule,
     AppRoutingModule,
@@ -38,6 +43,10 @@ import { RenameFavoriteListDialogComponent } from './components/list-favorites/d
     NgxTranslateModule
   ],
   providers: [FavoriteService],
-  exports: [FavoritesListComponent, RenameFavoriteListDialogComponent]
+  exports: [
+    FavoritesListComponent,
+    RenameFavoriteListDialogComponent,
+    FavoriteListComponent
+  ]
 })
 export class FavoriteModule {}

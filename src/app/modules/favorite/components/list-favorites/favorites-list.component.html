@@ -13,7 +13,7 @@
     >
       <nb-list-item *ngFor="let favoriteList of favoritesList">
         <nb-card hover-class="hover" class="listing-container">
-          <nb-card-header class="header-card" routerLink="/trips">
+          <nb-card-header class="header-card" routerLink="{{ favoriteList.id }}">
               <nb-icon icon="layers-outline"></nb-icon>
               <span>
                 <b class="header-card-title">{{ 'favorite.list.row.name' | translate }}</b>
@@ -57,7 +57,7 @@
 <ng-template #noFavoriteList>
   <nb-card class="listing-container">
     <nb-card-body>
-      <p> {{ 'finder.list.notFound' | translate }}  </p>
+      <p> {{ 'favorite.list.notFound' | translate }}  </p>
     </nb-card-body>
   </nb-card>
 </ng-template>
