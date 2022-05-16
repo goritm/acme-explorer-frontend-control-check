@@ -120,11 +120,11 @@
           "min": "La contraseña debe tener al menos 8 caracteres",
           "max": "La contraseña como máximo debe tener 25 caracteres"
         },
-        "passwordConfirmation": {
-          "name": "Confirmar contraseña",
-          "required": "Por favor ingresa una contraseña de confirmación",
-          "min": "La contraseña de confirmación debe tener al menos 8 caracteres",
-          "max": "La contraseña de confirmación como máximo debe tener 25 caracteres"
+        "role": {
+          "name": "Selecciona un Role",
+          "explorer": "Explorador",
+          "manager": "Manejador",
+          "sponsor": "Sponsor"
         }
       },
       "buttons": {
