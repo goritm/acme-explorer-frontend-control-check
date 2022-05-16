@@ -1,8 +1,12 @@
 <div [nbSpinner]="loading" nbSpinnerStatus="basic">
   <div *ngIf="trips.length > 0; else noTrips" class="trip-list-container">
-    <nb-list>
+    <nb-list class="list-container">
       <nb-list-item *ngFor="let trip of trips">
-        <nb-card routerLink="/trips/detail/{{ trip.id }}" hover-class="hover">
+        <nb-card
+          routerLink="/trips/detail/{{ trip.id }}"
+          hover-class="hover"
+          class="card-container"
+        >
           <nb-card-header class="card-header">
             <p class="trip-title">{{ trip.title }}</p>
             <div class="dates">
@@ -22,7 +26,7 @@
             />
           </nb-card-body>
           <nb-card-footer class="card-footer">
-            <b>{{ 'card-trip.price' | translate }}:</b> €{{ trip.price }}
+            €{{ trip.price }}
           </nb-card-footer>
         </nb-card>
       </nb-list-item>

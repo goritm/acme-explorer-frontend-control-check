@@ -82,4 +82,15 @@
       </nb-card-body>
     </nb-card>
   </ng-template>
+
+  <nb-card *ngIf="sponsorship">
+    <nb-card-header>
+      <h3>This trip is sponsored by...</h3>
+    </nb-card-header>
+    <nb-card-body>
+      <a href="{{ sponsorship?.link }}">
+        <img class="sponsor-image" src="{{ sponsorship?.banner }}" />
+      </a>
+    </nb-card-body>
+  </nb-card>
 </div>

@@ -7,8 +7,9 @@
 }
 
 .img-responsive {
-  max-width: 100%;
-  width: 500px;
+  width: 100%;
+  height: 19rem;
+  object-fit: cover;
 }
 
 .trip-list-container {
@@ -16,20 +17,27 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .list-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.card-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+.card-container {
+  width: 100%;
+  height: 35rem;
 
-  .trip-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
+  .card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
-  .dates {
+    .trip-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
   }
 }
 
@@ -38,4 +46,7 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+
+  font-size: 1.25rem;
+  font-weight: bold;
 }

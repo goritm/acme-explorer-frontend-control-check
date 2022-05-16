@@ -1,3 +1,6 @@
+import { SponsorshipState } from './../../../sponsorship/graphql/enums/sponsorship-states.enum';
+import { SponsorshipService } from './../../../sponsorship/service/sponsorship.service';
+import { Sponsorship } from './../../../sponsorship/graphql/types/sponsorship.type';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
@@ -20,6 +23,8 @@ import { finalize } from 'rxjs';
 })
 export class TripDetailComponent implements OnInit {
   trip: ITrip | undefined;
+  sponsorship: Sponsorship | undefined;
+
   loading = true;
   userRole: string | undefined;
   isOwnTrip = false;
@@ -32,6 +37,7 @@ export class TripDetailComponent implements OnInit {
     private tripService: TripService,
     private location: Location,
     private dialogService: NbDialogService,
+    private sponsorshipService: SponsorshipService,
     private toastrService: NbToastrService,
     private authService: AuthService,
     private cdr: ChangeDetectorRef
@@ -39,6 +45,7 @@ export class TripDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTripDetail();
+    this.getSponsorships();
     this.userRole = this.authService.getRole();
     this.isExplorer = this.userRole === UserRoles.EXPLORER;
   }
@@ -61,6 +68,40 @@ export class TripDetailComponent implements OnInit {
         });
       }
     });
+  }
+
+  getSponsorships(): void {
+    this.loading = true;
+
+    this.sponsorshipService
+      .getSponsorships({
+        where: {
+          trip: {
+            id: this.trip?.id ?? ''
+          },
+          state: SponsorshipState.ACTIVE
+        }
+      })
+      .subscribe({
+        next: ({ data }) => {
+          if (!(data === undefined || data === null)) {
+            const sponsorships = data.getSponsorships;
+            const randomSponsorshipIndex = Math.floor(
+              Math.random() * sponsorships.length
+            );
+
+            this.sponsorship = sponsorships[randomSponsorshipIndex];
+            this.loading = false;
+          }
+        },
+        error: (err: any) => {
+          this.toastrService.show(err.message, 'Error', {
+            duration: 3000,
+            status: 'danger'
+          });
+          this.loading = false;
+        }
+      });
   }
 
   checkOwnTrip(): void {
