@@ -90,6 +90,30 @@ export class TripDetailComponent implements OnInit {
       .onClose.subscribe(() => this.getTripDetail());
   }
 
+  deleteTrip(): void {
+    this.loading = true;
+
+    this.tripService
+      .deleteTrip(this.trip?.id ?? '')
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: ({ data }) => {
+          if (!(data === undefined || data === null)) {
+            this.toastrService.success('Trip deleted successfully');
+            this.goBack();
+          }
+        },
+        error: (err: any) => {
+          this.toastrService.danger(err.message);
+        }
+      });
+  }
+
   publishTrip(): void {
     this.loading = true;
 

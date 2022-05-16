@@ -6,11 +6,13 @@ import {
   APPLY_TO_TRIP,
   CANCEL_TRIP,
   CREATE_TRIP,
+  DELETE_TRIP,
   UPDATE_TRIP
 } from 'src/utils/mutations/mutations';
 import {
   ResponseCancelTrip,
   ResponseCreateTrip,
+  ResponseDeleteTrip,
   ResponseUpdateTrip
 } from 'src/utils/mutations/responses';
 import { GET_TRIP, LIST_TRIPS, PUBLISH_TRIP } from 'src/utils/queries/queries';
@@ -117,6 +119,15 @@ export class TripService {
           data: updateTripInput.data,
           where: updateTripInput.where
         }
+      }
+    });
+  }
+
+  deleteTrip(id: string | null) {
+    return this.apollo.mutate<ResponseDeleteTrip>({
+      mutation: DELETE_TRIP,
+      variables: {
+        id
       }
     });
   }
