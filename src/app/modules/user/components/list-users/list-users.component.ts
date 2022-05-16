@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
 import { IUser } from 'src/utils/interfaces/user.interface';
-import { UserAdmin } from '../../graphql/types/user-admin.type';
+import { UserAdmin } from '../../graphql/types/user/user-admin.type';
 import { UserService } from '../../services/user.service';
 
 @Component({

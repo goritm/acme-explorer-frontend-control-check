@@ -22,6 +22,11 @@ export const EXPLORER_MENU_ITEMS = [
     link: '/profile'
   },
   {
+    title: 'Finders',
+    icon: 'search-outline',
+    link: '/finders/self'
+  },
+  {
     title: 'Logout',
     icon: 'log-out-outline'
   }
