@@ -7,9 +7,13 @@ export const GET_SELF_FAVORITE_LIST = gql`
       trips {
         id
         title
+        ticket
         description
         price
         pictures
+        startDate
+        endDate
+        state
       }
       name
       user

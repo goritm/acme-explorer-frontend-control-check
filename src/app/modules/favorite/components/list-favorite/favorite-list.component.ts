@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { NbDialogService, NbToastrService } from '@nebular/theme';
+import { NbToastrService } from '@nebular/theme';
 import { FavoriteService } from '../../services/favorite.service';
 import { FavoriteList } from '../../graphql/types/favorite-list.type';
 import { Trip } from 'src/app/modules/trip/graphql/types/trip.type';
