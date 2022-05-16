@@ -55,7 +55,10 @@ export class TripDetailComponent implements OnInit {
         }
       },
       error: (err: any) => {
-        this.toastrService.danger(err.message);
+        this.toastrService.show(err.message, 'Error', {
+          duration: 3000,
+          status: 'danger'
+        });
       }
     });
   }
@@ -111,12 +114,20 @@ export class TripDetailComponent implements OnInit {
       .subscribe({
         next: ({ data }) => {
           if (!(data === undefined || data === null)) {
-            this.toastrService.success('Trip deleted successfully');
-            this.goBack();
+            this.toastrService.show('Trip deleted successfully', 'Success', {
+              duration: 3000,
+              status: 'success'
+            });
           }
         },
         error: (err: any) => {
-          this.toastrService.danger(err.message);
+          this.toastrService.show(err.message, 'Error', {
+            duration: 3000,
+            status: 'danger'
+          });
+        },
+        complete: () => {
+          this.goBack();
         }
       });
   }
@@ -135,12 +146,18 @@ export class TripDetailComponent implements OnInit {
       .subscribe({
         next: ({ data }) => {
           if (!(data === undefined || data === null)) {
-            this.toastrService.success('Trip published');
+            this.toastrService.show('Trip published!', 'Success', {
+              duration: 3000,
+              status: 'success'
+            });
             this.getTripDetail();
           }
         },
         error: (err: any) => {
-          this.toastrService.danger(err.message);
+          this.toastrService.show(err.message, 'Error', {
+            duration: 3000,
+            status: 'danger'
+          });
         }
       });
   }
@@ -150,8 +167,13 @@ export class TripDetailComponent implements OnInit {
 
     // If trip is already started, show error
     if (startDate < this.currentDate) {
-      this.toastrService.danger(
-        'You cannot cancel a trip that has already started'
+      this.toastrService.show(
+        'You cannot cancel a trip that has already started',
+        'Error',
+        {
+          duration: 3000,
+          status: 'danger'
+        }
       );
       return;
     }
@@ -159,9 +181,15 @@ export class TripDetailComponent implements OnInit {
     // If trip is less than a week away, show warning
     const diffInDays = differenceInDays(startDate, this.currentDate);
     if (diffInDays < 7) {
-      this.toastrService.warning(
-        'You cannot cancel a trip that is less than a week away'
+      this.toastrService.show(
+        'You cannot cancel a trip that is less than a week away',
+        'Error',
+        {
+          duration: 3000,
+          status: 'danger'
+        }
       );
+
       return;
     }
 
