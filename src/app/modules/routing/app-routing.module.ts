@@ -27,6 +27,8 @@ import { AnalyticsComponent } from '../dashboard/components/analytics/analytics.
 import { CreateUserComponent } from '../user/components/create-user/create-user.component';
 import { SelfFinderComponent } from '../user/components/self-finders/self-finders.component';
 import { FinderStatsComponent } from '../dashboard/components/finder-stats/finder-stats.component';
+import { FavoritesListComponent } from '../favorite/components/list-favorites/favorites-list.component';
+import { FavoriteListComponent } from '../favorite/components/list-favorite/favorite-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -137,6 +139,22 @@ const routes: Routes = [
   {
     path: 'finders/self',
     component: SelfFinderComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: EXPLORER
+    }
+  },
+  {
+    path: 'favorites',
+    component: FavoritesListComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: EXPLORER
+    }
+  },
+  {
+    path: 'favorites/:id',
+    component: FavoriteListComponent,
     canActivate: [AuthGuard],
     data: {
       expectedRoles: EXPLORER

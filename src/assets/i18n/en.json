@@ -221,5 +221,43 @@
       },
       "notFound": "No finders found"
     }
+  },
+  "favorite": {
+    "list": {
+      "title": "Favorites",
+      "row": {
+        "name": "Name: ",
+        "count": "Trips Count: "
+      },
+      "buttons": {
+        "update": "Rename",
+        "delete": "Delete"
+      },
+      "notFound": "No favorites found"
+    },
+    "update": {
+      "title": "Rename Favorite List",
+      "form": {
+        "name": {
+          "name": "Name: ",
+          "required": "Please enter a name",
+          "min": "Name must be at least 1 characters long",
+          "max": "Name must be less than 25 characters long"
+        }
+      },
+      "buttons": {
+        "rename": "Rename"
+      }
+    },
+    "detail": {
+      "row": {
+        "title": "Title: ",
+        "price": "Price: "
+      },
+      "buttons": {
+        "delete": "Delete"
+      },
+      "notFound": "No trips found"
+    }
   }
 }

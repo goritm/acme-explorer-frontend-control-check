@@ -1,0 +1,47 @@
+.hover {
+  cursor: pointer;
+}
+
+.header-text {
+  text-align: center;
+}
+
+h1 {
+  font-size: calc(1.8vw + 1.8vh + 1vmin);
+}
+
+.listing-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.footer-card {
+  width: 30%;
+  display: flex;
+  margin: auto;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.header-card {
+  width: 70%;
+  display: flex;
+  margin: auto;
+  justify-content: space-evenly;
+  gap: 0.5rem;
+
+
+  .header-card-title {
+    font-size: 1.0rem;
+    font-weight: bold;
+  }
+
+  .header-card-subtitle {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+}
+
