@@ -52,9 +52,9 @@ export const ADMIN_MENU_ITEMS = [
     icon: 'keypad-outline',
     children: [
       {
-        title: 'Home',
-        icon: 'home-outline',
-        link: '/admin/home'
+        title: 'Finders Stats',
+        icon: 'pie-chart-outline',
+        link: '/admin/finder-stats'
       },
       {
         title: 'Analytics',

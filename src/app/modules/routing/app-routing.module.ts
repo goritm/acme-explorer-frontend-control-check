@@ -24,6 +24,7 @@ import { PaymentComponent } from '../payment/payment.component';
 import { FlatRateComponent } from '../configuration/components/flat-rate/flat-rate.component';
 import { AnalyticsComponent } from '../dashboard/components/analytics/analytics.component';
 import { CreateUserComponent } from '../user/components/create-user/create-user.component';
+import { FinderStatsComponent } from '../dashboard/components/finder-stats/finder-stats.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -134,6 +135,14 @@ const routes: Routes = [
   {
     path: 'admin/analytics',
     component: AnalyticsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.ADMIN]
+    }
+  },
+  {
+    path: 'admin/finder-stats',
+    component: FinderStatsComponent,
     canActivate: [AuthGuard],
     data: {
       expectedRoles: [UserRoles.ADMIN]
