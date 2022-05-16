@@ -221,5 +221,19 @@
       },
       "notFound": "No finders found"
     }
+  },
+  "favorite": {
+    "list": {
+      "title": "Favorites",
+      "row": {
+        "name": "Name: ",
+        "count": "Trips Count: "
+      },
+      "buttons": {
+        "update": "Rename",
+        "delete": "Delete"
+      },
+      "notFound": "No favorites found"
+    }
   }
 }

@@ -216,5 +216,19 @@
       },
       "notFound": "No se encontraron busquedas"
     }
+  },
+  "favorite": {
+    "list": {
+      "title": "Mis favoritos",
+      "row": {
+        "name": "Nombre de la lista: ",
+        "count": "Cantidad de viajes: "
+      },
+      "buttons": {
+        "update": "Renombrar",
+        "delete": "Borrar"
+      },
+      "notFound": "No tienes listas de favoritos"
+    }
   }
 }

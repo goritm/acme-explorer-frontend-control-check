@@ -28,8 +28,19 @@ export class FavoritesListComponent implements OnInit {
     private toastrService: NbToastrService
   ) {}
 
-  cancel() {
-    this.router.navigate(['/']);
+  delete(favoriteList: FavoriteList) {
+    this.favoriteService.deleteFavoriteList(favoriteList.id).subscribe({
+      next: () => {
+        this.toastrService.success('Favorite list deleted');
+        this.favoritesList = this.favoritesList.filter(
+          (f) => f.id !== favoriteList.id
+        );
+      }
+    });
+  }
+
+  rename(favoriteList: FavoriteList) {
+    console.log('rename', favoriteList);
   }
 
   loadNext() {
