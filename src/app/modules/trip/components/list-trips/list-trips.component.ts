@@ -70,7 +70,7 @@ export class ListTripsComponent {
   findTrips() {
     this.loading = true;
 
-    const { keyword, maxItems, minDate, maxDate, minPrice, maxPrice } =
+    const { keyword, minDate, maxDate, minPrice, maxPrice, maxItems } =
       this.finderForm.value;
 
     this.tripService
@@ -88,6 +88,26 @@ export class ListTripsComponent {
         next: ({ data }) => {
           this.trips = data.getTrips;
 
+          if (
+            keyword === '' &&
+            minDate === '' &&
+            maxDate === '' &&
+            minPrice === '' &&
+            maxPrice === ''
+          ) {
+            this.toastrService.show(
+              'Fill any input to save a finder',
+              'Finder',
+              {
+                duration: 3000,
+                status: 'warning'
+              }
+            );
+
+            this.loading = false;
+            return;
+          }
+
           this.finderService
             .create({
               ...(keyword && { keyword }),
@@ -98,8 +118,6 @@ export class ListTripsComponent {
             })
             .subscribe({
               next: () => {
-                console.log('created finder');
-
                 this.toastrService.show('Created finder...', 'Success', {
                   duration: 3000,
                   status: 'success'
