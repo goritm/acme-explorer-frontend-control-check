@@ -191,6 +191,13 @@
           "paid": "Pagado"
         }
       }
+    },
+    "finder": {
+      "stats": {
+        "title": "Estadísticas de busquedas",
+        "averagePriceRange": "Rango de precios promedio",
+        "topKeywords": "Palabras clave más buscadas"
+      }
     }
   },
   "finder": {
