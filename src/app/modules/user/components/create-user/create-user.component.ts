@@ -7,9 +7,9 @@ import {
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
 import { finalize } from 'rxjs';
-import { TripService } from 'src/app/modules/trip/trip.service';
 import { CreateUserInput } from '../../graphql/inputs/create-user.input';
 import { UserService } from '../../services/user.service';
+import { UserRoles } from 'src/utils/enums/user-roles.enum';
 
 @Component({
   selector: 'create-user',
@@ -18,26 +18,30 @@ import { UserService } from '../../services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateUserComponent {
-  // trips: Trip[] = [];
   submitted = false;
   loading = false;
   progress = 0;
+  selectedItem = UserRoles.EXPLORER;
 
   createUserForm = this.fb.group({
-    trip: ['', [Validators.required]],
-    link: [
+    name: [
       '',
-      [Validators.required, Validators.pattern(/^(http:\/\/|https:\/\/).+$/)]
+      [Validators.required, Validators.maxLength(1), Validators.maxLength(25)]
     ],
-    banner: [
+    lastName: [
       '',
-      [Validators.required, Validators.pattern(/^(http:\/\/|https:\/\/).+$/)]
+      [Validators.required, Validators.minLength(1), Validators.maxLength(25)]
+    ],
+    role: [UserRoles.EXPLORER],
+    email: ['', [Validators.required, Validators.email]],
+    password: [
+      '',
+      [Validators.required, Validators.minLength(8), Validators.maxLength(25)]
     ]
   });
 
   constructor(
     private userService: UserService,
-    private tripService: TripService,
     private router: Router,
     private fb: FormBuilder,
     private toastrService: NbToastrService,

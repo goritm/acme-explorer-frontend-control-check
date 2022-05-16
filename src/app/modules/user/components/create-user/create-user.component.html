@@ -1,6 +1,6 @@
 <div class="header-text">
   <h1 class="title">
-    {{ 'sponsorship.create.title' | translate }}
+    {{ 'user.create.title' | translate }}
   </h1>
 </div>
 
@@ -8,40 +8,46 @@
   <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
     <nb-card-body class="create-user-card">
       <div>
-        <label class="label-index" for="link">
-           {{ 'sponsorship.create.form.link.name' | translate }}:
+        <label class="label-index" for="name" *ngIf="createUserForm.value.name !== ''">
+           {{ 'user.create.form.name.name' | translate }}:
         </label>
         <input
           nbInput
           fullWidth
-          id="link"
-          name="link"
-          formControlName="link"
-          placeholder="{{ 'sponsorship.create.form.link.example' | translate }}"
+          id="name"
+          name="name"
+          formControlName="name"
+          placeholder="{{ 'user.create.form.name.name' | translate }}"
           fieldSize="large"
           autofocus
           status="basic"
           required="true"
         />
-        <div *ngIf="submitted && createUserForm.controls['link']">
+        <div *ngIf="submitted && createUserForm.controls['name']">
           <p
             class="error-text"
-            *ngIf="createUserForm.controls['link']?.errors?.['required']"
+            *ngIf="createUserForm.controls['name']?.errors?.['required']"
           >
-            {{ 'sponsorship.create.form.link.required' | translate }}
+            {{ 'user.create.form.name.required' | translate }}
           </p>
           <p
             class="error-text"
-            *ngIf="createUserForm.controls['link']?.errors?.['pattern']"
+            *ngIf="createUserForm.controls['name']?.errors?.['minlength']"
           >
-            {{ 'sponsorship.create.form.link.invalid' | translate }}
+            {{ 'user.create.form.name.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['name']?.errors?.['maxlength']"
+          >
+            {{ 'user.create.form.name.max' | translate }}
           </p>
         </div>
       </div>
 
       <div>
-        <label class="label-index" for="lastName">
-           {{ 'sponsorship.create.form.lastName.name' | translate }}:
+        <label class="label-index" for="lastName" *ngIf="createUserForm.value.lastName !== ''">
+           {{ 'user.create.form.lastName.name' | translate }}:
         </label>
         <input
           nbInput
@@ -49,7 +55,7 @@
           id="lastName"
           name="lastName"
           formControlName="lastName"
-          placeholder="{{ 'sponsorship.create.form.lastName.example' | translate }}"
+          placeholder="{{ 'user.create.form.lastName.name' | translate }}"
           fieldSize="large"
           autofocus
           status="basic"
@@ -60,28 +66,33 @@
             class="error-text"
             *ngIf="createUserForm.controls['lastName']?.errors?.['required']"
           >
-            {{ 'sponsorship.create.form.lastName.required' | translate }}
+            {{ 'user.create.form.lastName.required' | translate }}
           </p>
           <p
             class="error-text"
-            *ngIf="createUserForm.controls['lastName']?.errors?.['pattern']"
+            *ngIf="createUserForm.controls['lastName']?.errors?.['minlength']"
           >
-            {{ 'sponsorship.create.form.lastName.invalid' | translate }}
+            {{ 'user.create.form.lastName.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['lastName']?.errors?.['maxlength']"
+          >
+            {{ 'user.create.form.lastName.max' | translate }}
           </p>
         </div>
       </div>
 
       <div>
-        <label class="label-index" for="email">
-           {{ 'sponsorship.create.form.email.name' | translate }}:
+        <label class="label-index" for="email" *ngIf="createUserForm.value.email !== ''">
+           {{ 'user.create.form.email.name' | translate }}:
         </label>
         <input
           nbInput
           fullWidth
-          id="email"
-          name="email"
+          type="email"
           formControlName="email"
-          placeholder="{{ 'sponsorship.create.form.email.example' | translate }}"
+          placeholder="{{ 'user.create.form.email.name' | translate }}"
           fieldSize="large"
           autofocus
           status="basic"
@@ -92,67 +103,57 @@
             class="error-text"
             *ngIf="createUserForm.controls['email']?.errors?.['required']"
           >
-            {{ 'sponsorship.create.form.email.required' | translate }}
-          </p>
-          <p
-            class="error-text"
-            *ngIf="createUserForm.controls['email']?.errors?.['pattern']"
-          >
-            {{ 'sponsorship.create.form.email.invalid' | translate }}
+            {{ 'user.create.form.email.required' | translate }}
           </p>
         </div>
       </div>
 
       <div>
-        <label class="label-index" for="banner">
-           {{ 'sponsorship.create.form.banner.name' | translate }}:
+        <label class="label-index" for="email" *ngIf="createUserForm.value.password !== ''">
+           {{ 'user.create.form.password.name' | translate }}:
         </label>
         <input
           nbInput
           fullWidth
-          id="banner"
-          name="banner"
-          formControlName="banner"
-          placeholder="{{ 'sponsorship.create.form.banner.example' | translate }}"
+          type="password"
+          formControlName="password"
+          placeholder="{{ 'user.create.form.password.name' | translate }}"
           fieldSize="large"
           autofocus
           status="basic"
           required="true"
         />
-        <div *ngIf="submitted && createUserForm.controls['banner']">
+        <div *ngIf="submitted && createUserForm.controls['password']?.errors">
           <p
             class="error-text"
-            *ngIf="createUserForm.controls['banner']?.errors?.['required']"
+            *ngIf="createUserForm.controls['password']?.errors?.['required']"
           >
-            {{ 'sponsorship.create.form.banner.required' | translate }}
+            {{ 'user.create.form.password.required' | translate }}
           </p>
           <p
             class="error-text"
-            *ngIf="createUserForm.controls['banner']?.errors?.['pattern']"
+            *ngIf="createUserForm.controls['password']?.errors?.['minlength']"
           >
-            {{ 'sponsorship.create.form.banner.invalid' | translate }}
+            {{ 'user.create.form.password.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['password']?.errors?.['maxlength']"
+          >
+            {{ 'user.create.form.password.max' | translate }}
           </p>
         </div>
       </div>
 
       <div>
         <label class="label-index" for="trip">
-          {{ 'sponsorship.create.form.trip.name' | translate }}:
+          {{ 'user.create.form.role.name' | translate }}:
         </label>
-        <nb-select fullWidth placeholder="{{ 'sponsorship.create.form.trip.name' | translate }}" formControlName="trip">
-          <nb-option >
-            {{ 'sponsorship.create.form.trip.option.1' | translate }}
-          </nb-option>
+        <nb-select fullWidth placeholder="{{ 'user.create.form.role.name' | translate }}" [(selected)]="selectedItem" formControlName="trip">
+          <nb-option value="EXPLORER">{{ 'user.create.form.role.explorer' | translate }}</nb-option>
+          <nb-option value="MANAGER">{{ 'user.create.form.role.manager' | translate }}</nb-option>
+          <nb-option value="SPONSOR">{{ 'user.create.form.role.sponsor' | translate }}</nb-option>
         </nb-select>
-        <div *ngIf="submitted && createUserForm.controls['trip']">
-          <p
-            class="error-text"
-            *ngIf="createUserForm.controls['trip']?.errors?.['required']"
-          >
-            {{ 'sponsorship.create.form.trip.name' | translate }}
-          </p>
-        </div>
-
       </div>
 
     </nb-card-body>
@@ -165,7 +166,7 @@
         type="cancel"
         status="danger"
         size="medium">
-        {{ 'sponsorship.create.buttons.cancel' | translate }}
+        {{ 'user.create.buttons.cancel' | translate }}
       </button>
 
       <button
@@ -174,7 +175,7 @@
         type="submit"
         status="primary"
         size="medium">
-        {{ 'sponsorship.create.buttons.create' | translate }}
+        {{ 'user.create.buttons.create' | translate }}
       </button>
     </nb-card-body>
   </nb-card>
