@@ -42,6 +42,7 @@ import { PaymentModule } from './modules/payment/payment.module';
 import { ConfigurationModule } from './modules/configuration/configuration.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { FavoriteModule } from './modules/favorite/favorite.module';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     AuthenticationModule,
     ConfigurationModule,
     DashboardModule,
+    FavoriteModule,
     ShareModule,
     UserModule,
     PaymentModule,

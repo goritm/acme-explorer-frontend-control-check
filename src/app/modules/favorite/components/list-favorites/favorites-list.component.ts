@@ -5,10 +5,10 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
 import { FavoriteService } from '../../services/favorite.service';
-import { Configuration } from 'src/app/modules/configuration/graphql/types/configuration.type';
+import { FavoriteList } from '../../graphql/types/favorite-list.type';
+import { GraphqlSortOperationEnum } from 'src/utils/enums/graphql-sort-operation.enum';
 
 @Component({
   selector: 'favorites-list',
@@ -17,90 +17,43 @@ import { Configuration } from 'src/app/modules/configuration/graphql/types/confi
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FavoritesListComponent implements OnInit {
-  submitted = false;
+  favoritesList: FavoriteList[] = [];
+  count = 0;
+  pageSize = 10;
+  pageToLoadNext = 1;
   loading = false;
-  configuration!: Configuration;
-
-  configurationForm = this.fb.group({
-    flatRate: ['', [Validators.min(1), Validators.max(9999)]]
-  });
 
   constructor(
     protected favoriteService: FavoriteService,
     private router: Router,
-    private fb: FormBuilder,
     private toastrService: NbToastrService,
     private cdr: ChangeDetectorRef
   ) {}
-
-  validate(): void {
-    if (
-      this.configurationForm.value.flatRate >= 1 &&
-      this.configurationForm.value.flatRate <= 9999
-    ) {
-      this.updateConfiguration();
-    } else {
-      this.toastrService.show('An error just occurred', 'Error', {
-        duration: 3000,
-        status: 'danger'
-      });
-    }
-  }
-
-  updateConfiguration(): void {
-    this.submitted = true;
-    this.loading = true;
-
-    const updateConfigurationInput: UpdateConfigurationInput = {
-      where: {
-        id: this.configuration.id
-      },
-      data: {
-        flatRate: this.configurationForm.value.flatRate
-      }
-    };
-
-    // this.favoriteService
-    //   .update(updateConfigurationInput)
-    //   .pipe(
-    //     finalize(() => {
-    //       this.loading = false;
-    //       this.cdr.detectChanges();
-    //     })
-    //   )
-    //   .subscribe({
-    //     error: (err: { message: string }) => {
-    //       this.toastrService.show(err.message, 'Error', {
-    //         duration: 3000,
-    //         status: 'danger'
-    //       });
-    //     },
-    //     complete: () => {
-    //       this.toastrService.success('Configuration updated successfully');
-    //     }
-    //   });
-  }
 
   cancel() {
     this.router.navigate(['/']);
   }
 
+  loadNext() {
+    if (this.loading) {
+      return;
+    }
+    this.loading = true;
+    this.favoriteService
+      .selfFavoriteList({
+        limit: this.pageSize,
+        sort: { createdAt: GraphqlSortOperationEnum.desc }
+      })
+      .subscribe({
+        next: ({ data }) => {
+          this.favoritesList = data.selfFavoritesList;
+          this.loading = false;
+          this.pageToLoadNext++;
+        }
+      });
+  }
+
   ngOnInit(): void {
-    // this.configurationService.listConfigurations({}).subscribe({
-    //   next: ({ data }) => {
-    //     if (data.listConfigurations.count > 0) {
-    //       this.configurationForm.patchValue({
-    //         flatRate: data.listConfigurations.data[0].flatRate
-    //       });
-    //       this.configuration = data.listConfigurations.data[0];
-    //     }
-    //   },
-    //   error: (err: { message: string }) => {
-    //     this.toastrService.show(err.message, 'Error', {
-    //       duration: 3000,
-    //       status: 'danger'
-    //     });
-    //   }
-    // });
+    this.loadNext();
   }
 }
