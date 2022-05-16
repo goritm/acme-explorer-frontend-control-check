@@ -1,9 +1,11 @@
+import { ResponseGetSponsorshipsQuery } from './../graphql/responses/get-sponsorships.response';
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
 import { CreateSponsorshipInput } from '../graphql/inputs/create-sponsorship.input';
 import { CREATE_SELF_SPONSORSHIP } from '../graphql/mutation/create-sponsorship.mutation';
 import { GET_SPONSORSHIP } from '../graphql/queries/get-sponsorship-by-id.query';
+import { GET_SPONSORSHIPS } from '../graphql/queries/get-sponsorships.query';
 import { GET_SELF_SPONSORSHIPS } from '../graphql/queries/self-sponsorships.query';
 import { ResponseCreateSelfSponsorship } from '../graphql/responses/create-self-sponsorship.response';
 import { ResponseGetSponsorshipByIdQuery } from '../graphql/responses/get-sponsorship-by-id.response';
@@ -43,6 +45,26 @@ export class SponsorshipService {
   // getSponsorshipDetail(id: string | null) {
   //   // TODO: Add query logic
   // }
+
+  getSponsorships(listSponsorshipsParams?: FilterInputParams) {
+    if (listSponsorshipsParams) {
+      const { start, limit, where, sort } = listSponsorshipsParams;
+      this.start = start || this.start;
+      this.limit = limit || this.limit;
+      this.where = where || this.where;
+      this.sort = sort || this.sort;
+    }
+
+    return this.apollo.query<ResponseGetSponsorshipsQuery>({
+      query: GET_SPONSORSHIPS,
+      variables: {
+        start: this.start,
+        limit: this.limit,
+        where: this.where,
+        sort: this.sort
+      }
+    });
+  }
 
   createSponsorship(createSponsorshipInput: CreateSponsorshipInput) {
     return this.apollo.mutate<ResponseCreateSelfSponsorship>({
