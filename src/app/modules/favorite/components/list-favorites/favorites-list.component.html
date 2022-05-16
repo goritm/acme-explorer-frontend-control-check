@@ -1,0 +1,51 @@
+<div class="header-text">
+  <h1 class="title"> {{ 'configurations.flatRate.title' | translate }} </h1>
+</div>
+
+<form (ngSubmit)="validate()" [formGroup]="configurationForm">
+  <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic" class="update-flat-rate-container">
+    <nb-card-body class="update-flat-rate-card">
+
+      <div>
+        <input
+          nbInput
+          fullWidth
+          type="number"
+          id="flatRate"
+          name="flatRate"
+          formControlName="flatRate"
+          placeholder="{{ 'configurations.flatRate.form.price.name' | translate }}"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && configurationForm.controls['flatRate']">
+          <p
+            class="error-text"
+            *ngIf="configurationForm.controls['flatRate']?.errors?.['min']"
+          >
+            {{ 'configurations.flatRate.form.price.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="configurationForm.controls['flatRate']?.errors?.['max']"
+          >
+            {{ 'configurations.flatRate.form.price.max' | translate }}
+          </p>
+        </div>
+      </div>
+    </nb-card-body>
+
+    <nb-card-body class="button-rows">
+      <button  nbButton (click)="cancel()" fullWidth type="cancel" status="danger" size="medium">
+        {{ 'configurations.flatRate.buttons.cancel' | translate }}
+      </button>
+
+      <button nbButton fullWidth type="submit" status="primary" size="medium">
+        {{ 'configurations.flatRate.buttons.update' | translate }}
+      </button>
+    </nb-card-body>
+
+  </nb-card>
+</form>
