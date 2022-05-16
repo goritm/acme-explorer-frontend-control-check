@@ -1,0 +1,55 @@
+<div class="header-text">
+  <h1> {{ 'dashboard.analytics.title' | translate }} </h1>
+</div>
+
+<nb-layout>
+
+  <nb-layout-column>
+    <nb-card accent="info">
+      <nb-card-header>
+        <p>{{ 'dashboard.analytics.trips.pricePerTrip' | translate }}</p>
+      </nb-card-header>
+      <nb-card-body>
+        <div echarts [options]="pricePerTripOptions" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+
+  <nb-layout-column>
+     <nb-card accent="danger">
+      <nb-card-header>
+         <p>{{ 'dashboard.analytics.trips.applicationPerTrip' | translate }}</p>
+      </nb-card-header>
+      <nb-card-body>
+        <div echarts [options]="applicationPerTripOptions" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+
+</nb-layout>
+
+<nb-layout>
+
+  <nb-layout-column>
+    <nb-card accent="info">
+      <nb-card-header>
+        <p>{{ 'dashboard.analytics.trips.tripManagedPerManager' | translate }}</p>
+      </nb-card-header>
+      <nb-card-body>
+        <div echarts [options]="tripManagedPerManagerOptions" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+
+  <nb-layout-column>
+     <nb-card accent="danger">
+      <nb-card-header>
+         <p>{{ 'dashboard.analytics.trips.ratioOfApplicationGroupByState' | translate }}</p>
+      </nb-card-header>
+      <nb-card-body>
+        <div echarts [options]="ratioOfApplicationGroupByStateOptions" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+
+</nb-layout>
