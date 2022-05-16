@@ -206,6 +206,15 @@
     }
   },
   "finder": {
+    "search_bar": {
+      "keyword": "Keyword",
+      "minDate": "Min Date",
+      "maxDate": "Max Date",
+      "minPrice": "Min Price",
+      "maxPrice": "Max Price",
+      "maxItems": "Max Items",
+      "button": "Find"
+    },
     "list": {
       "title": "My Finders",
       "row": {

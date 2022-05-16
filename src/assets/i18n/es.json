@@ -201,6 +201,15 @@
     }
   },
   "finder": {
+    "search_bar": {
+      "keyword": "Palabra clave",
+      "minDate": "Fecha mínima",
+      "maxDate": "Fecha máxima",
+      "minPrice": "Precio mínimo",
+      "maxPrice": "Precio máximo",
+      "maxItems": "Cantidad",
+      "button": "Buscar"
+    },
     "list": {
       "title": "Mis ultimas búsquedas",
       "row": {
