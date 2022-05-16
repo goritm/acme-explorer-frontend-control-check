@@ -17,9 +17,10 @@ import { NgxTranslateModule } from '../translate/translate.module';
 import { AnalyticsService } from './services/analytics.service';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { FinderStatsComponent } from './components/finder-stats/finder-stats.component';
 
 @NgModule({
-  declarations: [AnalyticsComponent],
+  declarations: [AnalyticsComponent, FinderStatsComponent],
   imports: [
     GraphQLModule,
     AppRoutingModule,
@@ -39,6 +40,6 @@ import { NgxEchartsModule } from 'ngx-echarts';
     NgxEchartsModule
   ],
   providers: [AnalyticsService],
-  exports: [AnalyticsComponent]
+  exports: [AnalyticsComponent, FinderStatsComponent]
 })
 export class DashboardModule {}
