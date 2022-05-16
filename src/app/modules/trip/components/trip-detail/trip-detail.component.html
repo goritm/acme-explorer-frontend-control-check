@@ -1,25 +1,30 @@
-<!-- !TODO - add more info and make it prettier  -->
 <div [nbSpinner]="loading" nbSpinnerStatus="basic">
   <nb-card *ngIf="trip; else noTrip">
-    <nb-card-header>
+    <nb-card-header class="card-header">
       <nb-icon
         icon="arrow-back-outline"
         (click)="goBack()"
         hover-class="hover"
       ></nb-icon>
       <p>{{ trip.title }}</p>
+      <p>{{ trip.state }}</p>
     </nb-card-header>
-    <nb-card-body>
-      <p>{{ trip.description }}</p>
-      <img class="img-responsive" src="{{ trip.pictures[0] }}" />
-      <p>{{ trip.startDate }} - {{ trip.endDate }}</p>
-      <p>
-        <b>{{ 'card-trip.price' | translate }}:</b> {{ trip.price }}
-      </p>
-      <p>Trip State: {{ trip.state }}</p>
+    <nb-card-body class="card-body">
       <p *ngIf="trip.reasonCancelled">
-        Reason Cancelled: {{ trip.reasonCancelled }}
+        The trip was cancelled: {{ trip.reasonCancelled }}
       </p>
+      <p>Description: {{ trip.description }}</p>
+      <img class="img-responsive" src="{{ trip.pictures[0] }}" />
+      <p>Start date: {{ trip.startDate }}</p>
+      <p>End date: {{ trip.endDate }}</p>
+      <p>{{ 'card-trip.price' | translate }}: €{{ trip.price }}</p>
+      <p>Requirements</p>
+      <ul>
+        <li *ngFor="let requirement of trip.requirements">
+          {{ requirement }}
+        </li>
+      </ul>
+      <p>Stages</p>
       <nb-stepper orientation="vertical">
         <ng-container *ngFor="let stage of trip.stages">
           <nb-step [label]="stage.title">
@@ -32,7 +37,8 @@
         </ng-container>
       </nb-stepper>
     </nb-card-body>
-    <nb-card-footer *ngIf="tripIsNotCancelled">
+    <nb-card-footer *ngIf="tripIsNotCancelled" class="card-footer">
+      <p>Created by: {{ trip.manager.name }}</p>
       <div class="button-group">
         <button
           *ngIf="isOwnTrip && trip.state === 'INACTIVE'"

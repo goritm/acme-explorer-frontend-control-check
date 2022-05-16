@@ -1,8 +1,41 @@
 .hover {
   cursor: pointer;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
+  transition: box-shadow 500ms;
+  transition: transform 200ms ease-out;
 }
 
 .img-responsive {
   max-width: 100%;
-  width: 600px;
+  width: 500px;
+}
+
+.trip-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .trip-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .dates {
+  }
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
