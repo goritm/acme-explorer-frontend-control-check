@@ -1,4 +1,72 @@
 <div [nbSpinner]="loading" nbSpinnerStatus="basic">
+  <nb-card>
+    <nb-card-body>
+      <form
+        [formGroup]="finderForm"
+        (ngSubmit)="findTrips()"
+        class="finder-container"
+      >
+        <input
+          type="text"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="keyword"
+          placeholder="Keyword"
+        />
+        <input
+          [nbDatepicker]="minDatePicker"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="minDate"
+          placeholder="Min date"
+        />
+        <nb-datepicker #minDatePicker [min]="currentDate"></nb-datepicker>
+        <input
+          [nbDatepicker]="maxDatePicker"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="maxDate"
+          placeholder="Max date"
+        />
+        <nb-datepicker #maxDatePicker [min]="currentDate"></nb-datepicker>
+        <input
+          type="number"
+          min="0"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="minPrice"
+          placeholder="Min price"
+        />
+        <input
+          type="number"
+          min="0"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="maxPrice"
+          placeholder="Max price"
+        />
+        <input
+          type="number"
+          min="0"
+          max="100"
+          class="finder-input"
+          nbInput
+          shape="semi-round"
+          formControlName="maxItems"
+          placeholder="Max Items"
+        />
+        <button nbButton type="submit" [disabled]="!finderForm.valid">
+          Find
+        </button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+
   <div *ngIf="trips.length > 0; else noTrips" class="trip-list-container">
     <nb-list class="list-container">
       <nb-list-item *ngFor="let trip of trips">

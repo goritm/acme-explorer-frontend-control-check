@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { NbSearchService } from '@nebular/theme';
 import { TripState } from 'src/utils/enums/trip-state.enum';
 import { Trip } from '../../graphql/types/trip.type';
@@ -14,8 +15,19 @@ export class ListTripsComponent {
   trips: Trip[] = [];
   pageSize = 25;
   loading = false;
+  currentDate = new Date();
+
+  finderForm = this.fb.group({
+    keyword: [''],
+    minDate: [''],
+    maxDate: [''],
+    minPrice: [''],
+    maxPrice: [''],
+    maxItems: ['']
+  });
 
   constructor(
+    private fb: FormBuilder,
     private tripService: TripService,
     private searchService: NbSearchService
   ) {}
@@ -50,5 +62,11 @@ export class ListTripsComponent {
           this.loading = false;
         }
       });
+  }
+
+  findTrips() {
+    this.loading = true;
+
+    console.log(this.finderForm.value);
   }
 }
