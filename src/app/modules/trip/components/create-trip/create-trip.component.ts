@@ -126,7 +126,7 @@ export class CreateTripComponent {
             });
           },
           complete: () => {
-            this.router.navigate(['/']);
+            this.router.navigate(['/trips/self']);
           }
         });
     } else {
