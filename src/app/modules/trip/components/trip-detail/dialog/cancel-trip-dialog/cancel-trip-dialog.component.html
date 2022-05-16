@@ -1,7 +1,7 @@
 <nb-card *ngIf="trip" [nbSpinner]="loading" nbSpinnerStatus="basic">
   <nb-card-header class="header-container">
     <p>
-      {{ title }}: <b>{{ trip.title }}</b>
+      {{ 'trip-detail.cancelTrip.title' | translate }}: <b>{{ trip.title }}</b>
     </p>
     <nb-icon
       icon="close-outline"

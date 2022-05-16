@@ -30,12 +30,18 @@
     "noTrips": "No se encontró el viaje",
     "sponsorship": "Este viaje es patrocinado por...",
     "applyToTrip": {
-      "title": "Aplicar a trip",
+      "title": "Aplicar a viaje",
       "applyMessage": "Quieres aplicar? Deja unos comentarios si deseas",
       "comments": "Comentarios...",
       "buttons": {
         "apply": "Aplicar"
       }
+    },
+    "cancelTrip": {
+      "title": "Cancelar viaje"
+    },
+    "editTrip": {
+      "title": "Editar viaje"
     }
   },
   "profile": {

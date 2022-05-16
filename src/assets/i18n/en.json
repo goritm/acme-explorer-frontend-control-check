@@ -36,6 +36,12 @@
       "buttons": {
         "apply": "Apply"
       }
+    },
+    "cancelTrip": {
+      "title": "Cancel trip"
+    },
+    "editTrip": {
+      "title": "Edit trip"
     }
   },
   "menu": {
