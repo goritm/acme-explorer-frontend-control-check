@@ -25,6 +25,7 @@
       "address": "Dirección"
     }
   },
+  "payment": "Pago",
   "applications": {
     "title": "Mis aplicaciones",
     "comments": "Comentarios",

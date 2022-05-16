@@ -25,6 +25,7 @@
       "address": "Address"
     }
   },
+  "payment": "Payment",
   "applications": {
     "title": "My applications",
     "comments": "Comments",
