@@ -26,7 +26,7 @@ export class CreateUserComponent {
   createUserForm = this.fb.group({
     name: [
       '',
-      [Validators.required, Validators.maxLength(1), Validators.maxLength(25)]
+      [Validators.required, Validators.minLength(1), Validators.maxLength(25)]
     ],
     lastName: [
       '',
@@ -51,13 +51,14 @@ export class CreateUserComponent {
   validate() {
     this.submitted = false;
     if (this.createUserForm.valid) {
-      this.createSponsorship();
+      console.log('Validate true', this.createUserForm.value);
+      this.createUser();
     } else {
       this.submitted = true;
     }
   }
 
-  createSponsorship(): void {
+  createUser(): void {
     this.submitted = true;
     this.loading = true;
 
@@ -72,16 +73,6 @@ export class CreateUserComponent {
         })
       )
       .subscribe({
-        next: ({ data }) => {
-          if (!(data === undefined || data === null)) {
-            this.toastrService.show('Sponsorship saved!', 'Success', {
-              duration: 3000,
-              status: 'success'
-            });
-
-            this.router.navigate(['/trips']);
-          }
-        },
         error: (err) => {
           this.toastrService.show(err.message, 'Error', {
             duration: 3000,
@@ -89,6 +80,11 @@ export class CreateUserComponent {
           });
         },
         complete: () => {
+          this.toastrService.show('User Created!', 'Success', {
+            duration: 3000,
+            status: 'success'
+          });
+
           this.router.navigate(['/']);
         }
       });

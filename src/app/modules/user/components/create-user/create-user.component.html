@@ -123,7 +123,7 @@
           status="basic"
           required="true"
         />
-        <div *ngIf="submitted && createUserForm.controls['password']?.errors">
+        <div *ngIf="submitted && createUserForm.controls['password']">
           <p
             class="error-text"
             *ngIf="createUserForm.controls['password']?.errors?.['required']"
@@ -146,10 +146,10 @@
       </div>
 
       <div>
-        <label class="label-index" for="trip">
+        <label class="label-index" for="role">
           {{ 'user.create.form.role.name' | translate }}:
         </label>
-        <nb-select fullWidth placeholder="{{ 'user.create.form.role.name' | translate }}" [(selected)]="selectedItem" formControlName="trip">
+        <nb-select fullWidth placeholder="{{ 'user.create.form.role.name' | translate }}" [(selected)]="selectedItem" formControlName="role">
           <nb-option value="EXPLORER">{{ 'user.create.form.role.explorer' | translate }}</nb-option>
           <nb-option value="MANAGER">{{ 'user.create.form.role.manager' | translate }}</nb-option>
           <nb-option value="SPONSOR">{{ 'user.create.form.role.sponsor' | translate }}</nb-option>
