@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { NbSearchService, NbToastrService } from '@nebular/theme';
+import { NbToastrService } from '@nebular/theme';
 import { FinderService } from 'src/app/modules/user/services/finder.service';
 import { TripState } from 'src/utils/enums/trip-state.enum';
 import { Trip } from '../../graphql/types/trip.type';
@@ -36,22 +36,6 @@ export class ListTripsComponent {
 
   ngOnInit(): void {
     this.loadNext();
-
-    // this.searchService
-    //   .onSearchSubmit()
-    //   .subscribe(({ term: searchBarResult }: any) => {
-    //     const filteredTrips = this.trips.filter(
-    //       ({ title, description, ticket }) => {
-    //         const sbResultLowerCase = searchBarResult.toLowerCase();
-    //         return (
-    //           title.toLowerCase().includes(sbResultLowerCase) ||
-    //           description.toLowerCase().includes(sbResultLowerCase) ||
-    //           ticket.toLowerCase().includes(sbResultLowerCase)
-    //         );
-    //       }
-    //     );
-    //     this.trips = filteredTrips;
-    //   });
   }
 
   loadNext() {

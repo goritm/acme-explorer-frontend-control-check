@@ -76,7 +76,7 @@ export class FavoritesListComponent implements OnInit {
 
     this.searchService
       .onSearchSubmit()
-      .subscribe(({ term: searchBarResult }: any) => {
+      .subscribe(({ term: searchBarResult }) => {
         console.log(searchBarResult);
         this.loading = true;
 
