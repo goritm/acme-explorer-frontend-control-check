@@ -10,6 +10,7 @@ import {
   NbIconModule,
   NbInputModule,
   NbListModule,
+  NbSearchModule,
   NbSpinnerModule
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
@@ -33,6 +34,7 @@ import { FavoriteListComponent } from './components/list-favorite/favorite-list.
     ReactiveFormsModule,
     NbFormFieldModule,
     NbInputModule,
+    NbSearchModule,
     NbButtonModule,
     NbDialogModule.forChild(),
     NbSpinnerModule,

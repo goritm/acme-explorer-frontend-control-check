@@ -36,7 +36,6 @@ export class ListTripsComponent {
   constructor(
     private fb: FormBuilder,
     private tripService: TripService,
-    private searchService: NbSearchService,
     private finderService: FinderService,
     private toastrService: NbToastrService,
     private dialogService: NbDialogService
@@ -44,22 +43,6 @@ export class ListTripsComponent {
 
   ngOnInit(): void {
     this.loadNext();
-
-    this.searchService
-      .onSearchSubmit()
-      .subscribe(({ term: searchBarResult }: any) => {
-        const filteredTrips = this.trips.filter(
-          ({ title, description, ticket }) => {
-            const sbResultLowerCase = searchBarResult.toLowerCase();
-            return (
-              title.toLowerCase().includes(sbResultLowerCase) ||
-              description.toLowerCase().includes(sbResultLowerCase) ||
-              ticket.toLowerCase().includes(sbResultLowerCase)
-            );
-          }
-        );
-        this.trips = filteredTrips;
-      });
   }
 
   loadNext() {
@@ -150,6 +133,5 @@ export class ListTripsComponent {
         trip
       }
     });
-    // .onClose.subscribe(() => this.getTripDetail());
   }
 }

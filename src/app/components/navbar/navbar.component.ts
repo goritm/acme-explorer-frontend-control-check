@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { MANAGER, SPONSOR, UserRoles } from 'src/utils/enums/user-roles.enum';
 import {
   ADMIN_MENU_ITEMS,
+  COMMON_ITEMS,
   EXPLORER_MENU_ITEMS,
   MANAGER_MENU_ITEMS,
   SPONSOR_MENU_ITEMS
@@ -44,9 +45,9 @@ export class NavbarComponent implements OnInit {
     if (this.isAdmin()) {
       this.items = ADMIN_MENU_ITEMS;
     } else if (this.isManager()) {
-      this.items = [...MANAGER_MENU_ITEMS, ...EXPLORER_MENU_ITEMS];
+      this.items = [...MANAGER_MENU_ITEMS, ...COMMON_ITEMS];
     } else if (this.isSponsor()) {
-      this.items = [SPONSOR_MENU_ITEMS, ...EXPLORER_MENU_ITEMS];
+      this.items = [SPONSOR_MENU_ITEMS, ...COMMON_ITEMS];
     }
     return this.items;
   }
