@@ -25,6 +25,18 @@
       "address": "Dirección"
     }
   },
+  "applications": {
+    "title": "Mis aplicaciones",
+    "comments": "Comentarios",
+    "reasonRejected": "Razón de rechazo",
+    "buttons": {
+      "accept": "Aceptar",
+      "reject": "Rechazar",
+      "cancel": "Cancelar",
+      "pay": "Pagar",
+      "goToTrip": "Ir a viaje"
+    }
+  },
   "home": {
     "title": "Pagina Principal",
     "welcome": "Bienvenido a la pagina principal",

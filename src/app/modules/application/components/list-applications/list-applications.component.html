@@ -1,5 +1,5 @@
 <div class="header-text">
-  <h1 class="title">My Applications</h1>
+  <h1 class="title">{{ 'applications.title' | translate }}</h1>
 </div>
 
 <div [nbSpinner]="loading" nbSpinnerStatus="basic">
@@ -43,10 +43,12 @@
               <div class="additional-info">
                 <p class="price">€{{ application.trip.price }}</p>
                 <p *ngIf="application.comments[0]">
-                  <b>Comments:</b> {{ application.comments[0] }}
+                  <b>{{ 'applications.comments' | translate }}:</b>
+                  {{ application.comments[0] }}
                 </p>
                 <p *ngIf="application.reasonRejected">
-                  <b>Reason of rejection:</b> {{ application.reasonRejected }}
+                  <b>{{ 'applications.reasonRejected' | translate }}:</b>
+                  {{ application.reasonRejected }}
                 </p>
               </div>
 
@@ -56,7 +58,7 @@
                   status="primary"
                   (click)="goToTrip(application.trip.id)"
                 >
-                  Go to Trip
+                  {{ 'applications.buttons.goToTrip' | translate }}
                 </button>
                 <button
                   nbButton
@@ -64,7 +66,7 @@
                   (click)="payApplication(application.id)"
                   *ngIf="userRole === 'EXPLORER' && application.state == 'DUE'"
                 >
-                  Pay
+                  {{ 'applications.buttons.pay' | translate }}
                 </button>
                 <button
                   nbButton
@@ -76,7 +78,7 @@
                       application.state == 'DUE')
                   "
                 >
-                  Cancel
+                  {{ 'applications.buttons.cancel' | translate }}
                 </button>
               </div>
 
@@ -89,14 +91,14 @@
                   status="success"
                   (click)="acceptApplication(application.id)"
                 >
-                  Accept
+                  {{ 'applications.buttons.accept' | translate }}
                 </button>
                 <button
                   nbButton
                   status="danger"
                   (click)="rejectApplication(application)"
                 >
-                  Reject
+                  {{ 'applications.buttons.reject' | translate }}
                 </button>
               </div>
             </div>

@@ -25,6 +25,18 @@
       "address": "Address"
     }
   },
+  "applications": {
+    "title": "My applications",
+    "comments": "Comments",
+    "reasonRejected": "Reason for rejection",
+    "buttons": {
+      "accept": "Accept",
+      "reject": "Reject",
+      "cancel": "Cancel",
+      "pay": "Pay",
+      "goToTrip": "Go To Trip"
+    }
+  },
   "home": {
     "title": "Home",
     "welcome": "Welcome to the home page",
