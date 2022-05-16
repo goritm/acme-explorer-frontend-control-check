@@ -24,6 +24,10 @@ export interface ResponseUpdateTrip {
   updateTrip: Trip;
 }
 
+export interface ResponseDeleteTrip {
+  deleteSelfTrip: Trip;
+}
+
 export interface ResponseCancelTrip {
   cancelTrip: Trip;
 }

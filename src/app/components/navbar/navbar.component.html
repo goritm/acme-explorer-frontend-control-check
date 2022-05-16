@@ -19,6 +19,11 @@
       title="Create Trip"
     ></nb-action>
     <nb-action
+      *ngIf="
+        this.currentUser.role === 'EXPLORER' ||
+        this.currentUser.role === 'MANAGER' ||
+        this.currentUser.role === 'ADMIN'
+      "
       icon="file-text-outline"
       link="/applications"
       title="My Applications"

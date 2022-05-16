@@ -1,3 +1,6 @@
+import { SponsorshipState } from './../../../sponsorship/graphql/enums/sponsorship-states.enum';
+import { SponsorshipService } from './../../../sponsorship/service/sponsorship.service';
+import { Sponsorship } from './../../../sponsorship/graphql/types/sponsorship.type';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
@@ -20,6 +23,8 @@ import { finalize } from 'rxjs';
 })
 export class TripDetailComponent implements OnInit {
   trip: ITrip | undefined;
+  sponsorship: Sponsorship | undefined;
+
   loading = true;
   userRole: string | undefined;
   isOwnTrip = false;
@@ -32,6 +37,7 @@ export class TripDetailComponent implements OnInit {
     private tripService: TripService,
     private location: Location,
     private dialogService: NbDialogService,
+    private sponsorshipService: SponsorshipService,
     private toastrService: NbToastrService,
     private authService: AuthService,
     private cdr: ChangeDetectorRef
@@ -45,12 +51,56 @@ export class TripDetailComponent implements OnInit {
 
   getTripDetail(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.tripService.getTripDetail(id).subscribe(({ data }) => {
-      this.trip = data.getTripById;
-      this.checkOwnTrip();
-      this.checkTripIsNotCancelled();
-      this.loading = false;
+    this.tripService.getTripDetail(id).subscribe({
+      next: ({ data }) => {
+        if (!(data === undefined || data === null)) {
+          this.trip = data.getTripById;
+          this.checkOwnTrip();
+          this.checkTripIsNotCancelled();
+          this.getSponsorships();
+
+          this.loading = false;
+        }
+      },
+      error: (err: any) => {
+        this.toastrService.show(err.message, 'Error', {
+          duration: 3000,
+          status: 'danger'
+        });
+      }
     });
+  }
+
+  getSponsorships(): void {
+    this.loading = true;
+
+    this.sponsorshipService
+      .getSponsorships({
+        where: {
+          trip: this.trip?.id,
+          state: SponsorshipState.ACTIVE
+        }
+      })
+      .subscribe({
+        next: ({ data }) => {
+          if (!(data === undefined || data === null)) {
+            const sponsorships = data.getSponsorships;
+            const randomSponsorshipIndex = Math.floor(
+              Math.random() * sponsorships.length
+            );
+
+            this.sponsorship = sponsorships[randomSponsorshipIndex];
+            this.loading = false;
+          }
+        },
+        error: (err: any) => {
+          this.toastrService.show(err.message, 'Error', {
+            duration: 3000,
+            status: 'danger'
+          });
+          this.loading = false;
+        }
+      });
   }
 
   checkOwnTrip(): void {
@@ -90,6 +140,38 @@ export class TripDetailComponent implements OnInit {
       .onClose.subscribe(() => this.getTripDetail());
   }
 
+  deleteTrip(): void {
+    this.loading = true;
+
+    this.tripService
+      .deleteTrip(this.trip?.id ?? '')
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: ({ data }) => {
+          if (!(data === undefined || data === null)) {
+            this.toastrService.show('Trip deleted successfully', 'Success', {
+              duration: 3000,
+              status: 'success'
+            });
+          }
+        },
+        error: (err: any) => {
+          this.toastrService.show(err.message, 'Error', {
+            duration: 3000,
+            status: 'danger'
+          });
+        },
+        complete: () => {
+          this.goBack();
+        }
+      });
+  }
+
   publishTrip(): void {
     this.loading = true;
 
@@ -101,9 +183,22 @@ export class TripDetailComponent implements OnInit {
           this.cdr.detectChanges();
         })
       )
-      .subscribe(() => {
-        this.toastrService.success('Trip published');
-        this.getTripDetail();
+      .subscribe({
+        next: ({ data }) => {
+          if (!(data === undefined || data === null)) {
+            this.toastrService.show('Trip published!', 'Success', {
+              duration: 3000,
+              status: 'success'
+            });
+            this.getTripDetail();
+          }
+        },
+        error: (err: any) => {
+          this.toastrService.show(err.message, 'Error', {
+            duration: 3000,
+            status: 'danger'
+          });
+        }
       });
   }
 
@@ -112,8 +207,13 @@ export class TripDetailComponent implements OnInit {
 
     // If trip is already started, show error
     if (startDate < this.currentDate) {
-      this.toastrService.danger(
-        'You cannot cancel a trip that has already started'
+      this.toastrService.show(
+        'You cannot cancel a trip that has already started',
+        'Error',
+        {
+          duration: 3000,
+          status: 'danger'
+        }
       );
       return;
     }
@@ -121,9 +221,15 @@ export class TripDetailComponent implements OnInit {
     // If trip is less than a week away, show warning
     const diffInDays = differenceInDays(startDate, this.currentDate);
     if (diffInDays < 7) {
-      this.toastrService.warning(
-        'You cannot cancel a trip that is less than a week away'
+      this.toastrService.show(
+        'You cannot cancel a trip that is less than a week away',
+        'Error',
+        {
+          duration: 3000,
+          status: 'danger'
+        }
       );
+
       return;
     }
 

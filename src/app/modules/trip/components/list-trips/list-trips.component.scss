@@ -1,8 +1,52 @@
 .hover {
   cursor: pointer;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
+  transition: box-shadow 500ms;
+  transition: transform 200ms ease-out;
 }
 
 .img-responsive {
-  max-width: 100%;
-  width: 600px;
+  width: 100%;
+  height: 19rem;
+  object-fit: cover;
+}
+
+.trip-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .list-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card-container {
+  width: 100%;
+  height: 35rem;
+
+  .card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .trip-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  font-size: 1.25rem;
+  font-weight: bold;
 }
