@@ -10,7 +10,9 @@ import { DELETE_FAVORITE_LIST } from '../graphql/mutations/delete-favorite-list.
 import { RemoveFavoriteTripInput } from '../graphql/inputs/remove-favorite-trip.input';
 import { AddFavoriteTripInput } from '../graphql/inputs/add-favorite-trip.input';
 import { ResponseDeleteFavoriteListMutation } from '../graphql/types/delete-favorite-list-response.type';
-import { ResponseRenameFavoriteListMutation } from '../graphql/types/rename-favorite-list-response.type copy';
+import { ResponseRenameFavoriteListMutation } from '../graphql/types/rename-favorite-list-response.type';
+import { GET_SELF_FAVORITE_LIST } from '../graphql/queries/get-self-favorite-list.query';
+import { ResponseGetSelfFavoriteListQuery } from '../graphql/types/get-self-favorite-list-reponse.type';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +39,15 @@ export class FavoriteService {
         start: this.start,
         limit: this.limit,
         where: this.where
+      }
+    });
+  }
+
+  getSelfFavoriteListById(id: string) {
+    return this.apollo.query<ResponseGetSelfFavoriteListQuery>({
+      query: GET_SELF_FAVORITE_LIST,
+      variables: {
+        id
       }
     });
   }
