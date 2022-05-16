@@ -229,6 +229,20 @@
         "delete": "Borrar"
       },
       "notFound": "No tienes listas de favoritos"
+    },
+    "update": {
+      "title": "Renombrar lista de favoritos",
+      "form": {
+        "name": {
+          "name": "Nombre: ",
+          "required": "Por favor ingresa un nombre",
+          "min": "El nombre debe tener al menos 1 carácter",
+          "max": "El nombre como máximo debe tener 25 caracteres"
+        }
+      },
+      "buttons": {
+        "rename": "Renombrar"
+      }
     }
   }
 }
