@@ -13,8 +13,7 @@ import { GraphqlSortOperationEnum } from 'src/utils/enums/graphql-sort-operation
 @Component({
   selector: 'favorites-list',
   templateUrl: './favorites-list.component.html',
-  styleUrls: ['./favorites-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./favorites-list.component.scss']
 })
 export class FavoritesListComponent implements OnInit {
   favoritesList: FavoriteList[] = [];
@@ -26,8 +25,7 @@ export class FavoritesListComponent implements OnInit {
   constructor(
     protected favoriteService: FavoriteService,
     private router: Router,
-    private toastrService: NbToastrService,
-    private cdr: ChangeDetectorRef
+    private toastrService: NbToastrService
   ) {}
 
   cancel() {
