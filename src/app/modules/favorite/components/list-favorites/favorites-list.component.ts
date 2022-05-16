@@ -1,14 +1,10 @@
 import { Router } from '@angular/router';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit
-} from '@angular/core';
-import { NbToastrService } from '@nebular/theme';
+import { Component, OnInit } from '@angular/core';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { FavoriteService } from '../../services/favorite.service';
 import { FavoriteList } from '../../graphql/types/favorite-list.type';
 import { GraphqlSortOperationEnum } from 'src/utils/enums/graphql-sort-operation.enum';
+import { RenameFavoriteListDialogComponent } from './dialogs/rename-favorite-list/rename-favorite-list-dialog.component';
 
 @Component({
   selector: 'favorites-list',
@@ -25,7 +21,8 @@ export class FavoritesListComponent implements OnInit {
   constructor(
     protected favoriteService: FavoriteService,
     private router: Router,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+    private dialogService: NbDialogService
   ) {}
 
   delete(favoriteList: FavoriteList) {
@@ -40,7 +37,13 @@ export class FavoritesListComponent implements OnInit {
   }
 
   rename(favoriteList: FavoriteList) {
-    console.log('rename', favoriteList);
+    this.dialogService
+      .open(RenameFavoriteListDialogComponent, {
+        context: {
+          favoriteList: favoriteList
+        }
+      })
+      .onClose.subscribe(() => this.loadNext());
   }
 
   loadNext() {

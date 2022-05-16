@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbButtonModule,
   NbCardModule,
+  NbDialogModule,
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
@@ -15,9 +16,10 @@ import { AppRoutingModule } from '../routing/app-routing.module';
 import { NgxTranslateModule } from '../translate/translate.module';
 import { FavoritesListComponent } from './components/list-favorites/favorites-list.component';
 import { FavoriteService } from './services/favorite.service';
+import { RenameFavoriteListDialogComponent } from './components/list-favorites/dialogs/rename-favorite-list/rename-favorite-list-dialog.component';
 
 @NgModule({
-  declarations: [FavoritesListComponent],
+  declarations: [FavoritesListComponent, RenameFavoriteListDialogComponent],
   imports: [
     GraphQLModule,
     AppRoutingModule,
@@ -27,6 +29,7 @@ import { FavoriteService } from './services/favorite.service';
     NbFormFieldModule,
     NbInputModule,
     NbButtonModule,
+    NbDialogModule.forChild(),
     NbSpinnerModule,
     NbIconModule,
     NbListModule,
@@ -35,6 +38,6 @@ import { FavoriteService } from './services/favorite.service';
     NgxTranslateModule
   ],
   providers: [FavoriteService],
-  exports: [FavoritesListComponent]
+  exports: [FavoritesListComponent, RenameFavoriteListDialogComponent]
 })
 export class FavoriteModule {}
