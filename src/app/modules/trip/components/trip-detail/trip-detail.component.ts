@@ -45,7 +45,6 @@ export class TripDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTripDetail();
-    this.getSponsorships();
     this.userRole = this.authService.getRole();
     this.isExplorer = this.userRole === UserRoles.EXPLORER;
   }
@@ -58,6 +57,8 @@ export class TripDetailComponent implements OnInit {
           this.trip = data.getTripById;
           this.checkOwnTrip();
           this.checkTripIsNotCancelled();
+          this.getSponsorships();
+
           this.loading = false;
         }
       },
@@ -76,9 +77,7 @@ export class TripDetailComponent implements OnInit {
     this.sponsorshipService
       .getSponsorships({
         where: {
-          trip: {
-            id: this.trip?.id ?? ''
-          },
+          trip: this.trip?.id,
           state: SponsorshipState.ACTIVE
         }
       })

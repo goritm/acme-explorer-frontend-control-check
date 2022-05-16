@@ -51,7 +51,6 @@ export class CreateUserComponent {
   validate() {
     this.submitted = false;
     if (this.createUserForm.valid) {
-      console.log('Validate true', this.createUserForm.value);
       this.createUser();
     } else {
       this.submitted = true;
