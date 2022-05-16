@@ -22,6 +22,11 @@ export const EXPLORER_MENU_ITEMS = [
     link: '/profile'
   },
   {
+    title: 'Favorites',
+    icon: 'heart-outline',
+    link: '/favorites'
+  },
+  {
     title: 'Logout',
     icon: 'log-out-outline'
   }
