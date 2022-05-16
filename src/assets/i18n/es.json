@@ -44,7 +44,23 @@
       "button": "Cancelar viaje"
     },
     "editTrip": {
-      "title": "Editar viaje"
+      "title": "Editar viaje",
+      "form": {
+        "title": "Titulo",
+        "titleErrors": {
+          "required": "El título es requerido",
+          "minlength": "El título debe tener al menos 5 caracteres",
+          "maxlength": "El título no puede tener más de 50 caracteres"
+        },
+        "description": "Description",
+        "descriptionErrors": {
+          "required": "La descripción es requerida",
+          "minlength": "La descripción debe tener al menos 5 caracteres",
+          "maxlength": "La descripción no puede tener más de 40 caracteres"
+        },
+        "requirements": "Agrega un requerimiento por línea:",
+        "button": "Editar viaje"
+      }
     }
   },
   "profile": {

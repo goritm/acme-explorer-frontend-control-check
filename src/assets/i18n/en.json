@@ -44,7 +44,23 @@
       "button": "Cancel Trip"
     },
     "editTrip": {
-      "title": "Edit trip"
+      "title": "Edit trip",
+      "form": {
+        "title": "Title",
+        "titleErrors": {
+          "required": "Title is required",
+          "minlength": "Title must be at least 5 characters long",
+          "maxlength": "Title cannot be more than 50 characters long"
+        },
+        "description": "Description",
+        "descriptionErrors": {
+          "required": "Description is required",
+          "minlength": "Description must be at least 5 characters long",
+          "maxlength": "Description cannot be more than 40 characters long"
+        },
+        "requirements": "Add a requirement per line:",
+        "button": "Edit trip"
+      }
     }
   },
   "menu": {
