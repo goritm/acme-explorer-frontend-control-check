@@ -1,0 +1,31 @@
+<div class="header-text">
+  <h1> {{ 'dashboard.finder.stats.title' | translate }} </h1>
+</div>
+
+<nb-layout>
+
+  <nb-layout-column>
+    <nb-card accent="info">
+      <nb-card-header>
+        <p>{{ 'dashboard.finder.stats.topKeywords' | translate }}</p>
+      </nb-card-header>
+      <nb-card-body>
+        <div echarts [options]="topKeywordsOptions" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+
+  <nb-layout-column>
+     <nb-card accent="danger">
+      <nb-card-header>
+         <p>{{ 'dashboard.finder.stats.averagePriceRange' | translate }}</p>
+      </nb-card-header>
+      <nb-card-body>
+        <div echarts [options]="averageRangePriceOptions" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+
+</nb-layout>
+
+
