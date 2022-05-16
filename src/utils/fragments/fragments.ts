@@ -89,3 +89,15 @@ export const APPLICATION_DATA = gql`
   ${TRIP_USER_DATA}
   ${TRIP_DATA_WITHOUT_MANAGER}
 `;
+
+export const FINDER_DATA = gql`
+  fragment FinderData on Finder {
+    id
+    minPrice
+    maxPrice
+    minDate
+    maxDate
+    keyword
+    user
+  }
+`;

@@ -204,5 +204,22 @@
         "topKeywords": "Top keywords"
       }
     }
+  },
+  "finder": {
+    "list": {
+      "title": "My Finders",
+      "row": {
+        "keyword": "Keyword: ",
+        "minPrice": "MinPrice: ",
+        "maxPrice": "MaxPrice: ",
+        "minDate": "MinDate: ",
+        "maxDate": "MaxDate: "
+      },
+      "buttons": {
+        "update": "Update",
+        "delete": "Delete"
+      },
+      "notFound": "No finders found"
+    }
   }
 }

@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from 'src/app/components/page-not-found/page-no
 import { AuthGuard } from 'src/app/modules/authentication/auth.guard';
 import {
   ALL_ROLES,
+  EXPLORER,
   MANAGER,
   SPONSOR,
   UserRoles
@@ -24,6 +25,7 @@ import { PaymentComponent } from '../payment/payment.component';
 import { FlatRateComponent } from '../configuration/components/flat-rate/flat-rate.component';
 import { AnalyticsComponent } from '../dashboard/components/analytics/analytics.component';
 import { CreateUserComponent } from '../user/components/create-user/create-user.component';
+import { SelfFinderComponent } from '../user/components/self-finders/self-finders.component';
 import { FinderStatsComponent } from '../dashboard/components/finder-stats/finder-stats.component';
 
 const routes: Routes = [
@@ -130,6 +132,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       expectedRoles: [UserRoles.ADMIN]
+    }
+  },
+  {
+    path: 'finders/self',
+    component: SelfFinderComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: EXPLORER
     }
   },
   {
