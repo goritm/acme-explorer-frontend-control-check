@@ -12,7 +12,37 @@
       nbSpinnerStatus="basic"
     >
       <nb-list-item *ngFor="let trip of favoriteList.trips">
-        <nb-card hover-class="hover" class="listing-container">
+        <nb-card *ngIf="trip.state === 'CANCELLED' || checkIfTripIsExpired(trip)" hover-class="hover" class="listing-container" accent="danger">
+          <nb-card-header class="header-card" routerLink="/trips/detail/{{trip.id}}">
+              <nb-icon icon="layers-outline"></nb-icon>
+              <span>
+                <b class="header-card-title">{{ 'favorite.detail.row.title' | translate }}</b>
+                {{ trip.title }}
+              </span>
+
+              <span>
+                <b class="header-card-title">{{ 'favorite.detail.row.price' | translate }}</b>
+                {{ trip.price }}
+              </span>
+          </nb-card-header>
+
+          <nb-card-footer class="footer-card">
+
+            <button
+              nbButton
+              fullWidth
+              (click)="removeFavoriteTrip(trip)"
+              type="submit"
+              status="danger"
+              size="small">
+              <nb-icon icon="trash-2-outline"></nb-icon>
+              {{ 'favorite.detail.buttons.delete' | translate }}
+            </button>
+
+          </nb-card-footer>
+        </nb-card>
+
+        <nb-card *ngIf="trip.state !== 'CANCELLED' && !checkIfTripIsExpired(trip)" hover-class="hover" class="listing-container">
           <nb-card-header class="header-card" routerLink="/trips/detail/{{trip.id}}">
               <nb-icon icon="layers-outline"></nb-icon>
               <span>
