@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { NbSearchService } from '@nebular/theme';
+import { NbSearchService, NbToastrService } from '@nebular/theme';
+import { FinderService } from 'src/app/modules/user/services/finder.service';
 import { TripState } from 'src/utils/enums/trip-state.enum';
 import { Trip } from '../../graphql/types/trip.type';
 import { TripService } from '../../trip.service';
@@ -29,7 +30,9 @@ export class ListTripsComponent {
   constructor(
     private fb: FormBuilder,
     private tripService: TripService,
-    private searchService: NbSearchService
+    private searchService: NbSearchService,
+    private finderService: FinderService,
+    private toastrService: NbToastrService
   ) {}
 
   ngOnInit(): void {
@@ -75,17 +78,39 @@ export class ListTripsComponent {
         limit: maxItems || 10,
         where: {
           ...(keyword && { filter_search: keyword }),
-          ...(minDate && { startDate: { gte: minDate } }),
-          ...(maxDate && { endDate: { lte: maxDate } }),
-          ...(minPrice && { price: { gte: minPrice } }),
-          ...(maxPrice && { price: { lte: maxPrice } })
+          ...(minDate && { startDate_gte: minDate }),
+          ...(maxDate && { endDate_lte: maxDate }),
+          ...(minPrice && { price_gte: minPrice }),
+          ...(maxPrice && { price_lte: maxPrice })
         }
       })
       .subscribe({
         next: ({ data }) => {
-          console.log(data);
           this.trips = data.getTrips;
-          this.loading = false;
+
+          this.finderService
+            .create({
+              ...(keyword && { keyword }),
+              ...(minDate && { minDate }),
+              ...(maxDate && { maxDate }),
+              ...(minPrice && { minPrice }),
+              ...(maxPrice && { maxPrice })
+            })
+            .subscribe({
+              next: () => {
+                console.log('created finder');
+
+                this.toastrService.show('Created finder...', 'Success', {
+                  duration: 3000,
+                  status: 'success'
+                });
+                this.loading = false;
+              },
+              error: () => {
+                console.error('error');
+                this.loading = false;
+              }
+            });
         },
         error: (err) => {
           console.error(err.message);
