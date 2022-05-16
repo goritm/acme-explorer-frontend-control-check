@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
-import { ResponseUpdateConfigurationMutation } from '../graphql/types/update-configuration-response.type';
-import { ResponseSelfFavoritesListQuery } from '../graphql/types/list-configurations-reponse.type';
+import { ResponseRenameFavoriteListMutation, ResponseUpdateConfigurationMutation } from '../graphql/types/update-configuration-response.type';
+import { ResponseSelfFavoritesListQuery } from '../graphql/types/self-favorites-list-reponse.type';
 import { SELF_FAVORITES_LIST } from '../graphql/queries/self-favorites-list.query';
+import { RENAME_FAVORITE_LIST } from '../graphql/mutations/rename-favorite-list.mutation';
+import { UpdateFavoriteListInput } from '../graphql/inputs/update-favorite-list.input';
 
 @Injectable({
   providedIn: 'root'
@@ -35,11 +37,11 @@ export class FavoriteService {
     });
   }
 
-  renameFavoriteList(updateConfigurationInput: UpdateConfigurationInput) {
-    return this.apollo.mutate<ResponseUpdateConfigurationMutation>({
-      mutation: UPDATE_CONFIGURATION,
+  renameFavoriteList(updateFavoriteListInput: UpdateFavoriteListInput) {
+    return this.apollo.mutate<ResponseRenameFavoriteListMutation>({
+      mutation: RENAME_FAVORITE_LIST,
       variables: {
-        input: updateConfigurationInput
+        input: updateFavoriteListInput
       }
     });
   }
