@@ -1,3 +1,4 @@
+import { CreateFavoriteListInput } from './../graphql/inputs/create-favorite-list.input';
 import { Injectable } from '@angular/core';
 
 import { Apollo } from 'apollo-angular';
@@ -17,6 +18,8 @@ import { REMOVE_FAVORITE_TRIP } from '../graphql/mutations/remove-favorite-trip.
 import { ADD_FAVORITE_TRIP } from '../graphql/mutations/add-favorite-trip.mutation';
 import { ResponseRemoveFavoriteTripMutation } from '../graphql/types/remove-favorite-trip-response.type';
 import { ResponseAddFavoriteTripMutation } from '../graphql/types/add-favorite-trip-response.type';
+import { ResponseCreateFavoriteListMutation } from '../graphql/types/create-favorite-list-response.type';
+import { CREATE_FAVORITE_LIST } from '../graphql/mutations/create-favorite-list.mutation';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +55,15 @@ export class FavoriteService {
       query: GET_SELF_FAVORITE_LIST,
       variables: {
         id
+      }
+    });
+  }
+
+  createFavoriteList(createFavoriteListInput: CreateFavoriteListInput) {
+    return this.apollo.mutate<ResponseCreateFavoriteListMutation>({
+      mutation: CREATE_FAVORITE_LIST,
+      variables: {
+        input: createFavoriteListInput
       }
     });
   }

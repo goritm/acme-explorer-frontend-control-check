@@ -70,19 +70,18 @@
   <div *ngIf="trips.length > 0; else noTrips" class="trip-list-container">
     <nb-list class="list-container">
       <nb-list-item *ngFor="let trip of trips">
-        <nb-card
-          routerLink="/trips/detail/{{ trip.id }}"
-          hover-class="hover"
-          class="card-container"
-        >
-          <nb-card-header class="card-header">
+        <nb-card class="card-container" hover-class="hover">
+          <nb-card-header
+            class="card-header"
+            routerLink="/trips/detail/{{ trip.id }}"
+          >
             <p class="trip-title">{{ trip.title }}</p>
             <div class="dates">
               <p>{{ trip.startDate }}</p>
               <p>{{ trip.endDate }}</p>
             </div>
           </nb-card-header>
-          <nb-card-body>
+          <nb-card-body routerLink="/trips/detail/{{ trip.id }}">
             {{ trip.description }}
             <br />
             <br />
@@ -94,7 +93,11 @@
             />
           </nb-card-body>
           <nb-card-footer class="card-footer">
-            €{{ trip.price }}
+            <nb-icon
+              icon="heart-outline"
+              (click)="favoriteTrip(trip)"
+            ></nb-icon>
+            <p>€{{ trip.price }}</p>
           </nb-card-footer>
         </nb-card>
       </nb-list-item>

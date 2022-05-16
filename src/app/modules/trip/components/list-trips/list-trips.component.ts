@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { NbSearchService, NbToastrService } from '@nebular/theme';
+import {
+  NbDialogService,
+  NbSearchService,
+  NbToastrService
+} from '@nebular/theme';
 import { FinderService } from 'src/app/modules/user/services/finder.service';
 import { TripState } from 'src/utils/enums/trip-state.enum';
 import { Trip } from '../../graphql/types/trip.type';
+import { ITrip } from '../../interfaces/trip.interface';
 import { TripService } from '../../trip.service';
+import { FavoriteTripDialogComponent } from './dialog/favorite-trip-dialog/favorite-trip-dialog.component';
 
 @Component({
   selector: 'list-trips',
@@ -32,7 +38,8 @@ export class ListTripsComponent {
     private tripService: TripService,
     private searchService: NbSearchService,
     private finderService: FinderService,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+    private dialogService: NbDialogService
   ) {}
 
   ngOnInit(): void {
@@ -135,5 +142,14 @@ export class ListTripsComponent {
           this.loading = false;
         }
       });
+  }
+
+  favoriteTrip(trip: Trip): void {
+    this.dialogService.open(FavoriteTripDialogComponent, {
+      context: {
+        trip
+      }
+    });
+    // .onClose.subscribe(() => this.getTripDetail());
   }
 }
