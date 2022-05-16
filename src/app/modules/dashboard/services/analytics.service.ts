@@ -6,7 +6,7 @@ import { ResponseGetAnalyticsQuery } from '../graphql/types/get-analytics-respon
 @Injectable({
   providedIn: 'root'
 })
-export class AnalitycsService {
+export class AnalyticsService {
   constructor(private apollo: Apollo) {}
 
   analitycs() {
