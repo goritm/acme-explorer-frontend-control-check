@@ -28,7 +28,15 @@
       "apply": "Aplicar a viaje"
     },
     "noTrips": "No se encontró el viaje",
-    "sponsorship": "Este viaje es patrocinado por..."
+    "sponsorship": "Este viaje es patrocinado por...",
+    "applyToTrip": {
+      "title": "Aplicar a trip",
+      "applyMessage": "Quieres aplicar? Deja unos comentarios si deseas",
+      "comments": "Comentarios...",
+      "buttons": {
+        "apply": "Aplicar"
+      }
+    }
   },
   "profile": {
     "title": "Tu perfil",

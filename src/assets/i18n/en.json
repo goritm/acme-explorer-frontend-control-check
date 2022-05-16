@@ -28,7 +28,15 @@
       "apply": "Apply to trip"
     },
     "noTrips": "No trip found",
-    "sponsorship": "This trip is sponsored by..."
+    "sponsorship": "This trip is sponsored by...",
+    "applyToTrip": {
+      "title": "Apply to trip",
+      "applyMessage": "Want to apply? Leave some comments if you'd like",
+      "comments": "Comments...",
+      "buttons": {
+        "apply": "Apply"
+      }
+    }
   },
   "menu": {
     "trips": "Trips",
