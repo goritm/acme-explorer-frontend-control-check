@@ -6,7 +6,9 @@ export type UserAdmin = IBaseEntity & {
   name: string;
   lastName: string;
   email: string;
-  profilePicture: string;
+  profilePicture?: string;
+  telephoneNumber?: string;
+  address?: string;
   status: UserStatus;
   role: UserRoles;
 };

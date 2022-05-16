@@ -1,0 +1,182 @@
+<div class="header-text">
+  <h1 class="title">
+    {{ 'user.create.title' | translate }}
+  </h1>
+</div>
+
+<form (ngSubmit)="validate()" [formGroup]="createUserForm">
+  <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
+    <nb-card-body class="create-user-card">
+      <div>
+        <label class="label-index" for="name" *ngIf="createUserForm.value.name !== ''">
+           {{ 'user.create.form.name.name' | translate }}:
+        </label>
+        <input
+          nbInput
+          fullWidth
+          id="name"
+          name="name"
+          formControlName="name"
+          placeholder="{{ 'user.create.form.name.name' | translate }}"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && createUserForm.controls['name']">
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['name']?.errors?.['required']"
+          >
+            {{ 'user.create.form.name.required' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['name']?.errors?.['minlength']"
+          >
+            {{ 'user.create.form.name.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['name']?.errors?.['maxlength']"
+          >
+            {{ 'user.create.form.name.max' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-index" for="lastName" *ngIf="createUserForm.value.lastName !== ''">
+           {{ 'user.create.form.lastName.name' | translate }}:
+        </label>
+        <input
+          nbInput
+          fullWidth
+          id="lastName"
+          name="lastName"
+          formControlName="lastName"
+          placeholder="{{ 'user.create.form.lastName.name' | translate }}"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && createUserForm.controls['lastName']">
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['lastName']?.errors?.['required']"
+          >
+            {{ 'user.create.form.lastName.required' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['lastName']?.errors?.['minlength']"
+          >
+            {{ 'user.create.form.lastName.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['lastName']?.errors?.['maxlength']"
+          >
+            {{ 'user.create.form.lastName.max' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-index" for="email" *ngIf="createUserForm.value.email !== ''">
+           {{ 'user.create.form.email.name' | translate }}:
+        </label>
+        <input
+          nbInput
+          fullWidth
+          type="email"
+          formControlName="email"
+          placeholder="{{ 'user.create.form.email.name' | translate }}"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && createUserForm.controls['email']">
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['email']?.errors?.['required']"
+          >
+            {{ 'user.create.form.email.required' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-index" for="email" *ngIf="createUserForm.value.password !== ''">
+           {{ 'user.create.form.password.name' | translate }}:
+        </label>
+        <input
+          nbInput
+          fullWidth
+          type="password"
+          formControlName="password"
+          placeholder="{{ 'user.create.form.password.name' | translate }}"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && createUserForm.controls['password']">
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['password']?.errors?.['required']"
+          >
+            {{ 'user.create.form.password.required' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['password']?.errors?.['minlength']"
+          >
+            {{ 'user.create.form.password.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="createUserForm.controls['password']?.errors?.['maxlength']"
+          >
+            {{ 'user.create.form.password.max' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label class="label-index" for="role">
+          {{ 'user.create.form.role.name' | translate }}:
+        </label>
+        <nb-select fullWidth placeholder="{{ 'user.create.form.role.name' | translate }}" [(selected)]="selectedItem" formControlName="role">
+          <nb-option value="EXPLORER">{{ 'user.create.form.role.explorer' | translate }}</nb-option>
+          <nb-option value="MANAGER">{{ 'user.create.form.role.manager' | translate }}</nb-option>
+          <nb-option value="SPONSOR">{{ 'user.create.form.role.sponsor' | translate }}</nb-option>
+        </nb-select>
+      </div>
+
+    </nb-card-body>
+
+    <nb-card-body class="button-rows">
+      <button
+        nbButton
+        (click)="cancel()"
+        fullWidth
+        type="cancel"
+        status="danger"
+        size="medium">
+        {{ 'user.create.buttons.cancel' | translate }}
+      </button>
+
+      <button
+        nbButton
+        fullWidth
+        type="submit"
+        status="primary"
+        size="medium">
+        {{ 'user.create.buttons.create' | translate }}
+      </button>
+    </nb-card-body>
+  </nb-card>
+</form>

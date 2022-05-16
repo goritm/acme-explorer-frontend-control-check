@@ -22,6 +22,7 @@ import { ListUsersComponent } from '../user/components/list-users/list-users.com
 import { SelfSponsorshipsComponent } from '../sponsorship/components/self-sponsorships/self-sponsorships.component';
 import { PaymentComponent } from '../payment/payment.component';
 import { FlatRateComponent } from '../configuration/components/flat-rate/flat-rate.component';
+import { CreateUserComponent } from '../user/components/create-user/create-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -108,6 +109,14 @@ const routes: Routes = [
   {
     path: 'users',
     component: ListUsersComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.ADMIN]
+    }
+  },
+  {
+    path: 'users/create',
+    component: CreateUserComponent,
     canActivate: [AuthGuard],
     data: {
       expectedRoles: [UserRoles.ADMIN]
