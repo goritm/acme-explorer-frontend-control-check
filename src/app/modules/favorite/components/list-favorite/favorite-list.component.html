@@ -1,0 +1,53 @@
+<div class="header-text">
+  <h1> {{ 'favorite.list.title' | translate }} {{ favoriteList.name }} </h1>
+</div>
+
+<div *ngIf="favoriteList.trips.length > 0; else noTrips">
+  <nb-list
+      nbInfiniteList
+      listenWindowScroll
+      [threshold]="1"
+      (bottomThreshold)="loadNext()"
+      [nbSpinner]="loading"
+      nbSpinnerStatus="basic"
+    >
+      <nb-list-item *ngFor="let trip of favoriteList.trips">
+        <nb-card hover-class="hover" class="listing-container">
+          <nb-card-header class="header-card" routerLink="/trips">
+              <nb-icon icon="layers-outline"></nb-icon>
+              <span>
+                <b class="header-card-title">{{ 'favorite.list.row.name' | translate }}</b>
+                {{ trip.title }}
+              </span>
+
+              <span>
+                <b class="header-card-title">{{ 'favorite.list.row.count' | translate }}</b>
+                {{ trip.price }}
+              </span>
+          </nb-card-header>
+
+          <nb-card-footer class="footer-card">
+
+            <button
+              nbButton
+              fullWidth
+              (click)="removeFavoriteTrip(trip)"
+              type="submit"
+              status="danger"
+              size="small">
+              <nb-icon icon="trash-2-outline"></nb-icon>
+            </button>
+
+          </nb-card-footer>
+        </nb-card>
+      </nb-list-item>
+  </nb-list>
+</div>
+
+<ng-template #noTrips>
+  <nb-card class="listing-container">
+    <nb-card-body>
+      <p> {{ 'finder.list.notFound' | translate }}  </p>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
