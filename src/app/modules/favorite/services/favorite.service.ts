@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 
 import { Apollo } from 'apollo-angular';
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
-import { ResponseRenameFavoriteListMutation, ResponseUpdateConfigurationMutation } from '../graphql/types/update-configuration-response.type';
 import { ResponseSelfFavoritesListQuery } from '../graphql/types/self-favorites-list-reponse.type';
 import { SELF_FAVORITES_LIST } from '../graphql/queries/self-favorites-list.query';
 import { RENAME_FAVORITE_LIST } from '../graphql/mutations/rename-favorite-list.mutation';
 import { UpdateFavoriteListInput } from '../graphql/inputs/update-favorite-list.input';
+import { DELETE_FAVORITE_LIST } from '../graphql/mutations/delete-favorite-list.mutation';
+import { RemoveFavoriteTripInput } from '../graphql/inputs/remove-favorite-trip.input';
+import { AddFavoriteTripInput } from '../graphql/inputs/add-favorite-trip.input';
+import { ResponseDeleteFavoriteListMutation } from '../graphql/types/delete-favorite-list-response.type';
+import { ResponseRenameFavoriteListMutation } from '../graphql/types/rename-favorite-list-response.type copy';
 
 @Injectable({
   providedIn: 'root'
@@ -46,15 +50,30 @@ export class FavoriteService {
     });
   }
 
-  deleteFavoriteList(updateConfigurationInput: UpdateConfigurationInput) {
-    return this.apollo.mutate<ResponseUpdateConfigurationMutation>({
-      mutation: UPDATE_CONFIGURATION,
+  deleteFavoriteList(id: string) {
+    return this.apollo.mutate<ResponseDeleteFavoriteListMutation>({
+      mutation: DELETE_FAVORITE_LIST,
       variables: {
-        input: updateConfigurationInput
+        id
       }
     });
   }
 
-  deleteFavoriteTrip() {}
-  addFavoriteTrip() {}
+  deleteFavoriteTrip(removeFavoriteTripInput: RemoveFavoriteTripInput) {
+    return this.apollo.mutate<ResponseDeleteFavoriteListMutation>({
+      mutation: DELETE_FAVORITE_LIST,
+      variables: {
+        input: removeFavoriteTripInput
+      }
+    });
+  }
+
+  addFavoriteTrip(addFavoriteTripInput: AddFavoriteTripInput) {
+    return this.apollo.mutate<ResponseDeleteFavoriteListMutation>({
+      mutation: DELETE_FAVORITE_LIST,
+      variables: {
+        input: addFavoriteTripInput
+      }
+    });
+  }
 }
