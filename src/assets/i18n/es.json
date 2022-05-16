@@ -10,8 +10,24 @@
     "welcome": "Bienvenido a la pagina principal",
     "works": "El componente home funciona"
   },
-  "card-trip": {
-    "price": "Precio"
+  "trip-detail": {
+    "reasonCancelled": "El trip fue cancelado",
+    "description": "Descripción",
+    "startDate": "Fecha de inicio",
+    "endDate": "Fecha de fin",
+    "price": "Precio",
+    "requirements": "Requerimientos",
+    "stages": "Etapas",
+    "manager": "Creado por",
+    "buttons": {
+      "publish": "Publicar viaje",
+      "edit": "Editar viaje",
+      "cancel": "Cancelar viaje",
+      "delete": "Eliminar viaje",
+      "apply": "Aplicar a viaje"
+    },
+    "noTrips": "No se encontró el viaje",
+    "sponsorship": "Este viaje es patrocinado por..."
   },
   "profile": {
     "title": "Tu perfil",

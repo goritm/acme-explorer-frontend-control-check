@@ -10,8 +10,24 @@
     "welcome": "Welcome to the home page",
     "works": "Home works"
   },
-  "card-trip": {
-    "price": "Price"
+  "trip-detail": {
+    "reasonCancelled": "The trip was cancelled",
+    "description": "Description",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "price": "Price",
+    "requirements": "Requirements",
+    "stages": "Stages",
+    "manager": "Created by",
+    "buttons": {
+      "publish": "Publish trip",
+      "edit": "Edit trip",
+      "cancel": "Cancel trip",
+      "delete": "Delete trip",
+      "apply": "Apply to trip"
+    },
+    "noTrips": "No trip found",
+    "sponsorship": "This trip is sponsored by..."
   },
   "menu": {
     "trips": "Trips",
