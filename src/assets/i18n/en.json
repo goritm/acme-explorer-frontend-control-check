@@ -125,11 +125,11 @@
           "min": "Password must be at least 8 characters long",
           "max": "Password must be less than 25 characters long"
         },
-        "passwordConfirmation": {
-          "name": "Password confirmation",
-          "required": "Please enter a password confirmation",
-          "min": "Password confirmation must be at least 8 characters long",
-          "max": "Password confirmation must be less than 25 characters long"
+        "role": {
+          "name": "Select a role",
+          "explorer": "Explorer",
+          "manager": "Manager",
+          "sponsor": "Sponsor"
         }
       },
       "buttons": {
