@@ -1,6 +1,10 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { NbDialogService, NbToastrService } from '@nebular/theme';
+import {
+  NbDialogService,
+  NbSearchService,
+  NbToastrService
+} from '@nebular/theme';
 import { FavoriteService } from '../../services/favorite.service';
 import { FavoriteList } from '../../graphql/types/favorite-list.type';
 import { GraphqlSortOperationEnum } from 'src/utils/enums/graphql-sort-operation.enum';
@@ -21,6 +25,7 @@ export class FavoritesListComponent implements OnInit {
   constructor(
     protected favoriteService: FavoriteService,
     private router: Router,
+    private searchService: NbSearchService,
     private toastrService: NbToastrService,
     private dialogService: NbDialogService
   ) {}
@@ -68,5 +73,27 @@ export class FavoritesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadNext();
+
+    this.searchService
+      .onSearchSubmit()
+      .subscribe(({ term: searchBarResult }: any) => {
+        console.log(searchBarResult);
+        this.loading = true;
+
+        this.favoriteService
+          .selfFavoriteList({
+            where: {
+              name_search: searchBarResult
+            },
+            sort: { createdAt: GraphqlSortOperationEnum.desc }
+          })
+          .subscribe({
+            next: ({ data }) => {
+              this.favoritesList = data.selfFavoritesList;
+              this.loading = false;
+              this.pageToLoadNext++;
+            }
+          });
+      });
   }
 }
