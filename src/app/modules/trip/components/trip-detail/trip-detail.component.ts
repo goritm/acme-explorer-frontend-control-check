@@ -45,11 +45,18 @@ export class TripDetailComponent implements OnInit {
 
   getTripDetail(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.tripService.getTripDetail(id).subscribe(({ data }) => {
-      this.trip = data.getTripById;
-      this.checkOwnTrip();
-      this.checkTripIsNotCancelled();
-      this.loading = false;
+    this.tripService.getTripDetail(id).subscribe({
+      next: ({ data }) => {
+        if (!(data === undefined || data === null)) {
+          this.trip = data.getTripById;
+          this.checkOwnTrip();
+          this.checkTripIsNotCancelled();
+          this.loading = false;
+        }
+      },
+      error: (err: any) => {
+        this.toastrService.danger(err.message);
+      }
     });
   }
 
@@ -125,9 +132,16 @@ export class TripDetailComponent implements OnInit {
           this.cdr.detectChanges();
         })
       )
-      .subscribe(() => {
-        this.toastrService.success('Trip published');
-        this.getTripDetail();
+      .subscribe({
+        next: ({ data }) => {
+          if (!(data === undefined || data === null)) {
+            this.toastrService.success('Trip published');
+            this.getTripDetail();
+          }
+        },
+        error: (err: any) => {
+          this.toastrService.danger(err.message);
+        }
       });
   }
 
