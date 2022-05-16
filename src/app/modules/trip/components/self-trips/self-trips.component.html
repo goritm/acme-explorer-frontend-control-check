@@ -1,22 +1,18 @@
 <div class="header-text">
-  <h1 class="title"> {{ 'selfTrips.title' | translate }} </h1>
+  <h1 class="title">{{ 'selfTrips.title' | translate }}</h1>
 </div>
 
-<div *ngIf="trips.length > 0; else noTrips" class="center">
-  <nb-list
-      nbInfiniteList
-      listenWindowScroll
-      [threshold]="1"
-      (bottomThreshold)="loadNext()"
-      [nbSpinner]="loading"
-      nbSpinnerStatus="basic"
-    >
+<div [nbSpinner]="loading" nbSpinnerStatus="basic">
+  <div *ngIf="trips.length > 0; else noTrips" class="center">
+    <nb-list>
       <nb-list-item *ngFor="let trip of trips">
-        <nb-card  routerLink="/trips/detail/{{ trip.id }}" hover-class="hover" class="listing-container">
+        <nb-card
+          routerLink="/trips/detail/{{ trip.id }}"
+          hover-class="hover"
+          class="listing-container"
+        >
           <nb-card-header>
-
-             {{ trip.title }}
-
+            {{ trip.title }}
           </nb-card-header>
 
           <nb-card-body>
@@ -35,13 +31,14 @@
           </nb-card-footer>
         </nb-card>
       </nb-list-item>
-  </nb-list>
-</div>
+    </nb-list>
+  </div>
 
-<ng-template #noTrips>
-  <nb-card>
-    <nb-card-body>
-      <p>No trips found</p>
-    </nb-card-body>
-  </nb-card>
-</ng-template>
+  <ng-template #noTrips>
+    <nb-card>
+      <nb-card-body>
+        <p>No trips found</p>
+      </nb-card-body>
+    </nb-card>
+  </ng-template>
+</div>
