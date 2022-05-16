@@ -5,6 +5,26 @@
     "logout": "Logout",
     "profile": "Profile"
   },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "subtitle": "Log in with your email",
+      "submessage": "Don't have an account yet?"
+    },
+    "register": {
+      "title": "Register",
+      "subtitle": "Create an account!",
+      "submessage": "Already have an account?"
+    },
+    "fields": {
+      "email": "Email address",
+      "password": "Password",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "phoneNumber": "Phone number",
+      "address": "Address"
+    }
+  },
   "home": {
     "title": "Home",
     "welcome": "Welcome to the home page",

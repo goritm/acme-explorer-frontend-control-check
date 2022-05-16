@@ -13,6 +13,7 @@ import {
   NbSpinnerModule
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
+import { NgxTranslateModule } from '../translate/translate.module';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
@@ -22,6 +23,7 @@ import { AppRoutingModule } from '../routing/app-routing.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxTranslateModule,
     NbFormFieldModule,
     NbInputModule,
     NbButtonModule,

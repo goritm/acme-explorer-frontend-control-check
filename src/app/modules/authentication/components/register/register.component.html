@@ -1,9 +1,9 @@
 <div class="header-text">
-  <h1 class="title">Register</h1>
-  <p class="sub-title">Create an account!</p>
+  <h1 class="title">{{ 'auth.register.title' | translate }}</h1>
+  <p class="sub-title">{{ 'auth.register.subtitle' | translate }}</p>
   <p class="sub-title" aria-label="login">
-    Already have an account?
-    <a routerLink="/login">Login</a>
+    {{ 'auth.register.submessage' | translate }}
+    <a routerLink="/login">{{ 'auth.login.title' | translate }}</a>
   </p>
 </div>
 
@@ -11,7 +11,9 @@
   <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
     <nb-card-body class="register-card">
       <div>
-        <label class="label" for="email">Email address:</label>
+        <label class="label" for="email"
+          >{{ 'auth.fields.email' | translate }}:</label
+        >
         <span style="color: red"> *</span>
         <input
           nbInput
@@ -20,7 +22,7 @@
           id="email"
           name="email"
           formControlName="email"
-          placeholder="Email address"
+          placeholder="{{ 'auth.fields.email' | translate }}"
           fieldSize="large"
           autofocus
           status="basic"
@@ -42,7 +44,9 @@
         </div>
       </div>
       <div>
-        <label class="label" for="password">Password:</label>
+        <label class="label" for="password"
+          >{{ 'auth.fields.password' | translate }}:</label
+        >
         <span style="color: red"> *</span>
         <input
           nbInput
@@ -51,7 +55,7 @@
           id="password"
           name="password"
           formControlName="password"
-          placeholder="Password"
+          placeholder="{{ 'auth.fields.password' | translate }}"
           fieldSize="large"
           status="basic"
           required="true"
@@ -80,7 +84,9 @@
         </div>
       </div>
       <div>
-        <label class="label" for="first-name">First Name:</label>
+        <label class="label" for="first-name"
+          >{{ 'auth.fields.firstName' | translate }}:</label
+        >
         <span style="color: red"> *</span>
         <input
           nbInput
@@ -89,7 +95,7 @@
           id="first-name"
           name="first-name"
           formControlName="name"
-          placeholder="First Name"
+          placeholder="{{ 'auth.fields.firstName' | translate }}"
           fieldSize="large"
           status="basic"
           required="true"
@@ -102,7 +108,9 @@
         </p>
       </div>
       <div>
-        <label class="label" for="last-name">Last Name:</label>
+        <label class="label" for="last-name"
+          >{{ 'auth.fields.lastName' | translate }}:</label
+        >
         <span style="color: red"> *</span>
         <input
           nbInput
@@ -111,7 +119,7 @@
           id="last-name"
           name="last-name"
           formControlName="lastName"
-          placeholder="Last Name"
+          placeholder="{{ 'auth.fields.lastName' | translate }}"
           fieldSize="large"
           status="basic"
           required="true"
@@ -124,7 +132,9 @@
         </p>
       </div>
       <div>
-        <label class="label" for="phone">Phone Number:</label>
+        <label class="label" for="phone"
+          >{{ 'auth.fields.phoneNumber' | translate }}:</label
+        >
         <input
           nbInput
           fullWidth
@@ -133,7 +143,7 @@
           name="phone"
           pattern="[0-9]{9}"
           formControlName="telephoneNumber"
-          placeholder="Phone Number"
+          placeholder="{{ 'auth.fields.phoneNumber' | translate }}"
           fieldSize="large"
           status="basic"
           required="false"
@@ -154,7 +164,9 @@
         </div>
       </div>
       <div>
-        <label class="label" for="address">Address:</label>
+        <label class="label" for="address"
+          >{{ 'auth.fields.address' | translate }}:</label
+        >
         <input
           nbInput
           fullWidth
@@ -162,7 +174,7 @@
           id="address"
           name="address"
           formControlName="address"
-          placeholder="Address"
+          placeholder="{{ 'auth.fields.address' | translate }}"
           fieldSize="large"
           status="basic"
           required="false"
@@ -177,7 +189,7 @@
         status="primary"
         size="large"
       >
-        Sign Up
+        {{ 'auth.register.title' | translate }}
       </button>
     </nb-card-body>
   </nb-card>
