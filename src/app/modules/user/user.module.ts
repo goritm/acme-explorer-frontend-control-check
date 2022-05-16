@@ -19,9 +19,15 @@ import { AuthService } from '../authentication/services/auth.service';
 import { NgxTranslateModule } from '../translate/translate.module';
 import { ListUsersComponent } from './components/list-users/list-users.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
+import { SelfFinderComponent } from './components/self-finders/self-finders.component';
 
 @NgModule({
-  declarations: [ProfileComponent, ListUsersComponent, CreateUserComponent],
+  declarations: [
+    ProfileComponent,
+    ListUsersComponent,
+    CreateUserComponent,
+    SelfFinderComponent
+  ],
   imports: [
     GraphQLModule,
     AppRoutingModule,
@@ -40,6 +46,11 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
     NgxTranslateModule
   ],
   providers: [UserService, AuthService],
-  exports: [ProfileComponent, ListUsersComponent, CreateUserComponent]
+  exports: [
+    ProfileComponent,
+    ListUsersComponent,
+    CreateUserComponent,
+    SelfFinderComponent
+  ]
 })
 export class UserModule {}

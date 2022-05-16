@@ -191,6 +191,30 @@
           "paid": "Pagado"
         }
       }
+    },
+    "finder": {
+      "stats": {
+        "title": "Estadísticas de busquedas",
+        "averagePriceRange": "Rango de precios promedio",
+        "topKeywords": "Palabras clave más buscadas"
+      }
+    }
+  },
+  "finder": {
+    "list": {
+      "title": "Mis ultimas búsquedas",
+      "row": {
+        "keyword": "Palabra clave: ",
+        "minPrice": "Precio mínimo: ",
+        "maxPrice": "Precio máximo: ",
+        "minDate": "Fecha mínima: ",
+        "maxDate": "Fecha máxima: "
+      },
+      "buttons": {
+        "update": "Actualizar",
+        "delete": "Eliminar"
+      },
+      "notFound": "No se encontraron busquedas"
     }
   }
 }

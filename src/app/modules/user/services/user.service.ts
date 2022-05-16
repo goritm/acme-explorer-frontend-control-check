@@ -5,18 +5,18 @@ import { IUser } from 'src/utils/interfaces/user.interface';
 
 import { Apollo } from 'apollo-angular';
 import { UpdateUserPayload } from '../graphql/inputs/update-user.payload';
-import { UPDATE_SELF } from '../graphql/mutations/update-self.mutation';
-import { ResponseUpdateSelfMutation } from '../graphql/types/update-self-response.type';
+import { UPDATE_SELF } from '../graphql/mutations/user/update-self.mutation';
+import { ResponseUpdateSelfMutation } from '../graphql/types/user/update-self-response.type';
 import { FilterInputParams } from 'src/utils/inputs/filter-input-params';
 import { LIST_USERS } from '../graphql/queries/list-users.query';
-import { ResponseListUsersQuery } from '../graphql/types/list-users-reponse.type';
-import { LOCK_USER } from '../graphql/mutations/lock-user.mutation';
-import { ResponseLockUserMutation } from '../graphql/types/lock-user-response.type';
-import { UNLOCK_USER } from '../graphql/mutations/unlock-user.mutation';
-import { ResponseUnlockUserMutation } from '../graphql/types/unlock-user-response.type';
+import { ResponseListUsersQuery } from '../graphql/types/user/list-users-reponse.type';
+import { LOCK_USER } from '../graphql/mutations/user/lock-user.mutation';
+import { ResponseLockUserMutation } from '../graphql/types/user/lock-user-response.type';
+import { UNLOCK_USER } from '../graphql/mutations/user/unlock-user.mutation';
+import { ResponseUnlockUserMutation } from '../graphql/types/user/unlock-user-response.type';
 import { CreateUserInput } from '../graphql/inputs/create-user.input';
-import { CREATE_USER } from '../graphql/mutations/create-user.mutation';
-import { ResponseCreateUserMutation } from '../graphql/types/create-user-response.type';
+import { CREATE_USER } from '../graphql/mutations/user/create-user.mutation';
+import { ResponseCreateUserMutation } from '../graphql/types/user/create-user-response.type';
 
 @Injectable({
   providedIn: 'root'
