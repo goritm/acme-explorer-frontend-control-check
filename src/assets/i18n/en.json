@@ -38,6 +38,25 @@
       "goToTrip": "Go To Trip"
     }
   },
+  "create-trip": {
+    "title": "Create a trip",
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "dates": "Select your dates",
+      "requirements": "Add a requirement per line",
+      "stageTitle": "Stage Title",
+      "stageDescription": "Stage Description",
+      "stagePrice": "Stage Price"
+    },
+    "buttons": {
+      "addStage": "Add Stage",
+      "removeStage": "Remove Stage",
+      "upload": "Upload Image",
+      "delete": "Delete Image",
+      "create": "Create Trip"
+    }
+  },
   "home": {
     "title": "Home",
     "welcome": "Welcome to the home page",

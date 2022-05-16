@@ -1,19 +1,21 @@
 <div class="header-text">
-  <h1 class="title">Create your Trip</h1>
+  <h1 class="title">{{ 'create-trip.title' | translate }}</h1>
 </div>
 
 <form (ngSubmit)="createTrip()" [formGroup]="createTripForm">
   <nb-card [nbSpinner]="loading" nbSpinnerStatus="basic">
     <nb-card-body class="create-trip-card">
       <div>
-        <label class="label-index" for="title">Title:</label>
+        <label class="label-index" for="title"
+          >{{ 'create-trip.fields.title' | translate }}:</label
+        >
         <input
           nbInput
           fullWidth
           id="title"
           name="title"
           formControlName="title"
-          placeholder="Title"
+          placeholder="{{ 'create-trip.fields.title' | translate }}"
           fieldSize="large"
           autofocus
           status="basic"
@@ -41,14 +43,16 @@
         </div>
       </div>
       <div>
-        <label class="label-index" for="description">Description:</label>
+        <label class="label-index" for="description"
+          >{{ 'create-trip.fields.description' | translate }}:</label
+        >
         <input
           nbInput
           fullWidth
           id="description"
           name="description"
           formControlName="description"
-          placeholder="Description"
+          placeholder="{{ 'create-trip.fields.description' | translate }}"
           fieldSize="large"
           status="basic"
           required="true"
@@ -76,7 +80,9 @@
       </div>
       <div>
         <div>
-          <label class="label-index" for="dates">Select your dates:</label>
+          <label class="label-index" for="dates"
+            >{{ 'create-trip.fields.dates' | translate }}:</label
+          >
           <input
             nbInput
             fullWidth
@@ -85,7 +91,7 @@
             id="dates"
             name="dates"
             formControlName="dates"
-            placeholder="Pick Date Range"
+            placeholder="{{ 'create-trip.fields.dates' | translate }}"
             [nbDatepicker]="rangepicker"
           />
           <nb-rangepicker #rangepicker [min]="min"></nb-rangepicker>
@@ -101,7 +107,7 @@
       </div>
 
       <label class="label-index" for="requirements"
-        >Add a requirement per line:
+        >{{ 'create-trip.fields.requirements' | translate }}:
       </label>
       <textarea
         formControlName="requirements"
@@ -111,13 +117,15 @@
         fullWidth
         rows="3"
         required="true"
-        placeholder="Requeriments..."
+        placeholder="{{ 'create-trip.fields.requirements' | translate }}..."
       ></textarea>
 
       <div class="stage-container">
         <ng-form class="stage-form" formGroupName="stages">
           <div class="stage-input">
-            <label for="stage-title">Stage Title:</label>
+            <label for="stage-title"
+              >{{ 'create-trip.fields.stageTitle' | translate }}:</label
+            >
             <input
               nbInput
               type="text"
@@ -127,7 +135,9 @@
             />
           </div>
           <div class="stage-input">
-            <label for="stage-description">Stage Description:</label>
+            <label for="stage-description"
+              >{{ 'create-trip.fields.stageDescription' | translate }}:</label
+            >
             <input
               nbInput
               type="text"
@@ -137,7 +147,9 @@
             />
           </div>
           <div class="stage-input">
-            <label for="stage-price">Stage Price:</label>
+            <label for="stage-price"
+              >{{ 'create-trip.fields.stagePrice' | translate }}:</label
+            >
             <input
               nbInput
               type="number"
@@ -153,7 +165,7 @@
             size="large"
             (click)="addStage()"
           >
-            Add stage
+            {{ 'create-trip.buttons.addStage' | translate }}
           </button>
         </ng-form>
 
@@ -177,7 +189,7 @@
                   (click)="deleteStage(stage)"
                   type="button"
                 >
-                  Remove stage
+                  {{ 'create-trip.buttons.removeStage' | translate }}
                 </button>
               </div>
             </div>
@@ -202,7 +214,7 @@
             (click)="removeImage(i)"
             type="button"
           >
-            Borrar
+            {{ 'create-trip.buttons.delete' | translate }}
           </button>
         </div>
       </ng-container>
@@ -214,7 +226,7 @@
         (click)="addImage()"
         type="button"
       >
-        Upload Image
+        {{ 'create-trip.buttons.upload' | translate }}
       </button>
 
       <button
@@ -225,7 +237,7 @@
         size="large"
         [disabled]="!createTripForm.valid"
       >
-        Create Trip
+        {{ 'create-trip.buttons.create' | translate }}
       </button>
     </nb-card-body>
   </nb-card>

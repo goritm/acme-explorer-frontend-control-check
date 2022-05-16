@@ -26,6 +26,25 @@
     }
   },
   "payment": "Pago",
+  "create-trip": {
+    "title": "Crear un viaje",
+    "fields": {
+      "title": "Titulo",
+      "description": "Descripcion",
+      "dates": "Elegir fechas",
+      "requirements": "Agregar requerimiento por cada linea",
+      "stageTitle": "Título de la etapa",
+      "stageDescription": "Descripción de la etapa",
+      "stagePrice": "Precio de la etapa"
+    },
+    "buttons": {
+      "addStage": "Agregar etapa",
+      "removeStage": "Borrar Etapa",
+      "upload": "Subir imagen",
+      "delete": "Borrar imagen",
+      "create": "Crear viaje"
+    }
+  },
   "applications": {
     "title": "Mis aplicaciones",
     "comments": "Comentarios",
