@@ -8,7 +8,8 @@
   "home": {
     "title": "Home",
     "welcome": "Welcome to the home page",
-    "works": "Home works"
+    "works": "Home works",
+    "noTrips": "No trips found"
   },
   "trip-detail": {
     "reasonCancelled": "The trip was cancelled",
