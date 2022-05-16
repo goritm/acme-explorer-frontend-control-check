@@ -14,7 +14,12 @@
         The trip was cancelled: {{ trip.reasonCancelled }}
       </p>
       <p>Description: {{ trip.description }}</p>
-      <img class="img-responsive" src="{{ trip.pictures[0] }}" />
+
+      <img
+        class="img-responsive"
+        *ngFor="let picture of trip.pictures"
+        src="{{ picture }}"
+      />
       <p>Start date: {{ trip.startDate }}</p>
       <p>End date: {{ trip.endDate }}</p>
       <p>{{ 'card-trip.price' | translate }}: €{{ trip.price }}</p>
