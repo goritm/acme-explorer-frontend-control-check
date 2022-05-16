@@ -1,0 +1,67 @@
+<nb-card
+  *ngIf="favoriteList"
+  class="root-container"
+  [nbSpinner]="loading"
+  nbSpinnerStatus="basic"
+>
+  <nb-card-header class="header-container">
+    <p>
+      <b>{{ 'favorite.update.title' | translate }}</b>
+    </p>
+    <nb-icon
+      icon="close-outline"
+      (click)="close()"
+      hover-class="hover"
+    ></nb-icon>
+  </nb-card-header>
+
+  <nb-card-body class="">
+    <form [formGroup]="updateFavoriteListForm" (ngSubmit)="renameFavoriteList()">
+      <div>
+        <label class="label-index" for="name" *ngIf="updateFavoriteListForm.value.name !== ''">{{ 'favorite.update.form.name.name' | translate }}</label>
+        <input
+          nbInput
+          fullWidth
+          id="name"
+          name="name"
+          formControlName="name"
+          placeholder="name"
+          fieldSize="large"
+          autofocus
+          status="basic"
+          required="true"
+        />
+        <div *ngIf="submitted && updateFavoriteListForm.controls['name']">
+          <p
+            class="error-text"
+            *ngIf="updateFavoriteListForm.controls['name']?.errors?.['required']"
+          >
+            {{ 'favorite.update.form.required' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="updateFavoriteListForm.controls['name']?.errors?.['minlength']"
+          >
+            {{ 'favorite.update.form.min' | translate }}
+          </p>
+          <p
+            class="error-text"
+            *ngIf="updateFavoriteListForm.controls['name']?.errors?.['maxlength']"
+          >
+            {{ 'favorite.update.form.max' | translate }}
+          </p>
+        </div>
+      </div>
+      <button
+        nbButton
+        fullWidth
+        type="submit"
+        status="primary"
+        size="large"
+        [disabled]="!updateFavoriteListForm.valid"
+      >
+        {{ 'favorite.update.buttons.rename' | translate }}
+      </button>
+    </form>
+  </nb-card-body>
+</nb-card>
