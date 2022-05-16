@@ -1,3 +1,4 @@
+import { CREATE_SELF_FINDER } from './../graphql/mutations/finder/create-self-finder.mutation';
 import { Injectable } from '@angular/core';
 
 import { Apollo } from 'apollo-angular';
@@ -11,6 +12,8 @@ import { UPDATE_SELF_FINDER } from '../graphql/mutations/finder/update-self-find
 import { ResponseUpdateSelfFinderMutation } from '../graphql/types/finder/update-self-finder-response.type';
 import { DELETE_SELF_FINDER } from '../graphql/mutations/finder/delete-self-finder.mutation';
 import { ResponseDeleteSelfFinderMutation } from '../graphql/types/finder/delete-self-finder-response.type';
+import { CreateFinderInput } from '../graphql/inputs/finder/create-finder.input';
+import { ResponseCreateSelfFinderMutation } from '../graphql/types/finder/create-self-finder-response.type';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +41,15 @@ export class FinderService {
         limit: this.limit,
         where: this.where,
         sort: this.sort
+      }
+    });
+  }
+
+  create(createFinderInput: CreateFinderInput) {
+    return this.apollo.mutate<ResponseCreateSelfFinderMutation>({
+      mutation: CREATE_SELF_FINDER,
+      variables: {
+        input: createFinderInput
       }
     });
   }

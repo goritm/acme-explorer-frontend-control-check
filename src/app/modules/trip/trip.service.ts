@@ -15,8 +15,14 @@ import {
   ResponseDeleteTrip,
   ResponseUpdateTrip
 } from 'src/utils/mutations/responses';
-import { GET_TRIP, LIST_TRIPS, PUBLISH_TRIP } from 'src/utils/queries/queries';
 import {
+  GET_TRIP,
+  GET_TRIPS,
+  LIST_TRIPS,
+  PUBLISH_TRIP
+} from 'src/utils/queries/queries';
+import {
+  ResponseGetTripsQuery,
   ResponseListTripsQuery,
   ResponsePublishSelfTripQuery,
   ResponseTripByIDQuery
@@ -46,6 +52,24 @@ export class TripService {
 
     return this.apollo.query<ResponseListTripsQuery>({
       query: LIST_TRIPS,
+      variables: {
+        start: this.start,
+        limit: this.limit,
+        where: this.where
+      }
+    });
+  }
+
+  getTrips(listTripsParams?: FilterInputParams) {
+    if (listTripsParams) {
+      const { start, limit, where } = listTripsParams;
+      this.start = start || this.start;
+      this.limit = limit || this.limit;
+      this.where = where || this.where;
+    }
+
+    return this.apollo.query<ResponseGetTripsQuery>({
+      query: GET_TRIPS,
       variables: {
         start: this.start,
         limit: this.limit,

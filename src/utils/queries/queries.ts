@@ -16,6 +16,15 @@ export const GET_USER = gql`
   }
 `;
 
+export const GET_TRIPS = gql`
+  query getTrips($start: Int, $limit: Int, $where: JSON) {
+    getTrips(input: { start: $start, limit: $limit, where: $where }) {
+      ...TripData
+    }
+  }
+  ${TRIP_DATA}
+`;
+
 export const LIST_TRIPS = gql`
   query listTrips($start: Int, $limit: Int, $where: JSON) {
     listTrips(input: { start: $start, limit: $limit, where: $where }) {
