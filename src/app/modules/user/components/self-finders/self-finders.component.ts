@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
-import { IUser } from 'src/utils/interfaces/user.interface';
-import { UserAdmin } from '../../graphql/types/user/user-admin.type';
-import { UserService } from '../../services/user.service';
+import { GraphqlSortOperationEnum } from 'src/utils/enums/graphql-sort-operation.enum';
+import { Finder } from '../../graphql/types/finder/finder.type';
+import { FinderService } from '../../services/finder.service';
 
 @Component({
   selector: 'self-finders',
@@ -10,20 +11,20 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./self-finders.component.scss']
 })
 export class SelfFinderComponent implements OnInit {
-  users: UserAdmin[] = [];
+  finders: Finder[] = [];
   count = 0;
-  currentUser!: IUser;
-  pageSize = 30;
+  pageSize = 10;
   pageToLoadNext = 1;
   loading = false;
 
   constructor(
-    private userService: UserService,
-    private toastrService: NbToastrService
+    private finderService: FinderService,
+    private toastrService: NbToastrService,
+    private router: Router
   ) {}
 
-  lockUser(user: UserAdmin) {
-    this.userService.lockUser(user.id).subscribe({
+  delete(finder: Finder) {
+    this.finderService.delete(finder.id).subscribe({
       error: (err) => {
         this.toastrService.show(err.message, 'Error', {
           duration: 3000,
@@ -31,7 +32,7 @@ export class SelfFinderComponent implements OnInit {
         });
       },
       complete: () => {
-        this.toastrService.success('User locked');
+        this.toastrService.success('Finder deleted');
         setTimeout(() => {
           window.location.reload();
         }, 3000);
@@ -39,45 +40,31 @@ export class SelfFinderComponent implements OnInit {
     });
   }
 
-  unlockUser(user: UserAdmin) {
-    this.userService.unlockUser(user.id).subscribe({
-      error: (err) => {
-        this.toastrService.show(err.message, 'Error', {
-          duration: 3000,
-          status: 'danger'
-        });
-      },
-      complete: () => {
-        this.toastrService.success('User unlocked');
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
-      }
-    });
+  update(finder: Finder) {
+    this.router.navigate(['/finders/update', { finder }]);
   }
 
   loadNext() {
     if (this.loading) {
       return;
     }
-
     this.loading = true;
-    this.userService.listUsers({ limit: this.pageSize }).subscribe({
-      next: ({ data }) => {
-        this.users = data.listUsers.data;
-        this.count = data.listUsers.count;
-        this.loading = false;
-        this.pageToLoadNext++;
-      }
-    });
+    this.finderService
+      .list({
+        limit: this.pageSize,
+        sort: { createdAt: GraphqlSortOperationEnum.desc }
+      })
+      .subscribe({
+        next: ({ data }) => {
+          this.finders = data.getSelfFinders.data;
+          this.count = data.getSelfFinders.count;
+          this.loading = false;
+          this.pageToLoadNext++;
+        }
+      });
   }
 
   ngOnInit(): void {
     this.loadNext();
-    this.userService.getCurrentUser.subscribe({
-      next: (user) => {
-        this.currentUser = user;
-      }
-    });
   }
 }

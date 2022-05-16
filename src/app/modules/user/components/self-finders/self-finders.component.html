@@ -1,8 +1,8 @@
 <div class="header-text">
-  <h1 class="title"> {{ 'user.list.title' | translate }} </h1>
+  <h1> {{ 'finder.list.title' | translate }} </h1>
 </div>
 
-<div *ngIf="users.length > 0; else noUsers">
+<div *ngIf="finders.length > 0; else noFinders">
   <nb-list
       nbInfiniteList
       listenWindowScroll
@@ -11,44 +11,57 @@
       [nbSpinner]="loading"
       nbSpinnerStatus="basic"
     >
-      <nb-list-item *ngFor="let user of users">
+      <nb-list-item *ngFor="let finder of finders">
         <nb-card hover-class="hover" class="listing-container">
           <nb-card-header class="header-card">
-              <nb-icon icon="email-outline"></nb-icon>
-              <b class="header-card-title">{{ 'user.list.row.email' | translate }} </b> {{ user.email }}
+              <nb-icon icon="funnel-outline"></nb-icon>
 
-              <nb-icon icon="shield-outline"></nb-icon>
-              <b class="header-card-title">{{ 'user.list.row.role.name' | translate }}  </b>
-              <span *ngIf="user.role == 'EXPLORER'">{{ 'user.list.row.role.explorer' | translate }}</span>
-              <span *ngIf="user.role == 'ADMIN'">{{ 'user.list.row.role.admin' | translate }}</span>
-              <span *ngIf="user.role == 'MANAGER'">{{ 'user.list.row.role.manager' | translate }}</span>
-              <span *ngIf="user.role == 'SPONSOR'">{{ 'user.list.row.role.sponsor' | translate }}</span>
+               <span *ngIf="finder.keyword !== null">
+                <b class="header-card-title">{{ 'finder.list.row.keyword' | translate }}</b>
+                {{ finder.keyword }}
+              </span>
+
+              <span *ngIf="finder.minDate !== null && finder.keyword === null">
+                <b class="header-card-title">{{ 'finder.list.row.minDate' | translate }}</b>
+                {{ finder.minDate }}
+              </span>
+
+              <span *ngIf="finder.maxDate !== null && finder.keyword === null">
+                <b class="header-card-title">{{ 'finder.list.row.maxDate' | translate }}</b>
+                {{ finder.maxDate }}
+              </span>
+
+              <span *ngIf="finder.minPrice !== null && finder.keyword === null">
+                <b class="header-card-title">{{ 'finder.list.row.minDate' | translate }}</b>
+                {{ finder.minPrice }}
+              </span>
+
+              <span *ngIf="finder.maxPrice !== null && finder.keyword === null">
+                <b class="header-card-title">{{ 'finder.list.row.maxDate' | translate }}</b>
+                {{ finder.maxPrice }}
+              </span>
+
           </nb-card-header>
 
           <nb-card-footer class="footer-card">
              <button
               nbButton
-              (click)="unlockUser(user)"
+              (click)="update(finder)"
               fullWidth
               type="submit"
-              [disabled]="currentUser.id === user.id"
-              *ngIf="user.status === 'LOCK'"
               status="primary"
-              size="medium">
-              <nb-icon icon="unlock-outline"></nb-icon>
-              {{ 'user.list.buttons.unlock' | translate }}
+              size="small">
+              <nb-icon icon="edit-2-outline" ></nb-icon>
             </button>
+
             <button
               nbButton
               fullWidth
-              [disabled]="currentUser.id === user.id"
-              (click)="lockUser(user)"
+              (click)="delete(finder)"
               type="submit"
               status="danger"
-              *ngIf="user.status === 'UNLOCK'"
-              size="medium">
-              <nb-icon icon="lock-outline"></nb-icon>
-              {{ 'user.list.buttons.lock' | translate }}
+              size="small">
+              <nb-icon icon="trash-2-outline"></nb-icon>
             </button>
           </nb-card-footer>
         </nb-card>
@@ -56,10 +69,10 @@
   </nb-list>
 </div>
 
-<ng-template #noUsers>
+<ng-template #noFinders>
   <nb-card class="listing-container">
     <nb-card-body>
-      <p> {{ 'user.list.notFound' | translate }}  </p>
+      <p> {{ 'finder.list.notFound' | translate }}  </p>
     </nb-card-body>
   </nb-card>
 </ng-template>

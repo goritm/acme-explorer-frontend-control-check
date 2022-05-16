@@ -4,8 +4,12 @@
 
 .header-text {
   text-align: center;
-  margin-bottom: 1rem;
 }
+
+h1 {
+  font-size: calc(1.8vw + 1.8vh + 1vmin);
+}
+
 
 .listing-container {
   width: 80%;
@@ -16,13 +20,17 @@
 }
 
 .footer-card {
-  width: 25%;
-  text-align: center;
+  width: 30%;
+  display: flex;
+  margin: auto;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 .header-card {
-  width: 75%;
+  width: 70%;
   margin: auto;
+  justify-content: space-between;
 
 
   .header-card-title {
