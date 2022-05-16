@@ -67,6 +67,30 @@ export class ListTripsComponent {
   findTrips() {
     this.loading = true;
 
-    console.log(this.finderForm.value);
+    const { keyword, maxItems, minDate, maxDate, minPrice, maxPrice } =
+      this.finderForm.value;
+
+    this.tripService
+      .getTrips({
+        limit: maxItems || 10,
+        where: {
+          ...(keyword && { filter_search: keyword }),
+          ...(minDate && { startDate: { gte: minDate } }),
+          ...(maxDate && { endDate: { lte: maxDate } }),
+          ...(minPrice && { price: { gte: minPrice } }),
+          ...(maxPrice && { price: { lte: maxPrice } })
+        }
+      })
+      .subscribe({
+        next: ({ data }) => {
+          console.log(data);
+          this.trips = data.getTrips;
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error(err.message);
+          this.loading = false;
+        }
+      });
   }
 }
