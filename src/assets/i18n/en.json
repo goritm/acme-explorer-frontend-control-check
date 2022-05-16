@@ -38,7 +38,10 @@
       }
     },
     "cancelTrip": {
-      "title": "Cancel trip"
+      "title": "Cancel trip",
+      "message": "Are you sure you want to cancel this trip? If so, you must specify a reason of cancellation",
+      "placeholder": "Please add a reason of cancellation...",
+      "button": "Cancel Trip"
     },
     "editTrip": {
       "title": "Edit trip"

@@ -38,7 +38,10 @@
       }
     },
     "cancelTrip": {
-      "title": "Cancelar viaje"
+      "title": "Cancelar viaje",
+      "message": "Estas seguro de que quieres cancelar este viaje? Si es así, debes especificar la razón",
+      "placeholder": "Agregue una razón por la que cancela el viaje...",
+      "button": "Cancelar viaje"
     },
     "editTrip": {
       "title": "Editar viaje"
