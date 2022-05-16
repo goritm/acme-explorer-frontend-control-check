@@ -8,15 +8,18 @@ import {
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
+  NbLayoutModule,
   NbListModule,
   NbSpinnerModule
 } from '@nebular/theme';
 import { AppRoutingModule } from '../routing/app-routing.module';
 import { NgxTranslateModule } from '../translate/translate.module';
-import { AnalitycsService } from './services/analitycs.service';
+import { AnalyticsService } from './services/analytics.service';
+import { AnalyticsComponent } from './components/analytics/analytics.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
-  declarations: [],
+  declarations: [AnalyticsComponent],
   imports: [
     GraphQLModule,
     AppRoutingModule,
@@ -25,15 +28,17 @@ import { AnalitycsService } from './services/analitycs.service';
     ReactiveFormsModule,
     NbFormFieldModule,
     NbInputModule,
+    NbLayoutModule,
     NbButtonModule,
     NbSpinnerModule,
     NbIconModule,
     NbListModule,
     NbCardModule,
     NbSpinnerModule,
-    NgxTranslateModule
+    NgxTranslateModule,
+    NgxEchartsModule
   ],
-  providers: [AnalitycsService],
-  exports: []
+  providers: [AnalyticsService],
+  exports: [AnalyticsComponent]
 })
-export class ConfigurationModule {}
+export class DashboardModule {}

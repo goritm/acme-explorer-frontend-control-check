@@ -40,6 +40,8 @@ import { UserModule } from './modules/user/user.module';
 import { SponsorshipModule } from './modules/sponsorship/sponsorship.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { ConfigurationModule } from './modules/configuration/configuration.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [
@@ -51,11 +53,12 @@ import { ConfigurationModule } from './modules/configuration/configuration.modul
   ],
   imports: [
     ApplicationModule,
+    AuthenticationModule,
+    ConfigurationModule,
+    DashboardModule,
     ShareModule,
     UserModule,
     PaymentModule,
-    ConfigurationModule,
-    AuthenticationModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -75,7 +78,15 @@ import { ConfigurationModule } from './modules/configuration/configuration.modul
     NbButtonModule,
     NbUserModule,
     NbActionsModule,
-    NbSearchModule
+    NbSearchModule,
+    NgxEchartsModule.forRoot({
+      /**
+       * This will import all modules from echarts.
+       * If you only need custom modules,
+       * please refer to [Custom Build] section.
+       */
+      echarts: () => import('echarts') // or import('./path-to-my-custom-echarts')
+    })
   ],
   bootstrap: [AppComponent]
 })
