@@ -30,6 +30,7 @@ import { CreateTripComponent } from './components/create-trip/create-trip.compon
 import { ShareModule } from 'src/app/components/share.module';
 import { SelfTripsComponent } from './components/self-trips/self-trips.component';
 import { CancelTripDialogComponent } from './components/trip-detail/dialog/cancel-trip-dialog/cancel-trip-dialog.component';
+import { FavoriteTripDialogComponent } from './components/list-trips/dialog/favorite-trip-dialog/favorite-trip-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CancelTripDialogComponent } from './components/trip-detail/dialog/cance
     ApplyToTripDialogComponent,
     EditTripDialogComponent,
     CancelTripDialogComponent,
+    FavoriteTripDialogComponent,
     SelfTripsComponent
   ],
   imports: [

@@ -1,4 +1,4 @@
-export type CreateFavoriteList = {
+export type CreateFavoriteListInput = {
   name: string;
   trips: string[];
 };

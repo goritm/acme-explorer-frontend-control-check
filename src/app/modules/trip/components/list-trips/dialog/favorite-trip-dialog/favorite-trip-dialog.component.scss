@@ -1,0 +1,25 @@
+p {
+  font-family: nb-theme(font-family-primary);
+  color: nb-theme(text-basic-color);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: nb-theme(text-primary-color);
+  text-align: center;
+}
+
+.hover {
+  cursor: pointer;
+}
+
+.list-item:hover {
+  cursor: pointer;
+}
