@@ -2,10 +2,15 @@
   <nb-card>
     <nb-card-header> Price Tracker </nb-card-header>
     <nb-list>
-      <nb-list-item *ngFor="let trip of priceTrackerTrips">
-        <p>{{ trip.name }}</p>
-        <p>{{ trip.description }}</p>
-        <div>
+      <nb-list-item
+        *ngFor="let trip of priceTrackerTrips"
+        class="list-item-container"
+      >
+        <div class="left-column">
+          <h3>{{ trip.name }}</h3>
+          <p>{{ trip.description }}</p>
+        </div>
+        <div class="right-column">
           <nb-list>
             <nb-list-item
               *ngFor="let price of trip.oldPrices; let i = index"
