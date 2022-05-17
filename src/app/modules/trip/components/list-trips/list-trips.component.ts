@@ -133,4 +133,29 @@ export class ListTripsComponent {
         this.loadNext();
       });
   }
+
+  addToPriceTracker(trip: Trip): void {
+    if (localStorage.getItem('priceTracker') === null) {
+      localStorage.setItem('priceTracker', JSON.stringify([]));
+    }
+
+    localStorage.setItem(
+      'priceTracker',
+      JSON.stringify([
+        ...JSON.parse(localStorage.getItem('priceTracker') ?? '[]'),
+        {
+          id: trip.id,
+          name: trip.title,
+          description: trip.description,
+          price: trip.price,
+          date: new Date()
+        }
+      ])
+    );
+
+    this.toastrService.show('Added to price tracker', 'Success', {
+      duration: 3000,
+      status: 'success'
+    });
+  }
 }

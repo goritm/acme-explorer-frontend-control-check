@@ -59,6 +59,8 @@ export class TripDetailComponent implements OnInit {
           this.checkTripIsNotCancelled();
           this.getSponsorships();
 
+          this.checkPriceTracker();
+
           this.loading = false;
         }
       },
@@ -69,6 +71,49 @@ export class TripDetailComponent implements OnInit {
         });
       }
     });
+  }
+  checkPriceTracker() {
+    const priceTracker = JSON.parse(
+      localStorage.getItem('priceTracker') ?? '[]'
+    );
+
+    if (priceTracker.length === 0) return;
+
+    const tripIndex = priceTracker.findIndex(
+      (trip: { id: string | undefined }) => trip.id === this.trip?.id
+    );
+
+    if (tripIndex === -1) return;
+
+    const trip = priceTracker[tripIndex];
+    console.log(trip);
+
+    if (trip.price !== this.trip?.price) {
+      this.toastrService.show(
+        `Price changed from ${trip.price} to ${this.trip?.price}`,
+        'Price Tracker',
+        {
+          duration: 3000,
+          status: 'warning'
+        }
+      );
+
+      priceTracker[tripIndex] = {
+        ...trip,
+        oldPrices: [
+          ...(trip.oldPrices ?? []),
+          {
+            price: trip.price,
+            date: trip.date
+          }
+        ],
+        price: this.trip?.price,
+        date: new Date()
+      };
+
+      console.log(priceTracker[tripIndex]);
+      localStorage.setItem('priceTracker', JSON.stringify(priceTracker));
+    }
   }
 
   getSponsorships(): void {

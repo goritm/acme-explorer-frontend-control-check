@@ -97,6 +97,9 @@
               icon="heart-outline"
               (click)="favoriteTrip(trip)"
             ></nb-icon>
+            <button nbButton (click)="addToPriceTracker(trip)">
+              Add to price tracker
+            </button>
             <p>€{{ trip.price }}</p>
           </nb-card-footer>
         </nb-card>
