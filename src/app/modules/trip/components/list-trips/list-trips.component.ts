@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import {
-  NbDialogService,
-  NbSearchService,
-  NbToastrService
-} from '@nebular/theme';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { FinderService } from 'src/app/modules/user/services/finder.service';
 import { TripState } from 'src/utils/enums/trip-state.enum';
 import { Trip } from '../../graphql/types/trip.type';
-import { ITrip } from '../../interfaces/trip.interface';
 import { TripService } from '../../trip.service';
 import { FavoriteTripDialogComponent } from './dialog/favorite-trip-dialog/favorite-trip-dialog.component';
 
