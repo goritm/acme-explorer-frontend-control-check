@@ -6,9 +6,12 @@
         *ngFor="let trip of priceTrackerTrips"
         class="list-item-container"
       >
-        <div class="left-column">
-          <h3>{{ trip.name }}</h3>
-          <p>{{ trip.description }}</p>
+        <div
+          class="left-column"
+          [style.color]="trip.oldPrices && trip.price > trip.oldPrices?.[trip.oldPrices!.length - 1]!.price ? 'red' : 'green'"
+        >
+          <div class="trip-title">{{ trip.name }}</div>
+          <div>{{ trip.description }}</div>
         </div>
         <div class="right-column">
           <nb-list>
