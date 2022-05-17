@@ -1,3 +1,4 @@
+import { PriceTrackerModule } from './modules/price-tracker/price-tracker.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgModule } from '@angular/core';
@@ -58,6 +59,7 @@ import { FavoriteModule } from './modules/favorite/favorite.module';
     ConfigurationModule,
     DashboardModule,
     FavoriteModule,
+    PriceTrackerModule,
     ShareModule,
     UserModule,
     PaymentModule,

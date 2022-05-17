@@ -52,8 +52,6 @@ export class EditTripDialogComponent implements OnInit {
       }
     };
 
-    console.log(this.updateTripForm.value);
-
     this.tripService
       .updateTrip(updateTripInput)
       .pipe(
