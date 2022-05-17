@@ -144,6 +144,7 @@ export class ListTripsComponent {
       JSON.stringify([
         ...JSON.parse(localStorage.getItem('priceTracker') ?? '[]'),
         {
+          userId: localStorage.getItem('userId'),
           id: trip.id,
           name: trip.title,
           description: trip.description,
