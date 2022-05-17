@@ -135,6 +135,22 @@ export class ListTripsComponent {
   }
 
   addToPriceTracker(trip: Trip): void {
+    if (
+      JSON.parse(localStorage.getItem('priceTracker') ?? '[]').find(
+        (t: { id: string }) => t.id === trip.id
+      )
+    ) {
+      this.toastrService.show(
+        'Trip already added to price tracker',
+        'Price Tracker',
+        {
+          duration: 3000,
+          status: 'warning'
+        }
+      );
+      return;
+    }
+
     if (localStorage.getItem('priceTracker') === null) {
       localStorage.setItem('priceTracker', JSON.stringify([]));
     }
