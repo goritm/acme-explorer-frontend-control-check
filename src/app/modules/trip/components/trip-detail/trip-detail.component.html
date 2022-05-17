@@ -53,7 +53,12 @@
         >
           {{ 'trip-detail.buttons.publish' | translate }}
         </button>
-        <button *ngIf="isOwnTrip" nbButton (click)="editTrip()">
+        <button
+          *ngIf="isOwnTrip"
+          nbButton
+          (click)="editTrip()"
+          data-testid="edit-trip-button"
+        >
           {{ 'trip-detail.buttons.edit' | translate }}
         </button>
         <button

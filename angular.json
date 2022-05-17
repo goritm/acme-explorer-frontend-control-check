@@ -80,6 +80,37 @@
           "options": {
             "browserTarget": "acme-explorer-front:build"
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "acme-explorer-front:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "acme-explorer-front:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "acme-explorer-front:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "acme-explorer-front:serve:production"
+            }
+          }
         }
       }
     }

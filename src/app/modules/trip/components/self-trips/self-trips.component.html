@@ -5,7 +5,7 @@
 <div [nbSpinner]="loading" nbSpinnerStatus="basic">
   <div *ngIf="trips.length > 0; else noTrips" class="center">
     <nb-list>
-      <nb-list-item *ngFor="let trip of trips">
+      <nb-list-item *ngFor="let trip of trips" data-testid="self-trip-card">
         <nb-card
           routerLink="/trips/detail/{{ trip.id }}"
           hover-class="hover"
