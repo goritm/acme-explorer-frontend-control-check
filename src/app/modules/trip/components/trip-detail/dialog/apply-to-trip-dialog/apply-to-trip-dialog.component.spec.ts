@@ -26,15 +26,17 @@ const createSpyObj = (
   return obj;
 };
 
+const testTrip = {
+  id: 'tripId',
+  title: 'tripTitle',
+  description: 'tripDescription',
+  price: 123
+};
+
 class DialogRefMock {
   componentRef = {
     instance: {
-      trip: {
-        id: 'tripId',
-        title: 'tripTitle',
-        description: 'tripDescription',
-        price: 123
-      }
+      trip: testTrip
     }
   };
   close() {}
@@ -43,12 +45,14 @@ class DialogRefMock {
 describe('ApplyToTripDialogComponent', () => {
   let component: ApplyToTripDialogComponent;
   let fixture: ComponentFixture<ApplyToTripDialogComponent>;
+
   let tripServiceMock: { [x: string]: any };
   let toasterServiceMock: { [x: string]: any };
 
   beforeEach(async () => {
-    tripServiceMock = createSpyObj('TripService', ['applyToTrip']);
     toasterServiceMock = createSpyObj('NbToastrService', ['success', 'danger']);
+
+    tripServiceMock = createSpyObj('TripService', ['applyToTrip']);
     tripServiceMock['applyToTrip'].mockReturnValue(
       of({
         message: 'You have successfully applied to the trip tripTitle',
@@ -56,6 +60,7 @@ describe('ApplyToTripDialogComponent', () => {
         tripId: 'tripId'
       })
     );
+
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -109,4 +114,23 @@ describe('ApplyToTripDialogComponent', () => {
     component.onSubmit(component.applicationForm);
     expect(toasterServiceMock['success']).toHaveBeenCalledTimes(1);
   });
+
+  it('should be valid if form value is valid', () => {
+    component.applicationForm.setValue({
+      comments: 'test comments'
+    });
+    expect(component.applicationForm.valid).toBeTruthy();
+  });
+
+  // it('should allow the user to apply to the trip', () => {
+  //   component.applicationForm.setValue({
+  //     comments: 'test comments'
+  //   });
+  //   component.onSubmit(component.applicationForm);
+  //   expect(tripServiceMock['applyToTrip']).toHaveBeenCalledTimes(1);
+  //   expect(tripServiceMock['applyToTrip']).toHaveBeenCalledWith(
+  //     null,
+  //     testTrip.id
+  //   );
+  // });
 });
