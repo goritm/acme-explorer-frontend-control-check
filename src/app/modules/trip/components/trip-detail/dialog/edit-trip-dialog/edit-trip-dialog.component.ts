@@ -21,8 +21,7 @@ export class EditTripDialogComponent implements OnInit {
   updateTripForm = this.fb.group({
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
-    requirements: ['', [Validators.required]],
-    price: ['', [Validators.required]]
+    requirements: ['', [Validators.required]]
   });
 
   constructor(
@@ -42,10 +41,19 @@ export class EditTripDialogComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
 
+    const stages = [
+      {
+        title: 'hola',
+        description: 'chao',
+        price: this.trip.price + 100
+      }
+    ];
+
     const updateTripInput: UpdateTripInput = {
       data: {
         ...this.updateTripForm.value,
-        requirements: this.updateTripForm.value.requirements.split('\n')
+        requirements: this.updateTripForm.value.requirements.split('\n'),
+        stages: stages
       },
       where: {
         id: this.trip.id
