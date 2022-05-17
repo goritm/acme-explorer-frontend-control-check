@@ -93,7 +93,7 @@ export class TripDetailComponent implements OnInit {
         'Price Tracker',
         {
           duration: 3000,
-          status: 'warning'
+          status: trip.price > (this.trip?.price ?? 0) ? 'success' : 'danger'
         }
       );
 
