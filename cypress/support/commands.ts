@@ -3,11 +3,20 @@
 // with Intellisense and code completion in your
 // IDE or Text Editor.
 // ***********************************************
-// declare namespace Cypress {
-//   interface Chainable<Subject = any> {
-//     customCommand(param: any): typeof customCommand;
-//   }
-// }
+// eslint-disable-next-line @typescript-eslint/no-namespace
+declare namespace Cypress {
+  interface Chainable<Subject = any> {
+    byTestId<E extends Node = HTMLElement>(
+      id: string,
+      options?: Partial<
+        Cypress.Loggable &
+          Cypress.Timeoutable &
+          Cypress.Withinable &
+          Cypress.Shadow
+      >
+    ): Cypress.Chainable<JQuery<E>>;
+  }
+}
 //
 // function customCommand(param: any): void {
 //   console.warn(param);
