@@ -91,11 +91,7 @@ const routes: Routes = [
   },
   {
     path: 'price-tracker',
-    component: PriceTrackerComponent,
-    canActivate: [AuthGuard],
-    data: {
-      expectedRoles: [UserRoles.GUEST, UserRoles.EXPLORER, UserRoles.ADMIN]
-    }
+    component: PriceTrackerComponent
   },
   {
     path: 'login',
