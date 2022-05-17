@@ -15,18 +15,21 @@
             <nb-list-item
               *ngFor="let price of trip.oldPrices; let i = index"
               [style.color]="i >= 1 && price.price > trip.oldPrices?.[i - 1]!.price ? 'red' : 'green'"
+              class="price-date-separator"
             >
-              {{ price.price }}
-              >
-              {{ price.price }}: {{ price.date }}
+              <div>
+                <b>€{{ price.price }}</b>
+              </div>
+              <div>{{ price.date }}</div>
             </nb-list-item>
-            <nb-list-item>
-              <p
-                [style.color]="trip.oldPrices && trip.price > trip.oldPrices?.[trip.oldPrices!.length - 1]!.price ? 'red' : 'green'"
-              >
-                <strong>Current price:</strong> {{ trip.price }} -
-                {{ trip.date }}
-              </p>
+            <nb-list-item
+              [style.color]="trip.oldPrices && trip.price > trip.oldPrices?.[trip.oldPrices!.length - 1]!.price ? 'red' : 'green'"
+              class="price-date-separator"
+            >
+              <div>
+                <b>Current price: €{{ trip.price }}</b>
+              </div>
+              <div>{{ trip.date }}</div>
             </nb-list-item>
           </nb-list>
         </div>

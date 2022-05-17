@@ -10,4 +10,11 @@
   .right-column {
     flex: 0 0 60%;
   }
+
+  .price-date-separator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
