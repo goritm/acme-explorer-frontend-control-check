@@ -123,10 +123,14 @@ export class ListTripsComponent {
   }
 
   favoriteTrip(trip: Trip): void {
-    this.dialogService.open(FavoriteTripDialogComponent, {
-      context: {
-        trip
-      }
-    });
+    this.dialogService
+      .open(FavoriteTripDialogComponent, {
+        context: {
+          trip
+        }
+      })
+      .onClose.subscribe(() => {
+        this.loadNext();
+      });
   }
 }

@@ -1,10 +1,9 @@
-import { FavoriteList } from './../../../../../favorite/graphql/types/favorite-list.type';
-import { FavoriteService } from './../../../../../favorite/services/favorite.service';
 import { Trip } from 'src/app/modules/trip/graphql/types/trip.type';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef, NbToastrService } from '@nebular/theme';
-import { TripService } from 'src/app/modules/trip/trip.service';
+import { FavoriteList } from 'src/app/modules/favorite/graphql/types/favorite-list.type';
+import { FavoriteService } from 'src/app/modules/favorite/services/favorite.service';
 
 @Component({
   selector: 'app-favorite-trip-dialog',
@@ -21,7 +20,6 @@ export class FavoriteTripDialogComponent implements OnInit {
 
   constructor(
     protected dialogRef: NbDialogRef<FavoriteTripDialogComponent>,
-    private tripService: TripService,
     private fb: FormBuilder,
     private toastrService: NbToastrService,
     private favoriteService: FavoriteService
@@ -41,8 +39,8 @@ export class FavoriteTripDialogComponent implements OnInit {
       next: ({ data }) => {
         this.favoritesList = data.selfFavoritesList;
       },
-      error: (err: any) => {
-        console.log(err);
+      error: (err) => {
+        this.toastrService.danger(err.message);
       }
     });
   }
@@ -78,6 +76,8 @@ export class FavoriteTripDialogComponent implements OnInit {
           this.toastrService.success(
             `You have successfully added the trip to ${data?.addFavoriteTrip.name}`
           );
+
+          this.dialogRef.close();
         },
         error: (err) => {
           this.toastrService.danger(err.message);
