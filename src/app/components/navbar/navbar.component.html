@@ -42,14 +42,15 @@
     [icon]="this.currentTheme === 'default' ? 'moon-outline' : 'sun-outline'"
   ></nb-icon>
   <div *ngIf="!isLoggedIn" class="auth-buttons">
-    <button nbButton [routerLink]="'login'">
+    <button nbButton routerLink="login" data-testid="login-button">
       {{ 'security.login' | translate }}
     </button>
-    <button nbButton [routerLink]="'register'">
+    <button nbButton routerLink="register" data-testid="register-button">
       {{ 'security.register' | translate }}
     </button>
   </div>
   <nb-user
+    data-testid="user-bar"
     shape="semi-round"
     name="{{ currentUser.name }} {{ currentUser.lastName }}"
     title="{{ currentUser.role.toLowerCase() }}"
