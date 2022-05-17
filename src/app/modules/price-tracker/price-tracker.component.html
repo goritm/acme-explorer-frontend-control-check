@@ -1,1 +1,28 @@
-<p>price-tracker works!</p>
+<div *ngIf="priceTrackerTrips; else noTrips">
+  <nb-card>
+    <nb-card-header> Price Tracker </nb-card-header>
+    <nb-list>
+      <nb-list-item *ngFor="let trip of priceTrackerTrips">
+        <p>{{ trip.name }}</p>
+        <p>{{ trip.description }}</p>
+        <div>
+          <ul>
+            <li>
+              <p>
+                <strong>Current price:</strong> {{ trip.price }} -
+                {{ trip.date }}
+              </p>
+            </li>
+            <li *ngFor="let price of trip.oldPrices">
+              {{ price.price }}: {{ price.date }}
+            </li>
+          </ul>
+        </div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card>
+</div>
+
+<ng-template #noTrips>
+  <p>You haven't added trips to your price tracker...</p>
+</ng-template>

@@ -86,7 +86,6 @@ export class TripDetailComponent implements OnInit {
     if (tripIndex === -1) return;
 
     const trip = priceTracker[tripIndex];
-    console.log(trip);
 
     if (trip.price !== this.trip?.price) {
       this.toastrService.show(

@@ -29,6 +29,7 @@ import { SelfFinderComponent } from '../user/components/self-finders/self-finder
 import { FinderStatsComponent } from '../dashboard/components/finder-stats/finder-stats.component';
 import { FavoritesListComponent } from '../favorite/components/list-favorites/favorites-list.component';
 import { FavoriteListComponent } from '../favorite/components/list-favorite/favorite-list.component';
+import { PriceTrackerComponent } from '../price-tracker/price-tracker.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'trips', pathMatch: 'full' },
@@ -86,6 +87,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       expectedRoles: [UserRoles.EXPLORER, UserRoles.MANAGER, UserRoles.ADMIN]
+    }
+  },
+  {
+    path: 'price-tracker',
+    component: PriceTrackerComponent,
+    canActivate: [AuthGuard],
+    data: {
+      expectedRoles: [UserRoles.GUEST, UserRoles.EXPLORER, UserRoles.ADMIN]
     }
   },
   {
