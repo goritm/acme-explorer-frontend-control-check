@@ -30,3 +30,34 @@ nb-layout {
     overflow-y: scroll !important;
   }
 }
+
+.stage-container {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+
+  .stage-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .stage-input {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .stage-list-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .price-separation {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    }
+  }
+}

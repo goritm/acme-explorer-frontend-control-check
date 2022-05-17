@@ -113,6 +113,83 @@
         placeholder="Requeriments..."
       ></textarea>
 
+      <div class="stage-container">
+        <ng-form class="stage-form" formGroupName="stages">
+          <div class="stage-input">
+            <label for="stage-title"
+              >{{ 'create-trip.fields.stageTitle' | translate }}:</label
+            >
+            <input
+              nbInput
+              type="text"
+              id="stage-title"
+              name="stage-title"
+              formControlName="title"
+            />
+          </div>
+          <div class="stage-input">
+            <label for="stage-description"
+              >{{ 'create-trip.fields.stageDescription' | translate }}:</label
+            >
+            <input
+              nbInput
+              type="text"
+              id="stage-description"
+              name="stage-description"
+              formControlName="description"
+            />
+          </div>
+          <div class="stage-input">
+            <label for="stage-price"
+              >{{ 'create-trip.fields.stagePrice' | translate }}:</label
+            >
+            <input
+              nbInput
+              type="number"
+              id="stage-price"
+              name="stage-price"
+              formControlName="price"
+            />
+          </div>
+          <button
+            nbButton
+            type="button"
+            status="primary"
+            size="large"
+            (click)="addStage()"
+          >
+            {{ 'create-trip.buttons.addStage' | translate }}
+          </button>
+        </ng-form>
+
+        <nb-list *ngIf="stages">
+          <nb-list-item *ngFor="let stage of stages">
+            <div class="stage-list-item">
+              <div>
+                <p>
+                  <b>{{ stage.title }}</b
+                  >: {{ stage.description }}
+                </p>
+              </div>
+              <div class="price-separation">
+                <p>
+                  €<b>{{ stage.price }}</b>
+                </p>
+                <button
+                  nbButton
+                  status="primary"
+                  size="small"
+                  (click)="deleteStage(stage)"
+                  type="button"
+                >
+                  {{ 'create-trip.buttons.removeStage' | translate }}
+                </button>
+              </div>
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </div>
+
       <button
         nbButton
         fullWidth
