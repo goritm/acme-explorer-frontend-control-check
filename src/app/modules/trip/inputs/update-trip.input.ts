@@ -8,6 +8,7 @@ export type UpdateTripInput = {
     startDate: string;
     reasonCancelled: string;
     stages: StageInput[];
+    price: number;
     requirements: string[];
     pictures: string[];
     dates?: string[];

@@ -21,7 +21,8 @@ export class EditTripDialogComponent implements OnInit {
   updateTripForm = this.fb.group({
     title: ['', [Validators.required]],
     description: ['', [Validators.required]],
-    requirements: ['', [Validators.required]]
+    requirements: ['', [Validators.required]],
+    price: ['', [Validators.required]]
   });
 
   constructor(
@@ -51,6 +52,8 @@ export class EditTripDialogComponent implements OnInit {
       }
     };
 
+    console.log(this.updateTripForm.value);
+
     this.tripService
       .updateTrip(updateTripInput)
       .pipe(
@@ -79,7 +82,8 @@ export class EditTripDialogComponent implements OnInit {
     this.updateTripForm.patchValue({
       title: this.trip.title,
       description: this.trip.description,
-      requirements: this.trip.requirements.join('\n')
+      requirements: this.trip.requirements.join('\n'),
+      price: this.trip.price
     });
   }
 
