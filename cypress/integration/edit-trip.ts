@@ -1,4 +1,4 @@
-describe('Homepage Initial Tender', () => {
+describe('Edit Trip e2e', () => {
   const managerCreds = {
     email: 'test2@test.com',
     password: '123456'
@@ -18,8 +18,22 @@ describe('Homepage Initial Tender', () => {
     cy.contains('ACME Explorer');
     cy.byTestId('user-bar').contains('manager');
     cy.visit('/trips/self');
+    cy.saveLocalStorage();
   });
 
-  // it('goes to the self trips page', () => {
-  // });
+  it('edits first self trip', () => {
+    const titleText = 'hello from cypress :)';
+    cy.byTestId('self-trip-card').first().click();
+    cy.byTestId('edit-trip-button').click();
+
+    cy.restoreLocalStorage();
+    cy.get('#title').clear().type(titleText);
+    cy.byTestId('submit-edit-button').click();
+
+    cy.wait(1000);
+
+    cy.contains(titleText);
+    cy.visit('/trips/self');
+    cy.byTestId('self-trip-card').first().contains(titleText);
+  });
 });
